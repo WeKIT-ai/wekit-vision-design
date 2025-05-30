@@ -190,11 +190,13 @@ const About = () => {
             {teamMembers.map((member, index) => (
               <div key={index} className="group hover:scale-105 transition-transform duration-300">
                 <div className="bg-gradient-to-br from-blue-50 to-purple-50 p-6 rounded-2xl shadow-lg hover:shadow-xl transition-shadow">
-                  <img 
-                    src={member.image} 
-                    alt={member.name}
-                    className="w-24 h-24 rounded-full mx-auto mb-4 object-cover ring-4 ring-white shadow-lg"
-                  />
+                  <div className="w-24 h-24 mx-auto mb-4 overflow-hidden rounded-full ring-4 ring-white shadow-lg">
+                    <img 
+                      src={member.image} 
+                      alt={member.name}
+                      className="w-full h-full object-cover object-center"
+                    />
+                  </div>
                   <h3 className="text-xl font-bold text-gray-900 text-center mb-2">{member.name}</h3>
                   <p className="text-blue-600 font-medium text-center mb-3">{member.role}</p>
                   <p className="text-gray-600 text-sm text-center leading-relaxed mb-4">{member.description}</p>
