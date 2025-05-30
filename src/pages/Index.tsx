@@ -3,6 +3,11 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { ArrowRight, Users, GraduationCap, Briefcase, Heart, TrendingUp } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import NewsletterSignup from '@/components/lead-gen/NewsletterSignup';
+import ContactForm from '@/components/lead-gen/ContactForm';
+import DemoRequestForm from '@/components/lead-gen/DemoRequestForm';
+import MentorSignup from '@/components/lead-gen/MentorSignup';
+import EarlyAccessForm from '@/components/lead-gen/EarlyAccessForm';
 
 const Index = () => {
   const audiences = [
@@ -66,8 +71,23 @@ const Index = () => {
         </div>
       </section>
 
+      {/* Lead Gen Section 1 - Quick Engagement */}
+      <section className="py-16 px-6 md:px-8 bg-gray-50">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold text-gray-900 mb-4">Start Your Journey</h2>
+            <p className="text-xl text-gray-600">Take the first step towards transforming youth development</p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <NewsletterSignup />
+            <EarlyAccessForm />
+            <DemoRequestForm />
+          </div>
+        </div>
+      </section>
+
       {/* Mission Statement */}
-      <section className="py-32 px-6 md:px-8 bg-gray-50">
+      <section className="py-32 px-6 md:px-8">
         <div className="max-w-4xl mx-auto text-center space-y-8">
           <h2 className="text-4xl md:text-5xl font-light text-gray-900 leading-tight">
             Building Bridges
@@ -79,6 +99,20 @@ const Index = () => {
             Our AI-powered platform connects students and young professionals with mentors, educational 
             institutions, and opportunities that align with their goals and aspirations.
           </p>
+        </div>
+      </section>
+
+      {/* Lead Gen Section 2 - Community Building */}
+      <section className="py-16 px-6 md:px-8 bg-gray-50">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold text-gray-900 mb-4">Join Our Community</h2>
+            <p className="text-xl text-gray-600">Connect with like-minded individuals passionate about youth development</p>
+          </div>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <MentorSignup />
+            <ContactForm />
+          </div>
         </div>
       </section>
 

@@ -1,9 +1,12 @@
 
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
-import { Input } from '@/components/ui/input';
-import { Textarea } from '@/components/ui/textarea';
 import { CheckCircle, Users, BarChart3, Award, ArrowRight } from 'lucide-react';
+import DemoRequestForm from '@/components/lead-gen/DemoRequestForm';
+import ContactForm from '@/components/lead-gen/ContactForm';
+import PartnershipInquiry from '@/components/lead-gen/PartnershipInquiry';
+import NewsletterSignup from '@/components/lead-gen/NewsletterSignup';
+import EarlyAccessForm from '@/components/lead-gen/EarlyAccessForm';
 
 const Schools = () => {
   const benefits = [
@@ -61,8 +64,27 @@ const Schools = () => {
         </div>
       </section>
 
+      {/* Lead Gen Section 1 - Quick Access Forms */}
+      <section className="py-16 px-6 md:px-8 bg-gray-50">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold text-gray-900 mb-4">Get Started Today</h2>
+            <p className="text-xl text-gray-600">Choose the best way to begin your WeKIT journey</p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="lg:col-span-2">
+              <DemoRequestForm />
+            </div>
+            <div className="space-y-6">
+              <NewsletterSignup />
+              <EarlyAccessForm />
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Benefits Section */}
-      <section className="py-32 px-6 md:px-8 bg-gray-50">
+      <section className="py-32 px-6 md:px-8">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-24 space-y-8">
             <h2 className="text-4xl md:text-5xl font-light text-gray-900 leading-tight">
@@ -96,10 +118,10 @@ const Schools = () => {
         </div>
       </section>
 
-      {/* Features Section */}
-      <section className="py-32 px-6 md:px-8">
+      {/* Features & Contact Section */}
+      <section className="py-32 px-6 md:px-8 bg-gray-50">
         <div className="max-w-6xl mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-start">
             <div className="space-y-8">
               <h2 className="text-4xl md:text-5xl font-light text-gray-900 leading-tight">
                 Comprehensive
@@ -120,33 +142,22 @@ const Schools = () => {
               </div>
             </div>
             <div className="lg:pl-12">
-              <Card className="border border-gray-200 bg-white rounded-none shadow-none">
-                <CardContent className="p-12">
-                  <h3 className="text-3xl font-medium text-gray-900 mb-8 leading-tight">
-                    Request Partnership
-                    <br />
-                    Information
-                  </h3>
-                  <form className="space-y-6">
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                      <Input placeholder="Institution Name" className="rounded-none border-gray-200 p-4 text-lg font-light" />
-                      <Input placeholder="Your Name" className="rounded-none border-gray-200 p-4 text-lg font-light" />
-                    </div>
-                    <Input placeholder="Email Address" type="email" className="rounded-none border-gray-200 p-4 text-lg font-light" />
-                    <Input placeholder="Phone Number" type="tel" className="rounded-none border-gray-200 p-4 text-lg font-light" />
-                    <Textarea 
-                      placeholder="Tell us about your institution and how you'd like to partner with us" 
-                      rows={4}
-                      className="rounded-none border-gray-200 p-4 text-lg font-light resize-none"
-                    />
-                    <Button className="w-full bg-black hover:bg-gray-800 text-white py-4 text-lg font-medium rounded-none border-0 shadow-none hover:shadow-none">
-                      Send Partnership Request
-                    </Button>
-                  </form>
-                </CardContent>
-              </Card>
+              <ContactForm />
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* Lead Gen Section 2 - Partnership Focus */}
+      <section className="py-16 px-6 md:px-8">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold text-gray-900 mb-4">Explore Partnership Opportunities</h2>
+            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+              Let's discuss how we can create a customized solution for your institution.
+            </p>
+          </div>
+          <PartnershipInquiry />
         </div>
       </section>
 
