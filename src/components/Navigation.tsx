@@ -21,6 +21,7 @@ const Navigation = () => {
     { name: 'Home', path: '/' },
     { name: 'Schools', path: '/schools' },
     { name: 'Students', path: '/students' },
+    { name: 'Parents', path: 'https://lovable.dev/projects/db205b89-38c3-49ab-9fb5-591b507101f0', external: true },
     { name: 'Professionals', path: '/professionals' },
     { name: 'NGOs', path: '/ngos' },
     { name: 'Investors', path: '/investors' },
@@ -41,17 +42,29 @@ const Navigation = () => {
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-12">
             {navItems.map((item) => (
-              <Link
-                key={item.path}
-                to={item.path}
-                className={`text-sm font-medium transition-colors hover:text-gray-600 ${
-                  location.pathname === item.path
-                    ? 'text-gray-900'
-                    : 'text-gray-500'
-                }`}
-              >
-                {item.name}
-              </Link>
+              item.external ? (
+                <a
+                  key={item.name}
+                  href={item.path}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-sm font-medium text-gray-500 hover:text-gray-600 transition-colors"
+                >
+                  {item.name}
+                </a>
+              ) : (
+                <Link
+                  key={item.path}
+                  to={item.path}
+                  className={`text-sm font-medium transition-colors hover:text-gray-600 ${
+                    location.pathname === item.path
+                      ? 'text-gray-900'
+                      : 'text-gray-500'
+                  }`}
+                >
+                  {item.name}
+                </Link>
+              )
             ))}
             
             {/* About Us Dropdown */}
@@ -118,18 +131,31 @@ const Navigation = () => {
           <div className="md:hidden py-8 border-t border-gray-100 bg-white">
             <div className="flex flex-col space-y-6">
               {navItems.map((item) => (
-                <Link
-                  key={item.path}
-                  to={item.path}
-                  onClick={() => setIsOpen(false)}
-                  className={`text-lg font-medium transition-colors hover:text-gray-600 ${
-                    location.pathname === item.path
-                      ? 'text-gray-900'
-                      : 'text-gray-500'
-                  }`}
-                >
-                  {item.name}
-                </Link>
+                item.external ? (
+                  <a
+                    key={item.name}
+                    href={item.path}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={() => setIsOpen(false)}
+                    className="text-lg font-medium text-gray-500 hover:text-gray-600 transition-colors"
+                  >
+                    {item.name}
+                  </a>
+                ) : (
+                  <Link
+                    key={item.path}
+                    to={item.path}
+                    onClick={() => setIsOpen(false)}
+                    className={`text-lg font-medium transition-colors hover:text-gray-600 ${
+                      location.pathname === item.path
+                        ? 'text-gray-900'
+                        : 'text-gray-500'
+                    }`}
+                  >
+                    {item.name}
+                  </Link>
+                )
               ))}
               
               <Link

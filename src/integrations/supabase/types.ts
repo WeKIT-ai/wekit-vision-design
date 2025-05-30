@@ -33,6 +33,36 @@ export type Database = {
         }
         Relationships: []
       }
+      white_paper_leads: {
+        Row: {
+          created_at: string
+          downloaded_at: string
+          email: string
+          id: string
+          name: string
+          phone: string
+          user_type: string
+        }
+        Insert: {
+          created_at?: string
+          downloaded_at?: string
+          email: string
+          id?: string
+          name: string
+          phone: string
+          user_type: string
+        }
+        Update: {
+          created_at?: string
+          downloaded_at?: string
+          email?: string
+          id?: string
+          name?: string
+          phone?: string
+          user_type?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
