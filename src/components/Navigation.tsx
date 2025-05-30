@@ -3,10 +3,13 @@ import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { useAuth } from '@/contexts/AuthContext';
+import UserMenu from './UserMenu';
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
   const location = useLocation();
+  const { user } = useAuth();
 
   const navItems = [
     { name: 'Home', path: '/' },
@@ -40,9 +43,21 @@ const Navigation = () => {
                 {item.name}
               </Link>
             ))}
-            <Button className="bg-black hover:bg-gray-800 text-white px-8 py-3 rounded-none border-0 shadow-none hover:shadow-none font-medium">
-              Partner with Us
-            </Button>
+            
+            {user ? (
+              <UserMenu />
+            ) : (
+              <div className="flex items-center space-x-4">
+                <Link to="/auth">
+                  <Button variant="ghost" className="text-gray-900 hover:bg-gray-100 rounded-none font-medium">
+                    Sign In
+                  </Button>
+                </Link>
+                <Button className="bg-black hover:bg-gray-800 text-white px-8 py-3 rounded-none border-0 shadow-none hover:shadow-none font-medium">
+                  Partner with Us
+                </Button>
+              </div>
+            )}
           </div>
 
           {/* Mobile menu button */}
@@ -76,9 +91,23 @@ const Navigation = () => {
                   {item.name}
                 </Link>
               ))}
-              <Button className="bg-black hover:bg-gray-800 text-white w-fit px-8 py-3 rounded-none border-0 shadow-none hover:shadow-none font-medium">
-                Partner with Us
-              </Button>
+              
+              {user ? (
+                <div className="pt-4 border-t border-gray-100">
+                  <UserMenu />
+                </div>
+              ) : (
+                <div className="flex flex-col space-y-4 pt-4 border-t border-gray-100">
+                  <Link to="/auth" onClick={() => setIsOpen(false)}>
+                    <Button variant="ghost" className="w-fit text-gray-900 hover:bg-gray-100 rounded-none font-medium">
+                      Sign In
+                    </Button>
+                  </Link>
+                  <Button className="bg-black hover:bg-gray-800 text-white w-fit px-8 py-3 rounded-none border-0 shadow-none hover:shadow-none font-medium">
+                    Partner with Us
+                  </Button>
+                </div>
+              )}
             </div>
           </div>
         )}
