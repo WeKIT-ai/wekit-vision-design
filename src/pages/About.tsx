@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react';
 import { Users, Heart, Target, Award, Globe, Lightbulb, ExternalLink } from 'lucide-react';
 
@@ -29,7 +28,7 @@ const About = () => {
     {
       name: "Yvonne V Roberts",
       role: "Founder & CEO",
-      image: "https://images.unsplash.com/photo-1494790108755-2616b612b47c?w=400&h=400&fit=crop&crop=face",
+      image: "/lovable-uploads/45b44cc7-2f6d-49af-a991-6eb46cab6126.png",
       description: "Passionate about empowering youth through technology and mentorship.",
       linkedin: "https://www.linkedin.com/in/yvonne1roberts/"
     },
