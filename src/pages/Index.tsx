@@ -1,7 +1,7 @@
 
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
-import { ArrowRight, Users, GraduationCap, Briefcase, Heart, TrendingUp } from 'lucide-react';
+import { ArrowRight, Users, GraduationCap, Briefcase, Heart, TrendingUp, Play } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import NewsletterSignup from '@/components/lead-gen/NewsletterSignup';
 import ContactForm from '@/components/lead-gen/ContactForm';
@@ -45,23 +45,61 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-white">
-      {/* Hero Section */}
-      <section className="pt-32 pb-24 px-6 md:px-8">
-        <div className="max-w-6xl mx-auto">
+      {/* Hero Section with Video Background */}
+      <section className="relative pt-32 pb-24 px-6 md:px-8 overflow-hidden">
+        {/* Background Video */}
+        <div className="absolute inset-0 z-0">
+          <video
+            autoPlay
+            muted
+            loop
+            playsInline
+            className="w-full h-full object-cover opacity-10"
+          >
+            <source src="https://player.vimeo.com/external/434045526.sd.mp4?s=c27eecc69a27dbc4ff2b87d38afc35f1a9a1c3ef&profile_id=165&oauth2_token_id=57447761" type="video/mp4" />
+          </video>
+          <div className="absolute inset-0 bg-gradient-to-br from-blue-50/80 to-purple-50/80"></div>
+        </div>
+
+        {/* Floating Video Elements */}
+        <div className="absolute top-20 right-10 hidden lg:block z-10">
+          <div className="relative group">
+            <div className="w-32 h-20 bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg flex items-center justify-center shadow-xl hover:scale-105 transition-transform duration-300">
+              <Play className="w-8 h-8 text-white" />
+            </div>
+            <div className="absolute -top-2 -right-2 w-4 h-4 bg-red-500 rounded-full animate-pulse"></div>
+          </div>
+        </div>
+
+        <div className="absolute bottom-20 left-10 hidden lg:block z-10">
+          <div className="relative group">
+            <div className="w-28 h-16 bg-gradient-to-r from-green-500 to-blue-500 rounded-lg flex items-center justify-center shadow-xl hover:scale-105 transition-transform duration-300">
+              <div className="w-6 h-6 bg-white rounded-full animate-bounce"></div>
+            </div>
+          </div>
+        </div>
+
+        <div className="max-w-6xl mx-auto relative z-20">
           <div className="text-center space-y-12">
-            <h1 className="text-6xl md:text-8xl font-light text-gray-900 leading-[0.9] tracking-tight">
-              Empowering the
+            <h1 className="text-6xl md:text-8xl font-light text-gray-900 leading-[0.9] tracking-tight animate-fade-in">
+              Mentoring the Future.
               <br />
-              <span className="font-medium">Next Generation</span>
+              <span className="font-medium bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                Powered by AI.
+              </span>
+              <br />
+              <span className="font-medium text-gray-700">
+                Driven by Purpose.
+              </span>
             </h1>
-            <p className="text-xl md:text-2xl text-gray-500 font-light max-w-3xl mx-auto leading-relaxed">
+            <p className="text-xl md:text-2xl text-gray-600 font-light max-w-3xl mx-auto leading-relaxed animate-fade-in">
               We bridge the gap between potential and opportunity through AI-driven mentorship, 
-              connecting youth with the guidance they need to thrive.
+              connecting youth with the guidance they need to thrive in tomorrow's world.
             </p>
-            <div className="pt-8">
+            <div className="pt-8 animate-fade-in">
               <Button 
                 size="lg" 
-                className="bg-black hover:bg-gray-800 text-white px-12 py-6 text-lg font-medium rounded-none border-0 shadow-none hover:shadow-none"
+                className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-12 py-6 text-lg font-medium rounded-full border-0 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
               >
                 Partner with Us
                 <ArrowRight className="ml-3" size={20} />
@@ -69,10 +107,63 @@ const Index = () => {
             </div>
           </div>
         </div>
+
+        {/* Dynamic Background Elements */}
+        <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-gradient-to-r from-blue-400/20 to-purple-400/20 rounded-full blur-3xl animate-pulse"></div>
+        <div className="absolute bottom-1/4 right-1/4 w-48 h-48 bg-gradient-to-r from-green-400/20 to-blue-400/20 rounded-full blur-3xl animate-pulse delay-1000"></div>
+      </section>
+
+      {/* Visual Impact Section */}
+      <section className="py-16 px-6 md:px-8">
+        <div className="max-w-6xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {/* Dynamic Image 1 */}
+            <div className="relative overflow-hidden rounded-2xl shadow-2xl group hover:scale-105 transition-transform duration-500">
+              <img 
+                src="https://images.unsplash.com/photo-1605810230434-7631ac76ec81?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                alt="Youth collaboration and mentorship"
+                className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-700"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-blue-900/80 to-transparent"></div>
+              <div className="absolute bottom-4 left-4 text-white">
+                <h3 className="text-lg font-semibold">Collaborative Learning</h3>
+                <p className="text-sm opacity-90">Building tomorrow's leaders</p>
+              </div>
+            </div>
+
+            {/* Dynamic Image 2 */}
+            <div className="relative overflow-hidden rounded-2xl shadow-2xl group hover:scale-105 transition-transform duration-500">
+              <img 
+                src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                alt="AI-powered mentorship platform"
+                className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-700"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-purple-900/80 to-transparent"></div>
+              <div className="absolute bottom-4 left-4 text-white">
+                <h3 className="text-lg font-semibold">AI-Powered Matching</h3>
+                <p className="text-sm opacity-90">Smart mentor connections</p>
+              </div>
+            </div>
+
+            {/* Dynamic Image 3 */}
+            <div className="relative overflow-hidden rounded-2xl shadow-2xl group hover:scale-105 transition-transform duration-500">
+              <img 
+                src="https://images.unsplash.com/photo-1487058792275-0ad4aaf24ca7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                alt="Technology and innovation in education"
+                className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-700"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-green-900/80 to-transparent"></div>
+              <div className="absolute bottom-4 left-4 text-white">
+                <h3 className="text-lg font-semibold">Future-Ready Skills</h3>
+                <p className="text-sm opacity-90">Technology meets purpose</p>
+              </div>
+            </div>
+          </div>
+        </div>
       </section>
 
       {/* Lead Gen Section 1 - Quick Engagement */}
-      <section className="py-16 px-6 md:px-8 bg-gray-50">
+      <section className="py-16 px-6 md:px-8 bg-gradient-to-br from-gray-50 to-blue-50">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-gray-900 mb-4">Start Your Journey</h2>
@@ -86,15 +177,23 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Mission Statement */}
-      <section className="py-32 px-6 md:px-8">
-        <div className="max-w-4xl mx-auto text-center space-y-8">
+      {/* Mission Statement with Background Video */}
+      <section className="relative py-32 px-6 md:px-8 overflow-hidden">
+        <div className="absolute inset-0 z-0">
+          <img 
+            src="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80" 
+            alt="Mountain landscape representing growth and achievement"
+            className="w-full h-full object-cover opacity-20"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-white/90 to-white/80"></div>
+        </div>
+        <div className="max-w-4xl mx-auto text-center space-y-8 relative z-10">
           <h2 className="text-4xl md:text-5xl font-light text-gray-900 leading-tight">
             Building Bridges
             <br />
-            <span className="font-medium">to Success</span>
+            <span className="font-medium bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">to Success</span>
           </h2>
-          <p className="text-xl text-gray-500 font-light leading-relaxed max-w-3xl mx-auto">
+          <p className="text-xl text-gray-600 font-light leading-relaxed max-w-3xl mx-auto">
             At wekit.ai, we believe every young person deserves access to quality mentorship and guidance. 
             Our AI-powered platform connects students and young professionals with mentors, educational 
             institutions, and opportunities that align with their goals and aspirations.
@@ -103,7 +202,7 @@ const Index = () => {
       </section>
 
       {/* Lead Gen Section 2 - Community Building */}
-      <section className="py-16 px-6 md:px-8 bg-gray-50">
+      <section className="py-16 px-6 md:px-8 bg-gradient-to-br from-purple-50 to-blue-50">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-gray-900 mb-4">Join Our Community</h2>
@@ -135,11 +234,11 @@ const Index = () => {
             {audiences.map((audience, index) => (
               <Card 
                 key={index} 
-                className="border border-gray-200 hover:border-gray-300 transition-all duration-300 hover:shadow-lg group bg-white rounded-none shadow-none"
+                className="border border-gray-200 hover:border-blue-300 transition-all duration-300 hover:shadow-xl group bg-white rounded-xl shadow-lg hover:scale-105"
               >
                 <CardContent className="p-12">
                   <div className="mb-8">
-                    <audience.icon size={48} className="text-gray-900" />
+                    <audience.icon size={48} className="text-gray-900 group-hover:text-blue-600 transition-colors duration-300" />
                   </div>
                   <h3 className="text-2xl font-medium text-gray-900 mb-6 leading-tight">
                     {audience.title}
@@ -150,7 +249,7 @@ const Index = () => {
                   <Link to={audience.link}>
                     <Button 
                       variant="outline" 
-                      className="w-full border-gray-900 text-gray-900 hover:bg-gray-900 hover:text-white rounded-none font-medium transition-all duration-300"
+                      className="w-full border-gray-900 text-gray-900 hover:bg-gradient-to-r hover:from-blue-600 hover:to-purple-600 hover:text-white hover:border-transparent rounded-lg font-medium transition-all duration-300"
                     >
                       Learn More
                       <ArrowRight className="ml-2" size={16} />
@@ -163,22 +262,30 @@ const Index = () => {
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="py-32 px-6 md:px-8 bg-gray-50">
-        <div className="max-w-4xl mx-auto text-center space-y-12">
-          <h2 className="text-4xl md:text-5xl font-light text-gray-900 leading-tight">
+      {/* CTA Section with Dynamic Background */}
+      <section className="relative py-32 px-6 md:px-8 overflow-hidden">
+        <div className="absolute inset-0 z-0">
+          <img 
+            src="https://images.unsplash.com/photo-1500375592092-40eb2168fd21?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80" 
+            alt="Ocean waves representing endless possibilities"
+            className="w-full h-full object-cover opacity-30"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-blue-900/90 to-purple-900/90"></div>
+        </div>
+        <div className="max-w-4xl mx-auto text-center space-y-12 relative z-10">
+          <h2 className="text-4xl md:text-5xl font-light text-white leading-tight">
             Ready to Make
             <br />
             <span className="font-medium">an Impact?</span>
           </h2>
-          <p className="text-xl text-gray-500 font-light leading-relaxed">
+          <p className="text-xl text-blue-100 font-light leading-relaxed">
             Join our growing ecosystem of mentors, institutions, and organizations 
             dedicated to empowering the next generation of leaders.
           </p>
           <div className="pt-8">
             <Button 
               size="lg" 
-              className="bg-black hover:bg-gray-800 text-white px-12 py-6 text-lg font-medium rounded-none border-0 shadow-none hover:shadow-none"
+              className="bg-white text-blue-900 hover:bg-blue-50 px-12 py-6 text-lg font-medium rounded-full border-0 shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105"
             >
               Get Started Today
               <ArrowRight className="ml-3" size={20} />
