@@ -1,5 +1,5 @@
 
-import { Github, Linkedin, Twitter, Mail } from 'lucide-react';
+import { Youtube, Facebook, Linkedin, Instagram, Mail } from 'lucide-react';
 
 const Footer = () => {
   return (
@@ -12,16 +12,42 @@ const Footer = () => {
               Empowering youth through AI-driven mentorship, bridging the gap between potential and opportunity.
             </p>
             <div className="flex space-x-6">
-              <a href="#" className="text-gray-400 hover:text-gray-900 transition-colors">
-                <Twitter size={24} />
+              <a 
+                href="https://www.youtube.com/@WeKITMentoring" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="text-gray-400 hover:text-gray-900 transition-colors"
+              >
+                <Youtube size={24} />
               </a>
-              <a href="#" className="text-gray-400 hover:text-gray-900 transition-colors">
+              <a 
+                href="https://www.facebook.com/wekitorg" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="text-gray-400 hover:text-gray-900 transition-colors"
+              >
+                <Facebook size={24} />
+              </a>
+              <a 
+                href="https://www.linkedin.com/company/we-kit-mentoring" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="text-gray-400 hover:text-gray-900 transition-colors"
+              >
                 <Linkedin size={24} />
               </a>
-              <a href="#" className="text-gray-400 hover:text-gray-900 transition-colors">
-                <Github size={24} />
+              <a 
+                href="https://www.instagram.com/we.kit.mentoring" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="text-gray-400 hover:text-gray-900 transition-colors"
+              >
+                <Instagram size={24} />
               </a>
-              <a href="mailto:hello@wekit.ai" className="text-gray-400 hover:text-gray-900 transition-colors">
+              <a 
+                href="mailto:hello@wekitmentoring.com" 
+                className="text-gray-400 hover:text-gray-900 transition-colors"
+              >
                 <Mail size={24} />
               </a>
             </div>
@@ -40,8 +66,22 @@ const Footer = () => {
           <div className="space-y-6">
             <h4 className="font-medium text-gray-900 text-lg">Contact</h4>
             <ul className="space-y-4">
-              <li className="text-gray-500 font-light">hello@wekit.ai</li>
-              <li className="text-gray-500 font-light">+1 (555) 123-4567</li>
+              <li>
+                <a 
+                  href="mailto:hello@wekitmentoring.com" 
+                  className="text-gray-500 hover:text-gray-900 transition-colors font-light"
+                >
+                  hello@wekitmentoring.com
+                </a>
+              </li>
+              <li>
+                <a 
+                  href="mailto:support@wekitmentoring.com" 
+                  className="text-gray-500 hover:text-gray-900 transition-colors font-light"
+                >
+                  support@wekitmentoring.com
+                </a>
+              </li>
               <li className="text-gray-500 font-light">Global Headquarters</li>
             </ul>
           </div>
