@@ -1,6 +1,6 @@
 
 import { useState, useEffect } from 'react';
-import { Users, Heart, Target, Award, Globe, Lightbulb } from 'lucide-react';
+import { Users, Heart, Target, Award, Globe, Lightbulb, ExternalLink } from 'lucide-react';
 
 const About = () => {
   const [activeSection, setActiveSection] = useState('story');
@@ -27,16 +27,17 @@ const About = () => {
 
   const teamMembers = [
     {
-      name: "Sarah Johnson",
+      name: "Yvonne V Roberts",
       role: "Founder & CEO",
       image: "https://images.unsplash.com/photo-1494790108755-2616b612b47c?w=400&h=400&fit=crop&crop=face",
-      description: "Passionate about empowering youth through technology and mentorship."
+      description: "Passionate about empowering youth through technology and mentorship.",
+      linkedin: "https://www.linkedin.com/in/yvonne1roberts/"
     },
     {
-      name: "Michael Chen",
-      role: "Head of AI Development",
+      name: "Henry L Nathan",
+      role: "Head of Education",
       image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop&crop=face",
-      description: "Leading our AI-driven mentorship platform development."
+      description: "Global Education Strategist"
     },
     {
       name: "Emily Rodriguez",
@@ -125,7 +126,6 @@ const About = () => {
         </div>
       </section>
 
-      {/* Mission & Vision Section */}
       <section id="mission" className="py-20 px-6 md:px-8 bg-gradient-to-r from-blue-600 to-purple-600">
         <div className="max-w-6xl mx-auto text-center text-white">
           <h2 className="text-4xl font-bold mb-16">Mission & Vision</h2>
@@ -152,7 +152,6 @@ const About = () => {
         </div>
       </section>
 
-      {/* Stats Section */}
       <section className="py-20 px-6 md:px-8 bg-gray-50">
         <div className="max-w-6xl mx-auto">
           <h2 className="text-4xl font-bold text-center text-gray-900 mb-16">Our Impact</h2>
@@ -199,7 +198,20 @@ const About = () => {
                   />
                   <h3 className="text-xl font-bold text-gray-900 text-center mb-2">{member.name}</h3>
                   <p className="text-blue-600 font-medium text-center mb-3">{member.role}</p>
-                  <p className="text-gray-600 text-sm text-center leading-relaxed">{member.description}</p>
+                  <p className="text-gray-600 text-sm text-center leading-relaxed mb-4">{member.description}</p>
+                  {member.linkedin && (
+                    <div className="text-center">
+                      <a 
+                        href={member.linkedin} 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center text-blue-600 hover:text-blue-800 text-sm font-medium transition-colors"
+                      >
+                        LinkedIn
+                        <ExternalLink className="w-3 h-3 ml-1" />
+                      </a>
+                    </div>
+                  )}
                 </div>
               </div>
             ))}
