@@ -113,49 +113,108 @@ const Index = () => {
         <div className="absolute bottom-1/4 right-1/4 w-48 h-48 bg-gradient-to-r from-green-400/20 to-blue-400/20 rounded-full blur-3xl animate-pulse delay-1000"></div>
       </section>
 
-      {/* Visual Impact Section */}
+      {/* AI-Powered Career Matching Section */}
+      <section className="py-16 px-6 md:px-8 bg-gradient-to-br from-purple-100 to-blue-100">
+        <div className="max-w-6xl mx-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div className="space-y-6">
+              <h2 className="text-4xl font-bold text-gray-900 leading-tight">
+                Meet YOMA
+                <br />
+                <span className="bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent">
+                  Your AI Mentor Assistant
+                </span>
+              </h2>
+              <p className="text-xl text-gray-600 leading-relaxed">
+                Experience the future of career guidance with our AI-powered matching system that connects you with the perfect mentors and opportunities.
+              </p>
+              <Button className="bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white px-8 py-3 rounded-full">
+                Discover YOMA
+                <ArrowRight className="ml-2" size={16} />
+              </Button>
+            </div>
+            <div className="relative">
+              <div className="relative overflow-hidden rounded-2xl shadow-2xl group hover:scale-105 transition-transform duration-500">
+                <img 
+                  src="/lovable-uploads/3176369b-2415-4829-9170-5a436bde6704.png" 
+                  alt="YOMA AI-Powered Career Matching Assistant"
+                  className="w-full h-auto object-cover group-hover:scale-110 transition-transform duration-700"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-purple-900/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+              </div>
+              {/* Floating elements around the image */}
+              <div className="absolute -top-4 -right-4 w-8 h-8 bg-yellow-400 rounded-full animate-bounce"></div>
+              <div className="absolute top-1/2 -left-4 w-6 h-6 bg-blue-500 rounded-full animate-pulse"></div>
+              <div className="absolute -bottom-4 left-1/3 w-10 h-10 bg-purple-500 rounded-full animate-ping"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Enhanced Visual Impact Section */}
       <section className="py-16 px-6 md:px-8">
         <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold text-gray-900 mb-4">Transforming Lives Through Technology</h2>
+            <p className="text-xl text-gray-600">Where innovation meets human potential</p>
+          </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {/* Dynamic Image 1 */}
-            <div className="relative overflow-hidden rounded-2xl shadow-2xl group hover:scale-105 transition-transform duration-500">
+            {/* Dynamic Image 1 with enhanced effects */}
+            <div className="relative overflow-hidden rounded-2xl shadow-2xl group hover:scale-105 transition-all duration-500">
               <img 
                 src="https://images.unsplash.com/photo-1605810230434-7631ac76ec81?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
                 alt="Youth collaboration and mentorship"
                 className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-700"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-blue-900/80 to-transparent"></div>
-              <div className="absolute bottom-4 left-4 text-white">
+              <div className="absolute inset-0 bg-blue-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+              <div className="absolute bottom-4 left-4 text-white transform group-hover:translate-y-[-8px] transition-transform duration-300">
                 <h3 className="text-lg font-semibold">Collaborative Learning</h3>
                 <p className="text-sm opacity-90">Building tomorrow's leaders</p>
               </div>
+              {/* Floating icons */}
+              <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                <Users className="w-6 h-6 text-white animate-pulse" />
+              </div>
             </div>
 
-            {/* Dynamic Image 2 */}
-            <div className="relative overflow-hidden rounded-2xl shadow-2xl group hover:scale-105 transition-transform duration-500">
+            {/* Dynamic Image 2 with enhanced effects */}
+            <div className="relative overflow-hidden rounded-2xl shadow-2xl group hover:scale-105 transition-all duration-500">
               <img 
                 src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
                 alt="AI-powered mentorship platform"
                 className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-700"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-purple-900/80 to-transparent"></div>
-              <div className="absolute bottom-4 left-4 text-white">
+              <div className="absolute inset-0 bg-purple-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+              <div className="absolute bottom-4 left-4 text-white transform group-hover:translate-y-[-8px] transition-transform duration-300">
                 <h3 className="text-lg font-semibold">AI-Powered Matching</h3>
                 <p className="text-sm opacity-90">Smart mentor connections</p>
               </div>
+              {/* Floating icons */}
+              <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                <div className="w-6 h-6 bg-white rounded-full animate-spin flex items-center justify-center">
+                  <div className="w-2 h-2 bg-purple-600 rounded-full"></div>
+                </div>
+              </div>
             </div>
 
-            {/* Dynamic Image 3 */}
-            <div className="relative overflow-hidden rounded-2xl shadow-2xl group hover:scale-105 transition-transform duration-500">
+            {/* Dynamic Image 3 with enhanced effects */}
+            <div className="relative overflow-hidden rounded-2xl shadow-2xl group hover:scale-105 transition-all duration-500">
               <img 
                 src="https://images.unsplash.com/photo-1487058792275-0ad4aaf24ca7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
                 alt="Technology and innovation in education"
                 className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-700"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-green-900/80 to-transparent"></div>
-              <div className="absolute bottom-4 left-4 text-white">
+              <div className="absolute inset-0 bg-green-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+              <div className="absolute bottom-4 left-4 text-white transform group-hover:translate-y-[-8px] transition-transform duration-300">
                 <h3 className="text-lg font-semibold">Future-Ready Skills</h3>
                 <p className="text-sm opacity-90">Technology meets purpose</p>
+              </div>
+              {/* Floating icons */}
+              <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                <TrendingUp className="w-6 h-6 text-white animate-bounce" />
               </div>
             </div>
           </div>
@@ -177,15 +236,18 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Mission Statement with Background Video */}
+      {/* Mission Statement with Enhanced Background */}
       <section className="relative py-32 px-6 md:px-8 overflow-hidden">
         <div className="absolute inset-0 z-0">
           <img 
             src="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80" 
             alt="Mountain landscape representing growth and achievement"
-            className="w-full h-full object-cover opacity-20"
+            className="w-full h-full object-cover opacity-20 transition-transform duration-1000 hover:scale-105"
           />
           <div className="absolute inset-0 bg-gradient-to-r from-white/90 to-white/80"></div>
+          {/* Animated overlay elements */}
+          <div className="absolute top-1/4 left-1/4 w-32 h-32 bg-blue-400/10 rounded-full blur-2xl animate-pulse"></div>
+          <div className="absolute bottom-1/3 right-1/3 w-24 h-24 bg-purple-400/10 rounded-full blur-2xl animate-pulse delay-1000"></div>
         </div>
         <div className="max-w-4xl mx-auto text-center space-y-8 relative z-10">
           <h2 className="text-4xl md:text-5xl font-light text-gray-900 leading-tight">
@@ -262,15 +324,17 @@ const Index = () => {
         </div>
       </section>
 
-      {/* CTA Section with Dynamic Background */}
+      {/* CTA Section with Enhanced Dynamic Background */}
       <section className="relative py-32 px-6 md:px-8 overflow-hidden">
         <div className="absolute inset-0 z-0">
           <img 
             src="https://images.unsplash.com/photo-1500375592092-40eb2168fd21?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80" 
             alt="Ocean waves representing endless possibilities"
-            className="w-full h-full object-cover opacity-30"
+            className="w-full h-full object-cover opacity-30 transition-transform duration-1000 hover:scale-105"
           />
           <div className="absolute inset-0 bg-gradient-to-r from-blue-900/90 to-purple-900/90"></div>
+          {/* Animated wave elements */}
+          <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-blue-600/20 to-transparent animate-pulse"></div>
         </div>
         <div className="max-w-4xl mx-auto text-center space-y-12 relative z-10">
           <h2 className="text-4xl md:text-5xl font-light text-white leading-tight">
