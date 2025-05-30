@@ -9,6 +9,7 @@ import Navigation from "./components/Navigation";
 import Footer from "./components/Footer";
 import Index from "./pages/Index";
 import Auth from "./pages/Auth";
+import About from "./pages/About";
 import Schools from "./pages/Schools";
 import Students from "./pages/Students";
 import Professionals from "./pages/Professionals";
@@ -31,6 +32,7 @@ const App = () => (
               <Routes>
                 <Route path="/" element={<Index />} />
                 <Route path="/auth" element={<Auth />} />
+                <Route path="/about" element={<About />} />
                 <Route path="/schools" element={<Schools />} />
                 <Route path="/students" element={<Students />} />
                 <Route path="/professionals" element={<Professionals />} />
