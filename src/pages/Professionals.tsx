@@ -1,90 +1,124 @@
 
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
-import { Briefcase, Network, TrendingUp, Target, Users, Award, ArrowRight, CheckCircle } from 'lucide-react';
+import { Briefcase, Network, TrendingUp, Target, Users, Award, ArrowRight, CheckCircle, BarChart, Clock, AlertTriangle } from 'lucide-react';
 
 const Professionals = () => {
-  const benefits = [
+  const careerChallenges = [
     {
-      icon: TrendingUp,
-      title: 'Career Advancement',
-      description: 'Accelerate your career growth with strategic guidance from senior professionals and industry leaders.'
+      icon: BarChart,
+      title: 'Career Stagnation',
+      problem: '47% of professionals feel stuck in their current role with no clear advancement path',
+      solution: 'Strategic career planning with senior mentors who\'ve navigated similar transitions'
     },
     {
       icon: Network,
-      title: 'Professional Networking',
-      description: 'Build meaningful connections with professionals across industries and expand your career opportunities.'
+      title: 'Limited Professional Network',
+      problem: '73% cite networking as their biggest career obstacle',
+      solution: 'Access to curated industry networks and mentorship connections'
     },
     {
-      icon: Target,
-      title: 'Strategic Planning',
-      description: 'Develop clear career strategies and actionable plans to achieve your professional goals.'
-    },
-    {
-      icon: Award,
-      title: 'Skill Enhancement',
-      description: 'Identify skill gaps and access targeted learning resources to stay competitive in your field.'
-    },
-    {
-      icon: Users,
-      title: 'Mentorship Exchange',
-      description: 'Both receive mentorship and give back by mentoring others, creating a cycle of professional growth.'
-    },
-    {
-      icon: Briefcase,
-      title: 'Industry Insights',
-      description: 'Stay updated with industry trends and best practices through expert-led discussions and resources.'
+      icon: Clock,
+      title: 'Skill Obsolescence',
+      problem: 'Skills become outdated every 2-5 years in fast-moving industries',
+      solution: 'Continuous learning roadmaps aligned with industry evolution'
     }
   ];
 
-  const features = [
-    'One-on-one mentorship sessions',
-    'Group networking events',
-    'Professional development workshops',
-    'Career transition support',
-    'Leadership development programs',
-    'Industry-specific guidance',
-    'Resume and interview coaching',
-    'Personal branding strategies'
+  const solutions = [
+    {
+      icon: TrendingUp,
+      title: 'Strategic Career Acceleration',
+      description: 'Get personalized guidance from senior professionals who\'ve achieved the success you\'re targeting.',
+      impact: '3x faster promotion rates',
+      details: ['Executive mentorship', 'Leadership development', 'Strategic planning']
+    },
+    {
+      icon: Network,
+      title: 'Professional Network Expansion',
+      description: 'Build meaningful connections across industries through structured networking and mentorship exchanges.',
+      impact: '250% network growth average',
+      details: ['Industry introductions', 'Peer mentoring circles', 'Executive access']
+    },
+    {
+      icon: Target,
+      title: 'Skills Future-Proofing',
+      description: 'Stay ahead of industry changes with targeted skill development and continuous learning programs.',
+      impact: '85% report increased job security',
+      details: ['Skills gap analysis', 'Learning pathways', 'Industry insights']
+    }
   ];
 
   const careerLevels = [
     {
-      title: 'Early Career',
-      description: 'Build foundation skills and navigate your first professional roles',
-      focus: ['Career exploration', 'Skill building', 'Professional etiquette', 'Goal setting']
+      title: 'Early Career (0-3 years)',
+      challenge: 'Building foundation skills and proving value',
+      solution: 'Structured mentorship for rapid skill acquisition',
+      outcomes: ['Faster skill development', 'Clear career direction', 'Increased confidence']
     },
     {
-      title: 'Mid-Level',
-      description: 'Advance to leadership roles and expand your professional influence',
-      focus: ['Leadership development', 'Strategic thinking', 'Team management', 'Career pivoting']
+      title: 'Mid-Level (3-8 years)', 
+      challenge: 'Breaking into leadership and expanding influence',
+      solution: 'Leadership development and strategic thinking training',
+      outcomes: ['Leadership promotions', 'Expanded responsibilities', 'Higher visibility']
     },
     {
-      title: 'Senior Level',
-      description: 'Maximize your impact and prepare for executive responsibilities',
-      focus: ['Executive presence', 'Strategic planning', 'Organizational leadership', 'Legacy building']
+      title: 'Senior Level (8+ years)',
+      challenge: 'Maximizing impact and preparing for executive roles',
+      solution: 'Executive coaching and organizational leadership',
+      outcomes: ['C-suite readiness', 'Board positions', 'Industry recognition']
+    }
+  ];
+
+  const successStories = [
+    {
+      name: 'Sarah Chen',
+      role: 'Software Engineer → Tech Director',
+      challenge: 'Felt stuck in technical role, wanted leadership position',
+      solution: 'Matched with CTO mentor for leadership development',
+      outcome: 'Promoted to Tech Director in 18 months, 67% salary increase'
+    },
+    {
+      name: 'Marcus Johnson',
+      role: 'Marketing Manager → VP Marketing',
+      challenge: 'Lacked strategic business perspective for VP role',
+      solution: 'Executive mentorship program with Fortune 500 CMO',
+      outcome: 'Landed VP role at competitor, leading team of 45'
+    },
+    {
+      name: 'Maria Rodriguez',
+      role: 'Project Manager → Entrepreneur',
+      challenge: 'Wanted to start own business but lacked guidance',
+      solution: 'Entrepreneur mentorship and investor network access',
+      outcome: 'Launched successful startup, raised $2M Series A'
     }
   ];
 
   return (
     <div className="min-h-screen pt-16">
-      {/* Hero Section */}
-      <section className="pt-20 pb-32 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-purple-50 to-white">
+      {/* Hero Section - Problem-Focused */}
+      <section className="pt-20 pb-32 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-red-50 to-white">
         <div className="max-w-7xl mx-auto text-center">
           <h1 className="text-4xl md:text-6xl font-bold text-gray-900 mb-8">
-            Accelerate Your
-            <span className="block text-purple-600">Professional Growth</span>
+            Break Through the
+            <span className="block text-red-600">Career Ceiling</span>
           </h1>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-8">
-            Connect with industry leaders, develop strategic career plans, and unlock 
-            new opportunities through our professional mentorship network.
+            You're talented, hardworking, and ambitious. So why does career advancement feel impossible? 
+            You're not alone – 67% of professionals feel stuck despite their best efforts.
           </p>
+          <div className="bg-red-100 border border-red-300 rounded-lg p-6 max-w-2xl mx-auto mb-8">
+            <p className="text-lg text-red-800">
+              <strong>The Hidden Truth:</strong> 85% of career advancement happens through relationships and guidance, 
+              not just performance.
+            </p>
+          </div>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button 
               size="lg" 
               className="bg-purple-600 hover:bg-purple-700 text-white px-8 py-4 text-lg font-semibold rounded-full"
             >
-              Join Professional Network
+              Accelerate My Career
               <ArrowRight className="ml-2" size={20} />
             </Button>
             <Button 
@@ -92,38 +126,44 @@ const Professionals = () => {
               variant="outline"
               className="px-8 py-4 text-lg font-semibold rounded-full border-2"
             >
-              Explore Mentorship
+              See Success Stories
             </Button>
           </div>
         </div>
       </section>
 
-      {/* Benefits Section */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8">
+      {/* Career Challenges Section */}
+      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              Why Join Our Professional Network?
+              The Career Advancement Roadblocks
             </h2>
             <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-              Our platform provides young professionals with the tools, connections, 
-              and guidance needed to excel in today's competitive landscape.
+              These aren't personal failings – they're systematic challenges that require strategic solutions.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {benefits.map((benefit, index) => (
-              <Card key={index} className="border-2 border-gray-100 hover:border-purple-200 hover:shadow-lg transition-all duration-300">
-                <CardContent className="p-8 text-center">
-                  <div className="w-16 h-16 bg-purple-100 text-purple-600 rounded-full flex items-center justify-center mx-auto mb-6">
-                    <benefit.icon size={32} />
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {careerChallenges.map((challenge, index) => (
+              <Card key={index} className="border-2 border-gray-100 hover:border-red-200 hover:shadow-lg transition-all duration-300">
+                <CardContent className="p-8">
+                  <div className="w-16 h-16 bg-red-100 text-red-600 rounded-full flex items-center justify-center mx-auto mb-6">
+                    <challenge.icon size={32} />
                   </div>
-                  <h3 className="text-xl font-bold text-gray-900 mb-4">
-                    {benefit.title}
+                  <h3 className="text-xl font-bold text-gray-900 mb-4 text-center">
+                    {challenge.title}
                   </h3>
-                  <p className="text-gray-600">
-                    {benefit.description}
-                  </p>
+                  <div className="space-y-4">
+                    <div className="bg-red-50 p-4 rounded border-l-4 border-red-500">
+                      <p className="text-red-800 font-medium text-sm">The Challenge:</p>
+                      <p className="text-red-700 text-sm">{challenge.problem}</p>
+                    </div>
+                    <div className="bg-purple-50 p-4 rounded border-l-4 border-purple-500">
+                      <p className="text-purple-800 font-medium text-sm">Our Solution:</p>
+                      <p className="text-purple-700 text-sm">{challenge.solution}</p>
+                    </div>
+                  </div>
                 </CardContent>
               </Card>
             ))}
@@ -131,34 +171,40 @@ const Professionals = () => {
         </div>
       </section>
 
-      {/* Career Levels Section */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50">
+      {/* Solutions Section */}
+      <section className="py-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              Mentorship for Every Career Stage
+              How We Accelerate Your Career
             </h2>
             <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-              Whether you're just starting out or looking to make your next big career move, 
-              we have mentorship programs tailored to your professional level.
+              Our proven methodology combines mentorship, networking, and strategic development.
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {careerLevels.map((level, index) => (
-              <Card key={index} className="border-2 border-gray-200 hover:border-purple-300 hover:shadow-lg transition-all duration-300">
+            {solutions.map((solution, index) => (
+              <Card key={index} className="border-2 border-gray-100 hover:border-purple-200 hover:shadow-lg transition-all duration-300">
                 <CardContent className="p-8">
-                  <h3 className="text-2xl font-bold text-gray-900 mb-4">
-                    {level.title}
+                  <div className="w-16 h-16 bg-purple-100 text-purple-600 rounded-full flex items-center justify-center mx-auto mb-6">
+                    <solution.icon size={32} />
+                  </div>
+                  <h3 className="text-xl font-bold text-gray-900 mb-4 text-center">
+                    {solution.title}
                   </h3>
-                  <p className="text-gray-600 mb-6">
-                    {level.description}
+                  <p className="text-gray-600 mb-6 text-center">
+                    {solution.description}
                   </p>
-                  <div className="space-y-3">
-                    {level.focus.map((item, idx) => (
-                      <div key={idx} className="flex items-center space-x-3">
-                        <CheckCircle className="text-purple-500 flex-shrink-0" size={20} />
-                        <span className="text-gray-700">{item}</span>
+                  <div className="bg-purple-50 p-4 rounded mb-4">
+                    <p className="text-purple-800 font-medium text-sm text-center">Proven Impact:</p>
+                    <p className="text-purple-700 font-bold text-center">{solution.impact}</p>
+                  </div>
+                  <div className="space-y-2">
+                    {solution.details.map((detail, idx) => (
+                      <div key={idx} className="flex items-center space-x-2">
+                        <CheckCircle className="text-purple-500 flex-shrink-0" size={16} />
+                        <span className="text-gray-700 text-sm">{detail}</span>
                       </div>
                     ))}
                   </div>
@@ -169,65 +215,89 @@ const Professionals = () => {
         </div>
       </section>
 
-      {/* Features Section */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8">
+      {/* Career Level Solutions */}
+      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50">
         <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div>
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-8">
-                Comprehensive Professional Development
-              </h2>
-              <p className="text-lg text-gray-600 mb-8">
-                Access a complete suite of professional development resources designed 
-                to help you advance your career and achieve your goals.
-              </p>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                {features.map((feature, index) => (
-                  <div key={index} className="flex items-center space-x-3">
-                    <CheckCircle className="text-purple-500 flex-shrink-0" size={20} />
-                    <span className="text-gray-700">{feature}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-            <div className="lg:pl-8">
-              <Card className="border-2 border-purple-200 bg-purple-50">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+              Solutions for Every Career Stage
+            </h2>
+            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+              Whether you're building foundations or reaching for the C-suite, 
+              we have targeted programs for your level.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {careerLevels.map((level, index) => (
+              <Card key={index} className="border-2 border-gray-200 hover:border-purple-300 hover:shadow-lg transition-all duration-300">
                 <CardContent className="p-8">
-                  <h3 className="text-2xl font-bold text-gray-900 mb-6">
-                    Success Metrics
+                  <h3 className="text-xl font-bold text-gray-900 mb-4">
+                    {level.title}
                   </h3>
-                  <div className="space-y-6">
-                    <div>
-                      <div className="flex justify-between items-center mb-2">
-                        <span className="text-gray-700">Career Advancement</span>
-                        <span className="font-bold text-purple-600">87%</span>
-                      </div>
-                      <div className="w-full bg-gray-200 rounded-full h-2">
-                        <div className="bg-purple-600 h-2 rounded-full" style={{width: '87%'}}></div>
-                      </div>
+                  <div className="space-y-4">
+                    <div className="bg-red-50 p-4 rounded">
+                      <p className="text-red-800 font-medium text-sm mb-1">Common Challenge:</p>
+                      <p className="text-red-700 text-sm">{level.challenge}</p>
                     </div>
-                    <div>
-                      <div className="flex justify-between items-center mb-2">
-                        <span className="text-gray-700">Salary Increase</span>
-                        <span className="font-bold text-purple-600">65%</span>
-                      </div>
-                      <div className="w-full bg-gray-200 rounded-full h-2">
-                        <div className="bg-purple-600 h-2 rounded-full" style={{width: '65%'}}></div>
-                      </div>
+                    <div className="bg-purple-50 p-4 rounded">
+                      <p className="text-purple-800 font-medium text-sm mb-1">Our Approach:</p>
+                      <p className="text-purple-700 text-sm">{level.solution}</p>
                     </div>
-                    <div>
-                      <div className="flex justify-between items-center mb-2">
-                        <span className="text-gray-700">Network Growth</span>
-                        <span className="font-bold text-purple-600">93%</span>
-                      </div>
-                      <div className="w-full bg-gray-200 rounded-full h-2">
-                        <div className="bg-purple-600 h-2 rounded-full" style={{width: '93%'}}></div>
-                      </div>
+                    <div className="space-y-2">
+                      <p className="text-gray-800 font-medium text-sm">Typical Outcomes:</p>
+                      {level.outcomes.map((outcome, idx) => (
+                        <div key={idx} className="flex items-center space-x-2">
+                          <CheckCircle className="text-green-500 flex-shrink-0" size={16} />
+                          <span className="text-gray-700 text-sm">{outcome}</span>
+                        </div>
+                      ))}
                     </div>
                   </div>
                 </CardContent>
               </Card>
-            </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Success Stories */}
+      <section className="py-20 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+              Real Professionals, Real Results
+            </h2>
+            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+              See how professionals like you broke through career barriers with strategic mentorship.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {successStories.map((story, index) => (
+              <Card key={index} className="border-2 border-gray-100 hover:shadow-lg transition-all duration-300">
+                <CardContent className="p-8">
+                  <div className="mb-6">
+                    <h3 className="text-lg font-bold text-gray-900">{story.name}</h3>
+                    <p className="text-purple-600 font-medium">{story.role}</p>
+                  </div>
+                  <div className="space-y-4 text-sm">
+                    <div className="bg-red-50 p-3 rounded">
+                      <p className="text-red-800 font-medium mb-1">Challenge:</p>
+                      <p className="text-red-700">{story.challenge}</p>
+                    </div>
+                    <div className="bg-purple-50 p-3 rounded">
+                      <p className="text-purple-800 font-medium mb-1">Solution:</p>
+                      <p className="text-purple-700">{story.solution}</p>
+                    </div>
+                    <div className="bg-green-50 p-3 rounded">
+                      <p className="text-green-800 font-medium mb-1">Outcome:</p>
+                      <p className="text-green-700 font-bold">{story.outcome}</p>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
           </div>
         </div>
       </section>
@@ -236,17 +306,17 @@ const Professionals = () => {
       <section className="py-20 px-4 sm:px-6 lg:px-8 bg-purple-50">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-8">
-            Ready to Take Your Career to the Next Level?
+            Stop Waiting for Your Career to "Just Happen"
           </h2>
           <p className="text-lg text-gray-600 mb-8">
-            Join our professional network and connect with mentors who can help 
-            you navigate your career journey and achieve your professional goals.
+            Join professionals who took control of their career trajectory and 
+            achieved the success they deserved through strategic mentorship.
           </p>
           <Button 
             size="lg" 
             className="bg-purple-600 hover:bg-purple-700 text-white px-8 py-4 text-lg font-semibold rounded-full"
           >
-            Start Professional Mentorship
+            Start Your Career Acceleration
             <ArrowRight className="ml-2" size={20} />
           </Button>
         </div>
