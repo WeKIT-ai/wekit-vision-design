@@ -24,8 +24,12 @@ const Navigation = () => {
     <nav className="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-sm border-b border-gray-100">
       <div className="max-w-6xl mx-auto px-6 md:px-8">
         <div className="flex justify-between items-center h-20">
-          <Link to="/" className="text-2xl font-medium text-gray-900 hover:text-gray-600 transition-colors">
-            wekit.ai
+          <Link to="/" className="flex items-center hover:opacity-80 transition-opacity">
+            <img 
+              src="/lovable-uploads/4c95f2da-0e89-4698-8a7e-e9d25349b6c3.png" 
+              alt="We-KIT Logo" 
+              className="h-12 w-auto"
+            />
           </Link>
 
           {/* Desktop Navigation */}
