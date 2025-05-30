@@ -1,4 +1,3 @@
-
 import { Users, ExternalLink } from 'lucide-react';
 
 const AboutTeam = () => {
@@ -6,7 +5,7 @@ const AboutTeam = () => {
     {
       name: "Yvonne V Roberts",
       role: "Founder & CEO",
-      image: "/lovable-uploads/45b44cc7-2f6d-49af-a991-6eb46cab6126.png",
+      image: "/lovable-uploads/9e4025f7-646d-4433-ae99-3c7a8bdfabea.png",
       description: "Passionate about empowering youth through technology and mentorship.",
       linkedin: "https://www.linkedin.com/in/yvonne1roberts/"
     },
