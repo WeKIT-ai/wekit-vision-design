@@ -18,29 +18,29 @@ const Navigation = () => {
   ];
 
   return (
-    <nav className="sticky top-0 z-50 bg-white/95 backdrop-blur-sm border-b border-gray-100">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-16">
-          <Link to="/" className="text-2xl font-bold text-gray-900 hover:text-blue-600 transition-colors">
+    <nav className="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-sm border-b border-gray-100">
+      <div className="max-w-6xl mx-auto px-6 md:px-8">
+        <div className="flex justify-between items-center h-20">
+          <Link to="/" className="text-2xl font-medium text-gray-900 hover:text-gray-600 transition-colors">
             wekit.ai
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-8">
+          <div className="hidden md:flex items-center space-x-12">
             {navItems.map((item) => (
               <Link
                 key={item.path}
                 to={item.path}
-                className={`text-sm font-medium transition-colors hover:text-blue-600 ${
+                className={`text-sm font-medium transition-colors hover:text-gray-600 ${
                   location.pathname === item.path
-                    ? 'text-blue-600'
-                    : 'text-gray-600'
+                    ? 'text-gray-900'
+                    : 'text-gray-500'
                 }`}
               >
                 {item.name}
               </Link>
             ))}
-            <Button className="bg-blue-600 hover:bg-blue-700 text-white">
+            <Button className="bg-black hover:bg-gray-800 text-white px-8 py-3 rounded-none border-0 shadow-none hover:shadow-none font-medium">
               Partner with Us
             </Button>
           </div>
@@ -51,7 +51,7 @@ const Navigation = () => {
               variant="ghost"
               size="sm"
               onClick={() => setIsOpen(!isOpen)}
-              className="text-gray-600"
+              className="text-gray-900 hover:bg-gray-100 rounded-none shadow-none"
             >
               {isOpen ? <X size={24} /> : <Menu size={24} />}
             </Button>
@@ -60,23 +60,23 @@ const Navigation = () => {
 
         {/* Mobile Navigation */}
         {isOpen && (
-          <div className="md:hidden py-4 border-t border-gray-100">
-            <div className="flex flex-col space-y-4">
+          <div className="md:hidden py-8 border-t border-gray-100 bg-white">
+            <div className="flex flex-col space-y-6">
               {navItems.map((item) => (
                 <Link
                   key={item.path}
                   to={item.path}
                   onClick={() => setIsOpen(false)}
-                  className={`text-sm font-medium transition-colors hover:text-blue-600 ${
+                  className={`text-lg font-medium transition-colors hover:text-gray-600 ${
                     location.pathname === item.path
-                      ? 'text-blue-600'
-                      : 'text-gray-600'
+                      ? 'text-gray-900'
+                      : 'text-gray-500'
                   }`}
                 >
                   {item.name}
                 </Link>
               ))}
-              <Button className="bg-blue-600 hover:bg-blue-700 text-white w-fit">
+              <Button className="bg-black hover:bg-gray-800 text-white w-fit px-8 py-3 rounded-none border-0 shadow-none hover:shadow-none font-medium">
                 Partner with Us
               </Button>
             </div>

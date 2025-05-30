@@ -34,38 +34,43 @@ const Schools = () => {
   ];
 
   return (
-    <div className="min-h-screen pt-16">
+    <div className="min-h-screen pt-20 bg-white">
       {/* Hero Section */}
-      <section className="pt-20 pb-32 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-blue-50 to-white">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-16">
-            <h1 className="text-4xl md:text-6xl font-bold text-gray-900 mb-8">
-              Transform Your Students'
-              <span className="block text-blue-600">Career Journey</span>
+      <section className="pt-32 pb-24 px-6 md:px-8">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center space-y-12">
+            <h1 className="text-6xl md:text-8xl font-light text-gray-900 leading-[0.9] tracking-tight">
+              Transform Your
+              <br />
+              <span className="font-medium">Students' Journey</span>
             </h1>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-8">
+            <p className="text-xl md:text-2xl text-gray-500 font-light max-w-4xl mx-auto leading-relaxed">
               Partner with wekit.ai to provide your students with AI-driven mentorship, 
               career guidance, and industry connections that prepare them for success.
             </p>
-            <Button 
-              size="lg" 
-              className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 text-lg font-semibold rounded-full"
-            >
-              Schedule a Demo
-              <ArrowRight className="ml-2" size={20} />
-            </Button>
+            <div className="pt-8">
+              <Button 
+                size="lg" 
+                className="bg-black hover:bg-gray-800 text-white px-12 py-6 text-lg font-medium rounded-none border-0 shadow-none hover:shadow-none"
+              >
+                Schedule a Demo
+                <ArrowRight className="ml-3" size={20} />
+              </Button>
+            </div>
           </div>
         </div>
       </section>
 
       {/* Benefits Section */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              Why Partner with Us?
+      <section className="py-32 px-6 md:px-8 bg-gray-50">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-24 space-y-8">
+            <h2 className="text-4xl md:text-5xl font-light text-gray-900 leading-tight">
+              Why Partner
+              <br />
+              <span className="font-medium">with Us?</span>
             </h2>
-            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+            <p className="text-xl text-gray-500 font-light max-w-2xl mx-auto leading-relaxed">
               Our platform helps educational institutions enhance student outcomes 
               and prepare graduates for the modern workforce.
             </p>
@@ -73,15 +78,15 @@ const Schools = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {benefits.map((benefit, index) => (
-              <Card key={index} className="border-2 border-gray-100 hover:border-blue-200 hover:shadow-lg transition-all duration-300">
-                <CardContent className="p-8 text-center">
-                  <div className="w-16 h-16 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center mx-auto mb-6">
-                    <benefit.icon size={32} />
+              <Card key={index} className="border border-gray-200 hover:border-gray-300 transition-all duration-300 hover:shadow-lg bg-white rounded-none shadow-none">
+                <CardContent className="p-12 text-center">
+                  <div className="mb-8">
+                    <benefit.icon size={48} className="text-gray-900 mx-auto" />
                   </div>
-                  <h3 className="text-xl font-bold text-gray-900 mb-4">
+                  <h3 className="text-2xl font-medium text-gray-900 mb-6 leading-tight">
                     {benefit.title}
                   </h3>
-                  <p className="text-gray-600">
+                  <p className="text-gray-500 font-light leading-relaxed">
                     {benefit.description}
                   </p>
                 </CardContent>
@@ -92,44 +97,49 @@ const Schools = () => {
       </section>
 
       {/* Features Section */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50">
-        <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div>
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-8">
-                Comprehensive Mentorship Platform
+      <section className="py-32 px-6 md:px-8">
+        <div className="max-w-6xl mx-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+            <div className="space-y-8">
+              <h2 className="text-4xl md:text-5xl font-light text-gray-900 leading-tight">
+                Comprehensive
+                <br />
+                <span className="font-medium">Platform</span>
               </h2>
-              <p className="text-lg text-gray-600 mb-8">
+              <p className="text-xl text-gray-500 font-light leading-relaxed">
                 Our platform provides everything your institution needs to support 
                 student career development and professional growth.
               </p>
-              <div className="space-y-4">
+              <div className="space-y-6 pt-8">
                 {features.map((feature, index) => (
-                  <div key={index} className="flex items-center space-x-3">
-                    <CheckCircle className="text-green-500 flex-shrink-0" size={20} />
-                    <span className="text-gray-700">{feature}</span>
+                  <div key={index} className="flex items-center space-x-4">
+                    <CheckCircle className="text-gray-900 flex-shrink-0" size={24} />
+                    <span className="text-gray-700 font-light text-lg">{feature}</span>
                   </div>
                 ))}
               </div>
             </div>
-            <div className="lg:pl-8">
-              <Card className="border-2 border-gray-200">
-                <CardContent className="p-8">
-                  <h3 className="text-2xl font-bold text-gray-900 mb-6">
-                    Request Partnership Information
+            <div className="lg:pl-12">
+              <Card className="border border-gray-200 bg-white rounded-none shadow-none">
+                <CardContent className="p-12">
+                  <h3 className="text-3xl font-medium text-gray-900 mb-8 leading-tight">
+                    Request Partnership
+                    <br />
+                    Information
                   </h3>
-                  <form className="space-y-4">
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                      <Input placeholder="Institution Name" />
-                      <Input placeholder="Your Name" />
+                  <form className="space-y-6">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                      <Input placeholder="Institution Name" className="rounded-none border-gray-200 p-4 text-lg font-light" />
+                      <Input placeholder="Your Name" className="rounded-none border-gray-200 p-4 text-lg font-light" />
                     </div>
-                    <Input placeholder="Email Address" type="email" />
-                    <Input placeholder="Phone Number" type="tel" />
+                    <Input placeholder="Email Address" type="email" className="rounded-none border-gray-200 p-4 text-lg font-light" />
+                    <Input placeholder="Phone Number" type="tel" className="rounded-none border-gray-200 p-4 text-lg font-light" />
                     <Textarea 
                       placeholder="Tell us about your institution and how you'd like to partner with us" 
                       rows={4}
+                      className="rounded-none border-gray-200 p-4 text-lg font-light resize-none"
                     />
-                    <Button className="w-full bg-blue-600 hover:bg-blue-700 text-white">
+                    <Button className="w-full bg-black hover:bg-gray-800 text-white py-4 text-lg font-medium rounded-none border-0 shadow-none hover:shadow-none">
                       Send Partnership Request
                     </Button>
                   </form>
@@ -141,22 +151,26 @@ const Schools = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-8">
-            Ready to Transform Student Outcomes?
+      <section className="py-32 px-6 md:px-8 bg-gray-50">
+        <div className="max-w-4xl mx-auto text-center space-y-12">
+          <h2 className="text-4xl md:text-5xl font-light text-gray-900 leading-tight">
+            Ready to Transform
+            <br />
+            <span className="font-medium">Student Outcomes?</span>
           </h2>
-          <p className="text-lg text-gray-600 mb-8">
+          <p className="text-xl text-gray-500 font-light leading-relaxed">
             Join leading educational institutions worldwide that are already 
             empowering their students through our mentorship platform.
           </p>
-          <Button 
-            size="lg" 
-            className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 text-lg font-semibold rounded-full"
-          >
-            Start Partnership Discussion
-            <ArrowRight className="ml-2" size={20} />
-          </Button>
+          <div className="pt-8">
+            <Button 
+              size="lg" 
+              className="bg-black hover:bg-gray-800 text-white px-12 py-6 text-lg font-medium rounded-none border-0 shadow-none hover:shadow-none"
+            >
+              Start Partnership Discussion
+              <ArrowRight className="ml-3" size={20} />
+            </Button>
+          </div>
         </div>
       </section>
     </div>
