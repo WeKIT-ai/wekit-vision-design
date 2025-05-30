@@ -10,8 +10,8 @@ const Investors = () => {
     {
       icon: Users,
       title: 'Market Size',
-      stat: '420M',
-      description: 'Youth population in Africa (ages 15-35)'
+      stat: '1.8B',
+      description: 'Global youth population (ages 15-35)'
     },
     {
       icon: TrendingUp,
@@ -22,13 +22,13 @@ const Investors = () => {
     {
       icon: DollarSign,
       title: 'Economic Impact',
-      stat: '$2.5T',
+      stat: '$15T',
       description: 'Potential economic contribution by 2050'
     },
     {
       icon: Globe,
       title: 'Market Reach',
-      stat: '54',
+      stat: '195',
       description: 'Countries with youth empowerment needs'
     }
   ];
@@ -57,13 +57,13 @@ const Investors = () => {
       icon: Globe,
       title: 'Strategic Investment',
       amount: '$30M+',
-      use: 'Continental expansion, acquisition opportunities'
+      use: 'Global expansion, acquisition opportunities'
     }
   ];
 
   const traction = [
     'Revenue growth of 280% in last 18 months',
-    '25,000+ active users across 12 countries',
+    '25,000+ active users across multiple regions',
     'Partnerships with 45+ educational institutions',
     'Network of 2,500+ verified mentors',
     'Average session engagement of 45 minutes',
@@ -76,11 +76,11 @@ const Investors = () => {
       <section className="pt-20 pb-32 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-indigo-50 to-white">
         <div className="max-w-7xl mx-auto text-center">
           <h1 className="text-4xl md:text-6xl font-bold text-gray-900 mb-8">
-            Invest in Africa's
-            <span className="block text-indigo-600">Future Leaders</span>
+            Invest in the
+            <span className="block text-indigo-600">Future of Youth</span>
           </h1>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-8">
-            Join us in building the largest youth empowerment platform in Africa. 
+            Join us in building the largest youth empowerment platform globally. 
             Exceptional returns meet meaningful impact in the world's fastest-growing market.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -110,7 +110,7 @@ const Investors = () => {
               Massive Market Opportunity
             </h2>
             <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-              Africa's youth population represents the largest untapped market for 
+              The global youth population represents the largest untapped market for 
               educational technology and career development solutions.
             </p>
           </div>
@@ -188,7 +188,7 @@ const Investors = () => {
             </h2>
             <p className="text-lg text-gray-600 max-w-2xl mx-auto">
               Multiple investment rounds available to support our growth strategy 
-              and continental expansion plans.
+              and global expansion plans.
             </p>
           </div>
 
@@ -281,10 +281,10 @@ const Investors = () => {
       <section className="py-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-8">
-            Be Part of Africa's Growth Story
+            Be Part of the Global Growth Story
           </h2>
           <p className="text-lg text-gray-600 mb-8">
-            Join leading investors who are backing the next generation of African talent 
+            Join leading investors who are backing the next generation of global talent 
             and the platforms that will shape their future.
           </p>
           <Button 

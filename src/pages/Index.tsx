@@ -40,7 +40,7 @@ const Index = () => {
     },
     {
       title: 'Investors',
-      description: 'Join us in building the future of African youth development through sustainable and scalable solutions.',
+      description: 'Join us in building the future of youth development through sustainable and scalable solutions.',
       icon: TrendingUp,
       link: '/investors',
       color: 'bg-indigo-50 border-indigo-200',
@@ -54,12 +54,12 @@ const Index = () => {
       <section className="pt-20 pb-32 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-white to-gray-50">
         <div className="max-w-7xl mx-auto text-center">
           <h1 className="text-5xl md:text-7xl font-bold text-gray-900 mb-8 leading-tight">
-            Empowering Africa's
+            Empowering the
             <span className="block text-blue-600">Next Generation</span>
           </h1>
           <p className="text-xl md:text-2xl text-gray-600 mb-12 max-w-4xl mx-auto leading-relaxed">
             We bridge the gap between potential and opportunity through AI-driven mentorship, 
-            connecting Africa's youth with the guidance they need to thrive.
+            connecting youth with the guidance they need to thrive.
           </p>
           <Button 
             size="lg" 
@@ -94,7 +94,7 @@ const Index = () => {
             </h2>
             <p className="text-lg text-gray-600 max-w-2xl mx-auto">
               Our ecosystem brings together diverse stakeholders united by a common goal: 
-              empowering Africa's youth to achieve their full potential.
+              empowering youth to achieve their full potential.
             </p>
           </div>
 
@@ -138,7 +138,7 @@ const Index = () => {
           </h2>
           <p className="text-lg text-gray-600 mb-8">
             Join our growing ecosystem of mentors, institutions, and organizations 
-            dedicated to empowering Africa's next generation of leaders.
+            dedicated to empowering the next generation of leaders.
           </p>
           <Button 
             size="lg" 

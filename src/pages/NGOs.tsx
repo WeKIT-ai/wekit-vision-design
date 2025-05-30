@@ -31,7 +31,7 @@ const NGOs = () => {
 
   const impactMetrics = [
     { metric: 'Youth Reached', value: '25,000+', description: 'Through our partner NGO network' },
-    { metric: 'Communities Served', value: '150+', description: 'Across 12 African countries' },
+    { metric: 'Communities Served', value: '150+', description: 'Across multiple regions' },
     { metric: 'Partner Organizations', value: '45+', description: 'NGOs and community organizations' },
     { metric: 'Program Success Rate', value: '89%', description: 'Positive outcome achievement' }
   ];
@@ -58,7 +58,7 @@ const NGOs = () => {
           </h1>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-8">
             Partner with wekit.ai to expand your reach, enhance your programs, 
-            and create lasting change in the lives of Africa's youth.
+            and create lasting change in the lives of youth worldwide.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button 
@@ -121,7 +121,7 @@ const NGOs = () => {
             </h2>
             <p className="text-lg text-gray-600 max-w-2xl mx-auto">
               Together with our NGO partners, we're creating measurable change 
-              in communities across Africa.
+              in communities worldwide.
             </p>
           </div>
 
@@ -213,10 +213,10 @@ const NGOs = () => {
               {
                 org: 'Youth Empowerment Foundation',
                 impact: '3,500 youth mentored',
-                story: 'Integrated our platform into their existing programs, reaching rural communities across 5 states.'
+                story: 'Integrated our platform into their existing programs, reaching rural communities across multiple regions.'
               },
               {
-                org: 'Skills4Africa Initiative',
+                org: 'Skills4Future Initiative',
                 impact: '89% job placement rate',
                 story: 'Combined their vocational training with our mentorship program for improved employment outcomes.'
               },
@@ -251,7 +251,7 @@ const NGOs = () => {
           </h2>
           <p className="text-lg text-gray-600 mb-8">
             Join our network of partner organizations working together to create 
-            sustainable change in the lives of Africa's youth.
+            sustainable change in the lives of youth worldwide.
           </p>
           <Button 
             size="lg" 

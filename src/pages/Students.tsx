@@ -172,19 +172,19 @@ const Students = () => {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {[
               {
-                name: 'Amara Okafor',
+                name: 'Sarah Chen',
                 role: 'Computer Science Student',
                 achievement: 'Landed internship at major tech company',
                 quote: 'The mentorship I received helped me understand the tech industry and prepare for interviews.'
               },
               {
-                name: 'Kwame Asante',
+                name: 'Marcus Johnson',
                 role: 'Business Student',
                 achievement: 'Started successful e-commerce business',
                 quote: 'My mentor guided me through the entrepreneurship journey and helped me avoid common mistakes.'
               },
               {
-                name: 'Fatima Ahmed',
+                name: 'Maria Rodriguez',
                 role: 'Engineering Student',
                 achievement: 'Received scholarship for advanced studies',
                 quote: 'The career roadmap showed me exactly what steps to take to achieve my academic goals.'

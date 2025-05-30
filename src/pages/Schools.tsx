@@ -147,7 +147,7 @@ const Schools = () => {
             Ready to Transform Student Outcomes?
           </h2>
           <p className="text-lg text-gray-600 mb-8">
-            Join leading educational institutions across Africa that are already 
+            Join leading educational institutions worldwide that are already 
             empowering their students through our mentorship platform.
           </p>
           <Button 
