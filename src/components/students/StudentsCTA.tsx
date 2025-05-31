@@ -1,8 +1,41 @@
 
 import { Button } from '@/components/ui/button';
 import { ArrowRight, Brain } from 'lucide-react';
+import { supabase } from '@/integrations/supabase/client';
 
 const StudentsCTA = () => {
+  const trackButtonClick = async (buttonType: string) => {
+    try {
+      await supabase
+        .from('page_interactions')
+        .insert({
+          page_name: '/students',
+          interaction_type: 'cta_button_click',
+          interaction_data: {
+            button_type: buttonType,
+            timestamp: new Date().toISOString()
+          }
+        });
+    } catch (error) {
+      console.error('Error tracking button click:', error);
+    }
+  };
+
+  const handleCareerAssessmentClick = () => {
+    trackButtonClick('career_assessment');
+    // Track as psychometric test lead
+    supabase
+      .from('psychometric_test_leads')
+      .insert({
+        referral_source: 'students_page'
+      })
+      .catch(error => console.error('Error tracking psychometric test lead:', error));
+  };
+
+  const handleCareerTransformationClick = () => {
+    trackButtonClick('career_transformation');
+  };
+
   return (
     <section className="py-20 px-4 sm:px-6 lg:px-8 bg-green-50">
       <div className="max-w-4xl mx-auto text-center">
@@ -18,6 +51,7 @@ const StudentsCTA = () => {
             href="https://purpose-pathway-pilot.lovable.app/" 
             target="_blank" 
             rel="noopener noreferrer"
+            onClick={handleCareerAssessmentClick}
           >
             <Button 
               size="lg" 
@@ -30,6 +64,7 @@ const StudentsCTA = () => {
           <Button 
             size="lg" 
             className="bg-green-600 hover:bg-green-700 text-white px-8 py-4 text-lg font-semibold rounded-full"
+            onClick={handleCareerTransformationClick}
           >
             Start Your Career Transformation
             <ArrowRight className="ml-2" size={20} />

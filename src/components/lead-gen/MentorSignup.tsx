@@ -6,6 +6,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { UserPlus } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
+import { supabase } from '@/integrations/supabase/client';
 
 const MentorSignup = () => {
   const [formData, setFormData] = useState({
@@ -16,16 +17,48 @@ const MentorSignup = () => {
     experience: '',
     expertise: ''
   });
+  const [isLoading, setIsLoading] = useState(false);
   const { toast } = useToast();
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log('Mentor signup:', formData);
-    toast({
-      title: "Welcome to WeKIT!",
-      description: "Your mentor application has been submitted. We'll be in touch soon!",
-    });
-    setFormData({ name: '', email: '', company: '', industry: '', experience: '', expertise: '' });
+    setIsLoading(true);
+    
+    try {
+      // Store in page_interactions table as mentor signup
+      const { error } = await supabase
+        .from('page_interactions')
+        .insert({
+          page_name: window.location.pathname,
+          interaction_type: 'mentor_signup',
+          interaction_data: {
+            name: formData.name,
+            email: formData.email,
+            company: formData.company,
+            industry: formData.industry,
+            experience: formData.experience,
+            expertise: formData.expertise
+          }
+        });
+
+      if (error) throw error;
+
+      console.log('Mentor signup:', formData);
+      toast({
+        title: "Welcome to WeKIT!",
+        description: "Your mentor application has been submitted. We'll be in touch soon!",
+      });
+      setFormData({ name: '', email: '', company: '', industry: '', experience: '', expertise: '' });
+    } catch (error) {
+      console.error('Mentor signup error:', error);
+      toast({
+        title: "Error",
+        description: "Failed to submit application. Please try again.",
+        variant: "destructive"
+      });
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -50,6 +83,7 @@ const MentorSignup = () => {
             value={formData.name}
             onChange={handleChange}
             required
+            disabled={isLoading}
           />
           <Input
             name="email"
@@ -58,6 +92,7 @@ const MentorSignup = () => {
             value={formData.email}
             onChange={handleChange}
             required
+            disabled={isLoading}
           />
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -66,8 +101,9 @@ const MentorSignup = () => {
             placeholder="Current Company"
             value={formData.company}
             onChange={handleChange}
+            disabled={isLoading}
           />
-          <Select value={formData.industry} onValueChange={(value) => setFormData(prev => ({ ...prev, industry: value }))}>
+          <Select value={formData.industry} onValueChange={(value) => setFormData(prev => ({ ...prev, industry: value }))} disabled={isLoading}>
             <SelectTrigger>
               <SelectValue placeholder="Industry" />
             </SelectTrigger>
@@ -82,7 +118,7 @@ const MentorSignup = () => {
             </SelectContent>
           </Select>
         </div>
-        <Select value={formData.experience} onValueChange={(value) => setFormData(prev => ({ ...prev, experience: value }))}>
+        <Select value={formData.experience} onValueChange={(value) => setFormData(prev => ({ ...prev, experience: value }))} disabled={isLoading}>
           <SelectTrigger>
             <SelectValue placeholder="Years of Experience" />
           </SelectTrigger>
@@ -100,9 +136,10 @@ const MentorSignup = () => {
           value={formData.expertise}
           onChange={handleChange}
           required
+          disabled={isLoading}
         />
-        <Button type="submit" className="w-full bg-orange-600 hover:bg-orange-700">
-          Apply as Mentor
+        <Button type="submit" className="w-full bg-orange-600 hover:bg-orange-700" disabled={isLoading}>
+          {isLoading ? 'Applying...' : 'Apply as Mentor'}
         </Button>
       </form>
     </div>

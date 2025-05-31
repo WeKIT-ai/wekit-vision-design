@@ -5,6 +5,7 @@ import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Zap } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
+import { supabase } from '@/integrations/supabase/client';
 
 const EarlyAccessForm = () => {
   const [formData, setFormData] = useState({
@@ -13,16 +14,46 @@ const EarlyAccessForm = () => {
     userType: '',
     organization: ''
   });
+  const [isLoading, setIsLoading] = useState(false);
   const { toast } = useToast();
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log('Early access signup:', formData);
-    toast({
-      title: "You're In!",
-      description: "You've been added to our early access list. Get ready for exclusive features!",
-    });
-    setFormData({ name: '', email: '', userType: '', organization: '' });
+    setIsLoading(true);
+    
+    try {
+      // Store in page_interactions table as early access signup
+      const { error } = await supabase
+        .from('page_interactions')
+        .insert({
+          page_name: window.location.pathname,
+          interaction_type: 'early_access_signup',
+          interaction_data: {
+            name: formData.name,
+            email: formData.email,
+            user_type: formData.userType,
+            organization: formData.organization
+          }
+        });
+
+      if (error) throw error;
+
+      console.log('Early access signup:', formData);
+      toast({
+        title: "You're In!",
+        description: "You've been added to our early access list. Get ready for exclusive features!",
+      });
+      setFormData({ name: '', email: '', userType: '', organization: '' });
+    } catch (error) {
+      console.error('Early access signup error:', error);
+      toast({
+        title: "Error",
+        description: "Failed to join early access. Please try again.",
+        variant: "destructive"
+      });
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -47,6 +78,7 @@ const EarlyAccessForm = () => {
           onChange={handleChange}
           required
           className="text-sm"
+          disabled={isLoading}
         />
         <Input
           name="email"
@@ -56,8 +88,9 @@ const EarlyAccessForm = () => {
           onChange={handleChange}
           required
           className="text-sm"
+          disabled={isLoading}
         />
-        <Select value={formData.userType} onValueChange={(value) => setFormData(prev => ({ ...prev, userType: value }))}>
+        <Select value={formData.userType} onValueChange={(value) => setFormData(prev => ({ ...prev, userType: value }))} disabled={isLoading}>
           <SelectTrigger className="text-sm">
             <SelectValue placeholder="I am a..." />
           </SelectTrigger>
@@ -74,9 +107,10 @@ const EarlyAccessForm = () => {
           value={formData.organization}
           onChange={handleChange}
           className="text-sm"
+          disabled={isLoading}
         />
-        <Button type="submit" size="sm" className="w-full bg-indigo-600 hover:bg-indigo-700">
-          Join Early Access
+        <Button type="submit" size="sm" className="w-full bg-indigo-600 hover:bg-indigo-700" disabled={isLoading}>
+          {isLoading ? 'Joining...' : 'Join Early Access'}
         </Button>
       </form>
     </div>

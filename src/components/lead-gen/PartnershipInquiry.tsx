@@ -6,6 +6,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Handshake } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
+import { supabase } from '@/integrations/supabase/client';
 
 const PartnershipInquiry = () => {
   const [formData, setFormData] = useState({
@@ -15,16 +16,47 @@ const PartnershipInquiry = () => {
     partnershipType: '',
     details: ''
   });
+  const [isLoading, setIsLoading] = useState(false);
   const { toast } = useToast();
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log('Partnership inquiry:', formData);
-    toast({
-      title: "Partnership Inquiry Received!",
-      description: "Our partnerships team will review and contact you soon.",
-    });
-    setFormData({ name: '', email: '', organization: '', partnershipType: '', details: '' });
+    setIsLoading(true);
+    
+    try {
+      // Store in page_interactions table as partnership inquiry
+      const { error } = await supabase
+        .from('page_interactions')
+        .insert({
+          page_name: window.location.pathname,
+          interaction_type: 'partnership_inquiry',
+          interaction_data: {
+            name: formData.name,
+            email: formData.email,
+            organization: formData.organization,
+            partnership_type: formData.partnershipType,
+            details: formData.details
+          }
+        });
+
+      if (error) throw error;
+
+      console.log('Partnership inquiry:', formData);
+      toast({
+        title: "Partnership Inquiry Received!",
+        description: "Our partnerships team will review and contact you soon.",
+      });
+      setFormData({ name: '', email: '', organization: '', partnershipType: '', details: '' });
+    } catch (error) {
+      console.error('Partnership inquiry error:', error);
+      toast({
+        title: "Error",
+        description: "Failed to submit inquiry. Please try again.",
+        variant: "destructive"
+      });
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -49,6 +81,7 @@ const PartnershipInquiry = () => {
             value={formData.name}
             onChange={handleChange}
             required
+            disabled={isLoading}
           />
           <Input
             name="email"
@@ -57,6 +90,7 @@ const PartnershipInquiry = () => {
             value={formData.email}
             onChange={handleChange}
             required
+            disabled={isLoading}
           />
         </div>
         <Input
@@ -65,8 +99,9 @@ const PartnershipInquiry = () => {
           value={formData.organization}
           onChange={handleChange}
           required
+          disabled={isLoading}
         />
-        <Select value={formData.partnershipType} onValueChange={(value) => setFormData(prev => ({ ...prev, partnershipType: value }))}>
+        <Select value={formData.partnershipType} onValueChange={(value) => setFormData(prev => ({ ...prev, partnershipType: value }))} disabled={isLoading}>
           <SelectTrigger>
             <SelectValue placeholder="Partnership Type" />
           </SelectTrigger>
@@ -85,9 +120,10 @@ const PartnershipInquiry = () => {
           value={formData.details}
           onChange={handleChange}
           required
+          disabled={isLoading}
         />
-        <Button type="submit" className="w-full bg-green-600 hover:bg-green-700">
-          Submit Partnership Inquiry
+        <Button type="submit" className="w-full bg-green-600 hover:bg-green-700" disabled={isLoading}>
+          {isLoading ? 'Submitting...' : 'Submit Partnership Inquiry'}
         </Button>
       </form>
     </div>

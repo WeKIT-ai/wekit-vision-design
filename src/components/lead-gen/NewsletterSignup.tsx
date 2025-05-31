@@ -4,19 +4,43 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Mail } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
+import { supabase } from '@/integrations/supabase/client';
 
 const NewsletterSignup = () => {
   const [email, setEmail] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
   const { toast } = useToast();
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log('Newsletter signup:', email);
-    toast({
-      title: "Success!",
-      description: "You've been subscribed to our newsletter.",
-    });
-    setEmail('');
+    setIsLoading(true);
+    
+    try {
+      const { error } = await supabase
+        .from('newsletter_subscriptions')
+        .insert({
+          email,
+          source_page: window.location.pathname
+        });
+
+      if (error) throw error;
+
+      console.log('Newsletter signup:', email);
+      toast({
+        title: "Success!",
+        description: "You've been subscribed to our newsletter.",
+      });
+      setEmail('');
+    } catch (error) {
+      console.error('Newsletter signup error:', error);
+      toast({
+        title: "Error",
+        description: "Failed to subscribe. Please try again.",
+        variant: "destructive"
+      });
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -34,9 +58,10 @@ const NewsletterSignup = () => {
           onChange={(e) => setEmail(e.target.value)}
           required
           className="flex-1"
+          disabled={isLoading}
         />
-        <Button type="submit" className="bg-blue-600 hover:bg-blue-700">
-          Subscribe
+        <Button type="submit" className="bg-blue-600 hover:bg-blue-700" disabled={isLoading}>
+          {isLoading ? 'Subscribing...' : 'Subscribe'}
         </Button>
       </form>
     </div>

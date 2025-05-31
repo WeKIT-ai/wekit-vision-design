@@ -5,6 +5,7 @@ import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Calendar } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
+import { supabase } from '@/integrations/supabase/client';
 
 const DemoRequestForm = () => {
   const [formData, setFormData] = useState({
@@ -14,16 +15,47 @@ const DemoRequestForm = () => {
     role: '',
     studentsCount: ''
   });
+  const [isLoading, setIsLoading] = useState(false);
   const { toast } = useToast();
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log('Demo request:', formData);
-    toast({
-      title: "Demo Scheduled!",
-      description: "We'll contact you to confirm your demo session.",
-    });
-    setFormData({ name: '', email: '', organization: '', role: '', studentsCount: '' });
+    setIsLoading(true);
+    
+    try {
+      // Store in page_interactions table as demo request
+      const { error } = await supabase
+        .from('page_interactions')
+        .insert({
+          page_name: window.location.pathname,
+          interaction_type: 'demo_request',
+          interaction_data: {
+            name: formData.name,
+            email: formData.email,
+            organization: formData.organization,
+            role: formData.role,
+            students_count: formData.studentsCount
+          }
+        });
+
+      if (error) throw error;
+
+      console.log('Demo request:', formData);
+      toast({
+        title: "Demo Scheduled!",
+        description: "We'll contact you to confirm your demo session.",
+      });
+      setFormData({ name: '', email: '', organization: '', role: '', studentsCount: '' });
+    } catch (error) {
+      console.error('Demo request error:', error);
+      toast({
+        title: "Error",
+        description: "Failed to schedule demo. Please try again.",
+        variant: "destructive"
+      });
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -48,6 +80,7 @@ const DemoRequestForm = () => {
             value={formData.name}
             onChange={handleChange}
             required
+            disabled={isLoading}
           />
           <Input
             name="email"
@@ -56,6 +89,7 @@ const DemoRequestForm = () => {
             value={formData.email}
             onChange={handleChange}
             required
+            disabled={isLoading}
           />
         </div>
         <Input
@@ -64,8 +98,9 @@ const DemoRequestForm = () => {
           value={formData.organization}
           onChange={handleChange}
           required
+          disabled={isLoading}
         />
-        <Select value={formData.role} onValueChange={(value) => setFormData(prev => ({ ...prev, role: value }))}>
+        <Select value={formData.role} onValueChange={(value) => setFormData(prev => ({ ...prev, role: value }))} disabled={isLoading}>
           <SelectTrigger>
             <SelectValue placeholder="Your Role" />
           </SelectTrigger>
@@ -82,9 +117,10 @@ const DemoRequestForm = () => {
           placeholder="Number of Students"
           value={formData.studentsCount}
           onChange={handleChange}
+          disabled={isLoading}
         />
-        <Button type="submit" className="w-full bg-purple-600 hover:bg-purple-700">
-          Schedule Demo
+        <Button type="submit" className="w-full bg-purple-600 hover:bg-purple-700" disabled={isLoading}>
+          {isLoading ? 'Scheduling...' : 'Schedule Demo'}
         </Button>
       </form>
     </div>

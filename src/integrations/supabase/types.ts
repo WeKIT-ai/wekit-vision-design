@@ -9,6 +9,93 @@ export type Json =
 export type Database = {
   public: {
     Tables: {
+      contact_submissions: {
+        Row: {
+          company: string | null
+          email: string
+          id: string
+          message: string
+          name: string
+          source_page: string | null
+          status: string | null
+          submitted_at: string
+        }
+        Insert: {
+          company?: string | null
+          email: string
+          id?: string
+          message: string
+          name: string
+          source_page?: string | null
+          status?: string | null
+          submitted_at?: string
+        }
+        Update: {
+          company?: string | null
+          email?: string
+          id?: string
+          message?: string
+          name?: string
+          source_page?: string | null
+          status?: string | null
+          submitted_at?: string
+        }
+        Relationships: []
+      }
+      newsletter_subscriptions: {
+        Row: {
+          email: string
+          id: string
+          is_active: boolean
+          source_page: string | null
+          subscribed_at: string
+        }
+        Insert: {
+          email: string
+          id?: string
+          is_active?: boolean
+          source_page?: string | null
+          subscribed_at?: string
+        }
+        Update: {
+          email?: string
+          id?: string
+          is_active?: boolean
+          source_page?: string | null
+          subscribed_at?: string
+        }
+        Relationships: []
+      }
+      page_interactions: {
+        Row: {
+          created_at: string
+          id: string
+          interaction_data: Json | null
+          interaction_type: string
+          page_name: string
+          session_id: string | null
+          user_id: string | null
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          interaction_data?: Json | null
+          interaction_type: string
+          page_name: string
+          session_id?: string | null
+          user_id?: string | null
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          interaction_data?: Json | null
+          interaction_type?: string
+          page_name?: string
+          session_id?: string | null
+          user_id?: string | null
+        }
+        Relationships: []
+      }
       profiles: {
         Row: {
           created_at: string
@@ -30,6 +117,33 @@ export type Database = {
           full_name?: string | null
           id?: string
           updated_at?: string
+        }
+        Relationships: []
+      }
+      psychometric_test_leads: {
+        Row: {
+          created_at: string
+          email: string | null
+          id: string
+          referral_source: string | null
+          test_completed_at: string | null
+          user_id: string | null
+        }
+        Insert: {
+          created_at?: string
+          email?: string | null
+          id?: string
+          referral_source?: string | null
+          test_completed_at?: string | null
+          user_id?: string | null
+        }
+        Update: {
+          created_at?: string
+          email?: string | null
+          id?: string
+          referral_source?: string | null
+          test_completed_at?: string | null
+          user_id?: string | null
         }
         Relationships: []
       }
