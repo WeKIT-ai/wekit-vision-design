@@ -1,7 +1,6 @@
-
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
-import { User, Target, TrendingUp, BookOpen, Users, Award, ArrowRight, AlertTriangle, Clock, DollarSign } from 'lucide-react';
+import { User, Target, TrendingUp, BookOpen, Users, Award, ArrowRight, AlertTriangle, Clock, DollarSign, Brain } from 'lucide-react';
 
 const Students = () => {
   const studentProblems = [
@@ -88,6 +87,32 @@ const Students = () => {
             You're not alone if you feel unprepared for the job market. 68% of students graduate 
             without clear career direction or job-ready skills. We change that.
           </p>
+          
+          {/* Psychometric Testing CTA */}
+          <div className="bg-blue-100 border border-blue-300 rounded-lg p-6 max-w-2xl mx-auto mb-8">
+            <div className="flex items-center justify-center mb-4">
+              <Brain className="mr-3 text-blue-600" size={32} />
+              <h3 className="text-xl font-bold text-blue-800">Discover Your Perfect Career Path</h3>
+            </div>
+            <p className="text-blue-700 mb-4">
+              Take our advanced psychometric assessment to uncover careers that truly match your personality, 
+              skills, and interests. Get personalized insights that guide you to your ideal profession.
+            </p>
+            <a 
+              href="https://purpose-pathway-pilot.lovable.app/" 
+              target="_blank" 
+              rel="noopener noreferrer"
+            >
+              <Button 
+                size="lg" 
+                className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 text-lg font-semibold rounded-full"
+              >
+                Take Psychometric Test
+                <ArrowRight className="ml-2" size={20} />
+              </Button>
+            </a>
+          </div>
+
           <div className="bg-red-100 border border-red-300 rounded-lg p-6 max-w-2xl mx-auto mb-8">
             <p className="text-lg text-red-800">
               <strong>The Reality:</strong> Average job search takes 6+ months. 
@@ -257,13 +282,28 @@ const Students = () => {
             Join thousands of students who went from career confusion to landing 
             their dream jobs. Your success story starts today.
           </p>
-          <Button 
-            size="lg" 
-            className="bg-green-600 hover:bg-green-700 text-white px-8 py-4 text-lg font-semibold rounded-full"
-          >
-            Start Your Career Transformation
-            <ArrowRight className="ml-2" size={20} />
-          </Button>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <a 
+              href="https://purpose-pathway-pilot.lovable.app/" 
+              target="_blank" 
+              rel="noopener noreferrer"
+            >
+              <Button 
+                size="lg" 
+                className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 text-lg font-semibold rounded-full mb-4 sm:mb-0"
+              >
+                Take Career Assessment
+                <Brain className="ml-2" size={20} />
+              </Button>
+            </a>
+            <Button 
+              size="lg" 
+              className="bg-green-600 hover:bg-green-700 text-white px-8 py-4 text-lg font-semibold rounded-full"
+            >
+              Start Your Career Transformation
+              <ArrowRight className="ml-2" size={20} />
+            </Button>
+          </div>
         </div>
       </section>
     </div>
