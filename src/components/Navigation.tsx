@@ -24,7 +24,6 @@ const Navigation = () => {
     { name: 'Parents', path: 'https://lovable.dev/projects/db205b89-38c3-49ab-9fb5-591b507101f0', external: true },
     { name: 'Professionals', path: '/professionals' },
     { name: 'NGOs', path: '/ngos' },
-    { name: 'Investors', path: '/investors' },
   ];
 
   return (
@@ -66,6 +65,36 @@ const Navigation = () => {
                 </Link>
               )
             ))}
+            
+            {/* Investors Dropdown */}
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button 
+                  variant="ghost" 
+                  className="text-sm font-medium text-gray-500 hover:text-gray-600 p-0 h-auto bg-transparent hover:bg-transparent flex items-center gap-1"
+                >
+                  Investors
+                  <ChevronDown size={16} />
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent className="w-48 bg-white border border-gray-200 shadow-lg">
+                <DropdownMenuItem asChild>
+                  <Link to="/investors" className="w-full cursor-pointer">
+                    Investment Overview
+                  </Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                  <a 
+                    href="https://calendly.com/yvonne-roberts/wekit" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="w-full cursor-pointer"
+                  >
+                    Schedule a Call
+                  </a>
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
             
             {/* About Us Dropdown */}
             <DropdownMenu>
@@ -157,6 +186,24 @@ const Navigation = () => {
                   </Link>
                 )
               ))}
+              
+              <Link
+                to="/investors"
+                onClick={() => setIsOpen(false)}
+                className="text-lg font-medium text-gray-500 hover:text-gray-600 transition-colors"
+              >
+                Investors
+              </Link>
+              
+              <a
+                href="https://calendly.com/yvonne-roberts/wekit"
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => setIsOpen(false)}
+                className="text-lg font-medium text-gray-500 hover:text-gray-600 transition-colors pl-4"
+              >
+                Schedule a Call
+              </a>
               
               <Link
                 to="/about"
