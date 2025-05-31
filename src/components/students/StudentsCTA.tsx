@@ -21,15 +21,18 @@ const StudentsCTA = () => {
     }
   };
 
-  const handleCareerAssessmentClick = () => {
+  const handleCareerAssessmentClick = async () => {
     trackButtonClick('career_assessment');
     // Track as psychometric test lead
-    supabase
-      .from('psychometric_test_leads')
-      .insert({
-        referral_source: 'students_page'
-      })
-      .catch(error => console.error('Error tracking psychometric test lead:', error));
+    try {
+      await supabase
+        .from('psychometric_test_leads')
+        .insert({
+          referral_source: 'students_page'
+        });
+    } catch (error) {
+      console.error('Error tracking psychometric test lead:', error);
+    }
   };
 
   const handleCareerTransformationClick = () => {
