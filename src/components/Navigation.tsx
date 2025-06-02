@@ -1,30 +1,16 @@
 
 import { useState } from 'react';
-import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, ChevronDown } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { Menu, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import { useAuth } from '@/contexts/AuthContext';
-import UserMenu from './UserMenu';
+import NavigationItems from './navigation/NavigationItems';
+import InvestorsDropdown from './navigation/InvestorsDropdown';
+import AboutDropdown from './navigation/AboutDropdown';
+import AuthSection from './navigation/AuthSection';
+import MobileMenu from './navigation/MobileMenu';
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const location = useLocation();
-  const { user } = useAuth();
-
-  const navItems = [
-    { name: 'Home', path: '/' },
-    { name: 'Schools', path: '/schools' },
-    { name: 'Students', path: '/students' },
-    { name: 'Parents', path: 'https://lovable.dev/projects/db205b89-38c3-49ab-9fb5-591b507101f0', external: true },
-    { name: 'Professionals', path: '/professionals' },
-    { name: 'NGOs', path: '/ngos' },
-  ];
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-sm border-b border-gray-100">
@@ -40,106 +26,10 @@ const Navigation = () => {
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-12">
-            {navItems.map((item) => (
-              item.external ? (
-                <a
-                  key={item.name}
-                  href={item.path}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-sm font-medium text-gray-500 hover:text-gray-600 transition-colors"
-                >
-                  {item.name}
-                </a>
-              ) : (
-                <Link
-                  key={item.path}
-                  to={item.path}
-                  className={`text-sm font-medium transition-colors hover:text-gray-600 ${
-                    location.pathname === item.path
-                      ? 'text-gray-900'
-                      : 'text-gray-500'
-                  }`}
-                >
-                  {item.name}
-                </Link>
-              )
-            ))}
-            
-            {/* Investors Dropdown */}
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <Button 
-                  variant="ghost" 
-                  className="text-sm font-medium text-gray-500 hover:text-gray-600 p-0 h-auto bg-transparent hover:bg-transparent flex items-center gap-1"
-                >
-                  Investors
-                  <ChevronDown size={16} />
-                </Button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent className="w-48 bg-white border border-gray-200 shadow-lg">
-                <DropdownMenuItem asChild>
-                  <Link to="/investors" className="w-full cursor-pointer">
-                    Investment Overview
-                  </Link>
-                </DropdownMenuItem>
-                <DropdownMenuItem asChild>
-                  <a 
-                    href="https://calendly.com/yvonne-roberts/wekit" 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="w-full cursor-pointer"
-                  >
-                    Schedule a Call
-                  </a>
-                </DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
-            
-            {/* About Us Dropdown */}
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <Button 
-                  variant="ghost" 
-                  className="text-sm font-medium text-gray-500 hover:text-gray-600 p-0 h-auto bg-transparent hover:bg-transparent flex items-center gap-1"
-                >
-                  About Us
-                  <ChevronDown size={16} />
-                </Button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent className="w-48 bg-white border border-gray-200 shadow-lg">
-                <DropdownMenuItem asChild>
-                  <Link to="/about" className="w-full cursor-pointer">
-                    Our Story
-                  </Link>
-                </DropdownMenuItem>
-                <DropdownMenuItem asChild>
-                  <Link to="/about#team" className="w-full cursor-pointer">
-                    Our Team
-                  </Link>
-                </DropdownMenuItem>
-                <DropdownMenuItem asChild>
-                  <Link to="/about#mission" className="w-full cursor-pointer">
-                    Mission & Vision
-                  </Link>
-                </DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
-            
-            {user ? (
-              <UserMenu />
-            ) : (
-              <div className="flex items-center space-x-4">
-                <Link to="/auth">
-                  <Button variant="ghost" className="text-gray-900 hover:bg-gray-100 rounded-none font-medium">
-                    Sign In
-                  </Button>
-                </Link>
-                <Button className="bg-black hover:bg-gray-800 text-white px-8 py-3 rounded-none border-0 shadow-none hover:shadow-none font-medium">
-                  Partner with Us
-                </Button>
-              </div>
-            )}
+            <NavigationItems />
+            <InvestorsDropdown />
+            <AboutDropdown />
+            <AuthSection />
           </div>
 
           {/* Mobile menu button */}
@@ -155,83 +45,7 @@ const Navigation = () => {
           </div>
         </div>
 
-        {/* Mobile Navigation */}
-        {isOpen && (
-          <div className="md:hidden py-8 border-t border-gray-100 bg-white">
-            <div className="flex flex-col space-y-6">
-              {navItems.map((item) => (
-                item.external ? (
-                  <a
-                    key={item.name}
-                    href={item.path}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    onClick={() => setIsOpen(false)}
-                    className="text-lg font-medium text-gray-500 hover:text-gray-600 transition-colors"
-                  >
-                    {item.name}
-                  </a>
-                ) : (
-                  <Link
-                    key={item.path}
-                    to={item.path}
-                    onClick={() => setIsOpen(false)}
-                    className={`text-lg font-medium transition-colors hover:text-gray-600 ${
-                      location.pathname === item.path
-                        ? 'text-gray-900'
-                        : 'text-gray-500'
-                    }`}
-                  >
-                    {item.name}
-                  </Link>
-                )
-              ))}
-              
-              <Link
-                to="/investors"
-                onClick={() => setIsOpen(false)}
-                className="text-lg font-medium text-gray-500 hover:text-gray-600 transition-colors"
-              >
-                Investors
-              </Link>
-              
-              <a
-                href="https://calendly.com/yvonne-roberts/wekit"
-                target="_blank"
-                rel="noopener noreferrer"
-                onClick={() => setIsOpen(false)}
-                className="text-lg font-medium text-gray-500 hover:text-gray-600 transition-colors pl-4"
-              >
-                Schedule a Call
-              </a>
-              
-              <Link
-                to="/about"
-                onClick={() => setIsOpen(false)}
-                className="text-lg font-medium text-gray-500 hover:text-gray-600 transition-colors"
-              >
-                About Us
-              </Link>
-              
-              {user ? (
-                <div className="pt-4 border-t border-gray-100">
-                  <UserMenu />
-                </div>
-              ) : (
-                <div className="flex flex-col space-y-4 pt-4 border-t border-gray-100">
-                  <Link to="/auth" onClick={() => setIsOpen(false)}>
-                    <Button variant="ghost" className="w-fit text-gray-900 hover:bg-gray-100 rounded-none font-medium">
-                      Sign In
-                    </Button>
-                  </Link>
-                  <Button className="bg-black hover:bg-gray-800 text-white w-fit px-8 py-3 rounded-none border-0 shadow-none hover:shadow-none font-medium">
-                    Partner with Us
-                  </Button>
-                </div>
-              )}
-            </div>
-          </div>
-        )}
+        <MobileMenu isOpen={isOpen} setIsOpen={setIsOpen} />
       </div>
     </nav>
   );
