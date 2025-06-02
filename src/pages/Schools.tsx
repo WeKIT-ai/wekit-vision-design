@@ -8,7 +8,7 @@ import SchoolsCTA from '@/components/schools/SchoolsCTA';
 
 const Schools = () => {
   return (
-    <div className="min-h-screen pt-20 bg-white">
+    <div className="min-h-screen bg-white">
       <SchoolsHero />
       <SchoolsProblems />
       <SchoolsLeadGen />

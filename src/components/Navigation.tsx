@@ -18,9 +18,9 @@ const Navigation = () => {
         <div className="flex justify-between items-center h-20">
           <Link to="/" className="flex items-center hover:opacity-80 transition-opacity">
             <img 
-              src="/lovable-uploads/4c95f2da-0e89-4698-8a7e-e9d25349b6c3.png" 
+              src="/lovable-uploads/db13bc26-be3a-46c4-852b-6148fcd3edae.png" 
               alt="We-KIT Logo" 
-              className="h-12 w-auto"
+              className="h-16 w-auto"
             />
           </Link>
 

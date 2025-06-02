@@ -28,7 +28,7 @@ const App = () => (
         <AuthProvider>
           <div className="min-h-screen flex flex-col bg-white">
             <Navigation />
-            <main className="flex-1">
+            <main className="flex-1 pt-20">
               <Routes>
                 <Route path="/" element={<Index />} />
                 <Route path="/auth" element={<Auth />} />

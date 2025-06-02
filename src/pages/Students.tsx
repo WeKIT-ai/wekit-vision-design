@@ -8,7 +8,7 @@ import StudentsCTA from '@/components/students/StudentsCTA';
 
 const Students = () => {
   return (
-    <div className="min-h-screen pt-16">
+    <div className="min-h-screen bg-white">
       <StudentsHero />
       <StudentsProblems />
       <StudentsSolutions />
