@@ -7,13 +7,13 @@ const SchoolsCTA = () => {
     <section className="py-32 px-6 md:px-8 bg-gray-50">
       <div className="max-w-4xl mx-auto text-center space-y-12">
         <h2 className="text-4xl md:text-5xl font-light text-gray-900 leading-tight">
-          Stop Accepting Poor
+          Transform Student Outcomes at
           <br />
-          <span className="font-medium text-red-600">Career Outcomes</span>
+          <span className="font-medium text-red-600">Your Institution</span>
         </h2>
         <p className="text-xl text-gray-500 font-light leading-relaxed">
-          Your students deserve better than a 41% job placement rate. 
-          Partner with us to ensure every graduate is career-ready and industry-connected.
+          Whether you're a high school, college, university, or training center - your students deserve better than a 41% job placement rate. 
+          Partner with us to make every graduate job-ready and industry-connected.
         </p>
         <div className="pt-8">
           <Button 

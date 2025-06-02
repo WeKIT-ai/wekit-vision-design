@@ -7,20 +7,20 @@ const SchoolsProblems = () => {
     {
       icon: TrendingDown,
       title: 'Poor Career Outcomes',
-      problem: 'Only 41% of graduates find jobs in their field within 6 months',
-      solution: 'Our AI-powered mentorship increases job placement rates by 73%'
+      problem: 'Only 41% of graduates find jobs in their field within 6 months across all educational institutions',
+      solution: 'Our AI-powered mentorship increases job placement rates by 73% for students at every level'
     },
     {
       icon: AlertTriangle,
       title: 'Student Disengagement',
-      problem: '68% of students feel disconnected from their career goals',
-      solution: 'Connect students with industry mentors who provide real-world context and motivation'
+      problem: '68% of students feel disconnected from their career goals regardless of institution type',
+      solution: 'Connect students with industry mentors who provide real-world context and career motivation'
     },
     {
       icon: Clock,
       title: 'Limited Resources',
-      problem: 'Career counselors manage 400+ students each, limiting individual attention',
-      solution: 'Scale personalized guidance with AI-driven mentor matching and 24/7 support'
+      problem: 'Career counselors manage 400+ students each, limiting individual attention across institutions',
+      solution: 'Scale personalized guidance with AI-driven mentor matching and 24/7 support for all students'
     }
   ];
 
@@ -29,12 +29,12 @@ const SchoolsProblems = () => {
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-24 space-y-8">
           <h2 className="text-4xl md:text-5xl font-light text-gray-900 leading-tight">
-            Problems We
+            Challenges Facing All
             <br />
-            <span className="font-medium text-red-600">Solve</span>
+            <span className="font-medium text-red-600">Educational Institutions</span>
           </h2>
           <p className="text-xl text-gray-500 font-light max-w-2xl mx-auto leading-relaxed">
-            Educational institutions face unprecedented challenges in preparing students for modern careers.
+            From high schools to universities, educational institutions worldwide face unprecedented challenges in preparing students for modern careers.
           </p>
         </div>
 

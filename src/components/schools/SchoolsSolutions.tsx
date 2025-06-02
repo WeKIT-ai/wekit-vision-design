@@ -7,19 +7,19 @@ const SchoolsSolutions = () => {
     {
       icon: Users,
       title: 'AI-Powered Mentor Matching',
-      description: 'Automatically connect students with industry professionals based on career goals, skills, and interests.',
+      description: 'Automatically connect students with industry professionals based on career goals, skills, and interests across all educational levels.',
       impact: '3x increase in meaningful mentor connections'
     },
     {
       icon: BarChart3,
       title: 'Real-Time Career Analytics',
-      description: 'Track student progress, identify at-risk learners, and measure career outcome improvements.',
+      description: 'Track student progress, identify at-risk learners, and measure career outcome improvements for all educational institutions.',
       impact: '85% improvement in career services effectiveness'
     },
     {
       icon: Award,
       title: 'Industry-Integrated Learning',
-      description: 'Bridge academic learning with real-world skills through mentorship and practical projects.',
+      description: 'Bridge academic learning with real-world skills through mentorship and practical projects for students at every level.',
       impact: '67% increase in graduate employability'
     }
   ];
@@ -29,12 +29,12 @@ const SchoolsSolutions = () => {
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-24 space-y-8">
           <h2 className="text-4xl md:text-5xl font-light text-gray-900 leading-tight">
-            Our
+            Making Students Job-Ready &
             <br />
-            <span className="font-medium text-green-600">Solutions</span>
+            <span className="font-medium text-green-600">Industry-Connected</span>
           </h2>
           <p className="text-xl text-gray-500 font-light max-w-2xl mx-auto leading-relaxed">
-            Comprehensive tools that address the root causes of poor career outcomes.
+            Comprehensive tools that prepare students for career success across schools, colleges, universities, and training institutions.
           </p>
         </div>
 

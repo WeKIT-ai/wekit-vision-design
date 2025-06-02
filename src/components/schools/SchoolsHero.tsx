@@ -8,18 +8,18 @@ const SchoolsHero = () => {
       <div className="max-w-6xl mx-auto">
         <div className="text-center space-y-12">
           <h1 className="text-6xl md:text-8xl font-light text-gray-900 leading-[0.9] tracking-tight">
-            Bridge the Gap Between
+            Make Your Students
             <br />
-            <span className="font-medium text-red-600">Education & Employment</span>
+            <span className="font-medium text-red-600">Job-Ready & Industry-Connected</span>
           </h1>
           <p className="text-xl md:text-2xl text-gray-600 font-light max-w-4xl mx-auto leading-relaxed">
-            Address the growing disconnect between academic achievement and career success. 
-            Our AI-driven platform ensures your graduates are job-ready and industry-connected.
+            Partner with educational institutions worldwide - from schools and colleges to universities and training centers. 
+            Our AI-driven platform ensures your students graduate with real-world skills and industry connections.
           </p>
           <div className="bg-red-50 border border-red-200 rounded-lg p-6 max-w-2xl mx-auto">
             <p className="text-lg text-red-800 font-medium">
-              <strong>The Crisis:</strong> 60% of employers say recent graduates lack job-ready skills, 
-              while 73% of students feel unprepared for the workforce.
+              <strong>The Challenge:</strong> 60% of employers say recent graduates lack job-ready skills, 
+              while 73% of students feel unprepared for the workforce across all educational levels.
             </p>
           </div>
           <div className="pt-8">
