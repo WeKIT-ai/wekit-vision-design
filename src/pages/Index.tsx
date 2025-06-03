@@ -97,13 +97,19 @@ const Index = () => {
               connecting youth with the guidance they need to thrive in tomorrow's world.
             </p>
             <div className="pt-8 animate-fade-in">
-              <Button 
-                size="lg" 
-                className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-12 py-6 text-lg font-medium rounded-full border-0 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
+              <a 
+                href="https://lovable.dev/projects/37808d26-fa03-45a3-a188-a2da90bcd27e" 
+                target="_blank" 
+                rel="noopener noreferrer"
               >
-                Partner with Us
-                <ArrowRight className="ml-3" size={20} />
-              </Button>
+                <Button 
+                  size="lg" 
+                  className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-12 py-6 text-lg font-medium rounded-full border-0 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
+                >
+                  Partner with Us
+                  <ArrowRight className="ml-3" size={20} />
+                </Button>
+              </a>
             </div>
           </div>
         </div>

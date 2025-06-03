@@ -9,6 +9,75 @@ export type Json =
 export type Database = {
   public: {
     Tables: {
+      assessment_results: {
+        Row: {
+          career_recommendations: Json | null
+          created_at: string
+          id: string
+          personality_scores: Json
+          skills_data: Json
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          career_recommendations?: Json | null
+          created_at?: string
+          id?: string
+          personality_scores: Json
+          skills_data: Json
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          career_recommendations?: Json | null
+          created_at?: string
+          id?: string
+          personality_scores?: Json
+          skills_data?: Json
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      career_roadmaps: {
+        Row: {
+          career_family: string
+          created_at: string
+          id: string
+          mentor_matches: Json | null
+          milestones: Json | null
+          progress_tracking: Json | null
+          recommended_paths: Json
+          resources: Json | null
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          career_family: string
+          created_at?: string
+          id?: string
+          mentor_matches?: Json | null
+          milestones?: Json | null
+          progress_tracking?: Json | null
+          recommended_paths: Json
+          resources?: Json | null
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          career_family?: string
+          created_at?: string
+          id?: string
+          mentor_matches?: Json | null
+          milestones?: Json | null
+          progress_tracking?: Json | null
+          recommended_paths?: Json
+          resources?: Json | null
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
       contact_submissions: {
         Row: {
           company: string | null
@@ -41,6 +110,123 @@ export type Database = {
           submitted_at?: string
         }
         Relationships: []
+      }
+      mentor_profiles: {
+        Row: {
+          availability: Json | null
+          bio: string | null
+          company: string | null
+          created_at: string
+          current_mentees: number | null
+          email: string
+          experience_years: number | null
+          first_name: string
+          id: string
+          industry: string | null
+          is_active: boolean | null
+          is_verified: boolean | null
+          last_name: string
+          mentoring_capacity: number | null
+          position: string | null
+          specialties: string[] | null
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          availability?: Json | null
+          bio?: string | null
+          company?: string | null
+          created_at?: string
+          current_mentees?: number | null
+          email: string
+          experience_years?: number | null
+          first_name: string
+          id?: string
+          industry?: string | null
+          is_active?: boolean | null
+          is_verified?: boolean | null
+          last_name: string
+          mentoring_capacity?: number | null
+          position?: string | null
+          specialties?: string[] | null
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          availability?: Json | null
+          bio?: string | null
+          company?: string | null
+          created_at?: string
+          current_mentees?: number | null
+          email?: string
+          experience_years?: number | null
+          first_name?: string
+          id?: string
+          industry?: string | null
+          is_active?: boolean | null
+          is_verified?: boolean | null
+          last_name?: string
+          mentoring_capacity?: number | null
+          position?: string | null
+          specialties?: string[] | null
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      mentorship_connections: {
+        Row: {
+          completion_date: string | null
+          connection_date: string | null
+          created_at: string
+          id: string
+          match_score: number | null
+          mentee_id: string
+          mentor_id: string
+          notes: string | null
+          status: string | null
+          updated_at: string
+        }
+        Insert: {
+          completion_date?: string | null
+          connection_date?: string | null
+          created_at?: string
+          id?: string
+          match_score?: number | null
+          mentee_id: string
+          mentor_id: string
+          notes?: string | null
+          status?: string | null
+          updated_at?: string
+        }
+        Update: {
+          completion_date?: string | null
+          connection_date?: string | null
+          created_at?: string
+          id?: string
+          match_score?: number | null
+          mentee_id?: string
+          mentor_id?: string
+          notes?: string | null
+          status?: string | null
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "mentorship_connections_mentee_id_fkey"
+            columns: ["mentee_id"]
+            isOneToOne: false
+            referencedRelation: "youth_profiles"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "mentorship_connections_mentor_id_fkey"
+            columns: ["mentor_id"]
+            isOneToOne: false
+            referencedRelation: "mentor_profiles"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       newsletter_subscriptions: {
         Row: {
@@ -147,6 +333,33 @@ export type Database = {
         }
         Relationships: []
       }
+      user_roles: {
+        Row: {
+          assigned_at: string | null
+          assigned_by: string | null
+          id: string
+          is_active: boolean | null
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Insert: {
+          assigned_at?: string | null
+          assigned_by?: string | null
+          id?: string
+          is_active?: boolean | null
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Update: {
+          assigned_at?: string | null
+          assigned_by?: string | null
+          id?: string
+          is_active?: boolean | null
+          role?: Database["public"]["Enums"]["app_role"]
+          user_id?: string
+        }
+        Relationships: []
+      }
       white_paper_leads: {
         Row: {
           created_at: string
@@ -177,15 +390,106 @@ export type Database = {
         }
         Relationships: []
       }
+      youth_profiles: {
+        Row: {
+          career_goals: string | null
+          challenges: string | null
+          communication_consent: boolean | null
+          created_at: string
+          data_consent: boolean | null
+          date_of_birth: string | null
+          education: string | null
+          email: string
+          first_name: string
+          gender: string | null
+          grade: string | null
+          id: string
+          interests: string[] | null
+          languages: string[] | null
+          last_name: string
+          location: string | null
+          onboarding_completed: boolean | null
+          parental_consent: boolean | null
+          phone: string | null
+          school: string | null
+          subjects: string[] | null
+          time_commitment: string | null
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          career_goals?: string | null
+          challenges?: string | null
+          communication_consent?: boolean | null
+          created_at?: string
+          data_consent?: boolean | null
+          date_of_birth?: string | null
+          education?: string | null
+          email: string
+          first_name: string
+          gender?: string | null
+          grade?: string | null
+          id?: string
+          interests?: string[] | null
+          languages?: string[] | null
+          last_name: string
+          location?: string | null
+          onboarding_completed?: boolean | null
+          parental_consent?: boolean | null
+          phone?: string | null
+          school?: string | null
+          subjects?: string[] | null
+          time_commitment?: string | null
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          career_goals?: string | null
+          challenges?: string | null
+          communication_consent?: boolean | null
+          created_at?: string
+          data_consent?: boolean | null
+          date_of_birth?: string | null
+          education?: string | null
+          email?: string
+          first_name?: string
+          gender?: string | null
+          grade?: string | null
+          id?: string
+          interests?: string[] | null
+          languages?: string[] | null
+          last_name?: string
+          location?: string | null
+          onboarding_completed?: boolean | null
+          parental_consent?: boolean | null
+          phone?: string | null
+          school?: string | null
+          subjects?: string[] | null
+          time_commitment?: string | null
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      get_current_user_role: {
+        Args: Record<PropertyKey, never>
+        Returns: Database["public"]["Enums"]["app_role"]
+      }
+      has_role: {
+        Args: {
+          _user_id: string
+          _role: Database["public"]["Enums"]["app_role"]
+        }
+        Returns: boolean
+      }
     }
     Enums: {
-      [_ in never]: never
+      app_role: "admin" | "mentor" | "youth" | "institution" | "corporate"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -300,6 +604,8 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {},
+    Enums: {
+      app_role: ["admin", "mentor", "youth", "institution", "corporate"],
+    },
   },
 } as const
