@@ -1,4 +1,3 @@
-
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { ArrowRight, Users, GraduationCap, Briefcase, Heart, TrendingUp, Play } from 'lucide-react';
@@ -157,6 +156,21 @@ const Index = () => {
         </div>
       </section>
 
+      {/* Early Access Section - New placement after YOMA */}
+      <section className="py-16 px-6 md:px-8 bg-gradient-to-br from-indigo-50 to-purple-50">
+        <div className="max-w-4xl mx-auto">
+          <div className="text-center mb-8">
+            <h2 className="text-3xl font-bold text-gray-900 mb-4">Ready to Get Started?</h2>
+            <p className="text-xl text-gray-600">Be among the first to experience YOMA and our AI-powered mentorship platform</p>
+          </div>
+          <div className="flex justify-center">
+            <div className="w-full max-w-md">
+              <EarlyAccessForm />
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Enhanced Visual Impact Section */}
       <section className="py-16 px-6 md:px-8">
         <div className="max-w-6xl mx-auto">
@@ -234,9 +248,8 @@ const Index = () => {
             <h2 className="text-3xl font-bold text-gray-900 mb-4">Start Your Journey</h2>
             <p className="text-xl text-gray-600">Take the first step towards transforming youth development</p>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <NewsletterSignup />
-            <EarlyAccessForm />
             <DemoRequestForm />
           </div>
         </div>
