@@ -40,6 +40,33 @@ const About = () => {
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50">
       <AboutHero />
       
+      {/* Video Section - Our Story in Motion */}
+      <section className="py-16 px-6 md:px-8 bg-white">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold text-gray-900 mb-4">Our Story in Motion</h2>
+            <p className="text-xl text-gray-600">See the passion and purpose behind WeKIT</p>
+          </div>
+          <div className="relative overflow-hidden rounded-3xl shadow-2xl group hover:scale-105 transition-all duration-500 max-w-4xl mx-auto">
+            <video
+              autoPlay
+              muted
+              loop
+              playsInline
+              className="w-full h-64 md:h-96 object-cover group-hover:scale-110 transition-transform duration-700"
+              poster="https://images.unsplash.com/photo-1515187029135-18ee286d815b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80"
+            >
+              <source src="https://player.vimeo.com/external/434045526.sd.mp4?s=c27eecc69a27dbc4ff2b87d38afc35f1a9a1c3ef&profile_id=165&oauth2_token_id=57447761" type="video/mp4" />
+            </video>
+            <div className="absolute inset-0 bg-gradient-to-t from-gray-900/60 to-transparent"></div>
+            <div className="absolute bottom-8 left-8 text-white">
+              <h3 className="text-2xl font-bold mb-2">Building the Future Together</h3>
+              <p className="text-lg opacity-90">Every young person deserves the chance to thrive</p>
+            </div>
+          </div>
+        </div>
+      </section>
+      
       {/* Lead Gen Section 1 - Newsletter & Early Access */}
       <section className="py-16 px-6 md:px-8 bg-white">
         <div className="max-w-6xl mx-auto">
