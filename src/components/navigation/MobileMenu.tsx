@@ -20,6 +20,7 @@ const MobileMenu = ({ isOpen, setIsOpen }: MobileMenuProps) => {
     { name: 'Parents', path: 'https://lovable.dev/projects/db205b89-38c3-49ab-9fb5-591b507101f0', external: true },
     { name: 'Professionals', path: '/professionals' },
     { name: 'NGOs', path: '/ngos' },
+    { name: 'Courses & Certifications', path: '/courses', highlight: true },
   ];
 
   if (!isOpen) return null;
@@ -47,6 +48,8 @@ const MobileMenu = ({ isOpen, setIsOpen }: MobileMenuProps) => {
               className={`text-lg font-medium transition-colors hover:text-gray-600 ${
                 location.pathname === item.path
                   ? 'text-gray-900'
+                  : item.highlight
+                  ? 'text-blue-600'
                   : 'text-gray-500'
               }`}
             >

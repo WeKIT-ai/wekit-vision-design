@@ -15,6 +15,7 @@ import Students from "./pages/Students";
 import Professionals from "./pages/Professionals";
 import NGOs from "./pages/NGOs";
 import Investors from "./pages/Investors";
+import Courses from "./pages/Courses";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -38,6 +39,7 @@ const App = () => (
                 <Route path="/professionals" element={<Professionals />} />
                 <Route path="/ngos" element={<NGOs />} />
                 <Route path="/investors" element={<Investors />} />
+                <Route path="/courses" element={<Courses />} />
                 <Route path="*" element={<NotFound />} />
               </Routes>
             </main>
