@@ -1,7 +1,8 @@
 
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
-import { ArrowRight, BookOpen, Award, Users, Zap } from 'lucide-react';
+import { ArrowRight, BookOpen, Award, Users, Zap, Gamepad2, Target } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const Courses = () => {
   const features = [
@@ -69,6 +70,50 @@ const Courses = () => {
         {/* Dynamic Background Elements */}
         <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-gradient-to-r from-blue-400/20 to-purple-400/20 rounded-full blur-3xl animate-pulse"></div>
         <div className="absolute bottom-1/4 right-1/4 w-48 h-48 bg-gradient-to-r from-green-400/20 to-blue-400/20 rounded-full blur-3xl animate-pulse delay-1000"></div>
+      </section>
+
+      {/* Microlearning Spotlight */}
+      <section className="py-24 px-6 md:px-8 bg-gradient-to-r from-purple-600 to-pink-600">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center text-white space-y-8">
+            <div className="inline-flex items-center px-4 py-2 bg-white/20 rounded-full text-sm font-medium mb-4">
+              <Gamepad2 className="w-4 h-4 mr-2" />
+              New: Microlearning Platform
+            </div>
+            <h2 className="text-4xl md:text-5xl font-bold leading-tight">
+              Master Skills in
+              <br />
+              <span className="text-yellow-300">5-15 Minutes</span>
+            </h2>
+            <p className="text-xl text-purple-100 max-w-3xl mx-auto leading-relaxed">
+              Perfect for IGCSE/Cambridge students! Learn essential skills through interactive games, 
+              stories, and challenges. Earn badges, compete with friends, and level up your future.
+            </p>
+            <div className="flex flex-wrap justify-center gap-4 mb-8">
+              <div className="flex items-center space-x-2 bg-white/10 px-4 py-2 rounded-full">
+                <Target className="w-5 h-5" />
+                <span>6 Skill Pathways</span>
+              </div>
+              <div className="flex items-center space-x-2 bg-white/10 px-4 py-2 rounded-full">
+                <Award className="w-5 h-5" />
+                <span>Gamified Learning</span>
+              </div>
+              <div className="flex items-center space-x-2 bg-white/10 px-4 py-2 rounded-full">
+                <Users className="w-5 h-5" />
+                <span>Collaborative Challenges</span>
+              </div>
+            </div>
+            <Link to="/microlearning">
+              <Button 
+                size="lg" 
+                className="bg-white text-purple-600 hover:bg-gray-100 px-12 py-6 text-lg font-medium rounded-full shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105"
+              >
+                Try Microlearning Now
+                <Gamepad2 className="ml-3" size={20} />
+              </Button>
+            </Link>
+          </div>
+        </div>
       </section>
 
       {/* Features Section */}

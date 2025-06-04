@@ -17,6 +17,7 @@ import Professionals from "./pages/Professionals";
 import NGOs from "./pages/NGOs";
 import Investors from "./pages/Investors";
 import Courses from "./pages/Courses";
+import Microlearning from "./pages/Microlearning";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();

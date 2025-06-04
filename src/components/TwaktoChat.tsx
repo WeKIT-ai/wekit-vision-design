@@ -1,6 +1,12 @@
 
 import { useEffect } from 'react';
 
+declare global {
+  interface Window {
+    Tawk_API?: any;
+  }
+}
+
 const TwaktoChat = () => {
   useEffect(() => {
     // Twakto chat widget script
