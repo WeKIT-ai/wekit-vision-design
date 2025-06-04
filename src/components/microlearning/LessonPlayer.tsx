@@ -297,10 +297,12 @@ const LessonPlayer = ({ lesson, onClose }: LessonPlayerProps) => {
         );
 
       default:
+        // Handle any unknown step types by falling back to the base properties
+        const baseStep = currentStepData as BaseLessonStep;
         return (
           <div className="text-center space-y-6">
-            <h3 className="text-2xl font-bold text-gray-900">{currentStepData.title}</h3>
-            <p className="text-lg text-gray-600">{currentStepData.content}</p>
+            <h3 className="text-2xl font-bold text-gray-900">{baseStep.title}</h3>
+            <p className="text-lg text-gray-600">{baseStep.content}</p>
             <Button onClick={handleNext}>Next</Button>
           </div>
         );
