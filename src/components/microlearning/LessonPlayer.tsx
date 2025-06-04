@@ -31,6 +31,41 @@ interface LessonPlayerProps {
   onClose: () => void;
 }
 
+interface BaseLessonStep {
+  type: string;
+  title: string;
+  content: string;
+}
+
+interface IntroStep extends BaseLessonStep {
+  type: 'intro';
+  image?: string;
+}
+
+interface StoryStep extends BaseLessonStep {
+  type: 'story';
+  clues?: string[];
+}
+
+interface QuizStep extends BaseLessonStep {
+  type: 'quiz';
+  question: string;
+  options: string[];
+  correct: number;
+}
+
+interface InteractiveStep extends BaseLessonStep {
+  type: 'interactive';
+  options: string[];
+}
+
+interface ExplanationStep extends BaseLessonStep {
+  type: 'explanation' | 'reveal';
+  points?: number;
+}
+
+type LessonStep = IntroStep | StoryStep | QuizStep | InteractiveStep | ExplanationStep;
+
 const LessonPlayer = ({ lesson, onClose }: LessonPlayerProps) => {
   const [currentStep, setCurrentStep] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
@@ -38,7 +73,7 @@ const LessonPlayer = ({ lesson, onClose }: LessonPlayerProps) => {
   const [showResults, setShowResults] = useState(false);
 
   // Sample lesson content based on type
-  const getLessonContent = () => {
+  const getLessonContent = (): { steps: LessonStep[] } => {
     switch (lesson.type) {
       case 'puzzle':
         return {
@@ -48,7 +83,7 @@ const LessonPlayer = ({ lesson, onClose }: LessonPlayerProps) => {
               title: 'Logic Puzzle Challenge',
               content: 'Welcome to today\'s logic puzzle! You\'ll need to use deductive reasoning to solve this mystery.',
               image: 'https://images.unsplash.com/photo-1606092195730-5d7b9af1efc5?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80'
-            },
+            } as IntroStep,
             {
               type: 'story',
               title: 'The Case',
@@ -58,20 +93,21 @@ const LessonPlayer = ({ lesson, onClose }: LessonPlayerProps) => {
                 'The person with the bird likes blue',
                 'Casey has a cat and doesn\'t like green'
               ]
-            },
+            } as StoryStep,
             {
               type: 'quiz',
               title: 'Solve the Puzzle',
+              content: 'Now let\'s test your reasoning',
               question: 'Who has the bird?',
               options: ['Alex', 'Blake', 'Casey'],
               correct: 0
-            },
+            } as QuizStep,
             {
               type: 'explanation',
               title: 'Great Work!',
               content: 'Alex has the bird! Since Casey has a cat and Alex doesn\'t have a dog, Alex must have the bird. And since the bird owner likes blue, Alex likes blue.',
               points: 150
-            }
+            } as ExplanationStep
           ]
         };
       case 'story':
@@ -82,7 +118,7 @@ const LessonPlayer = ({ lesson, onClose }: LessonPlayerProps) => {
               title: 'Science Mystery: The Missing Formula',
               content: 'Dr. Chen\'s revolutionary formula has disappeared from her lab. As a detective scientist, you must solve this mystery!',
               image: 'https://images.unsplash.com/photo-1532094349884-543bc11b234d?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80'
-            },
+            } as IntroStep,
             {
               type: 'interactive',
               title: 'Examine the Evidence',
@@ -92,13 +128,13 @@ const LessonPlayer = ({ lesson, onClose }: LessonPlayerProps) => {
                 'A torn piece of paper with chemical symbols',
                 'An open window with muddy footprints'
               ]
-            },
+            } as InteractiveStep,
             {
               type: 'reveal',
               title: 'The Chemical Trail',
               content: 'The torn paper contains part of the formula! You notice it matches the periodic table pattern Dr. Chen was working on.',
               points: 100
-            }
+            } as ExplanationStep
           ]
         };
       default:
@@ -109,7 +145,7 @@ const LessonPlayer = ({ lesson, onClose }: LessonPlayerProps) => {
               title: lesson.title,
               content: 'Welcome to this engaging lesson!',
               image: 'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80'
-            }
+            } as IntroStep
           ]
         };
     }
@@ -134,18 +170,19 @@ const LessonPlayer = ({ lesson, onClose }: LessonPlayerProps) => {
   const renderStepContent = () => {
     switch (currentStepData.type) {
       case 'intro':
+        const introStep = currentStepData as IntroStep;
         return (
           <div className="text-center space-y-6">
-            {currentStepData.image && (
+            {introStep.image && (
               <img 
-                src={currentStepData.image} 
-                alt={currentStepData.title}
+                src={introStep.image} 
+                alt={introStep.title}
                 className="w-full h-48 object-cover rounded-lg"
               />
             )}
             <div>
-              <h3 className="text-2xl font-bold text-gray-900 mb-4">{currentStepData.title}</h3>
-              <p className="text-lg text-gray-600 leading-relaxed">{currentStepData.content}</p>
+              <h3 className="text-2xl font-bold text-gray-900 mb-4">{introStep.title}</h3>
+              <p className="text-lg text-gray-600 leading-relaxed">{introStep.content}</p>
             </div>
             <Button onClick={handleNext} size="lg" className="mt-6">
               Let's Start!
@@ -155,15 +192,16 @@ const LessonPlayer = ({ lesson, onClose }: LessonPlayerProps) => {
         );
 
       case 'story':
+        const storyStep = currentStepData as StoryStep;
         return (
           <div className="space-y-6">
-            <h3 className="text-2xl font-bold text-gray-900">{currentStepData.title}</h3>
-            <p className="text-lg text-gray-700 leading-relaxed">{currentStepData.content}</p>
-            {currentStepData.clues && (
+            <h3 className="text-2xl font-bold text-gray-900">{storyStep.title}</h3>
+            <p className="text-lg text-gray-700 leading-relaxed">{storyStep.content}</p>
+            {storyStep.clues && (
               <div className="bg-blue-50 p-6 rounded-lg">
                 <h4 className="font-semibold text-blue-900 mb-4">Clues:</h4>
                 <ul className="space-y-2">
-                  {currentStepData.clues.map((clue, index) => (
+                  {storyStep.clues.map((clue, index) => (
                     <li key={index} className="flex items-start space-x-2 text-blue-800">
                       <span className="font-bold">{index + 1}.</span>
                       <span>{clue}</span>
@@ -180,12 +218,13 @@ const LessonPlayer = ({ lesson, onClose }: LessonPlayerProps) => {
         );
 
       case 'quiz':
+        const quizStep = currentStepData as QuizStep;
         return (
           <div className="space-y-6">
-            <h3 className="text-2xl font-bold text-gray-900">{currentStepData.title}</h3>
-            <p className="text-lg text-gray-700">{currentStepData.question}</p>
+            <h3 className="text-2xl font-bold text-gray-900">{quizStep.title}</h3>
+            <p className="text-lg text-gray-700">{quizStep.question}</p>
             <div className="space-y-3">
-              {currentStepData.options?.map((option, index) => (
+              {quizStep.options.map((option, index) => (
                 <button
                   key={index}
                   onClick={() => {
@@ -206,12 +245,13 @@ const LessonPlayer = ({ lesson, onClose }: LessonPlayerProps) => {
         );
 
       case 'interactive':
+        const interactiveStep = currentStepData as InteractiveStep;
         return (
           <div className="space-y-6">
-            <h3 className="text-2xl font-bold text-gray-900">{currentStepData.title}</h3>
-            <p className="text-lg text-gray-700">{currentStepData.content}</p>
+            <h3 className="text-2xl font-bold text-gray-900">{interactiveStep.title}</h3>
+            <p className="text-lg text-gray-700">{interactiveStep.content}</p>
             <div className="grid gap-4">
-              {currentStepData.options?.map((option, index) => (
+              {interactiveStep.options.map((option, index) => (
                 <Card 
                   key={index}
                   className="cursor-pointer hover:shadow-md transition-shadow"
@@ -231,20 +271,21 @@ const LessonPlayer = ({ lesson, onClose }: LessonPlayerProps) => {
 
       case 'explanation':
       case 'reveal':
+        const explanationStep = currentStepData as ExplanationStep;
         return (
           <div className="text-center space-y-6">
             <div className="w-16 h-16 bg-green-500 rounded-full flex items-center justify-center mx-auto">
               <Check className="w-8 h-8 text-white" />
             </div>
             <div>
-              <h3 className="text-2xl font-bold text-gray-900 mb-4">{currentStepData.title}</h3>
-              <p className="text-lg text-gray-600 leading-relaxed">{currentStepData.content}</p>
+              <h3 className="text-2xl font-bold text-gray-900 mb-4">{explanationStep.title}</h3>
+              <p className="text-lg text-gray-600 leading-relaxed">{explanationStep.content}</p>
             </div>
-            {currentStepData.points && (
+            {explanationStep.points && (
               <div className="bg-yellow-50 p-6 rounded-lg">
                 <div className="flex items-center justify-center space-x-2 text-yellow-800">
                   <Trophy className="w-6 h-6" />
-                  <span className="text-xl font-bold">+{currentStepData.points} points earned!</span>
+                  <span className="text-xl font-bold">+{explanationStep.points} points earned!</span>
                 </div>
               </div>
             )}
