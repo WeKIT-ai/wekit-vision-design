@@ -6,7 +6,10 @@ const AboutCTA = () => {
         <h2 className="text-4xl font-bold mb-6">Ready to Join Our Mission?</h2>
         <p className="text-xl mb-8 text-gray-300">
           Whether you're a student seeking guidance or a professional ready to mentor, 
-          there's a place for you in the WeKIT community.
+          there's a place for you in the WeKIT International community.
+        </p>
+        <p className="text-lg mb-8 text-blue-200 italic">
+          "Vot Kareer Is iT?" - Let's find out together
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <button className="bg-white text-black px-8 py-4 rounded-none font-medium hover:bg-gray-100 transition-colors">

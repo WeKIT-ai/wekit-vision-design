@@ -7,14 +7,17 @@ const AboutHero = () => {
       <div className="max-w-6xl mx-auto text-center">
         <div className="inline-flex items-center px-4 py-2 bg-gradient-to-r from-blue-100 to-purple-100 rounded-full text-sm font-medium text-gray-700 mb-8 animate-fade-in">
           <Heart className="w-4 h-4 mr-2 text-red-500" />
-          Empowering Youth Through AI-Driven Mentorship
+          WeKIT International - Vot Kareer Is iT?
         </div>
         <h1 className="text-5xl md:text-7xl font-bold text-gray-900 mb-8 leading-tight">
           About <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">WeKIT</span>
         </h1>
         <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-          We're on a mission to bridge the gap between potential and opportunity, 
+          WeKIT International Pvt Limited is on a mission to bridge the gap between potential and opportunity, 
           connecting young minds with the guidance they need to thrive in an AI-powered world.
+        </p>
+        <p className="text-lg text-gray-500 mt-4 italic">
+          "Vot Kareer Is iT?" - Helping you discover your perfect career path
         </p>
       </div>
     </section>

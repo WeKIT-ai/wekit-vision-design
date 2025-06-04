@@ -26,7 +26,7 @@ const NewsletterSignup = () => {
       if (error) throw error;
 
       toast({
-        title: "Success!",
+        title: "Welcome to WeKIT!",
         description: "You've been subscribed to our newsletter.",
       });
       setEmail('');
@@ -45,9 +45,10 @@ const NewsletterSignup = () => {
     <div className="bg-gradient-to-r from-blue-50 to-purple-50 p-8 rounded-lg border border-gray-200">
       <div className="flex items-center mb-4">
         <Mail className="w-6 h-6 text-blue-600 mr-3" />
-        <h3 className="text-xl font-semibold text-gray-900">Stay Updated</h3>
+        <h3 className="text-xl font-semibold text-gray-900">Stay Updated with WeKIT</h3>
       </div>
-      <p className="text-gray-600 mb-4">Get the latest insights on youth mentorship and AI-driven education.</p>
+      <p className="text-gray-600 mb-2">Get the latest insights on youth mentorship and AI-driven education from WeKIT International.</p>
+      <p className="text-sm text-gray-500 mb-4 italic">"Vot Kareer Is iT?" - Stay informed about career development</p>
       <form onSubmit={handleSubmit} className="flex gap-3">
         <Input
           type="email"

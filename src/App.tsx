@@ -7,6 +7,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { AuthProvider } from "./contexts/AuthContext";
 import Navigation from "./components/Navigation";
 import Footer from "./components/Footer";
+import TwaktoChat from "./components/TwaktoChat";
 import Index from "./pages/Index";
 import Auth from "./pages/Auth";
 import About from "./pages/About";
@@ -44,6 +45,7 @@ const App = () => (
               </Routes>
             </main>
             <Footer />
+            <TwaktoChat />
           </div>
         </AuthProvider>
       </BrowserRouter>

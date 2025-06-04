@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
@@ -19,8 +18,9 @@ const Navigation = () => {
           <Link to="/" className="flex items-center hover:opacity-80 transition-opacity">
             <img 
               src="/lovable-uploads/db13bc26-be3a-46c4-852b-6148fcd3edae.png" 
-              alt="We-KIT Logo" 
+              alt="WeKIT - Vot Kareer Is iT?" 
               className="h-16 w-auto"
+              title="WeKIT International Pvt Limited"
             />
           </Link>
 

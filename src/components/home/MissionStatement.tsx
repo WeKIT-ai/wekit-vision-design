@@ -20,9 +20,12 @@ const MissionStatement = () => {
           <span className="font-medium bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">to Success</span>
         </h2>
         <p className="text-xl text-gray-600 font-light leading-relaxed max-w-3xl mx-auto">
-          At wekit.ai, we believe every young person deserves access to quality mentorship and guidance. 
+          At WeKIT International, we believe every young person deserves access to quality mentorship and guidance. 
           Our AI-powered platform connects students and young professionals with mentors, educational 
           institutions, and opportunities that align with their goals and aspirations.
+        </p>
+        <p className="text-lg text-gray-500 italic">
+          "Vot Kareer Is iT?" - Your journey to career clarity starts here
         </p>
       </div>
     </section>

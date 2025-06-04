@@ -1,4 +1,3 @@
-
 import { Youtube, Facebook, Linkedin, Instagram, Mail } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
@@ -11,10 +10,13 @@ const Footer = () => {
             <div className="flex items-center space-x-4">
               <img 
                 src="/lovable-uploads/db13bc26-be3a-46c4-852b-6148fcd3edae.png" 
-                alt="We-KIT Logo" 
+                alt="WeKIT Logo" 
                 className="h-12 w-auto"
               />
-              <h3 className="text-2xl font-medium text-gray-900">We-KIT</h3>
+              <div>
+                <h3 className="text-2xl font-medium text-gray-900">WeKIT</h3>
+                <p className="text-sm text-gray-500">Vot Kareer Is iT?</p>
+              </div>
             </div>
             <p className="text-gray-500 font-light leading-relaxed max-w-md text-lg">
               Rooting you in your purpose. Empowering youth through AI-driven mentorship, bridging the gap between potential and opportunity.
@@ -110,7 +112,7 @@ const Footer = () => {
 
         <div className="border-t border-gray-100 mt-16 pt-8">
           <p className="text-gray-400 font-light text-center">
-            © 2024 We-KIT Mentoring. All rights reserved.
+            © 2024 WeKIT International Pvt Limited. All rights reserved.
           </p>
         </div>
       </div>
