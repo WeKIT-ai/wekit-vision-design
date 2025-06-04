@@ -40,14 +40,12 @@ const DemoRequestForm = () => {
 
       if (error) throw error;
 
-      console.log('Demo request:', formData);
       toast({
         title: "Demo Scheduled!",
         description: "We'll contact you to confirm your demo session.",
       });
       setFormData({ name: '', email: '', organization: '', role: '', studentsCount: '' });
     } catch (error) {
-      console.error('Demo request error:', error);
       toast({
         title: "Error",
         description: "Failed to schedule demo. Please try again.",

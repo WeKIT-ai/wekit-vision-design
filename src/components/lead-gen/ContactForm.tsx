@@ -34,14 +34,12 @@ const ContactForm = () => {
 
       if (error) throw error;
 
-      console.log('Contact form submission:', formData);
       toast({
         title: "Message Sent!",
         description: "We'll get back to you within 24 hours.",
       });
       setFormData({ name: '', email: '', company: '', message: '' });
     } catch (error) {
-      console.error('Contact form error:', error);
       toast({
         title: "Error",
         description: "Failed to send message. Please try again.",

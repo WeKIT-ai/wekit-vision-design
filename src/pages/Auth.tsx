@@ -30,11 +30,32 @@ const Auth = () => {
     }
   }, [user, navigate, location]);
 
+  // Password strength validation
+  const validatePassword = (password: string): string | null => {
+    if (password.length < 8) {
+      return 'Password must be at least 8 characters long';
+    }
+    if (!/(?=.*[a-z])(?=.*[A-Z])(?=.*\d)/.test(password)) {
+      return 'Password must contain at least one uppercase letter, one lowercase letter, and one number';
+    }
+    return null;
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
     setError('');
     setMessage('');
+
+    // Validate password strength for sign up
+    if (isSignUp) {
+      const passwordError = validatePassword(password);
+      if (passwordError) {
+        setError(passwordError);
+        setLoading(false);
+        return;
+      }
+    }
 
     try {
       if (isSignUp) {
@@ -125,8 +146,13 @@ const Auth = () => {
                   required
                   className="rounded-none"
                   placeholder="Enter your password"
-                  minLength={6}
+                  minLength={8}
                 />
+                {isSignUp && (
+                  <p className="mt-1 text-xs text-gray-500">
+                    Password must be at least 8 characters with uppercase, lowercase, and number
+                  </p>
+                )}
               </div>
 
               {error && (

@@ -17,7 +17,7 @@ const StudentsCTA = () => {
           }
         });
     } catch (error) {
-      console.error('Error tracking button click:', error);
+      // Silently handle error - don't expose to console
     }
   };
 
@@ -31,7 +31,7 @@ const StudentsCTA = () => {
           referral_source: 'students_page'
         });
     } catch (error) {
-      console.error('Error tracking psychometric test lead:', error);
+      // Silently handle error - don't expose to console
     }
   };
 

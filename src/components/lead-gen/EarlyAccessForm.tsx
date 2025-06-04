@@ -38,14 +38,12 @@ const EarlyAccessForm = () => {
 
       if (error) throw error;
 
-      console.log('Early access signup:', formData);
       toast({
         title: "You're In!",
         description: "You've been added to our early access list. Get ready for exclusive features!",
       });
       setFormData({ name: '', email: '', userType: '', organization: '' });
     } catch (error) {
-      console.error('Early access signup error:', error);
       toast({
         title: "Error",
         description: "Failed to join early access. Please try again.",

@@ -25,14 +25,12 @@ const NewsletterSignup = () => {
 
       if (error) throw error;
 
-      console.log('Newsletter signup:', email);
       toast({
         title: "Success!",
         description: "You've been subscribed to our newsletter.",
       });
       setEmail('');
     } catch (error) {
-      console.error('Newsletter signup error:', error);
       toast({
         title: "Error",
         description: "Failed to subscribe. Please try again.",
