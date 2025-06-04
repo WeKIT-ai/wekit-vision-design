@@ -5,33 +5,32 @@ import { ArrowRight, Users, Play } from 'lucide-react';
 const Hero = () => {
   return (
     <section className="relative pt-32 pb-24 px-6 md:px-8 overflow-hidden">
-      {/* Background Video */}
+      {/* Background with gradient overlay */}
       <div className="absolute inset-0 z-0">
-        <video
-          autoPlay
-          muted
-          loop
-          playsInline
-          className="w-full h-full object-cover opacity-20"
-          poster="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80"
-        >
-          <source src="https://player.vimeo.com/external/434045526.sd.mp4?s=c27eecc69a27dbc4ff2b87d38afc35f1a9a1c3ef&profile_id=165&oauth2_token_id=57447761" type="video/mp4" />
-          Your browser does not support the video tag.
-        </video>
         <div className="absolute inset-0 bg-gradient-to-br from-blue-50/90 to-purple-50/90"></div>
       </div>
 
-      {/* Floating Video Elements */}
+      {/* YouTube Video Embed */}
       <div className="absolute top-20 right-10 hidden lg:block z-10">
         <div className="relative group cursor-pointer">
-          <div className="w-40 h-24 bg-gradient-to-r from-blue-600 to-purple-600 rounded-xl flex items-center justify-center shadow-2xl hover:scale-110 transition-all duration-300 hover:shadow-blue-500/25">
-            <Play className="w-10 h-10 text-white drop-shadow-lg" />
+          <div className="w-80 h-48 rounded-xl overflow-hidden shadow-2xl hover:scale-110 transition-all duration-300 hover:shadow-blue-500/25">
+            <iframe
+              width="320"
+              height="192"
+              src="https://www.youtube.com/embed/fJg2UTFp4Hk?autoplay=1&mute=1&loop=1&playlist=fJg2UTFp4Hk&controls=0&showinfo=0&rel=0&modestbranding=1"
+              title="Background Video"
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+              className="w-full h-full object-cover"
+            ></iframe>
           </div>
           <div className="absolute -top-2 -right-2 w-5 h-5 bg-red-500 rounded-full animate-pulse shadow-lg"></div>
           <div className="absolute -bottom-1 -left-1 w-3 h-3 bg-green-400 rounded-full animate-bounce shadow-lg"></div>
         </div>
       </div>
 
+      {/* Floating Video Elements */}
       <div className="absolute bottom-20 left-10 hidden lg:block z-10">
         <div className="relative group cursor-pointer">
           <div className="w-36 h-20 bg-gradient-to-r from-green-500 to-blue-500 rounded-xl flex items-center justify-center shadow-2xl hover:scale-110 transition-all duration-300 hover:shadow-green-500/25">
