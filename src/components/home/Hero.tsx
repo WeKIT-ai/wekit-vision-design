@@ -42,13 +42,39 @@ const Hero = () => {
               Driven by Purpose.
             </span>
           </h1>
+          
+          {/* Text with inline video */}
+          <div className="flex flex-col lg:flex-row items-center justify-center gap-6 animate-fade-in">
+            <p className="text-xl md:text-2xl text-gray-600 font-light max-w-2xl leading-relaxed">
+              We bridge the gap between potential and opportunity through AI-driven mentorship, 
+              connecting youth with the guidance they need
+            </p>
+            
+            {/* YouTube Video Embed - positioned right of text */}
+            <div className="relative group cursor-pointer flex-shrink-0">
+              <div className="w-64 h-36 rounded-xl overflow-hidden shadow-2xl hover:scale-105 transition-all duration-300 hover:shadow-blue-500/25">
+                <iframe
+                  width="256"
+                  height="144"
+                  src="https://www.youtube.com/embed/YpFq8LAxJxo?autoplay=1&mute=1&loop=1&playlist=YpFq8LAxJxo&controls=0&showinfo=0&rel=0&modestbranding=1"
+                  title="Background Video"
+                  frameBorder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                  className="w-full h-full object-cover"
+                ></iframe>
+              </div>
+              <div className="absolute -top-2 -right-2 w-5 h-5 bg-red-500 rounded-full animate-pulse shadow-lg"></div>
+              <div className="absolute -bottom-1 -left-1 w-3 h-3 bg-green-400 rounded-full animate-bounce shadow-lg"></div>
+            </div>
+          </div>
+          
           <p className="text-xl md:text-2xl text-gray-600 font-light max-w-3xl mx-auto leading-relaxed animate-fade-in">
-            We bridge the gap between potential and opportunity through AI-driven mentorship, 
-            connecting youth with the guidance they need to thrive in tomorrow's world.
+            to thrive in tomorrow's world.
           </p>
           
-          {/* Button and Video Container */}
-          <div className="pt-8 animate-fade-in flex flex-col lg:flex-row items-center justify-center gap-8">
+          {/* Button Container */}
+          <div className="pt-8 animate-fade-in">
             <a 
               href="https://lovable.dev/projects/37808d26-fa03-45a3-a188-a2da90bcd27e" 
               target="_blank" 
@@ -62,24 +88,6 @@ const Hero = () => {
                 <ArrowRight className="ml-3" size={20} />
               </Button>
             </a>
-            
-            {/* YouTube Video Embed */}
-            <div className="relative group cursor-pointer">
-              <div className="w-80 h-48 rounded-xl overflow-hidden shadow-2xl hover:scale-105 transition-all duration-300 hover:shadow-blue-500/25">
-                <iframe
-                  width="320"
-                  height="192"
-                  src="https://www.youtube.com/embed/YpFq8LAxJxo?autoplay=1&mute=1&loop=1&playlist=YpFq8LAxJxo&controls=0&showinfo=0&rel=0&modestbranding=1"
-                  title="Background Video"
-                  frameBorder="0"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowFullScreen
-                  className="w-full h-full object-cover"
-                ></iframe>
-              </div>
-              <div className="absolute -top-2 -right-2 w-5 h-5 bg-red-500 rounded-full animate-pulse shadow-lg"></div>
-              <div className="absolute -bottom-1 -left-1 w-3 h-3 bg-green-400 rounded-full animate-bounce shadow-lg"></div>
-            </div>
           </div>
         </div>
       </div>
