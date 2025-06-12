@@ -18,13 +18,13 @@ const Hero = () => {
           <div className="absolute inset-0 bg-black/40"></div>
         </div>
 
-        {/* Floating Video Element */}
-        <div className="absolute bottom-20 right-10 hidden lg:block z-10">
+        {/* Floating Video Element - Moved to Left Side */}
+        <div className="absolute bottom-20 left-10 hidden lg:block z-10">
           <div className="relative group">
             <div className="w-80 h-48 bg-black rounded-xl overflow-hidden shadow-2xl hover:scale-105 transition-all duration-300">
               <iframe
                 className="w-full h-full"
-                src="https://www.youtube.com/embed/5q4nPGPD9uE?autoplay=0&mute=0&controls=1&showinfo=1&rel=0&modestbranding=1&loop=1&playlist=5q4nPGPD9uE"
+                src="https://www.youtube.com/embed/5q4nPGPD9uE?autoplay=0&mute=1&controls=1&showinfo=1&rel=0&modestbranding=1&loop=1&playlist=5q4nPGPD9uE"
                 title="Floating Video"
                 frameBorder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -34,8 +34,8 @@ const Hero = () => {
           </div>
         </div>
 
-        {/* Floating Elements */}
-        <div className="absolute bottom-20 left-10 hidden lg:block z-10">
+        {/* Floating Animation Element - Moved to Right Side */}
+        <div className="absolute bottom-20 right-10 hidden lg:block z-10">
           <div className="relative group cursor-pointer">
             <div className="w-36 h-20 bg-gradient-to-r from-green-500 to-blue-500 rounded-xl flex items-center justify-center shadow-2xl hover:scale-110 transition-all duration-300 hover:shadow-green-500/25">
               <div className="flex space-x-1">
