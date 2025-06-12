@@ -1,9 +1,9 @@
-
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Heart, Users, BarChart3, Globe, Target, Handshake, ArrowRight, CheckCircle } from 'lucide-react';
+import NRECTSection from '@/components/ngos/NRECTSection';
 
 const NGOs = () => {
   const collaborationModels = [
@@ -78,6 +78,9 @@ const NGOs = () => {
           </div>
         </div>
       </section>
+
+      {/* NRECT Partnership Section */}
+      <NRECTSection />
 
       {/* Collaboration Models Section */}
       <section className="py-20 px-4 sm:px-6 lg:px-8">

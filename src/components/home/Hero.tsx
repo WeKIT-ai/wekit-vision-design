@@ -4,13 +4,26 @@ import { ArrowRight, Users, Play } from 'lucide-react';
 
 const Hero = () => {
   return (
-    <section className="relative pt-32 pb-24 px-6 md:px-8 overflow-hidden">
-      {/* Background with gradient overlay */}
+    <section className="relative pt-32 pb-24 px-6 md:px-8 overflow-hidden min-h-screen flex items-center">
+      {/* Video Background */}
       <div className="absolute inset-0 z-0">
-        <div className="absolute inset-0 bg-gradient-to-br from-blue-50/90 to-purple-50/90"></div>
+        <div className="w-full h-full">
+          <iframe
+            className="w-full h-full object-cover scale-110"
+            src="https://www.youtube.com/embed/YpFq8LAxJxo?autoplay=1&mute=1&loop=1&playlist=YpFq8LAxJxo&controls=0&showinfo=0&rel=0&modestbranding=1&start=0"
+            title="Background Video"
+            frameBorder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+          ></iframe>
+        </div>
+        {/* Dark overlay for better text contrast */}
+        <div className="absolute inset-0 bg-black/50"></div>
+        {/* Additional gradient overlay */}
+        <div className="absolute inset-0 bg-gradient-to-br from-blue-900/40 to-purple-900/40"></div>
       </div>
 
-      {/* Floating Video Elements */}
+      {/* Floating Elements */}
       <div className="absolute bottom-20 left-10 hidden lg:block z-10">
         <div className="relative group cursor-pointer">
           <div className="w-36 h-20 bg-gradient-to-r from-green-500 to-blue-500 rounded-xl flex items-center justify-center shadow-2xl hover:scale-110 transition-all duration-300 hover:shadow-green-500/25">
@@ -31,46 +44,21 @@ const Hero = () => {
 
       <div className="max-w-6xl mx-auto relative z-20">
         <div className="text-center space-y-12">
-          <h1 className="text-6xl md:text-8xl font-light text-gray-900 leading-[0.9] tracking-tight animate-fade-in">
+          <h1 className="text-6xl md:text-8xl font-light text-white leading-[0.9] tracking-tight animate-fade-in drop-shadow-2xl">
             Mentoring the Future.
             <br />
-            <span className="font-medium bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+            <span className="font-medium bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent drop-shadow-lg">
               Powered by AI.
             </span>
             <br />
-            <span className="font-medium text-gray-700">
+            <span className="font-medium text-gray-100 drop-shadow-xl">
               Driven by Purpose.
             </span>
           </h1>
           
-          {/* Text with inline video */}
-          <div className="flex flex-col lg:flex-row items-center justify-center gap-6 animate-fade-in">
-            <p className="text-xl md:text-2xl text-gray-600 font-light max-w-2xl leading-relaxed">
-              We bridge the gap between potential and opportunity through AI-driven mentorship, 
-              connecting youth with the guidance they need
-            </p>
-            
-            {/* YouTube Video Embed - positioned right of text */}
-            <div className="relative group cursor-pointer flex-shrink-0">
-              <div className="w-64 h-36 rounded-xl overflow-hidden shadow-2xl hover:scale-105 transition-all duration-300 hover:shadow-blue-500/25">
-                <iframe
-                  width="256"
-                  height="144"
-                  src="https://www.youtube.com/embed/YpFq8LAxJxo?autoplay=1&mute=1&loop=1&playlist=YpFq8LAxJxo&controls=0&showinfo=0&rel=0&modestbranding=1"
-                  title="Background Video"
-                  frameBorder="0"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowFullScreen
-                  className="w-full h-full object-cover"
-                ></iframe>
-              </div>
-              <div className="absolute -top-2 -right-2 w-5 h-5 bg-red-500 rounded-full animate-pulse shadow-lg"></div>
-              <div className="absolute -bottom-1 -left-1 w-3 h-3 bg-green-400 rounded-full animate-bounce shadow-lg"></div>
-            </div>
-          </div>
-          
-          <p className="text-xl md:text-2xl text-gray-600 font-light max-w-3xl mx-auto leading-relaxed animate-fade-in">
-            to thrive in tomorrow's world.
+          <p className="text-xl md:text-2xl text-gray-100 font-light max-w-4xl mx-auto leading-relaxed animate-fade-in drop-shadow-lg">
+            We bridge the gap between potential and opportunity through AI-driven mentorship, 
+            connecting youth with the guidance they need to thrive in tomorrow's world.
           </p>
           
           {/* Button Container */}
@@ -82,7 +70,7 @@ const Hero = () => {
             >
               <Button 
                 size="lg" 
-                className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-12 py-6 text-lg font-medium rounded-full border-0 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
+                className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-12 py-6 text-lg font-medium rounded-full border-0 shadow-2xl hover:shadow-xl transition-all duration-300 hover:scale-105"
               >
                 Partner with Us
                 <ArrowRight className="ml-3" size={20} />
@@ -91,11 +79,6 @@ const Hero = () => {
           </div>
         </div>
       </div>
-
-      {/* Dynamic Background Elements */}
-      <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-gradient-to-r from-blue-400/20 to-purple-400/20 rounded-full blur-3xl animate-pulse"></div>
-      <div className="absolute bottom-1/4 right-1/4 w-48 h-48 bg-gradient-to-r from-green-400/20 to-blue-400/20 rounded-full blur-3xl animate-pulse delay-1000"></div>
-      <div className="absolute top-1/2 left-1/2 w-32 h-32 bg-gradient-to-r from-yellow-400/15 to-orange-400/15 rounded-full blur-2xl animate-pulse delay-500"></div>
     </section>
   );
 };
