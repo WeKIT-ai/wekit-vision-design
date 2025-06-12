@@ -5,27 +5,36 @@ import { ArrowRight, Users, Play } from 'lucide-react';
 const Hero = () => {
   return (
     <>
-      {/* Video Section - Full viewport height */}
+      {/* Hero Section with Image Background */}
       <section className="relative h-screen w-full overflow-hidden">
-        {/* Bright Video Background */}
+        {/* Image Background */}
         <div className="absolute inset-0 z-0">
-          <div className="w-full h-full">
-            <iframe
-              className="w-full h-full object-cover scale-110"
-              src="https://www.youtube.com/embed/YpFq8LAxJxo?autoplay=1&mute=1&loop=1&playlist=YpFq8LAxJxo&controls=0&showinfo=0&rel=0&modestbranding=1&start=0"
-              title="Background Video"
-              frameBorder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-            ></iframe>
-          </div>
-          {/* Light overlay for brightness enhancement */}
-          <div className="absolute inset-0 bg-white/10"></div>
-          {/* Subtle gradient for visual appeal */}
-          <div className="absolute inset-0 bg-gradient-to-br from-blue-200/20 to-purple-200/20"></div>
+          <img
+            src="/lovable-uploads/f9e02f74-cebe-4891-a8e2-d36b5e83b5a7.png"
+            alt="Your future is waiting"
+            className="w-full h-full object-cover"
+          />
+          {/* Dark overlay for better text readability */}
+          <div className="absolute inset-0 bg-black/40"></div>
         </div>
 
-        {/* Floating Elements for Video Section */}
+        {/* Floating Video Element */}
+        <div className="absolute bottom-20 right-10 hidden lg:block z-10">
+          <div className="relative group">
+            <div className="w-80 h-48 bg-black rounded-xl overflow-hidden shadow-2xl hover:scale-105 transition-all duration-300">
+              <iframe
+                className="w-full h-full"
+                src="https://www.youtube.com/embed/5q4nPGPD9uE?autoplay=0&mute=0&controls=1&showinfo=1&rel=0&modestbranding=1"
+                title="Floating Video"
+                frameBorder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+              ></iframe>
+            </div>
+          </div>
+        </div>
+
+        {/* Floating Elements */}
         <div className="absolute bottom-20 left-10 hidden lg:block z-10">
           <div className="relative group cursor-pointer">
             <div className="w-36 h-20 bg-gradient-to-r from-green-500 to-blue-500 rounded-xl flex items-center justify-center shadow-2xl hover:scale-110 transition-all duration-300 hover:shadow-green-500/25">
@@ -38,21 +47,41 @@ const Hero = () => {
           </div>
         </div>
 
-        <div className="absolute top-1/2 right-1/4 hidden xl:block z-10">
+        <div className="absolute top-1/2 left-1/4 hidden xl:block z-10">
           <div className="w-20 h-20 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-full flex items-center justify-center shadow-xl hover:scale-105 transition-all duration-300 opacity-80">
             <Users className="w-8 h-8 text-white" />
           </div>
         </div>
 
-        {/* Video Section Content Overlay */}
+        {/* Hero Content Overlay */}
         <div className="absolute inset-0 z-20 flex items-center justify-center">
-          <div className="text-center">
-            <div className="w-24 h-24 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center shadow-2xl hover:scale-110 transition-all duration-300 cursor-pointer group">
-              <Play className="w-10 h-10 text-white ml-1 group-hover:scale-110 transition-transform duration-300" />
-            </div>
-            <p className="text-white text-lg font-medium mt-4 drop-shadow-lg">
-              Watch Our Story
+          <div className="text-center max-w-4xl px-6">
+            <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight drop-shadow-2xl">
+              Your Future is Waiting.
+              <br />
+              <span className="bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
+                Let's Unlock It.
+              </span>
+            </h1>
+            <p className="text-xl md:text-2xl text-white/90 mb-8 drop-shadow-lg">
+              AI-powered mentorship connecting youth with opportunities to thrive in tomorrow's world.
             </p>
+            
+            <div className="pt-4">
+              <a 
+                href="https://lovable.dev/projects/37808d26-fa03-45a3-a188-a2da90bcd27e" 
+                target="_blank" 
+                rel="noopener noreferrer"
+              >
+                <Button 
+                  size="lg" 
+                  className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-12 py-6 text-lg font-medium rounded-full border-0 shadow-2xl hover:shadow-xl transition-all duration-300 hover:scale-105"
+                >
+                  Partner with Us
+                  <ArrowRight className="ml-3" size={20} />
+                </Button>
+              </a>
+            </div>
           </div>
         </div>
       </section>
