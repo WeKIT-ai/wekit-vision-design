@@ -12,6 +12,7 @@ const NavigationItems = () => {
     { name: 'Professionals', path: '/professionals' },
     { name: 'NGOs & Partners', path: '/ngos' },
     { name: 'Courses & Certifications', path: '/courses', highlight: true },
+    { name: 'White Paper', path: '/white-paper', highlight: true },
   ];
 
   return (
