@@ -6,11 +6,11 @@ const NavigationItems = () => {
   
   const navItems = [
     { name: 'Home', path: '/' },
-    { name: 'Schools', path: '/schools' },
-    { name: 'Students', path: '/students' },
+    { name: 'Schools & Colleges', path: '/schools' },
+    { name: 'Students & Mentees', path: '/students' },
     { name: 'Parents', path: 'https://lovable.dev/projects/db205b89-38c3-49ab-9fb5-591b507101f0', external: true },
     { name: 'Professionals', path: '/professionals' },
-    { name: 'NGOs', path: '/ngos' },
+    { name: 'NGOs & Partners', path: '/ngos' },
     { name: 'Courses & Certifications', path: '/courses', highlight: true },
   ];
 
