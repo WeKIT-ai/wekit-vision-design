@@ -19,7 +19,7 @@ const AuthSection = () => {
         </Button>
       </Link>
       <Button className="bg-black hover:bg-gray-800 text-white px-8 py-3 rounded-none border-0 shadow-none hover:shadow-none font-medium">
-        Partner with Us
+        Partner with WeKIT & NRECT
       </Button>
     </div>
   );
