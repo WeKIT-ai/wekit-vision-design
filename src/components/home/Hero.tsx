@@ -24,7 +24,7 @@ const Hero = () => {
             <div className="w-80 h-48 bg-black rounded-xl overflow-hidden shadow-2xl hover:scale-105 transition-all duration-300">
               <iframe
                 className="w-full h-full"
-                src="https://www.youtube.com/embed/5q4nPGPD9uE?autoplay=0&mute=1&controls=1&showinfo=1&rel=0&modestbranding=1&loop=1&playlist=5q4nPGPD9uE"
+                src="https://www.youtube.com/embed/5q4nPGPD9uE?autoplay=1&mute=1&controls=0&showinfo=0&rel=0&modestbranding=1&loop=1&playlist=5q4nPGPD9uE&iv_load_policy=3&cc_load_policy=0&disablekb=1&fs=0"
                 title="Floating Video"
                 frameBorder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
