@@ -18,6 +18,7 @@ import NGOs from "./pages/NGOs";
 import Investors from "./pages/Investors";
 import Courses from "./pages/Courses";
 import Microlearning from "./pages/Microlearning";
+import StartJourney from "./pages/StartJourney";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -42,6 +43,7 @@ const App = () => (
                 <Route path="/ngos" element={<NGOs />} />
                 <Route path="/investors" element={<Investors />} />
                 <Route path="/courses" element={<Courses />} />
+                <Route path="/start-journey" element={<StartJourney />} />
                 <Route path="*" element={<NotFound />} />
               </Routes>
             </main>
