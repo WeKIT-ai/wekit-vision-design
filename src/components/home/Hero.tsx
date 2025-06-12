@@ -10,26 +10,6 @@ const Hero = () => {
         <div className="absolute inset-0 bg-gradient-to-br from-blue-50/90 to-purple-50/90"></div>
       </div>
 
-      {/* YouTube Video Embed */}
-      <div className="absolute top-20 right-10 hidden lg:block z-10">
-        <div className="relative group cursor-pointer">
-          <div className="w-80 h-48 rounded-xl overflow-hidden shadow-2xl hover:scale-110 transition-all duration-300 hover:shadow-blue-500/25">
-            <iframe
-              width="320"
-              height="192"
-              src="https://www.youtube.com/embed/YpFq8LAxJxo?autoplay=1&mute=1&loop=1&playlist=YpFq8LAxJxo&controls=0&showinfo=0&rel=0&modestbranding=1"
-              title="Background Video"
-              frameBorder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-              className="w-full h-full object-cover"
-            ></iframe>
-          </div>
-          <div className="absolute -top-2 -right-2 w-5 h-5 bg-red-500 rounded-full animate-pulse shadow-lg"></div>
-          <div className="absolute -bottom-1 -left-1 w-3 h-3 bg-green-400 rounded-full animate-bounce shadow-lg"></div>
-        </div>
-      </div>
-
       {/* Floating Video Elements */}
       <div className="absolute bottom-20 left-10 hidden lg:block z-10">
         <div className="relative group cursor-pointer">
@@ -66,7 +46,9 @@ const Hero = () => {
             We bridge the gap between potential and opportunity through AI-driven mentorship, 
             connecting youth with the guidance they need to thrive in tomorrow's world.
           </p>
-          <div className="pt-8 animate-fade-in">
+          
+          {/* Button and Video Container */}
+          <div className="pt-8 animate-fade-in flex flex-col lg:flex-row items-center justify-center gap-8">
             <a 
               href="https://lovable.dev/projects/37808d26-fa03-45a3-a188-a2da90bcd27e" 
               target="_blank" 
@@ -80,6 +62,24 @@ const Hero = () => {
                 <ArrowRight className="ml-3" size={20} />
               </Button>
             </a>
+            
+            {/* YouTube Video Embed */}
+            <div className="relative group cursor-pointer">
+              <div className="w-80 h-48 rounded-xl overflow-hidden shadow-2xl hover:scale-105 transition-all duration-300 hover:shadow-blue-500/25">
+                <iframe
+                  width="320"
+                  height="192"
+                  src="https://www.youtube.com/embed/YpFq8LAxJxo?autoplay=1&mute=1&loop=1&playlist=YpFq8LAxJxo&controls=0&showinfo=0&rel=0&modestbranding=1"
+                  title="Background Video"
+                  frameBorder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                  className="w-full h-full object-cover"
+                ></iframe>
+              </div>
+              <div className="absolute -top-2 -right-2 w-5 h-5 bg-red-500 rounded-full animate-pulse shadow-lg"></div>
+              <div className="absolute -bottom-1 -left-1 w-3 h-3 bg-green-400 rounded-full animate-bounce shadow-lg"></div>
+            </div>
           </div>
         </div>
       </div>
