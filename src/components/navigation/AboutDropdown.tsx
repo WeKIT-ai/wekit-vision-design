@@ -15,25 +15,35 @@ const AboutDropdown = () => {
       <DropdownMenuTrigger asChild>
         <Button 
           variant="ghost" 
-          className="text-sm font-medium text-gray-500 hover:text-gray-600 p-0 h-auto bg-transparent hover:bg-transparent flex items-center gap-1"
+          size="sm"
+          className="text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-accent/50 px-3 py-2 rounded-md transition-all duration-200 flex items-center gap-1"
         >
           About Us
-          <ChevronDown size={16} />
+          <ChevronDown size={14} className="opacity-50" />
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent className="w-48 bg-white border border-gray-200 shadow-lg">
+      <DropdownMenuContent className="w-52 bg-background border border-border shadow-lg rounded-lg p-1" align="start">
         <DropdownMenuItem asChild>
-          <Link to="/about" className="w-full cursor-pointer">
+          <Link 
+            to="/about" 
+            className="w-full cursor-pointer flex items-center px-3 py-2 text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-accent/50 rounded-md transition-all duration-200"
+          >
             Our Story
           </Link>
         </DropdownMenuItem>
         <DropdownMenuItem asChild>
-          <Link to="/about#team" className="w-full cursor-pointer">
+          <Link 
+            to="/about#team" 
+            className="w-full cursor-pointer flex items-center px-3 py-2 text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-accent/50 rounded-md transition-all duration-200"
+          >
             Our Team
           </Link>
         </DropdownMenuItem>
         <DropdownMenuItem asChild>
-          <Link to="/about#mission" className="w-full cursor-pointer">
+          <Link 
+            to="/about#mission" 
+            className="w-full cursor-pointer flex items-center px-3 py-2 text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-accent/50 rounded-md transition-all duration-200"
+          >
             Mission & Vision
           </Link>
         </DropdownMenuItem>

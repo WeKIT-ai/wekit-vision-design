@@ -13,18 +13,18 @@ const UserMenu = () => {
   };
 
   return (
-    <div className="flex items-center space-x-4">
-      <div className="flex items-center space-x-2 text-sm text-gray-600">
-        <User size={16} />
-        <span>{user.email}</span>
+    <div className="flex items-center space-x-3">
+      <div className="flex items-center space-x-2 text-sm text-muted-foreground bg-accent/30 px-3 py-1.5 rounded-md">
+        <User size={14} />
+        <span className="font-medium">{user.email}</span>
       </div>
       <Button
         onClick={handleSignOut}
         variant="outline"
         size="sm"
-        className="border-gray-900 text-gray-900 hover:bg-gray-900 hover:text-white rounded-none font-medium"
+        className="border-border text-foreground hover:bg-accent hover:text-accent-foreground font-medium px-3 py-1.5 rounded-md transition-all duration-200"
       >
-        <LogOut size={16} className="mr-2" />
+        <LogOut size={14} className="mr-2" />
         Sign Out
       </Button>
     </div>

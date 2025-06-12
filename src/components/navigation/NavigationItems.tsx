@@ -23,7 +23,7 @@ const NavigationItems = () => {
             href={item.path}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-sm font-medium text-gray-500 hover:text-gray-600 transition-colors"
+            className="px-3 py-2 text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-accent/50 rounded-md transition-all duration-200 whitespace-nowrap"
           >
             {item.name}
           </a>
@@ -31,12 +31,12 @@ const NavigationItems = () => {
           <Link
             key={item.path}
             to={item.path}
-            className={`text-sm font-medium transition-colors hover:text-gray-600 ${
+            className={`px-3 py-2 text-sm font-medium rounded-md transition-all duration-200 whitespace-nowrap ${
               location.pathname === item.path
-                ? 'text-gray-900'
+                ? 'text-foreground bg-accent/70 shadow-sm'
                 : item.highlight 
-                ? 'text-blue-600 hover:text-blue-700'
-                : 'text-gray-500'
+                ? 'text-primary hover:text-primary/80 hover:bg-primary/10'
+                : 'text-muted-foreground hover:text-foreground hover:bg-accent/50'
             }`}
           >
             {item.name}

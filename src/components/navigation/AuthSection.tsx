@@ -12,13 +12,20 @@ const AuthSection = () => {
   }
 
   return (
-    <div className="flex items-center space-x-4">
+    <div className="flex items-center space-x-3">
       <Link to="/auth">
-        <Button variant="ghost" className="text-gray-900 hover:bg-gray-100 rounded-none font-medium">
+        <Button 
+          variant="ghost" 
+          size="sm"
+          className="text-foreground hover:bg-accent hover:text-accent-foreground font-medium px-4 py-2 rounded-md transition-all duration-200"
+        >
           Sign In
         </Button>
       </Link>
-      <Button className="bg-black hover:bg-gray-800 text-white px-8 py-3 rounded-none border-0 shadow-none hover:shadow-none font-medium">
+      <Button 
+        size="sm"
+        className="bg-foreground hover:bg-foreground/90 text-background font-medium px-4 py-2 rounded-md shadow-sm hover:shadow-md transition-all duration-200 whitespace-nowrap"
+      >
         Partner with WeKIT & NRECT
       </Button>
     </div>
