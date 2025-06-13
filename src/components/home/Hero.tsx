@@ -47,17 +47,17 @@ const Hero = () => {
           </div>
         </div>
 
-        {/* Hero Content Overlay - Positioned to avoid covering face */}
-        <div className="absolute inset-0 z-20 flex items-center justify-start pl-8 md:pl-16">
-          <div className="text-left max-w-2xl">
-            <h1 className="text-4xl md:text-6xl font-bold text-white mb-6 leading-tight drop-shadow-2xl">
+        {/* Hero Content Overlay - Centered */}
+        <div className="absolute inset-0 z-20 flex items-center justify-center px-8 md:px-16">
+          <div className="text-center max-w-4xl">
+            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight drop-shadow-2xl shadow-black/80" style={{ textShadow: '2px 2px 8px rgba(0,0,0,0.8), 4px 4px 16px rgba(0,0,0,0.6)' }}>
               Discover Your Path.
               <br />
-              <span className="bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent drop-shadow-2xl" style={{ textShadow: '2px 2px 8px rgba(0,0,0,0.8)' }}>
                 Ignite Your Purpose.
               </span>
             </h1>
-            <p className="text-lg md:text-xl text-white/90 mb-8 drop-shadow-lg max-w-lg">
+            <p className="text-lg md:text-xl lg:text-2xl text-white/95 mb-8 drop-shadow-xl max-w-3xl mx-auto leading-relaxed" style={{ textShadow: '1px 1px 4px rgba(0,0,0,0.8), 2px 2px 8px rgba(0,0,0,0.6)' }}>
               Let We-KIT guide you toward your next big step—with the right mentor, the right tools, and the right timing.
             </p>
             
