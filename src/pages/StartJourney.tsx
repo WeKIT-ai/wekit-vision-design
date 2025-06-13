@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -7,6 +6,7 @@ import { Label } from '@/components/ui/label';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { ArrowRight, CheckCircle, Users, Heart, Lightbulb, Rocket, Compass, GraduationCap, Briefcase } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
+import { useNavigate } from 'react-router-dom';
 import { supabase } from '@/integrations/supabase/client';
 
 const StartJourney = () => {
@@ -28,6 +28,7 @@ const StartJourney = () => {
   });
   const [isLoading, setIsLoading] = useState(false);
   const { toast } = useToast();
+  const navigate = useNavigate();
 
   const personas = [
     { id: 'student', icon: GraduationCap, title: "I'm a student trying to figure out my career path", emoji: '🧑‍🎓' },
@@ -93,10 +94,20 @@ const StartJourney = () => {
 
       toast({
         title: "Welcome to We-KIT!",
-        description: "We'll be in touch within 24 hours to start your journey.",
+        description: "Redirecting you to your personalized roadmap...",
       });
-      setCurrentStep(4);
+      
+      // Redirect to roadmap with user's name
+      setTimeout(() => {
+        navigate('/roadmap', { 
+          state: { 
+            userName: formData.name.split(' ')[0] // Use first name
+          } 
+        });
+      }, 1500);
+      
     } catch (error) {
+      console.error('Form submission error:', error);
       toast({
         title: "Error",
         description: "Failed to submit. Please try again.",
