@@ -1,4 +1,3 @@
-
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -22,6 +21,7 @@ import StartJourney from "./pages/StartJourney";
 import Roadmap from "./pages/Roadmap";
 import WhitePaper from "./pages/WhitePaper";
 import NotFound from "./pages/NotFound";
+import Parents from "./pages/Parents";
 
 const queryClient = new QueryClient();
 
@@ -41,6 +41,7 @@ const App = () => (
                 <Route path="/about" element={<About />} />
                 <Route path="/schools" element={<Schools />} />
                 <Route path="/students" element={<Students />} />
+                <Route path="/parents" element={<Parents />} />
                 <Route path="/professionals" element={<Professionals />} />
                 <Route path="/ngos" element={<NGOs />} />
                 <Route path="/investors" element={<Investors />} />
