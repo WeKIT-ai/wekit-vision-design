@@ -1,4 +1,3 @@
-
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Briefcase, Network, TrendingUp, Target, Users, Award, ArrowRight, CheckCircle, BarChart, Clock, AlertTriangle } from 'lucide-react';
@@ -96,38 +95,70 @@ const Professionals = () => {
 
   return (
     <div className="min-h-screen pt-16">
-      {/* Hero Section - Problem-Focused */}
-      <section className="pt-20 pb-32 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-red-50 to-white">
-        <div className="max-w-7xl mx-auto text-center">
-          <h1 className="text-4xl md:text-6xl font-bold text-gray-900 mb-8">
-            Break Through the
-            <span className="block text-red-600">Career Ceiling</span>
-          </h1>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-8">
-            You're talented, hardworking, and ambitious. So why does career advancement feel impossible? 
-            You're not alone – 67% of professionals feel stuck despite their best efforts.
-          </p>
-          <div className="bg-red-100 border border-red-300 rounded-lg p-6 max-w-2xl mx-auto mb-8">
-            <p className="text-lg text-red-800">
-              <strong>The Hidden Truth:</strong> 85% of career advancement happens through relationships and guidance, 
-              not just performance.
+      {/* Hero Section with Video Background */}
+      <section className="relative pt-20 pb-32 px-4 sm:px-6 lg:px-8 min-h-screen overflow-hidden">
+        {/* Video Background */}
+        <div className="absolute inset-0 z-0">
+          <iframe
+            className="absolute top-0 left-0 w-full h-full object-cover"
+            src="https://www.youtube.com/embed/8t34Mhbl-Uk?autoplay=1&mute=1&loop=1&playlist=8t34Mhbl-Uk&controls=0&showinfo=0&rel=0&iv_load_policy=3&modestbranding=1&playsinline=1"
+            title="Professional Background Video"
+            frameBorder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+            style={{
+              minWidth: '100%',
+              minHeight: '100%',
+              width: 'auto',
+              height: 'auto',
+              position: 'absolute',
+              top: '50%',
+              left: '50%',
+              transform: 'translate(-50%, -50%)',
+              zIndex: -1
+            }}
+          ></iframe>
+          
+          {/* Dark overlay for text readability */}
+          <div className="absolute inset-0 bg-black/70 z-10"></div>
+          
+          {/* Additional gradient overlay */}
+          <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-transparent to-black/60 z-20"></div>
+        </div>
+
+        {/* Hero Content */}
+        <div className="relative z-30 max-w-7xl mx-auto text-center flex items-center justify-center min-h-[80vh]">
+          <div className="space-y-8">
+            <h1 className="text-4xl md:text-6xl font-bold text-white mb-8 drop-shadow-2xl">
+              Break Through the
+              <span className="block text-red-400 drop-shadow-2xl">Career Ceiling</span>
+            </h1>
+            <p className="text-xl text-white max-w-3xl mx-auto mb-8 drop-shadow-lg leading-relaxed">
+              You're talented, hardworking, and ambitious. So why does career advancement feel impossible? 
+              You're not alone – 67% of professionals feel stuck despite their best efforts.
             </p>
-          </div>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button 
-              size="lg" 
-              className="bg-purple-600 hover:bg-purple-700 text-white px-8 py-4 text-lg font-semibold rounded-full"
-            >
-              Accelerate My Career
-              <ArrowRight className="ml-2" size={20} />
-            </Button>
-            <Button 
-              size="lg" 
-              variant="outline"
-              className="px-8 py-4 text-lg font-semibold rounded-full border-2"
-            >
-              See Success Stories
-            </Button>
+            <div className="bg-red-500/90 backdrop-blur-sm border border-red-400 rounded-lg p-6 max-w-2xl mx-auto mb-8 shadow-2xl">
+              <p className="text-lg text-white drop-shadow-sm">
+                <strong>The Hidden Truth:</strong> 85% of career advancement happens through relationships and guidance, 
+                not just performance.
+              </p>
+            </div>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Button 
+                size="lg" 
+                className="bg-purple-600 hover:bg-purple-700 text-white px-8 py-4 text-lg font-semibold rounded-full shadow-2xl hover:shadow-purple-500/25 transition-all duration-300"
+              >
+                Accelerate My Career
+                <ArrowRight className="ml-2" size={20} />
+              </Button>
+              <Button 
+                size="lg" 
+                variant="outline"
+                className="px-8 py-4 text-lg font-semibold rounded-full border-2 border-white text-white hover:bg-white hover:text-gray-900 backdrop-blur-sm shadow-2xl transition-all duration-300"
+              >
+                See Success Stories
+              </Button>
+            </div>
           </div>
         </div>
       </section>
