@@ -65,7 +65,7 @@ const EarlyAccessForm = () => {
     <div className="bg-gradient-to-br from-indigo-50 to-purple-50 p-6 rounded-lg border border-indigo-200">
       <div className="flex items-center mb-4">
         <Zap className="w-6 h-6 text-indigo-600 mr-3" />
-        <h3 className="text-lg font-semibold text-gray-900">Get Early Access</h3>
+        <h3 className="text-lg font-semibold text-gray-900">Join our Waitlist!!!</h3>
       </div>
       <p className="text-gray-600 mb-4 text-sm">Be among the first to experience our latest AI-powered features.</p>
       <form onSubmit={handleSubmit} className="space-y-3">
