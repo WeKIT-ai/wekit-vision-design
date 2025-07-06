@@ -39,6 +39,51 @@ export type Database = {
         }
         Relationships: []
       }
+      calendly_webhooks: {
+        Row: {
+          created_at: string
+          event_data: Json
+          event_type: string
+          id: string
+          mentor_id: string | null
+          mentoring_request_id: string | null
+          processed: boolean | null
+        }
+        Insert: {
+          created_at?: string
+          event_data: Json
+          event_type: string
+          id?: string
+          mentor_id?: string | null
+          mentoring_request_id?: string | null
+          processed?: boolean | null
+        }
+        Update: {
+          created_at?: string
+          event_data?: Json
+          event_type?: string
+          id?: string
+          mentor_id?: string | null
+          mentoring_request_id?: string | null
+          processed?: boolean | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "calendly_webhooks_mentor_id_fkey"
+            columns: ["mentor_id"]
+            isOneToOne: false
+            referencedRelation: "mentor_profiles"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "calendly_webhooks_mentoring_request_id_fkey"
+            columns: ["mentoring_request_id"]
+            isOneToOne: false
+            referencedRelation: "mentoring_requests"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       career_roadmaps: {
         Row: {
           career_family: string
@@ -75,6 +120,263 @@ export type Database = {
           resources?: Json | null
           updated_at?: string
           user_id?: string
+        }
+        Relationships: []
+      }
+      college_feedback: {
+        Row: {
+          academics_rating: number | null
+          campus_life_rating: number | null
+          college_id: string | null
+          course: string | null
+          created_at: string
+          facilities_rating: number | null
+          graduation_year: string | null
+          id: string
+          is_anonymous: boolean | null
+          is_verified: boolean | null
+          overall_rating: number | null
+          placements_rating: number | null
+          review_text: string | null
+          safety_rating: number | null
+          title: string | null
+          updated_at: string
+          user_id: string | null
+          would_recommend: string | null
+        }
+        Insert: {
+          academics_rating?: number | null
+          campus_life_rating?: number | null
+          college_id?: string | null
+          course?: string | null
+          created_at?: string
+          facilities_rating?: number | null
+          graduation_year?: string | null
+          id?: string
+          is_anonymous?: boolean | null
+          is_verified?: boolean | null
+          overall_rating?: number | null
+          placements_rating?: number | null
+          review_text?: string | null
+          safety_rating?: number | null
+          title?: string | null
+          updated_at?: string
+          user_id?: string | null
+          would_recommend?: string | null
+        }
+        Update: {
+          academics_rating?: number | null
+          campus_life_rating?: number | null
+          college_id?: string | null
+          course?: string | null
+          created_at?: string
+          facilities_rating?: number | null
+          graduation_year?: string | null
+          id?: string
+          is_anonymous?: boolean | null
+          is_verified?: boolean | null
+          overall_rating?: number | null
+          placements_rating?: number | null
+          review_text?: string | null
+          safety_rating?: number | null
+          title?: string | null
+          updated_at?: string
+          user_id?: string | null
+          would_recommend?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "college_feedback_college_id_fkey"
+            columns: ["college_id"]
+            isOneToOne: false
+            referencedRelation: "colleges"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      college_photos: {
+        Row: {
+          caption: string | null
+          college_id: string | null
+          created_at: string
+          feedback_id: string | null
+          id: string
+          is_approved: boolean | null
+          photo_type: string | null
+          photo_url: string
+          user_id: string | null
+        }
+        Insert: {
+          caption?: string | null
+          college_id?: string | null
+          created_at?: string
+          feedback_id?: string | null
+          id?: string
+          is_approved?: boolean | null
+          photo_type?: string | null
+          photo_url: string
+          user_id?: string | null
+        }
+        Update: {
+          caption?: string | null
+          college_id?: string | null
+          created_at?: string
+          feedback_id?: string | null
+          id?: string
+          is_approved?: boolean | null
+          photo_type?: string | null
+          photo_url?: string
+          user_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "college_photos_college_id_fkey"
+            columns: ["college_id"]
+            isOneToOne: false
+            referencedRelation: "colleges"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "college_photos_feedback_id_fkey"
+            columns: ["feedback_id"]
+            isOneToOne: false
+            referencedRelation: "college_feedback"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      colleges: {
+        Row: {
+          accreditation_body: string | null
+          accreditation_grade: string | null
+          address: string | null
+          admission_process: string | null
+          affiliation_status: string | null
+          city: string
+          college_code: string | null
+          college_type: string | null
+          courses_offered: Json | null
+          created_at: string
+          data_source: string | null
+          departments: Json | null
+          description: string | null
+          district: string | null
+          email: string | null
+          establishment_year: number | null
+          facilities: Json | null
+          fee_structure: Json | null
+          hostel_available: boolean | null
+          id: string
+          institution_type: string | null
+          last_verified_at: string | null
+          latitude: number | null
+          library_available: boolean | null
+          longitude: number | null
+          name: string
+          nirf_category: string | null
+          nirf_ranking: number | null
+          notable_alumni: Json | null
+          official_name: string | null
+          other_rankings: Json | null
+          phone: string | null
+          pincode: string | null
+          placement_details: Json | null
+          sports_facilities: boolean | null
+          state: string
+          student_capacity: number | null
+          total_seats: number | null
+          university_affiliation: string | null
+          updated_at: string
+          verification_status: string | null
+          website_url: string | null
+        }
+        Insert: {
+          accreditation_body?: string | null
+          accreditation_grade?: string | null
+          address?: string | null
+          admission_process?: string | null
+          affiliation_status?: string | null
+          city: string
+          college_code?: string | null
+          college_type?: string | null
+          courses_offered?: Json | null
+          created_at?: string
+          data_source?: string | null
+          departments?: Json | null
+          description?: string | null
+          district?: string | null
+          email?: string | null
+          establishment_year?: number | null
+          facilities?: Json | null
+          fee_structure?: Json | null
+          hostel_available?: boolean | null
+          id?: string
+          institution_type?: string | null
+          last_verified_at?: string | null
+          latitude?: number | null
+          library_available?: boolean | null
+          longitude?: number | null
+          name: string
+          nirf_category?: string | null
+          nirf_ranking?: number | null
+          notable_alumni?: Json | null
+          official_name?: string | null
+          other_rankings?: Json | null
+          phone?: string | null
+          pincode?: string | null
+          placement_details?: Json | null
+          sports_facilities?: boolean | null
+          state: string
+          student_capacity?: number | null
+          total_seats?: number | null
+          university_affiliation?: string | null
+          updated_at?: string
+          verification_status?: string | null
+          website_url?: string | null
+        }
+        Update: {
+          accreditation_body?: string | null
+          accreditation_grade?: string | null
+          address?: string | null
+          admission_process?: string | null
+          affiliation_status?: string | null
+          city?: string
+          college_code?: string | null
+          college_type?: string | null
+          courses_offered?: Json | null
+          created_at?: string
+          data_source?: string | null
+          departments?: Json | null
+          description?: string | null
+          district?: string | null
+          email?: string | null
+          establishment_year?: number | null
+          facilities?: Json | null
+          fee_structure?: Json | null
+          hostel_available?: boolean | null
+          id?: string
+          institution_type?: string | null
+          last_verified_at?: string | null
+          latitude?: number | null
+          library_available?: boolean | null
+          longitude?: number | null
+          name?: string
+          nirf_category?: string | null
+          nirf_ranking?: number | null
+          notable_alumni?: Json | null
+          official_name?: string | null
+          other_rankings?: Json | null
+          phone?: string | null
+          pincode?: string | null
+          placement_details?: Json | null
+          sports_facilities?: boolean | null
+          state?: string
+          student_capacity?: number | null
+          total_seats?: number | null
+          university_affiliation?: string | null
+          updated_at?: string
+          verification_status?: string | null
+          website_url?: string | null
         }
         Relationships: []
       }
@@ -232,10 +534,164 @@ export type Database = {
           },
         ]
       }
+      forum_posts: {
+        Row: {
+          content: string
+          created_at: string
+          downvotes: number | null
+          forum_id: string
+          id: string
+          is_locked: boolean | null
+          is_pinned: boolean | null
+          reply_count: number | null
+          title: string
+          updated_at: string
+          upvotes: number | null
+          user_id: string
+        }
+        Insert: {
+          content: string
+          created_at?: string
+          downvotes?: number | null
+          forum_id: string
+          id?: string
+          is_locked?: boolean | null
+          is_pinned?: boolean | null
+          reply_count?: number | null
+          title: string
+          updated_at?: string
+          upvotes?: number | null
+          user_id: string
+        }
+        Update: {
+          content?: string
+          created_at?: string
+          downvotes?: number | null
+          forum_id?: string
+          id?: string
+          is_locked?: boolean | null
+          is_pinned?: boolean | null
+          reply_count?: number | null
+          title?: string
+          updated_at?: string
+          upvotes?: number | null
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "forum_posts_forum_id_fkey"
+            columns: ["forum_id"]
+            isOneToOne: false
+            referencedRelation: "forums"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      forum_replies: {
+        Row: {
+          content: string
+          created_at: string
+          downvotes: number | null
+          id: string
+          parent_reply_id: string | null
+          post_id: string
+          updated_at: string
+          upvotes: number | null
+          user_id: string
+        }
+        Insert: {
+          content: string
+          created_at?: string
+          downvotes?: number | null
+          id?: string
+          parent_reply_id?: string | null
+          post_id: string
+          updated_at?: string
+          upvotes?: number | null
+          user_id: string
+        }
+        Update: {
+          content?: string
+          created_at?: string
+          downvotes?: number | null
+          id?: string
+          parent_reply_id?: string | null
+          post_id?: string
+          updated_at?: string
+          upvotes?: number | null
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "forum_replies_parent_reply_id_fkey"
+            columns: ["parent_reply_id"]
+            isOneToOne: false
+            referencedRelation: "forum_replies"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "forum_replies_post_id_fkey"
+            columns: ["post_id"]
+            isOneToOne: false
+            referencedRelation: "forum_posts"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      forums: {
+        Row: {
+          category: string
+          college_id: string | null
+          course: string | null
+          created_at: string
+          created_by: string | null
+          description: string | null
+          id: string
+          is_active: boolean | null
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          category: string
+          college_id?: string | null
+          course?: string | null
+          created_at?: string
+          created_by?: string | null
+          description?: string | null
+          id?: string
+          is_active?: boolean | null
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          category?: string
+          college_id?: string | null
+          course?: string | null
+          created_at?: string
+          created_by?: string | null
+          description?: string | null
+          id?: string
+          is_active?: boolean | null
+          title?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "forums_college_id_fkey"
+            columns: ["college_id"]
+            isOneToOne: false
+            referencedRelation: "colleges"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       mentor_profiles: {
         Row: {
           availability: Json | null
           bio: string | null
+          booking_preferences: Json | null
+          calendly_event_type: string | null
+          calendly_username: string | null
           communication_style:
             | Database["public"]["Enums"]["communication_style"]
             | null
@@ -260,6 +716,7 @@ export type Database = {
           personality_scores: Json | null
           position: string | null
           preferred_meeting_times: Json | null
+          scheduling_enabled: boolean | null
           skill_assessments: Json | null
           specialties: string[] | null
           time_zone: string | null
@@ -269,6 +726,9 @@ export type Database = {
         Insert: {
           availability?: Json | null
           bio?: string | null
+          booking_preferences?: Json | null
+          calendly_event_type?: string | null
+          calendly_username?: string | null
           communication_style?:
             | Database["public"]["Enums"]["communication_style"]
             | null
@@ -293,6 +753,7 @@ export type Database = {
           personality_scores?: Json | null
           position?: string | null
           preferred_meeting_times?: Json | null
+          scheduling_enabled?: boolean | null
           skill_assessments?: Json | null
           specialties?: string[] | null
           time_zone?: string | null
@@ -302,6 +763,9 @@ export type Database = {
         Update: {
           availability?: Json | null
           bio?: string | null
+          booking_preferences?: Json | null
+          calendly_event_type?: string | null
+          calendly_username?: string | null
           communication_style?:
             | Database["public"]["Enums"]["communication_style"]
             | null
@@ -326,6 +790,7 @@ export type Database = {
           personality_scores?: Json | null
           position?: string | null
           preferred_meeting_times?: Json | null
+          scheduling_enabled?: boolean | null
           skill_assessments?: Json | null
           specialties?: string[] | null
           time_zone?: string | null
@@ -672,6 +1137,80 @@ export type Database = {
           },
         ]
       }
+      mentoring_requests: {
+        Row: {
+          calendly_event_id: string | null
+          coins_offered: number | null
+          college_id: string | null
+          created_at: string
+          description: string
+          feedback: string | null
+          id: string
+          is_scheduling_request: boolean | null
+          meeting_link: string | null
+          mentee_id: string
+          mentor_id: string | null
+          preferred_time: string | null
+          rating: number | null
+          scheduled_at: string | null
+          scheduling_status: string | null
+          session_notes: string | null
+          status: string | null
+          subject: string
+          updated_at: string
+        }
+        Insert: {
+          calendly_event_id?: string | null
+          coins_offered?: number | null
+          college_id?: string | null
+          created_at?: string
+          description: string
+          feedback?: string | null
+          id?: string
+          is_scheduling_request?: boolean | null
+          meeting_link?: string | null
+          mentee_id: string
+          mentor_id?: string | null
+          preferred_time?: string | null
+          rating?: number | null
+          scheduled_at?: string | null
+          scheduling_status?: string | null
+          session_notes?: string | null
+          status?: string | null
+          subject: string
+          updated_at?: string
+        }
+        Update: {
+          calendly_event_id?: string | null
+          coins_offered?: number | null
+          college_id?: string | null
+          created_at?: string
+          description?: string
+          feedback?: string | null
+          id?: string
+          is_scheduling_request?: boolean | null
+          meeting_link?: string | null
+          mentee_id?: string
+          mentor_id?: string | null
+          preferred_time?: string | null
+          rating?: number | null
+          scheduled_at?: string | null
+          scheduling_status?: string | null
+          session_notes?: string | null
+          status?: string | null
+          subject?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "mentoring_requests_college_id_fkey"
+            columns: ["college_id"]
+            isOneToOne: false
+            referencedRelation: "colleges"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       mentoring_sessions: {
         Row: {
           actual_end_time: string | null
@@ -871,6 +1410,42 @@ export type Database = {
         }
         Relationships: []
       }
+      notifications: {
+        Row: {
+          action_url: string | null
+          created_at: string
+          id: string
+          is_read: boolean | null
+          message: string
+          metadata: Json | null
+          notification_type: string
+          title: string
+          user_id: string
+        }
+        Insert: {
+          action_url?: string | null
+          created_at?: string
+          id?: string
+          is_read?: boolean | null
+          message: string
+          metadata?: Json | null
+          notification_type: string
+          title: string
+          user_id: string
+        }
+        Update: {
+          action_url?: string | null
+          created_at?: string
+          id?: string
+          is_read?: boolean | null
+          message?: string
+          metadata?: Json | null
+          notification_type?: string
+          title?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
       page_interactions: {
         Row: {
           created_at: string
@@ -1008,6 +1583,135 @@ export type Database = {
             referencedColumns: ["id"]
           },
         ]
+      }
+      user_activities: {
+        Row: {
+          activity_type: string
+          created_at: string
+          description: string | null
+          id: string
+          metadata: Json | null
+          points_earned: number | null
+          user_id: string
+        }
+        Insert: {
+          activity_type: string
+          created_at?: string
+          description?: string | null
+          id?: string
+          metadata?: Json | null
+          points_earned?: number | null
+          user_id: string
+        }
+        Update: {
+          activity_type?: string
+          created_at?: string
+          description?: string | null
+          id?: string
+          metadata?: Json | null
+          points_earned?: number | null
+          user_id?: string
+        }
+        Relationships: []
+      }
+      user_feedback: {
+        Row: {
+          content: string
+          created_at: string
+          feedback_type: string
+          id: string
+          metadata: Json | null
+          page_context: string | null
+          rating: number | null
+          status: string | null
+          title: string | null
+          user_id: string | null
+        }
+        Insert: {
+          content: string
+          created_at?: string
+          feedback_type: string
+          id?: string
+          metadata?: Json | null
+          page_context?: string | null
+          rating?: number | null
+          status?: string | null
+          title?: string | null
+          user_id?: string | null
+        }
+        Update: {
+          content?: string
+          created_at?: string
+          feedback_type?: string
+          id?: string
+          metadata?: Json | null
+          page_context?: string | null
+          rating?: number | null
+          status?: string | null
+          title?: string | null
+          user_id?: string | null
+        }
+        Relationships: []
+      }
+      user_profiles: {
+        Row: {
+          avatar_url: string | null
+          badges: string[] | null
+          bio: string | null
+          coins_balance: number | null
+          college: string | null
+          course: string | null
+          created_at: string
+          current_position: string | null
+          full_name: string | null
+          graduation_year: number | null
+          id: string
+          interests: string[] | null
+          location: string | null
+          reputation_score: number | null
+          total_contributions: number | null
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          avatar_url?: string | null
+          badges?: string[] | null
+          bio?: string | null
+          coins_balance?: number | null
+          college?: string | null
+          course?: string | null
+          created_at?: string
+          current_position?: string | null
+          full_name?: string | null
+          graduation_year?: number | null
+          id?: string
+          interests?: string[] | null
+          location?: string | null
+          reputation_score?: number | null
+          total_contributions?: number | null
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          avatar_url?: string | null
+          badges?: string[] | null
+          bio?: string | null
+          coins_balance?: number | null
+          college?: string | null
+          course?: string | null
+          created_at?: string
+          current_position?: string | null
+          full_name?: string | null
+          graduation_year?: number | null
+          id?: string
+          interests?: string[] | null
+          location?: string | null
+          reputation_score?: number | null
+          total_contributions?: number | null
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
       }
       user_roles: {
         Row: {
@@ -1194,6 +1898,25 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
+      award_coins: {
+        Args: {
+          p_user_id: string
+          p_amount: number
+          p_activity_type: string
+          p_description: string
+        }
+        Returns: undefined
+      }
+      create_scheduling_request: {
+        Args: {
+          p_mentee_id: string
+          p_mentor_id: string
+          p_subject: string
+          p_description: string
+          p_preferred_time?: string
+        }
+        Returns: string
+      }
       get_current_user_role: {
         Args: Record<PropertyKey, never>
         Returns: Database["public"]["Enums"]["app_role"]

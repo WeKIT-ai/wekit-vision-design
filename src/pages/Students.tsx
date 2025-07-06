@@ -5,6 +5,7 @@ import StudentsSolutions from '@/components/students/StudentsSolutions';
 import StudentsImpact from '@/components/students/StudentsImpact';
 import StudentsProcess from '@/components/students/StudentsProcess';
 import StudentsVideoSection from '@/components/students/StudentsVideoSection';
+import CollegeFeedbackSection from '@/components/students/CollegeFeedbackSection';
 import StudentsCTA from '@/components/students/StudentsCTA';
 
 const Students = () => {
@@ -77,6 +78,7 @@ const Students = () => {
       <StudentsImpact />
       <StudentsProcess />
       <StudentsVideoSection />
+      <CollegeFeedbackSection />
       <StudentsCTA />
     </div>
   );
