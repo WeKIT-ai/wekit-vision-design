@@ -130,295 +130,386 @@ const StartJourney = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-purple-50 py-8 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-4xl mx-auto">
-        
-        {/* Step 1: Identity Quiz */}
-        {currentStep === 1 && (
-          <div className="text-center mb-12">
-            <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-              Tell us where you are in life—we'll meet you there.
-            </h1>
-            <p className="text-xl text-gray-600 mb-12">
-              What best describes you right now? Choose one to start:
-            </p>
-            
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {personas.map((persona) => {
-                const IconComponent = persona.icon;
-                return (
-                  <Card 
-                    key={persona.id}
-                    className="cursor-pointer hover:shadow-lg transition-all duration-300 hover:scale-105 border-2 hover:border-blue-300"
-                    onClick={() => handlePersonaSelect(persona.id)}
-                  >
-                    <CardContent className="p-6 text-center">
-                      <div className="text-4xl mb-4">{persona.emoji}</div>
-                      <IconComponent className="w-8 h-8 mx-auto mb-4 text-blue-600" />
-                      <p className="text-lg font-medium text-gray-800">{persona.title}</p>
-                    </CardContent>
-                  </Card>
-                );
-              })}
+    <div className="min-h-screen relative overflow-hidden">
+      {/* Hero Background Image with Overlay */}
+      <div className="absolute inset-0 z-0">
+        <img
+          src="/lovable-uploads/db13bc26-be3a-46c4-852b-6148fcd3edae.png"
+          alt="Journey Background"
+          className="w-full h-full object-cover transform hover:scale-105 transition-transform duration-[5000ms] ease-out"
+        />
+        {/* Dark overlay for better text readability */}
+        <div className="absolute inset-0 bg-gradient-to-br from-black/60 via-black/40 to-purple-900/50 animate-fade-in"></div>
+      </div>
+
+      {/* Floating Background Elements */}
+      <div className="absolute top-1/4 left-1/4 w-4 h-4 bg-blue-400 rounded-full animate-[float_3s_ease-in-out_infinite] opacity-60 z-10"></div>
+      <div className="absolute top-1/3 right-1/3 w-3 h-3 bg-purple-400 rounded-full animate-[float_4s_ease-in-out_infinite_1s] opacity-50 z-10"></div>
+      <div className="absolute bottom-1/3 left-1/5 w-2 h-2 bg-yellow-400 rounded-full animate-[float_5s_ease-in-out_infinite_2s] opacity-40 z-10"></div>
+      <div className="absolute top-20 right-10 w-6 h-6 bg-blue-300 rounded-full animate-[float_4s_ease-in-out_infinite] opacity-30 z-10"></div>
+      <div className="absolute bottom-32 left-16 w-4 h-4 bg-purple-300 rounded-full animate-[float_5s_ease-in-out_infinite_1s] opacity-40 z-10"></div>
+
+      {/* Floating Video Element - Small decorative video */}
+      <div className="absolute top-20 left-10 hidden lg:block z-10 animate-[slideLeft_1.5s_ease-out]">
+        <div className="relative group">
+          <div className="w-48 h-32 bg-black rounded-xl overflow-hidden shadow-2xl hover:scale-110 hover:-translate-y-2 hover:rotate-1 transition-all duration-500 hover:shadow-blue-500/25">
+            <img
+              src="/lovable-uploads/f9e02f74-cebe-4891-a8e2-d36b5e83b5a7.png"
+              alt="Inspiration"
+              className="w-full h-full object-cover opacity-80"
+            />
+            {/* Glow effect */}
+            <div className="absolute inset-0 bg-gradient-to-t from-blue-600/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+          </div>
+        </div>
+      </div>
+
+      {/* Floating Animation Element - Right Side */}
+      <div className="absolute top-32 right-10 hidden lg:block z-10 animate-[slideRight_1.5s_ease-out]">
+        <div className="relative group cursor-pointer">
+          <div className="w-32 h-20 bg-gradient-to-r from-green-500 to-blue-500 rounded-xl flex items-center justify-center shadow-2xl hover:scale-125 hover:-translate-y-3 hover:rotate-3 transition-all duration-500 hover:shadow-green-500/50">
+            <div className="flex space-x-1">
+              <div className="w-2 h-2 bg-white rounded-full animate-bounce hover:animate-pulse"></div>
+              <div className="w-2 h-2 bg-white rounded-full animate-bounce delay-100 hover:animate-pulse"></div>
+              <div className="w-2 h-2 bg-white rounded-full animate-bounce delay-200 hover:animate-pulse"></div>
             </div>
           </div>
-        )}
+        </div>
+      </div>
 
-        {/* Step 2: Basic Information */}
-        {currentStep === 2 && (
-          <Card className="mb-8">
-            <CardHeader>
-              <CardTitle className="text-2xl text-center">Let's get to know you</CardTitle>
-              <CardDescription className="text-center">
-                First, we need some basic information to get started
-              </CardDescription>
-            </CardHeader>
-            <CardContent>
-              <form className="space-y-6">
-                <div>
-                  <Label htmlFor="name">Full Name *</Label>
-                  <Input
-                    id="name"
-                    name="name"
-                    value={formData.name}
-                    onChange={handleInputChange}
-                    required
-                    className="mt-1"
-                  />
-                </div>
-                
-                <div>
-                  <Label htmlFor="phone">Phone Number *</Label>
-                  <Input
-                    id="phone"
-                    name="phone"
-                    type="tel"
-                    value={formData.phone}
-                    onChange={handleInputChange}
-                    required
-                    className="mt-1"
-                  />
-                </div>
-                
-                <div>
-                  <Label htmlFor="email">Email Address *</Label>
-                  <Input
-                    id="email"
-                    name="email"
-                    type="email"
-                    value={formData.email}
-                    onChange={handleInputChange}
-                    required
-                    className="mt-1"
-                  />
-                </div>
-                
-                <Button 
-                  type="button" 
-                  onClick={() => setCurrentStep(3)}
-                  className="w-full bg-blue-600 hover:bg-blue-700"
-                  disabled={!formData.name || !formData.phone || !formData.email}
-                >
-                  Continue to Discovery Questions
-                  <ArrowRight className="ml-2" size={16} />
-                </Button>
-              </form>
-            </CardContent>
-          </Card>
-        )}
-
-        {/* Step 3: Guided Discovery Form */}
-        {currentStep === 3 && (
-          <Card className="mb-8">
-            <CardHeader>
-              <CardTitle className="text-2xl text-center">We want to know you better</CardTitle>
-              <CardDescription className="text-center">
-                Help us understand your goals and how we can best support you
-              </CardDescription>
-            </CardHeader>
-            <CardContent>
-              <form onSubmit={handleSubmit} className="space-y-6">
-                
-                <div>
-                  <Label htmlFor="challenge">What's a challenge you're facing right now? *</Label>
-                  <Textarea
-                    id="challenge"
-                    name="challenge"
-                    value={formData.challenge}
-                    onChange={handleInputChange}
-                    required
-                    rows={3}
-                    className="mt-1"
-                  />
-                </div>
-                
-                <div>
-                  <Label htmlFor="dream">What dream or goal do you secretly wish you could pursue? *</Label>
-                  <Textarea
-                    id="dream"
-                    name="dream"
-                    value={formData.dream}
-                    onChange={handleInputChange}
-                    required
-                    rows={3}
-                    className="mt-1"
-                  />
-                </div>
-                
-                <div>
-                  <Label htmlFor="clarity_scale">On a scale of 1–10, how clear are you about your next step? *</Label>
-                  <select
-                    id="clarity_scale"
-                    name="clarity_scale"
-                    value={formData.clarity_scale}
-                    onChange={handleInputChange}
-                    required
-                    className="mt-1 w-full p-2 border border-gray-300 rounded-md"
-                  >
-                    <option value="">Select a number</option>
-                    {[...Array(10)].map((_, i) => (
-                      <option key={i + 1} value={i + 1}>{i + 1}</option>
-                    ))}
-                  </select>
-                </div>
-                
-                <div>
-                  <Label htmlFor="support_type">What kind of support would help you most right now? *</Label>
-                  <select
-                    id="support_type"
-                    name="support_type"
-                    value={formData.support_type}
-                    onChange={handleInputChange}
-                    required
-                    className="mt-1 w-full p-2 border border-gray-300 rounded-md"
-                  >
-                    <option value="">Select support type</option>
-                    {supportTypes.map((type) => (
-                      <option key={type} value={type}>{type}</option>
-                    ))}
-                  </select>
-                </div>
-                
-                <div>
-                  <Label htmlFor="has_mentor">Have you ever had a mentor before? *</Label>
-                  <select
-                    id="has_mentor"
-                    name="has_mentor"
-                    value={formData.has_mentor}
-                    onChange={handleInputChange}
-                    required
-                    className="mt-1 w-full p-2 border border-gray-300 rounded-md"
-                  >
-                    <option value="">Select an option</option>
-                    <option value="yes">Yes</option>
-                    <option value="no">No</option>
-                  </select>
-                </div>
-                
-                <div>
-                  <Label htmlFor="communication_style">Preferred communication style: *</Label>
-                  <select
-                    id="communication_style"
-                    name="communication_style"
-                    value={formData.communication_style}
-                    onChange={handleInputChange}
-                    required
-                    className="mt-1 w-full p-2 border border-gray-300 rounded-md"
-                  >
-                    <option value="">Select style</option>
-                    {communicationStyles.map((style) => (
-                      <option key={style} value={style}>{style}</option>
-                    ))}
-                  </select>
-                </div>
-                
-                <div>
-                  <Label htmlFor="matching_preference">What would you like us to do next? *</Label>
-                  <select
-                    id="matching_preference"
-                    name="matching_preference"
-                    value={formData.matching_preference}
-                    onChange={handleInputChange}
-                    required
-                    className="mt-1 w-full p-2 border border-gray-300 rounded-md"
-                  >
-                    <option value="">Select preference</option>
-                    {matchingPreferences.map((pref) => (
-                      <option key={pref} value={pref}>{pref}</option>
-                    ))}
-                  </select>
-                </div>
-                
-                <div>
-                  <Label htmlFor="additional_info">Anything else you'd like us to know?</Label>
-                  <Textarea
-                    id="additional_info"
-                    name="additional_info"
-                    value={formData.additional_info}
-                    onChange={handleInputChange}
-                    rows={3}
-                    className="mt-1"
-                  />
-                </div>
-                
-                <Button 
-                  type="submit" 
-                  className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700"
-                  disabled={isLoading}
-                >
-                  {isLoading ? 'Submitting...' : 'Start My Journey'}
-                  <ArrowRight className="ml-2" size={16} />
-                </Button>
-              </form>
-            </CardContent>
-          </Card>
-        )}
-
-        {/* Step 4: Success */}
-        {currentStep === 4 && (
-          <div className="text-center">
-            <Card className="max-w-2xl mx-auto">
-              <CardContent className="pt-8 pb-8">
-                <CheckCircle className="w-16 h-16 text-green-500 mx-auto mb-6" />
-                <h2 className="text-3xl font-bold text-gray-900 mb-4">Welcome to We-KIT!</h2>
-                <p className="text-xl text-gray-600 mb-6">
-                  Thank you for starting your journey with us. We'll be in touch within 24 hours to begin matching you with the perfect mentor and resources.
+      <div className="relative z-20 py-8 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-4xl mx-auto">
+          
+          {/* Step 1: Identity Quiz */}
+          {currentStep === 1 && (
+            <div className="text-center mb-12 animate-[slideUp_1.2s_ease-out]">
+              <div className="bg-black/60 backdrop-blur-sm rounded-2xl p-8 mb-8 max-w-4xl mx-auto">
+                <h1 className="text-4xl md:text-6xl font-bold text-white leading-tight drop-shadow-2xl hover:scale-105 transition-transform duration-300 mb-6">
+                  Tell us where you are in life—
+                  <br />
+                  <span className="bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent animate-[slideLeft_1.5s_ease-out] hover:from-purple-400 hover:to-blue-400 transition-all duration-500">
+                    we'll meet you there.
+                  </span>
+                </h1>
+                <p className="text-xl md:text-2xl text-white/90 drop-shadow-lg animate-[slideRight_1.8s_ease-out] hover:text-white transition-colors duration-300 font-medium">
+                  What best describes you right now? Choose one to start:
                 </p>
-                <div className="bg-blue-50 p-6 rounded-lg">
-                  <h3 className="text-lg font-semibold text-blue-900 mb-2">What's Next?</h3>
-                  <ul className="text-left text-blue-800 space-y-2">
-                    <li>• We'll review your responses and find the perfect mentor match</li>
-                    <li>• You'll receive a welcome email with next steps</li>
-                    <li>• Our team will schedule your first mentorship session</li>
-                    <li>• You'll gain access to our exclusive community and resources</li>
-                  </ul>
-                </div>
-                <Button 
-                  onClick={() => window.location.href = '/'}
-                  className="mt-6 bg-blue-600 hover:bg-blue-700"
-                >
-                  Return to Home
-                </Button>
-              </CardContent>
-            </Card>
-          </div>
-        )}
-
-        {/* Progress Indicator */}
-        {currentStep < 4 && (
-          <div className="mt-12 flex justify-center">
-            <div className="flex space-x-2">
-              {[1, 2, 3].map((step) => (
-                <div
-                  key={step}
-                  className={`w-3 h-3 rounded-full ${
-                    step <= currentStep ? 'bg-blue-600' : 'bg-gray-300'
-                  }`}
-                />
-              ))}
+              </div>
+              
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 animate-[zoomIn_1.5s_ease-out]">
+                {personas.map((persona, index) => {
+                  const IconComponent = persona.icon;
+                  return (
+                    <div
+                      key={persona.id}
+                      className={`animate-[slideUp_1s_ease-out_${index * 0.1}s_both]`}
+                    >
+                      <Card 
+                        className="cursor-pointer hover:shadow-2xl transition-all duration-500 hover:scale-110 hover:-translate-y-2 border-2 hover:border-blue-400 bg-white/95 backdrop-blur-sm group"
+                        onClick={() => handlePersonaSelect(persona.id)}
+                      >
+                        <CardContent className="p-8 text-center">
+                          <div className="text-5xl mb-4 group-hover:animate-bounce">{persona.emoji}</div>
+                          <IconComponent className="w-10 h-10 mx-auto mb-4 text-blue-600 group-hover:text-purple-600 transition-colors duration-300" />
+                          <p className="text-lg font-medium text-gray-800 group-hover:text-blue-600 transition-colors duration-300">{persona.title}</p>
+                        </CardContent>
+                      </Card>
+                    </div>
+                  );
+                })}
+              </div>
             </div>
-          </div>
-        )}
+          )}
+
+          {/* Step 2: Basic Information */}
+          {currentStep === 2 && (
+            <div className="animate-[slideUp_1.2s_ease-out]">
+              <Card className="mb-8 bg-white/95 backdrop-blur-sm shadow-2xl border-0">
+                <CardHeader className="text-center pb-8">
+                  <CardTitle className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-4">
+                    Let's get to know you
+                  </CardTitle>
+                  <CardDescription className="text-lg text-gray-600">
+                    First, we need some basic information to get started
+                  </CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <form className="space-y-8">
+                    <div className="animate-[slideLeft_0.8s_ease-out]">
+                      <Label htmlFor="name" className="text-lg font-medium text-gray-800">Full Name *</Label>
+                      <Input
+                        id="name"
+                        name="name"
+                        value={formData.name}
+                        onChange={handleInputChange}
+                        required
+                        className="mt-2 h-12 text-lg border-2 focus:border-blue-500 transition-colors duration-300"
+                        placeholder="Enter your full name"
+                      />
+                    </div>
+                    
+                    <div className="animate-[slideRight_0.8s_ease-out_0.2s_both]">
+                      <Label htmlFor="phone" className="text-lg font-medium text-gray-800">Phone Number *</Label>
+                      <Input
+                        id="phone"
+                        name="phone"
+                        type="tel"
+                        value={formData.phone}
+                        onChange={handleInputChange}
+                        required
+                        className="mt-2 h-12 text-lg border-2 focus:border-blue-500 transition-colors duration-300"
+                        placeholder="Enter your phone number"
+                      />
+                    </div>
+                    
+                    <div className="animate-[slideLeft_0.8s_ease-out_0.4s_both]">
+                      <Label htmlFor="email" className="text-lg font-medium text-gray-800">Email Address *</Label>
+                      <Input
+                        id="email"
+                        name="email"
+                        type="email"
+                        value={formData.email}
+                        onChange={handleInputChange}
+                        required
+                        className="mt-2 h-12 text-lg border-2 focus:border-blue-500 transition-colors duration-300"
+                        placeholder="Enter your email address"
+                      />
+                    </div>
+                    
+                    <Button 
+                      type="button" 
+                      onClick={() => setCurrentStep(3)}
+                      className="w-full h-14 text-lg bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white rounded-full border-0 shadow-2xl hover:shadow-xl transition-all duration-300 hover:scale-105 hover:-translate-y-1 group animate-pulse hover:animate-none"
+                      disabled={!formData.name || !formData.phone || !formData.email}
+                    >
+                      Continue to Discovery Questions
+                      <ArrowRight className="ml-3 transition-transform duration-300 group-hover:translate-x-2 group-hover:animate-bounce" size={20} />
+                    </Button>
+                  </form>
+                </CardContent>
+              </Card>
+            </div>
+          )}
+
+          {/* Step 3: Guided Discovery Form */}
+          {currentStep === 3 && (
+            <div className="animate-[slideUp_1.2s_ease-out]">
+              <Card className="mb-8 bg-white/95 backdrop-blur-sm shadow-2xl border-0">
+                <CardHeader className="text-center pb-8">
+                  <CardTitle className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-4">
+                    We want to know you better
+                  </CardTitle>
+                  <CardDescription className="text-lg text-gray-600">
+                    Help us understand your goals and how we can best support you
+                  </CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <form onSubmit={handleSubmit} className="space-y-8">
+                    
+                    <div className="animate-[slideLeft_0.8s_ease-out]">
+                      <Label htmlFor="challenge" className="text-lg font-medium text-gray-800">What's a challenge you're facing right now? *</Label>
+                      <Textarea
+                        id="challenge"
+                        name="challenge"
+                        value={formData.challenge}
+                        onChange={handleInputChange}
+                        required
+                        rows={4}
+                        className="mt-2 text-lg border-2 focus:border-blue-500 transition-colors duration-300"
+                        placeholder="Tell us about a specific challenge you're dealing with..."
+                      />
+                    </div>
+                    
+                    <div className="animate-[slideRight_0.8s_ease-out_0.2s_both]">
+                      <Label htmlFor="dream" className="text-lg font-medium text-gray-800">What dream or goal do you secretly wish you could pursue? *</Label>
+                      <Textarea
+                        id="dream"
+                        name="dream"
+                        value={formData.dream}
+                        onChange={handleInputChange}
+                        required
+                        rows={4}
+                        className="mt-2 text-lg border-2 focus:border-blue-500 transition-colors duration-300"
+                        placeholder="Share your aspirations and dreams with us..."
+                      />
+                    </div>
+                    
+                    <div className="animate-[slideLeft_0.8s_ease-out_0.4s_both]">
+                      <Label htmlFor="clarity_scale" className="text-lg font-medium text-gray-800">On a scale of 1–10, how clear are you about your next step? *</Label>
+                      <select
+                        id="clarity_scale"
+                        name="clarity_scale"
+                        value={formData.clarity_scale}
+                        onChange={handleInputChange}
+                        required
+                        className="mt-2 w-full h-12 p-3 text-lg border-2 border-gray-300 rounded-md focus:border-blue-500 transition-colors duration-300"
+                      >
+                        <option value="">Select a number</option>
+                        {[...Array(10)].map((_, i) => (
+                          <option key={i + 1} value={i + 1}>{i + 1} - {i === 0 ? 'Completely lost' : i === 9 ? 'Crystal clear' : ''}</option>
+                        ))}
+                      </select>
+                    </div>
+                    
+                    <div className="animate-[slideRight_0.8s_ease-out_0.6s_both]">
+                      <Label htmlFor="support_type" className="text-lg font-medium text-gray-800">What kind of support would help you most right now? *</Label>
+                      <select
+                        id="support_type"
+                        name="support_type"
+                        value={formData.support_type}
+                        onChange={handleInputChange}
+                        required
+                        className="mt-2 w-full h-12 p-3 text-lg border-2 border-gray-300 rounded-md focus:border-blue-500 transition-colors duration-300"
+                      >
+                        <option value="">Select support type</option>
+                        {supportTypes.map((type) => (
+                          <option key={type} value={type}>{type}</option>
+                        ))}
+                      </select>
+                    </div>
+                    
+                    <div className="animate-[slideLeft_0.8s_ease-out_0.8s_both]">
+                      <Label htmlFor="has_mentor" className="text-lg font-medium text-gray-800">Have you ever had a mentor before? *</Label>
+                      <select
+                        id="has_mentor"
+                        name="has_mentor"
+                        value={formData.has_mentor}
+                        onChange={handleInputChange}
+                        required
+                        className="mt-2 w-full h-12 p-3 text-lg border-2 border-gray-300 rounded-md focus:border-blue-500 transition-colors duration-300"
+                      >
+                        <option value="">Select an option</option>
+                        <option value="yes">Yes, I've had a mentor</option>
+                        <option value="no">No, this would be my first time</option>
+                      </select>
+                    </div>
+                    
+                    <div className="animate-[slideRight_0.8s_ease-out_1s_both]">
+                      <Label htmlFor="communication_style" className="text-lg font-medium text-gray-800">Preferred communication style: *</Label>
+                      <select
+                        id="communication_style"
+                        name="communication_style"
+                        value={formData.communication_style}
+                        onChange={handleInputChange}
+                        required
+                        className="mt-2 w-full h-12 p-3 text-lg border-2 border-gray-300 rounded-md focus:border-blue-500 transition-colors duration-300"
+                      >
+                        <option value="">Select style</option>
+                        {communicationStyles.map((style) => (
+                          <option key={style} value={style}>{style}</option>
+                        ))}
+                      </select>
+                    </div>
+                    
+                    <div className="animate-[slideLeft_0.8s_ease-out_1.2s_both]">
+                      <Label htmlFor="matching_preference" className="text-lg font-medium text-gray-800">What would you like us to do next? *</Label>
+                      <select
+                        id="matching_preference"
+                        name="matching_preference"
+                        value={formData.matching_preference}
+                        onChange={handleInputChange}
+                        required
+                        className="mt-2 w-full h-12 p-3 text-lg border-2 border-gray-300 rounded-md focus:border-blue-500 transition-colors duration-300"
+                      >
+                        <option value="">Select preference</option>
+                        {matchingPreferences.map((pref) => (
+                          <option key={pref} value={pref}>{pref}</option>
+                        ))}
+                      </select>
+                    </div>
+                    
+                    <div className="animate-[slideRight_0.8s_ease-out_1.4s_both]">
+                      <Label htmlFor="additional_info" className="text-lg font-medium text-gray-800">Anything else you'd like us to know?</Label>
+                      <Textarea
+                        id="additional_info"
+                        name="additional_info"
+                        value={formData.additional_info}
+                        onChange={handleInputChange}
+                        rows={4}
+                        className="mt-2 text-lg border-2 focus:border-blue-500 transition-colors duration-300"
+                        placeholder="Share any additional thoughts, questions, or specific areas you'd like to focus on..."
+                      />
+                    </div>
+                    
+                    <Button 
+                      type="submit" 
+                      className="w-full h-16 text-xl bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white rounded-full border-0 shadow-2xl hover:shadow-xl transition-all duration-300 hover:scale-105 hover:-translate-y-2 group animate-pulse hover:animate-none"
+                      disabled={isLoading}
+                    >
+                      {isLoading ? 'Submitting...' : 'Start My Journey'}
+                      <ArrowRight className="ml-3 transition-transform duration-300 group-hover:translate-x-2 group-hover:animate-bounce" size={24} />
+                    </Button>
+                  </form>
+                </CardContent>
+              </Card>
+            </div>
+          )}
+
+          {/* Step 4: Success */}
+          {currentStep === 4 && (
+            <div className="text-center animate-[zoomIn_1.5s_ease-out]">
+              <Card className="max-w-3xl mx-auto bg-white/95 backdrop-blur-sm shadow-2xl border-0">
+                <CardContent className="pt-12 pb-12">
+                  <CheckCircle className="w-20 h-20 text-green-500 mx-auto mb-8 animate-bounce" />
+                  <h2 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-6">
+                    Welcome to WeKIT!
+                  </h2>
+                  <p className="text-xl md:text-2xl text-gray-700 mb-8 font-medium">
+                    Thank you for starting your journey with us. We'll be in touch within 24 hours to begin matching you with the perfect mentor and resources.
+                  </p>
+                  <div className="bg-gradient-to-br from-blue-50 to-purple-50 p-8 rounded-2xl shadow-inner mb-8">
+                    <h3 className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-4">
+                      What's Next?
+                    </h3>
+                    <ul className="text-left text-gray-700 space-y-3 max-w-2xl mx-auto">
+                      <li className="flex items-start">
+                        <span className="text-blue-500 mr-3 text-xl">✓</span>
+                        <span className="text-lg">We'll review your responses and find the perfect mentor match</span>
+                      </li>
+                      <li className="flex items-start">
+                        <span className="text-blue-500 mr-3 text-xl">✓</span>
+                        <span className="text-lg">You'll receive a welcome email with next steps</span>
+                      </li>
+                      <li className="flex items-start">
+                        <span className="text-blue-500 mr-3 text-xl">✓</span>
+                        <span className="text-lg">Our team will schedule your first mentorship session</span>
+                      </li>
+                      <li className="flex items-start">
+                        <span className="text-blue-500 mr-3 text-xl">✓</span>
+                        <span className="text-lg">You'll gain access to our exclusive community and resources</span>
+                      </li>
+                    </ul>
+                  </div>
+                  <Button 
+                    onClick={() => window.location.href = '/'}
+                    className="h-14 px-12 text-lg bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white rounded-full border-0 shadow-2xl hover:shadow-xl transition-all duration-300 hover:scale-105 hover:-translate-y-1 group"
+                  >
+                    Return to Home
+                    <ArrowRight className="ml-3 transition-transform duration-300 group-hover:translate-x-2" size={20} />
+                  </Button>
+                </CardContent>
+              </Card>
+            </div>
+          )}
+
+          {/* Progress Indicator */}
+          {currentStep < 4 && (
+            <div className="mt-16 flex justify-center animate-[slideUp_1.5s_ease-out]">
+              <div className="flex space-x-4 bg-white/20 backdrop-blur-sm rounded-full p-4">
+                {[1, 2, 3].map((step) => (
+                  <div
+                    key={step}
+                    className={`w-4 h-4 rounded-full transition-all duration-500 ${
+                      step <= currentStep 
+                        ? 'bg-gradient-to-r from-blue-500 to-purple-500 scale-125 shadow-lg' 
+                        : 'bg-white/50'
+                    }`}
+                  />
+                ))}
+              </div>
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );
