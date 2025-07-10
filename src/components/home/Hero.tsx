@@ -54,18 +54,27 @@ const Hero = () => {
         <div className="absolute top-1/3 right-1/3 w-3 h-3 bg-purple-400 rounded-full animate-[float_4s_ease-in-out_infinite_1s] opacity-50"></div>
         <div className="absolute bottom-1/3 left-1/5 w-2 h-2 bg-yellow-400 rounded-full animate-[float_5s_ease-in-out_infinite_2s] opacity-40"></div>
 
+        {/* WeKIT Title - Top Left */}
+        <div className="absolute top-8 left-8 z-30 animate-[slideDown_1s_ease-out]">
+          <h1 className="text-6xl md:text-9xl font-black text-white drop-shadow-2xl hover:scale-105 transition-transform duration-300 bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
+            WeKIT
+          </h1>
+        </div>
+
         {/* Hero Content Overlay - Positioned to avoid covering face */}
         <div className="absolute inset-0 z-20 flex items-center justify-start pl-8 md:pl-16">
           <div className="text-left max-w-2xl animate-[slideUp_1.2s_ease-out]">
-            <h1 className="text-4xl md:text-6xl font-bold text-white mb-6 leading-tight drop-shadow-2xl hover:scale-105 transition-transform duration-300">
-              Discover Your Path.
-              <br />
-              <span className="bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent animate-[slideLeft_1.5s_ease-out] hover:from-purple-400 hover:to-blue-400 transition-all duration-500">
-                Ignite Your Purpose.
-              </span>
-            </h1>
-            <p className="text-lg md:text-xl text-white/90 mb-8 drop-shadow-lg max-w-lg animate-[slideRight_1.8s_ease-out] hover:text-white transition-colors duration-300">
-              Let We-KIT guide you toward your next big step—with the right mentor, the right tools, and the right timing.
+            <div className="bg-black/60 backdrop-blur-sm rounded-2xl p-8 mb-6">
+              <h1 className="text-4xl md:text-6xl font-bold text-white leading-tight drop-shadow-2xl hover:scale-105 transition-transform duration-300">
+                Discover Your Path.
+                <br />
+                <span className="bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent animate-[slideLeft_1.5s_ease-out] hover:from-purple-400 hover:to-blue-400 transition-all duration-500">
+                  Ignite Your Purpose.
+                </span>
+              </h1>
+            </div>
+            <p className="text-lg md:text-xl text-white/90 mb-8 drop-shadow-lg max-w-lg animate-[slideRight_1.8s_ease-out] hover:text-white transition-colors duration-300 font-semibold">
+              WeKIT = Wot Kareer Is iT?
             </p>
             
             <div className="pt-4 animate-[zoomIn_2s_ease-out]">
