@@ -81,13 +81,24 @@ const StartJourney = () => {
     
     try {
       const { error } = await supabase
-        .from('contact_submissions')
+        .from('page_interactions')
         .insert({
-          name: formData.name,
-          email: formData.email,
-          phone: formData.phone,
-          message: `Persona: ${formData.persona}\nChallenge: ${formData.challenge}\nDream: ${formData.dream}\nClarity Scale: ${formData.clarity_scale}\nSupport Type: ${formData.support_type}\nHas Mentor: ${formData.has_mentor}\nCommunication Style: ${formData.communication_style}\nMatching Preference: ${formData.matching_preference}\nAdditional Info: ${formData.additional_info}`,
-          source_page: '/start-journey'
+          page_name: '/start-journey',
+          interaction_type: 'journey_signup',
+          interaction_data: {
+            name: formData.name,
+            email: formData.email,
+            phone: formData.phone,
+            persona: formData.persona,
+            challenge: formData.challenge,
+            dream: formData.dream,
+            clarity_scale: formData.clarity_scale,
+            support_type: formData.support_type,
+            has_mentor: formData.has_mentor,
+            communication_style: formData.communication_style,
+            matching_preference: formData.matching_preference,
+            additional_info: formData.additional_info
+          }
         });
 
       if (error) throw error;
