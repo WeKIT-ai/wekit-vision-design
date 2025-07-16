@@ -22,6 +22,7 @@ import Roadmap from "./pages/Roadmap";
 import WhitePaper from "./pages/WhitePaper";
 import NotFound from "./pages/NotFound";
 import Parents from "./pages/Parents";
+import MentorWaitlist from "./pages/MentorWaitlist";
 
 const queryClient = new QueryClient();
 
@@ -50,6 +51,7 @@ const App = () => (
                 <Route path="/start-journey" element={<StartJourney />} />
                 <Route path="/roadmap" element={<Roadmap />} />
                 <Route path="/white-paper" element={<WhitePaper />} />
+                <Route path="/mentor-waitlist" element={<MentorWaitlist />} />
                 <Route path="*" element={<NotFound />} />
               </Routes>
             </main>

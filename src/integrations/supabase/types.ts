@@ -804,6 +804,66 @@ export type Database = {
         }
         Relationships: []
       }
+      mentor_waitlist: {
+        Row: {
+          availability: string | null
+          company: string | null
+          created_at: string
+          email: string
+          experience_years: number | null
+          first_name: string
+          id: string
+          industry: string | null
+          last_name: string
+          mentoring_philosophy: string | null
+          motivation: string | null
+          phone: string | null
+          position: string | null
+          preferred_meeting_format: string | null
+          specialties: string[] | null
+          time_commitment: string | null
+          updated_at: string
+        }
+        Insert: {
+          availability?: string | null
+          company?: string | null
+          created_at?: string
+          email: string
+          experience_years?: number | null
+          first_name: string
+          id?: string
+          industry?: string | null
+          last_name: string
+          mentoring_philosophy?: string | null
+          motivation?: string | null
+          phone?: string | null
+          position?: string | null
+          preferred_meeting_format?: string | null
+          specialties?: string[] | null
+          time_commitment?: string | null
+          updated_at?: string
+        }
+        Update: {
+          availability?: string | null
+          company?: string | null
+          created_at?: string
+          email?: string
+          experience_years?: number | null
+          first_name?: string
+          id?: string
+          industry?: string | null
+          last_name?: string
+          mentoring_philosophy?: string | null
+          motivation?: string | null
+          phone?: string | null
+          position?: string | null
+          preferred_meeting_format?: string | null
+          specialties?: string[] | null
+          time_commitment?: string | null
+          updated_at?: string
+        }
+        Relationships: []
+      }
       mentoring_analytics: {
         Row: {
           baseline_value: number | null
@@ -1931,6 +1991,18 @@ export type Database = {
           _user_id: string
           _role: Database["public"]["Enums"]["app_role"]
         }
+        Returns: boolean
+      }
+      sanitize_text: {
+        Args: { input: string }
+        Returns: string
+      }
+      validate_email: {
+        Args: { email: string }
+        Returns: boolean
+      }
+      validate_phone: {
+        Args: { phone: string }
         Returns: boolean
       }
     }

@@ -79,14 +79,14 @@ const Hero = () => {
           </div>
         </div>
 
-        {/* Center Bottom Button - Join Waitlist */}
+        {/* Center Bottom Button - Join Mentor Community */}
         <div className="absolute bottom-20 left-1/2 transform -translate-x-1/2 z-30 animate-[zoomIn_2s_ease-out]">
-          <a href="/start-journey">
+          <a href="/mentor-waitlist">
             <Button 
               size="lg" 
               className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-12 py-6 text-lg font-medium rounded-full border-0 shadow-2xl hover:shadow-xl transition-all duration-300 hover:scale-110 hover:-translate-y-2 group animate-pulse hover:animate-none"
             >
-              Join Our Waitlist
+              Join Our Mentor Community
               <ArrowRight className="ml-3 transition-transform duration-300 group-hover:translate-x-2 group-hover:animate-bounce" size={20} />
             </Button>
           </a>
