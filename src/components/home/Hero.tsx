@@ -66,10 +66,14 @@ const Hero = () => {
           <div className="text-left max-w-2xl animate-[slideUp_1.2s_ease-out]">
             <div className="bg-black/60 backdrop-blur-sm rounded-2xl p-8 mb-6">
               <h1 className="text-4xl md:text-6xl font-bold text-white leading-tight drop-shadow-2xl hover:scale-105 transition-transform duration-300">
-                Discover Your Path.
+                Mentoring the Future
                 <br />
                 <span className="bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent animate-[slideLeft_1.5s_ease-out] hover:from-purple-400 hover:to-blue-400 transition-all duration-500">
-                  Ignite Your Purpose.
+                  Powered by AI
+                </span>
+                <br />
+                <span className="text-white/90">
+                  Driven by Purpose
                 </span>
               </h1>
             </div>
