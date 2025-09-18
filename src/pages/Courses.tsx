@@ -116,6 +116,99 @@ const Courses = () => {
         </div>
       </section>
 
+      {/* WeKIT Drone Pilot School Section */}
+      <section className="py-24 px-6 md:px-8 bg-gradient-to-br from-blue-900 to-indigo-900">
+        <div className="max-w-6xl mx-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            {/* Content */}
+            <div className="space-y-8">
+              <div className="inline-flex items-center px-4 py-2 bg-blue-500/20 rounded-full text-sm font-medium text-blue-300 mb-4">
+                <Target className="w-4 h-4 mr-2" />
+                Featured Program
+              </div>
+              <h2 className="text-4xl md:text-5xl font-bold text-white leading-tight">
+                WeKIT Drone
+                <br />
+                <span className="text-yellow-400">Pilot School</span>
+              </h2>
+              <p className="text-xl text-blue-100 leading-relaxed">
+                Train to become a certified DGCA drone pilot with our comprehensive 4-week bootcamp. 
+                Perfect for minority and underserved youth looking to enter the fast-growing drone industry.
+              </p>
+              
+              {/* Key Features */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="flex items-center space-x-3 bg-white/10 p-4 rounded-lg">
+                  <BookOpen className="w-6 h-6 text-yellow-400" />
+                  <span className="text-white font-medium">40 hrs Theory</span>
+                </div>
+                <div className="flex items-center space-x-3 bg-white/10 p-4 rounded-lg">
+                  <Zap className="w-6 h-6 text-yellow-400" />
+                  <span className="text-white font-medium">20 hrs Flying</span>
+                </div>
+                <div className="flex items-center space-x-3 bg-white/10 p-4 rounded-lg">
+                  <Users className="w-6 h-6 text-yellow-400" />
+                  <span className="text-white font-medium">AI Mentorship</span>
+                </div>
+                <div className="flex items-center space-x-3 bg-white/10 p-4 rounded-lg">
+                  <Award className="w-6 h-6 text-yellow-400" />
+                  <span className="text-white font-medium">70%+ Placement</span>
+                </div>
+              </div>
+
+              {/* Career Paths */}
+              <div className="space-y-4">
+                <h3 className="text-xl font-semibold text-white">Career Opportunities:</h3>
+                <div className="flex flex-wrap gap-2">
+                  <span className="px-3 py-1 bg-green-500/20 text-green-300 rounded-full text-sm">Agriculture</span>
+                  <span className="px-3 py-1 bg-purple-500/20 text-purple-300 rounded-full text-sm">Logistics</span>
+                  <span className="px-3 py-1 bg-red-500/20 text-red-300 rounded-full text-sm">Defense</span>
+                  <span className="px-3 py-1 bg-orange-500/20 text-orange-300 rounded-full text-sm">Surveillance</span>
+                </div>
+              </div>
+
+              <Button 
+                size="lg" 
+                className="bg-yellow-400 text-blue-900 hover:bg-yellow-300 px-8 py-6 text-lg font-medium rounded-full shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105"
+              >
+                Apply for Drone Pilot School
+                <ArrowRight className="ml-3" size={20} />
+              </Button>
+            </div>
+
+            {/* Stats Card */}
+            <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-8 border border-white/20">
+              <h3 className="text-2xl font-bold text-white mb-6">Program Impact</h3>
+              <div className="space-y-6">
+                <div className="flex justify-between items-center">
+                  <span className="text-blue-200">Target Pilots Year 1</span>
+                  <span className="text-2xl font-bold text-yellow-400">100+</span>
+                </div>
+                <div className="flex justify-between items-center">
+                  <span className="text-blue-200">Training Duration</span>
+                  <span className="text-2xl font-bold text-yellow-400">4 Weeks</span>
+                </div>
+                <div className="flex justify-between items-center">
+                  <span className="text-blue-200">Placement Rate</span>
+                  <span className="text-2xl font-bold text-yellow-400">70%+</span>
+                </div>
+                <div className="flex justify-between items-center">
+                  <span className="text-blue-200">Course Fee</span>
+                  <span className="text-2xl font-bold text-yellow-400">₹50K</span>
+                </div>
+              </div>
+              
+              <div className="mt-8 p-4 bg-blue-500/20 rounded-lg">
+                <p className="text-sm text-blue-200">
+                  <strong className="text-white">ESG-Aligned:</strong> Quarterly reporting on placements, 
+                  income uplift, and diversity metrics with community outreach.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Features Section */}
       <section className="py-24 px-6 md:px-8">
         <div className="max-w-6xl mx-auto">
