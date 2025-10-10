@@ -6,6 +6,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { Phone } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import { supabase } from '@/integrations/supabase/client';
+import { contactFormSchema } from '@/lib/validation';
 
 const ContactForm = () => {
   const [formData, setFormData] = useState({
@@ -22,13 +23,25 @@ const ContactForm = () => {
     setIsLoading(true);
     
     try {
+      // Validate input
+      const result = contactFormSchema.safeParse(formData);
+      if (!result.success) {
+        toast({
+          title: "Validation Error",
+          description: result.error.errors[0].message,
+          variant: "destructive"
+        });
+        setIsLoading(false);
+        return;
+      }
+
       const { error } = await supabase
         .from('contact_submissions')
         .insert({
-          name: formData.name,
-          email: formData.email,
-          company: formData.company || null,
-          message: formData.message,
+          name: result.data.name,
+          email: result.data.email,
+          company: result.data.company || null,
+          message: result.data.message,
           source_page: window.location.pathname
         });
 

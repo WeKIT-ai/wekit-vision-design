@@ -1997,6 +1997,18 @@ export type Database = {
         Args: { input: string }
         Returns: string
       }
+      user_is_connection_participant: {
+        Args: { _connection_id: string; _user_id: string }
+        Returns: boolean
+      }
+      user_is_mentee_in_connection: {
+        Args: { _connection_id: string; _user_id: string }
+        Returns: boolean
+      }
+      user_is_mentor_in_connection: {
+        Args: { _connection_id: string; _user_id: string }
+        Returns: boolean
+      }
       validate_email: {
         Args: { email: string }
         Returns: boolean

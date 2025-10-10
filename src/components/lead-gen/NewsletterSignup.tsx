@@ -5,6 +5,7 @@ import { Input } from '@/components/ui/input';
 import { Mail } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import { supabase } from '@/integrations/supabase/client';
+import { newsletterSchema } from '@/lib/validation';
 
 const NewsletterSignup = () => {
   const [email, setEmail] = useState('');
@@ -16,10 +17,22 @@ const NewsletterSignup = () => {
     setIsLoading(true);
     
     try {
+      // Validate input
+      const result = newsletterSchema.safeParse({ email });
+      if (!result.success) {
+        toast({
+          title: "Validation Error",
+          description: result.error.errors[0].message,
+          variant: "destructive"
+        });
+        setIsLoading(false);
+        return;
+      }
+
       const { error } = await supabase
         .from('newsletter_subscriptions')
         .insert({
-          email,
+          email: result.data.email,
           source_page: window.location.pathname
         });
 

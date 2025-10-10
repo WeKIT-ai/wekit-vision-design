@@ -6,6 +6,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Calendar } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import { supabase } from '@/integrations/supabase/client';
+import { demoRequestSchema } from '@/lib/validation';
 
 const DemoRequestForm = () => {
   const [formData, setFormData] = useState({
@@ -23,6 +24,25 @@ const DemoRequestForm = () => {
     setIsLoading(true);
     
     try {
+      // Validate input
+      const result = demoRequestSchema.safeParse({
+        name: formData.name,
+        email: formData.email,
+        organization: formData.organization,
+        role: formData.role,
+        numberOfStudents: formData.studentsCount
+      });
+      
+      if (!result.success) {
+        toast({
+          title: "Validation Error",
+          description: result.error.errors[0].message,
+          variant: "destructive"
+        });
+        setIsLoading(false);
+        return;
+      }
+
       // Store in page_interactions table as demo request
       const { error } = await supabase
         .from('page_interactions')
@@ -30,11 +50,11 @@ const DemoRequestForm = () => {
           page_name: window.location.pathname,
           interaction_type: 'demo_request',
           interaction_data: {
-            name: formData.name,
-            email: formData.email,
-            organization: formData.organization,
-            role: formData.role,
-            students_count: formData.studentsCount
+            name: result.data.name,
+            email: result.data.email,
+            organization: result.data.organization,
+            role: result.data.role,
+            students_count: result.data.numberOfStudents
           }
         });
 

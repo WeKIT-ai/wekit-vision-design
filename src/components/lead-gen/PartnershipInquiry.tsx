@@ -7,6 +7,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Handshake } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import { supabase } from '@/integrations/supabase/client';
+import { partnershipInquirySchema } from '@/lib/validation';
 
 const PartnershipInquiry = () => {
   const [formData, setFormData] = useState({
@@ -24,6 +25,18 @@ const PartnershipInquiry = () => {
     setIsLoading(true);
     
     try {
+      // Validate input
+      const result = partnershipInquirySchema.safeParse(formData);
+      if (!result.success) {
+        toast({
+          title: "Validation Error",
+          description: result.error.errors[0].message,
+          variant: "destructive"
+        });
+        setIsLoading(false);
+        return;
+      }
+
       // Store in page_interactions table as partnership inquiry
       const { error } = await supabase
         .from('page_interactions')
@@ -31,24 +44,22 @@ const PartnershipInquiry = () => {
           page_name: window.location.pathname,
           interaction_type: 'partnership_inquiry',
           interaction_data: {
-            name: formData.name,
-            email: formData.email,
-            organization: formData.organization,
-            partnership_type: formData.partnershipType,
-            details: formData.details
+            name: result.data.name,
+            email: result.data.email,
+            organization: result.data.organization,
+            partnership_type: result.data.partnershipType,
+            details: result.data.details
           }
         });
 
       if (error) throw error;
 
-      console.log('Partnership inquiry:', formData);
       toast({
         title: "Partnership Inquiry Received!",
         description: "Our partnerships team will review and contact you soon.",
       });
       setFormData({ name: '', email: '', organization: '', partnershipType: '', details: '' });
     } catch (error) {
-      console.error('Partnership inquiry error:', error);
       toast({
         title: "Error",
         description: "Failed to submit inquiry. Please try again.",

@@ -1,6 +1,7 @@
 
 import { useState } from 'react';
 import { useToast } from '@/hooks/use-toast';
+import { whitePaperSchema } from '@/lib/validation';
 
 interface FormData {
   firstName: string;
@@ -22,7 +23,17 @@ export const useWhitePaperForm = (): UseWhitePaperFormReturn => {
     setIsSubmitting(true);
     
     try {
-      console.log('Submitting white paper form:', data);
+      // Validate input
+      const result = whitePaperSchema.safeParse(data);
+      if (!result.success) {
+        toast({
+          title: "Validation Error",
+          description: result.error.errors[0].message,
+          variant: "destructive"
+        });
+        setIsSubmitting(false);
+        return;
+      }
       
       // Simulate API call
       await new Promise(resolve => setTimeout(resolve, 1500));
@@ -31,7 +42,7 @@ export const useWhitePaperForm = (): UseWhitePaperFormReturn => {
       // const response = await fetch('/api/white-paper-download', {
       //   method: 'POST',
       //   headers: { 'Content-Type': 'application/json' },
-      //   body: JSON.stringify(data)
+      //   body: JSON.stringify(result.data)
       // });
       
       toast({
@@ -40,7 +51,6 @@ export const useWhitePaperForm = (): UseWhitePaperFormReturn => {
       });
       
     } catch (error) {
-      console.error('Error submitting form:', error);
       toast({
         title: "Error",
         description: "There was a problem processing your request. Please try again.",

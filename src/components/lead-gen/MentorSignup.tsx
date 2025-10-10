@@ -7,6 +7,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { UserPlus } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import { supabase } from '@/integrations/supabase/client';
+import { mentorSignupSchema } from '@/lib/validation';
 
 const MentorSignup = () => {
   const [formData, setFormData] = useState({
@@ -25,6 +26,32 @@ const MentorSignup = () => {
     setIsLoading(true);
     
     try {
+      // Split name into first and last for validation
+      const nameParts = formData.name.trim().split(' ');
+      const firstName = nameParts[0] || '';
+      const lastName = nameParts.slice(1).join(' ') || nameParts[0] || '';
+
+      // Validate input
+      const result = mentorSignupSchema.safeParse({
+        firstName,
+        lastName,
+        email: formData.email,
+        company: formData.company,
+        industry: formData.industry,
+        experience: formData.experience,
+        expertise: formData.expertise
+      });
+      
+      if (!result.success) {
+        toast({
+          title: "Validation Error",
+          description: result.error.errors[0].message,
+          variant: "destructive"
+        });
+        setIsLoading(false);
+        return;
+      }
+
       // Store in page_interactions table as mentor signup
       const { error } = await supabase
         .from('page_interactions')
@@ -33,24 +60,22 @@ const MentorSignup = () => {
           interaction_type: 'mentor_signup',
           interaction_data: {
             name: formData.name,
-            email: formData.email,
-            company: formData.company,
-            industry: formData.industry,
-            experience: formData.experience,
-            expertise: formData.expertise
+            email: result.data.email,
+            company: result.data.company,
+            industry: result.data.industry,
+            experience: result.data.experience,
+            expertise: result.data.expertise
           }
         });
 
       if (error) throw error;
 
-      console.log('Mentor signup:', formData);
       toast({
         title: "Welcome to WeKIT!",
         description: "Your mentor application has been submitted. We'll be in touch soon!",
       });
       setFormData({ name: '', email: '', company: '', industry: '', experience: '', expertise: '' });
     } catch (error) {
-      console.error('Mentor signup error:', error);
       toast({
         title: "Error",
         description: "Failed to submit application. Please try again.",

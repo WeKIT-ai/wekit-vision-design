@@ -6,6 +6,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Zap } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import { supabase } from '@/integrations/supabase/client';
+import { earlyAccessSchema } from '@/lib/validation';
 
 const EarlyAccessForm = () => {
   const [formData, setFormData] = useState({
@@ -22,6 +23,18 @@ const EarlyAccessForm = () => {
     setIsLoading(true);
     
     try {
+      // Validate input
+      const result = earlyAccessSchema.safeParse(formData);
+      if (!result.success) {
+        toast({
+          title: "Validation Error",
+          description: result.error.errors[0].message,
+          variant: "destructive"
+        });
+        setIsLoading(false);
+        return;
+      }
+
       // Store in page_interactions table as early access signup
       const { error } = await supabase
         .from('page_interactions')
@@ -29,10 +42,10 @@ const EarlyAccessForm = () => {
           page_name: window.location.pathname,
           interaction_type: 'early_access_signup',
           interaction_data: {
-            name: formData.name,
-            email: formData.email,
-            user_type: formData.userType,
-            organization: formData.organization
+            name: result.data.name,
+            email: result.data.email,
+            user_type: result.data.userType,
+            organization: result.data.organization
           }
         });
 
