@@ -1983,7 +1983,7 @@ export type Database = {
         Returns: string
       }
       get_current_user_role: {
-        Args: Record<PropertyKey, never>
+        Args: never
         Returns: Database["public"]["Enums"]["app_role"]
       }
       has_role: {
@@ -1993,10 +1993,7 @@ export type Database = {
         }
         Returns: boolean
       }
-      sanitize_text: {
-        Args: { input: string }
-        Returns: string
-      }
+      sanitize_text: { Args: { input: string }; Returns: string }
       user_is_connection_participant: {
         Args: { _connection_id: string; _user_id: string }
         Returns: boolean
@@ -2009,14 +2006,8 @@ export type Database = {
         Args: { _connection_id: string; _user_id: string }
         Returns: boolean
       }
-      validate_email: {
-        Args: { email: string }
-        Returns: boolean
-      }
-      validate_phone: {
-        Args: { phone: string }
-        Returns: boolean
-      }
+      validate_email: { Args: { email: string }; Returns: boolean }
+      validate_phone: { Args: { phone: string }; Returns: boolean }
     }
     Enums: {
       app_role: "admin" | "mentor" | "youth" | "institution" | "corporate"
