@@ -25,7 +25,7 @@ const Navigation = () => {
             >
               <img 
                 src="/lovable-uploads/db13bc26-be3a-46c4-852b-6148fcd3edae.png" 
-                alt="WeKIT - Vot Kareer Is iT?" 
+                alt="WeKIT - Wot Kareer Is iT?" 
                 className="h-12 lg:h-14 w-auto group-hover:animate-pulse transition-all duration-300"
                 title="WeKIT International Pvt Limited"
               />

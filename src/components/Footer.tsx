@@ -15,7 +15,7 @@ const Footer = () => {
               />
               <div>
                 <h3 className="text-2xl font-medium text-gray-900">WeKIT</h3>
-                <p className="text-sm text-gray-500">Vot Kareer Is iT?</p>
+                <p className="text-sm text-gray-500">Wot Kareer Is iT?</p>
               </div>
             </div>
             <p className="text-gray-500 font-light leading-relaxed max-w-md text-lg">

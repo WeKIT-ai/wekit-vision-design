@@ -61,7 +61,7 @@ const NewsletterSignup = () => {
         <h3 className="text-xl font-semibold text-gray-900">Stay Updated with WeKIT</h3>
       </div>
       <p className="text-gray-600 mb-2">Get the latest insights on youth mentorship and AI-driven education from WeKIT International.</p>
-      <p className="text-sm text-gray-500 mb-4 italic">"Vot Kareer Is iT?" - Stay informed about career development</p>
+      <p className="text-sm text-gray-500 mb-4 italic">"Wot Kareer Is iT?" - Stay informed about career development</p>
       <form onSubmit={handleSubmit} className="flex gap-3">
         <Input
           type="email"

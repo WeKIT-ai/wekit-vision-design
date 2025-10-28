@@ -16,7 +16,7 @@ const SchoolsCTA = () => {
           Partner with WeKIT International to make every graduate job-ready and industry-connected.
         </p>
         <p className="text-lg text-gray-400 italic">
-          "Vot Kareer Is iT?" - We help your students find their answer
+          "Wot Kareer Is iT?" - We help your students find their answer
         </p>
         <div className="pt-8">
           <Button 

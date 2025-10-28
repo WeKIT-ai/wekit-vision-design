@@ -25,7 +25,7 @@ const MissionStatement = () => {
           institutions, and opportunities that align with their goals and aspirations.
         </p>
         <p className="text-lg text-gray-500 italic">
-          "Vot Kareer Is iT?" - Your journey to career clarity starts here
+          "Wot Kareer Is iT?" - Your journey to career clarity starts here
         </p>
       </div>
     </section>

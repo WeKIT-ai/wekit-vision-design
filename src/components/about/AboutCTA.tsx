@@ -9,7 +9,7 @@ const AboutCTA = () => {
           there's a place for you in the WeKIT International community.
         </p>
         <p className="text-lg mb-8 text-blue-200 italic">
-          "Vot Kareer Is iT?" - Let's find out together
+          "Wot Kareer Is iT?" - Let's find out together
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <button className="bg-white text-black px-8 py-4 rounded-none font-medium hover:bg-gray-100 transition-colors">
