@@ -111,7 +111,7 @@ const Hero = () => {
 
         <div className="max-w-6xl mx-auto relative z-10">
           <div className="text-center space-y-12">
-            <h1 className="text-6xl md:text-8xl font-light text-gray-900 leading-[0.9] tracking-tight animate-[zoomIn_1.5s_ease-out] hover:text-blue-600 transition-colors duration-500">
+            <h1 className="text-4xl md:text-6xl font-light text-gray-900 leading-[1.1] tracking-tight animate-[zoomIn_1.5s_ease-out] hover:text-blue-600 transition-colors duration-500">
               Mentoring the Future.
               <br />
               <span className="font-medium bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent hover:from-purple-600 hover:to-blue-600 transition-all duration-500 animate-[slideLeft_2s_ease-out]">
