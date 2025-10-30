@@ -1,5 +1,5 @@
-
 import { Users, TrendingUp } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const VisualImpact = () => {
   return (
@@ -11,7 +11,7 @@ const VisualImpact = () => {
         </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {/* Dynamic Video Card 1 */}
-          <div className="relative overflow-hidden rounded-2xl shadow-2xl group hover:scale-105 transition-all duration-500">
+          <Link to="/courses" className="relative overflow-hidden rounded-2xl shadow-2xl group hover:scale-105 transition-all duration-500 cursor-pointer">
             <video
               autoPlay
               muted
@@ -31,7 +31,7 @@ const VisualImpact = () => {
             <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
               <Users className="w-6 h-6 text-white animate-pulse" />
             </div>
-          </div>
+          </Link>
 
           {/* Dynamic Image 2 */}
           <div className="relative overflow-hidden rounded-2xl shadow-2xl group hover:scale-105 transition-all duration-500">
