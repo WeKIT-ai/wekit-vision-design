@@ -26,13 +26,15 @@ const CTASection = () => {
           dedicated to empowering the next generation of leaders.
         </p>
         <div className="pt-8">
-          <Button 
-            size="lg" 
-            className="bg-white text-blue-900 hover:bg-blue-50 px-12 py-6 text-lg font-medium rounded-full border-0 shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105"
-          >
-            Get Started Today
-            <ArrowRight className="ml-3" size={20} />
-          </Button>
+          <a href="/start-journey">
+            <Button 
+              size="lg" 
+              className="bg-white text-blue-900 hover:bg-blue-50 px-12 py-6 text-lg font-medium rounded-full border-0 shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105"
+            >
+              Get Started Today
+              <ArrowRight className="ml-3" size={20} />
+            </Button>
+          </a>
         </div>
       </div>
     </section>

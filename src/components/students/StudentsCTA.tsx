@@ -64,14 +64,18 @@ const StudentsCTA = () => {
               <Brain className="ml-2" size={20} />
             </Button>
           </a>
-          <Button 
-            size="lg" 
-            className="bg-green-600 hover:bg-green-700 text-white px-8 py-4 text-lg font-semibold rounded-full"
+          <a 
+            href="/start-journey" 
             onClick={handleCareerTransformationClick}
           >
-            Start Your Career Transformation
-            <ArrowRight className="ml-2" size={20} />
-          </Button>
+            <Button 
+              size="lg" 
+              className="bg-green-600 hover:bg-green-700 text-white px-8 py-4 text-lg font-semibold rounded-full"
+            >
+              Start Your Career Transformation
+              <ArrowRight className="ml-2" size={20} />
+            </Button>
+          </a>
         </div>
       </div>
     </section>

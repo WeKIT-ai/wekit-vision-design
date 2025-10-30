@@ -19,13 +19,15 @@ const SchoolsCTA = () => {
           "Wot Kareer Is iT?" - We help your students find their answer
         </p>
         <div className="pt-8">
-          <Button 
-            size="lg" 
-            className="bg-black hover:bg-gray-800 text-white px-12 py-6 text-lg font-medium rounded-none border-0 shadow-none hover:shadow-none"
-          >
-            Schedule Impact Assessment
-            <ArrowRight className="ml-3" size={20} />
-          </Button>
+          <a href="/schools#lead-gen">
+            <Button 
+              size="lg" 
+              className="bg-black hover:bg-gray-800 text-white px-12 py-6 text-lg font-medium rounded-none border-0 shadow-none hover:shadow-none"
+            >
+              Schedule Impact Assessment
+              <ArrowRight className="ml-3" size={20} />
+            </Button>
+          </a>
         </div>
       </div>
     </section>

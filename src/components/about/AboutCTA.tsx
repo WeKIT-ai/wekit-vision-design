@@ -12,12 +12,16 @@ const AboutCTA = () => {
           "Wot Kareer Is iT?" - Let's find out together
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
-          <button className="bg-white text-black px-8 py-4 rounded-none font-medium hover:bg-gray-100 transition-colors">
-            Join as Student
-          </button>
-          <button className="border border-white text-white px-8 py-4 rounded-none font-medium hover:bg-white hover:text-black transition-colors">
-            Become a Mentor
-          </button>
+          <a href="/start-journey">
+            <button className="bg-white text-black px-8 py-4 rounded-none font-medium hover:bg-gray-100 transition-colors">
+              Join as Student
+            </button>
+          </a>
+          <a href="/mentor-waitlist">
+            <button className="border border-white text-white px-8 py-4 rounded-none font-medium hover:bg-white hover:text-black transition-colors">
+              Become a Mentor
+            </button>
+          </a>
         </div>
       </div>
     </section>

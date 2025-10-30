@@ -13,13 +13,15 @@ const ProfessionalsCTA = () => {
           Join professionals who took control of their career trajectory and 
           achieved the success they deserved through strategic mentorship.
         </p>
-        <Button 
-          size="lg" 
-          className="bg-purple-600 hover:bg-purple-700 text-white px-8 py-4 text-lg font-semibold rounded-full transition-all duration-300 hover:scale-110 hover:-translate-y-1 hover:shadow-xl hover:shadow-purple-500/25 animate-pulse hover:animate-none"
-        >
-          Start Your Career Acceleration
-          <ArrowRight className="ml-2 transition-transform duration-300 group-hover:translate-x-1" size={20} />
-        </Button>
+        <a href="/mentor-waitlist">
+          <Button 
+            size="lg" 
+            className="bg-purple-600 hover:bg-purple-700 text-white px-8 py-4 text-lg font-semibold rounded-full transition-all duration-300 hover:scale-110 hover:-translate-y-1 hover:shadow-xl hover:shadow-purple-500/25 animate-pulse hover:animate-none"
+          >
+            Start Your Career Acceleration
+            <ArrowRight className="ml-2 transition-transform duration-300 group-hover:translate-x-1" size={20} />
+          </Button>
+        </a>
       </div>
       
       {/* Floating Background Elements */}
