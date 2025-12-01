@@ -26,7 +26,7 @@ const AuthSection = () => {
       <a href="https://www.topmate.io/yvonne_roberts_wekit/page/5wlgL5jOcR" target="_blank" rel="noopener noreferrer">
         <Button 
           size="sm"
-          className="bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white font-medium px-4 py-2 rounded-md shadow-sm hover:shadow-md transition-all duration-200 whitespace-nowrap"
+          className="bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white font-semibold px-5 py-2 rounded-md shadow-md hover:shadow-lg transition-all duration-200 whitespace-nowrap"
         >
           <Calendar className="mr-2" size={16} />
           Book a Call

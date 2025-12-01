@@ -38,11 +38,10 @@ const CTASection = () => {
           <a href="https://www.topmate.io/yvonne_roberts_wekit/page/5wlgL5jOcR" target="_blank" rel="noopener noreferrer">
             <Button 
               size="lg" 
-              variant="outline"
-              className="border-2 border-white text-white hover:bg-white hover:text-blue-900 backdrop-blur-sm px-12 py-6 text-lg font-medium rounded-full shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105"
+              className="bg-white text-blue-900 hover:bg-blue-50 px-12 py-6 text-lg font-medium rounded-full shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105 border-2 border-white"
             >
               <Calendar className="mr-3" size={20} />
-              Schedule a Free Call
+              Schedule a Call
             </Button>
           </a>
         </div>

@@ -25,7 +25,7 @@ const AboutCTA = () => {
             </button>
           </a>
           <a href="https://www.topmate.io/yvonne_roberts_wekit/page/5wlgL5jOcR" target="_blank" rel="noopener noreferrer">
-            <button className="border border-white text-white px-8 py-4 rounded-none font-medium hover:bg-white hover:text-black transition-colors flex items-center justify-center">
+            <button className="bg-white text-black px-8 py-4 rounded-none font-semibold hover:bg-gray-100 transition-colors flex items-center justify-center">
               <Calendar className="mr-2" size={20} />
               Talk to Our Team
             </button>
