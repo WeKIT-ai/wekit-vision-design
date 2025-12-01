@@ -1,4 +1,6 @@
 
+import { Calendar } from 'lucide-react';
+
 const AboutCTA = () => {
   return (
     <section className="py-20 px-6 md:px-8 bg-gradient-to-r from-gray-900 to-black">
@@ -20,6 +22,12 @@ const AboutCTA = () => {
           <a href="/mentor-waitlist">
             <button className="border border-white text-white px-8 py-4 rounded-none font-medium hover:bg-white hover:text-black transition-colors">
               Become a Mentor
+            </button>
+          </a>
+          <a href="https://www.topmate.io/yvonne_roberts_wekit/page/5wlgL5jOcR" target="_blank" rel="noopener noreferrer">
+            <button className="border border-white text-white px-8 py-4 rounded-none font-medium hover:bg-white hover:text-black transition-colors flex items-center justify-center">
+              <Calendar className="mr-2" size={20} />
+              Talk to Our Team
             </button>
           </a>
         </div>

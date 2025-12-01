@@ -1,6 +1,6 @@
 
 import { Button } from '@/components/ui/button';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, Calendar } from 'lucide-react';
 
 const ProfessionalsHero = () => {
   return (
@@ -57,13 +57,15 @@ const ProfessionalsHero = () => {
             </p>
           </div>
           <div className="flex flex-col sm:flex-row gap-4 justify-center animate-[slideUp_2.2s_ease-out]">
-            <Button 
-              size="lg" 
-              className="bg-purple-600 hover:bg-purple-700 text-white px-8 py-4 text-lg font-semibold rounded-full shadow-2xl hover:shadow-purple-500/25 transition-all duration-300 hover:scale-110 hover:-translate-y-1 animate-pulse hover:animate-none"
-            >
-              Accelerate My Career
-              <ArrowRight className="ml-2 transition-transform duration-300 group-hover:translate-x-1" size={20} />
-            </Button>
+            <a href="https://www.topmate.io/yvonne_roberts_wekit/page/5wlgL5jOcR" target="_blank" rel="noopener noreferrer">
+              <Button 
+                size="lg" 
+                className="bg-purple-600 hover:bg-purple-700 text-white px-8 py-4 text-lg font-semibold rounded-full shadow-2xl hover:shadow-purple-500/25 transition-all duration-300 hover:scale-110 hover:-translate-y-1 animate-pulse hover:animate-none group"
+              >
+                <Calendar className="mr-2 transition-transform duration-300 group-hover:rotate-12" size={20} />
+                Accelerate My Career
+              </Button>
+            </a>
             <Button 
               size="lg" 
               variant="outline"

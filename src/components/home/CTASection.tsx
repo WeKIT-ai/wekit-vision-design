@@ -1,6 +1,6 @@
 
 import { Button } from '@/components/ui/button';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, Calendar } from 'lucide-react';
 
 const CTASection = () => {
   return (
@@ -25,7 +25,7 @@ const CTASection = () => {
           Join our growing ecosystem of mentors, institutions, and organizations 
           dedicated to empowering the next generation of leaders.
         </p>
-        <div className="pt-8">
+        <div className="pt-8 flex flex-col sm:flex-row gap-4 justify-center">
           <a href="/start-journey">
             <Button 
               size="lg" 
@@ -33,6 +33,16 @@ const CTASection = () => {
             >
               Get Started Today
               <ArrowRight className="ml-3" size={20} />
+            </Button>
+          </a>
+          <a href="https://www.topmate.io/yvonne_roberts_wekit/page/5wlgL5jOcR" target="_blank" rel="noopener noreferrer">
+            <Button 
+              size="lg" 
+              variant="outline"
+              className="border-2 border-white text-white hover:bg-white hover:text-blue-900 backdrop-blur-sm px-12 py-6 text-lg font-medium rounded-full shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105"
+            >
+              <Calendar className="mr-3" size={20} />
+              Schedule a Free Call
             </Button>
           </a>
         </div>
