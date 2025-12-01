@@ -84,14 +84,14 @@ const Hero = () => {
         </div>
 
         {/* Center Bottom Buttons - Join Mentor Community & Book Consultation */}
-        <div className="absolute bottom-20 left-1/2 transform -translate-x-1/2 z-30 animate-[zoomIn_2s_ease-out] flex flex-col sm:flex-row gap-4">
+        <div className="absolute bottom-20 left-1/2 transform -translate-x-1/2 z-30 animate-[zoomIn_2s_ease-out] flex flex-col sm:flex-row gap-4 items-center">
           <a href="/mentor-waitlist">
             <Button 
               size="lg" 
-              className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-12 py-6 text-lg font-medium rounded-full border-0 shadow-2xl hover:shadow-xl transition-all duration-300 hover:scale-110 hover:-translate-y-2 group animate-pulse hover:animate-none"
+              className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-12 py-6 text-lg font-medium rounded-full border-0 shadow-2xl hover:shadow-xl transition-all duration-300 hover:scale-110 hover:-translate-y-2 group"
             >
               Join Our Mentor Community
-              <ArrowRight className="ml-3 transition-transform duration-300 group-hover:translate-x-2 group-hover:animate-bounce" size={20} />
+              <ArrowRight className="ml-3 transition-transform duration-300 group-hover:translate-x-2" size={20} />
             </Button>
           </a>
           <a href="https://www.topmate.io/yvonne_roberts_wekit/page/5wlgL5jOcR" target="_blank" rel="noopener noreferrer">
