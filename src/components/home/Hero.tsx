@@ -97,11 +97,10 @@ const Hero = () => {
           <a href="https://www.topmate.io/yvonne_roberts_wekit/page/5wlgL5jOcR" target="_blank" rel="noopener noreferrer">
             <Button 
               size="lg" 
-              variant="outline"
-              className="border-2 border-white text-white hover:bg-white hover:text-purple-600 backdrop-blur-sm px-12 py-6 text-lg font-medium rounded-full shadow-2xl hover:shadow-xl transition-all duration-300 hover:scale-110 hover:-translate-y-2 group"
+              className="bg-white text-purple-600 hover:bg-purple-50 px-12 py-6 text-lg font-medium rounded-full shadow-2xl hover:shadow-xl transition-all duration-300 hover:scale-110 hover:-translate-y-2 group border-2 border-white"
             >
               <Calendar className="mr-3 transition-transform duration-300 group-hover:rotate-12" size={20} />
-              Book a Free Consultation
+              Book a Consultation
             </Button>
           </a>
         </div>
@@ -174,11 +173,10 @@ const Hero = () => {
               <a href="https://www.topmate.io/yvonne_roberts_wekit/page/5wlgL5jOcR" target="_blank" rel="noopener noreferrer">
                 <Button 
                   size="lg" 
-                  variant="outline"
-                  className="border-2 border-purple-600 text-purple-600 hover:bg-purple-600 hover:text-white px-12 py-6 text-lg font-medium rounded-full shadow-2xl hover:shadow-xl transition-all duration-300 hover:scale-110 hover:-translate-y-2 group"
+                  className="bg-purple-600 text-white hover:bg-purple-700 px-12 py-6 text-lg font-medium rounded-full shadow-2xl hover:shadow-xl transition-all duration-300 hover:scale-110 hover:-translate-y-2 group"
                 >
                   <Calendar className="mr-3 transition-transform duration-300 group-hover:rotate-12" size={20} />
-                  Book a Free Consultation
+                  Book a Consultation
                 </Button>
               </a>
             </div>
