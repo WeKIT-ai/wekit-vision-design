@@ -179,12 +179,13 @@ const DemoRequestForm = () => {
             <SelectValue placeholder="Which programme are you interested in?" />
           </SelectTrigger>
           <SelectContent>
-            <SelectItem value="wals">WALS – Life Skills Lab</SelectItem>
+            <SelectItem value="wals">WALS Lab – Life Skills Lab</SelectItem>
             <SelectItem value="wabls">WABLS – Bagless Learning Studio</SelectItem>
             <SelectItem value="wapps">WAPPS – Purpose & Pathways Studio</SelectItem>
-            <SelectItem value="mentoring">WeKIT 360 Mentoring</SelectItem>
-            <SelectItem value="wecred">WeCred – Digital Credentials</SelectItem>
-            <SelectItem value="wafle">WAFLE – Financial Literacy</SelectItem>
+            <SelectItem value="mentoring">WeKIT 360 Mentoring (Institutions)</SelectItem>
+            <SelectItem value="wafle">WAFLE Lab – Financial Literacy & Entrepreneurship</SelectItem>
+            <SelectItem value="waffs">WAFFS – Future-Focussed Skills</SelectItem>
+            <SelectItem value="wap3">WAP³ – Purpose & Pathways Portfolio</SelectItem>
             <SelectItem value="complete">Complete WeKIT Suite</SelectItem>
           </SelectContent>
         </Select>
