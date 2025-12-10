@@ -1,8 +1,8 @@
-
 import DemoRequestForm from '@/components/lead-gen/DemoRequestForm';
 import NewsletterSignup from '@/components/lead-gen/NewsletterSignup';
 import EarlyAccessForm from '@/components/lead-gen/EarlyAccessForm';
 import PartnershipInquiry from '@/components/lead-gen/PartnershipInquiry';
+import WALSCompact from '@/components/schools/WALSCompact';
 
 const SchoolsLeadGen = () => {
   return (
@@ -14,13 +14,12 @@ const SchoolsLeadGen = () => {
             <h2 className="text-3xl font-bold text-gray-900 mb-4">Start Making Your Students Job-Ready Today</h2>
             <p className="text-xl text-gray-600">See how our platform can transform student outcomes at your institution</p>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
             <div className="lg:col-span-2">
               <DemoRequestForm />
             </div>
             <div className="space-y-6">
-              <NewsletterSignup />
-              <EarlyAccessForm />
+              <WALSCompact />
             </div>
           </div>
         </div>
