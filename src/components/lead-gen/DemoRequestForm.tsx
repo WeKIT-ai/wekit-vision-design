@@ -13,7 +13,7 @@ const DemoRequestForm = () => {
     phone: '',
     designation: '',
     organization: '',
-    employeeCount: '',
+    studentCount: '',
     programme: '',
     serviceFor: ''
   });
@@ -30,7 +30,7 @@ const DemoRequestForm = () => {
     try {
       // Validate required fields
       if (!formData.fullName || !formData.email || !formData.phone || 
-          !formData.designation || !formData.organization || !formData.employeeCount) {
+          !formData.designation || !formData.organization || !formData.studentCount) {
         toast({
           title: "Validation Error",
           description: "Please fill in all required fields",
@@ -54,7 +54,7 @@ const DemoRequestForm = () => {
             phone: formData.phone,
             designation: formData.designation,
             organization: formData.organization,
-            employee_count: formData.employeeCount,
+            student_count: formData.studentCount,
             programme: formData.programme,
             service_for: formData.serviceFor,
             submitted_at: new Date().toISOString()
@@ -68,7 +68,7 @@ const DemoRequestForm = () => {
       });
       setFormData({ 
         fullName: '', email: '', phone: '', designation: '', 
-        organization: '', employeeCount: '', programme: '', serviceFor: '' 
+        organization: '', studentCount: '', programme: '', serviceFor: '' 
       });
     } catch (error) {
       toast({
@@ -155,19 +155,19 @@ const DemoRequestForm = () => {
           className="border-teal-400 focus:border-teal-500"
         />
         <Select 
-          value={formData.employeeCount} 
-          onValueChange={(value) => setFormData(prev => ({ ...prev, employeeCount: value }))} 
+          value={formData.studentCount} 
+          onValueChange={(value) => setFormData(prev => ({ ...prev, studentCount: value }))} 
           disabled={isLoading}
         >
           <SelectTrigger className="border-teal-400 focus:border-teal-500">
-            <SelectValue placeholder="Number of Employees*" />
+            <SelectValue placeholder="Number of Students*" />
           </SelectTrigger>
           <SelectContent>
-            <SelectItem value="1-50">1-50</SelectItem>
-            <SelectItem value="51-100">51-100</SelectItem>
-            <SelectItem value="101-250">101-250</SelectItem>
-            <SelectItem value="251-500">251-500</SelectItem>
-            <SelectItem value="500+">500+</SelectItem>
+            <SelectItem value="1-100">1-100</SelectItem>
+            <SelectItem value="101-500">101-500</SelectItem>
+            <SelectItem value="501-1000">501-1000</SelectItem>
+            <SelectItem value="1001-2500">1001-2500</SelectItem>
+            <SelectItem value="2500+">2500+</SelectItem>
           </SelectContent>
         </Select>
         <Select 
