@@ -118,7 +118,6 @@ const StartJourney = () => {
       }, 1500);
       
     } catch (error) {
-      console.error('Form submission error:', error);
       toast({
         title: "Error",
         description: "Failed to submit. Please try again.",

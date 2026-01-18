@@ -88,7 +88,6 @@ const MentorWaitlist = () => {
       setCurrentStep(3); // Success step
       
     } catch (error) {
-      console.error('Form submission error:', error);
       toast({
         title: "Error",
         description: "Failed to submit. Please try again.",
