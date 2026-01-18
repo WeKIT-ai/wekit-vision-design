@@ -31,7 +31,6 @@ const WhitePaper = () => {
 
   const onSubmit = async (data: WhitePaperFormData) => {
     setIsSubmitting(true);
-    console.log('White paper form submitted:', data);
     
     // Simulate API call
     setTimeout(() => {
