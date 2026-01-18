@@ -8,16 +8,21 @@ import EarlyAccessForm from '@/components/lead-gen/EarlyAccessForm';
 const LeadGenSections = () => {
   return (
     <>
-      {/* Early Access Section */}
+      {/* Be Part of Reshaping the Future of Work Section */}
       <section className="py-16 px-6 md:px-8 bg-gradient-to-br from-indigo-50 to-purple-50">
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-8">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">Ready to Get Started?</h2>
-            <p className="text-xl text-gray-600">Be among the first to experience YOMA and our AI-powered mentorship platform</p>
+            <h2 className="text-3xl font-bold text-gray-900 mb-4">Be Part of Reshaping the Future of Work</h2>
+            <p className="text-xl text-gray-600">Join our community and help shape the next generation of career development</p>
           </div>
           <div className="flex justify-center">
-            <div className="w-full max-w-md">
-              <EarlyAccessForm />
+            <div className="w-full bg-white rounded-xl shadow-lg overflow-hidden border border-indigo-100">
+              <iframe 
+                aria-label='Be Part of Reshaping the Future of Work' 
+                frameBorder="0" 
+                className="h-[500px] w-full border-none"
+                src='https://forms.wekitmentoring.com/wekitmentoring/form/WotKareerIsiTWeKITInterestForm/formperma/Nd-1rWm5fatHjDCTeRo4JbuHwArUQOWpuvplDE38HHU'
+              />
             </div>
           </div>
         </div>
