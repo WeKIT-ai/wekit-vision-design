@@ -14,6 +14,129 @@ export type Database = {
   }
   public: {
     Tables: {
+      contact_submissions: {
+        Row: {
+          company: string | null
+          created_at: string
+          email: string
+          id: string
+          message: string
+          name: string
+        }
+        Insert: {
+          company?: string | null
+          created_at?: string
+          email: string
+          id?: string
+          message: string
+          name: string
+        }
+        Update: {
+          company?: string | null
+          created_at?: string
+          email?: string
+          id?: string
+          message?: string
+          name?: string
+        }
+        Relationships: []
+      }
+      mentor_waitlist: {
+        Row: {
+          created_at: string
+          email: string
+          expertise: string | null
+          first_name: string
+          id: string
+          last_name: string
+          linkedin_url: string | null
+          motivation: string | null
+        }
+        Insert: {
+          created_at?: string
+          email: string
+          expertise?: string | null
+          first_name: string
+          id?: string
+          last_name: string
+          linkedin_url?: string | null
+          motivation?: string | null
+        }
+        Update: {
+          created_at?: string
+          email?: string
+          expertise?: string | null
+          first_name?: string
+          id?: string
+          last_name?: string
+          linkedin_url?: string | null
+          motivation?: string | null
+        }
+        Relationships: []
+      }
+      newsletter_subscriptions: {
+        Row: {
+          created_at: string
+          email: string
+          id: string
+        }
+        Insert: {
+          created_at?: string
+          email: string
+          id?: string
+        }
+        Update: {
+          created_at?: string
+          email?: string
+          id?: string
+        }
+        Relationships: []
+      }
+      page_interactions: {
+        Row: {
+          created_at: string
+          id: string
+          interaction_type: string
+          metadata: Json | null
+          page_name: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          interaction_type: string
+          metadata?: Json | null
+          page_name: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          interaction_type?: string
+          metadata?: Json | null
+          page_name?: string
+        }
+        Relationships: []
+      }
+      psychometric_test_leads: {
+        Row: {
+          created_at: string
+          id: string
+          metadata: Json | null
+          referral_source: string | null
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          metadata?: Json | null
+          referral_source?: string | null
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          metadata?: Json | null
+          referral_source?: string | null
+        }
+        Relationships: []
+      }
       zoho_form_submissions: {
         Row: {
           created_at: string
