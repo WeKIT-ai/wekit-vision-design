@@ -14,7 +14,30 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      zoho_form_submissions: {
+        Row: {
+          created_at: string
+          form_id: string
+          id: string
+          submission_data: Json
+          submitted_at: string | null
+        }
+        Insert: {
+          created_at?: string
+          form_id?: string
+          id?: string
+          submission_data: Json
+          submitted_at?: string | null
+        }
+        Update: {
+          created_at?: string
+          form_id?: string
+          id?: string
+          submission_data?: Json
+          submitted_at?: string | null
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never

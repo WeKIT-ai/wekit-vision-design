@@ -21,7 +21,7 @@ const LeadGenSections = () => {
                 aria-label='Be Part of Reshaping the Future of Work' 
                 frameBorder="0" 
                 className="h-[500px] w-full border-none"
-                src='https://forms.wekitmentoring.com/wekitmentoring/form/WotKareerIsiTWeKITInterestForm/formperma/Nd-1rWm5fatHjDCTeRo4JbuHwArUQOWpuvplDE38HHU'
+                src="https://forms.wekitmentoring.com/wekitmentoring/form/WotKareerIsiTWeKITInterestForm/formperma/Nd-1rWm5fatHjDCTeRo4JbuHwArUQOWpuvplDE38HHU"
               />
             </div>
           </div>
