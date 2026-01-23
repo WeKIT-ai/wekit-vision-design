@@ -14,6 +14,86 @@ export type Database = {
   }
   public: {
     Tables: {
+      ai_embeddings: {
+        Row: {
+          content_hash: string | null
+          created_at: string
+          embedding_model: string | null
+          entity_id: string
+          entity_type: string
+          id: string
+          metadata: Json | null
+          updated_at: string
+        }
+        Insert: {
+          content_hash?: string | null
+          created_at?: string
+          embedding_model?: string | null
+          entity_id: string
+          entity_type: string
+          id?: string
+          metadata?: Json | null
+          updated_at?: string
+        }
+        Update: {
+          content_hash?: string | null
+          created_at?: string
+          embedding_model?: string | null
+          entity_id?: string
+          entity_type?: string
+          id?: string
+          metadata?: Json | null
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      contact_interactions: {
+        Row: {
+          contact_id: string
+          created_at: string
+          created_by: string | null
+          external_id: string | null
+          id: string
+          interaction_date: string
+          interaction_type: Database["public"]["Enums"]["interaction_type"]
+          metadata: Json | null
+          notes: string | null
+          outcome: Database["public"]["Enums"]["outcome_status"] | null
+        }
+        Insert: {
+          contact_id: string
+          created_at?: string
+          created_by?: string | null
+          external_id?: string | null
+          id?: string
+          interaction_date?: string
+          interaction_type: Database["public"]["Enums"]["interaction_type"]
+          metadata?: Json | null
+          notes?: string | null
+          outcome?: Database["public"]["Enums"]["outcome_status"] | null
+        }
+        Update: {
+          contact_id?: string
+          created_at?: string
+          created_by?: string | null
+          external_id?: string | null
+          id?: string
+          interaction_date?: string
+          interaction_type?: Database["public"]["Enums"]["interaction_type"]
+          metadata?: Json | null
+          notes?: string | null
+          outcome?: Database["public"]["Enums"]["outcome_status"] | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "contact_interactions_contact_id_fkey"
+            columns: ["contact_id"]
+            isOneToOne: false
+            referencedRelation: "contacts"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       contact_submissions: {
         Row: {
           company: string | null
@@ -40,6 +120,187 @@ export type Database = {
           name?: string
         }
         Relationships: []
+      }
+      contact_tags: {
+        Row: {
+          category_id: string
+          contact_id: string
+          created_at: string
+          id: string
+          tag_type: string | null
+        }
+        Insert: {
+          category_id: string
+          contact_id: string
+          created_at?: string
+          id?: string
+          tag_type?: string | null
+        }
+        Update: {
+          category_id?: string
+          contact_id?: string
+          created_at?: string
+          id?: string
+          tag_type?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "contact_tags_category_id_fkey"
+            columns: ["category_id"]
+            isOneToOne: false
+            referencedRelation: "expertise_categories"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "contact_tags_contact_id_fkey"
+            columns: ["contact_id"]
+            isOneToOne: false
+            referencedRelation: "contacts"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      contacts: {
+        Row: {
+          auth_user_id: string | null
+          consent_given: boolean | null
+          created_at: string
+          date_added: string | null
+          email: string | null
+          engagement_score: number | null
+          external_id: string | null
+          first_name: string | null
+          full_name: string
+          id: string
+          language_preference: string | null
+          last_contacted: string | null
+          last_name: string | null
+          linkedin_url: string | null
+          location_city: string | null
+          location_country: string | null
+          metadata: Json | null
+          notes: string | null
+          organization_id: string | null
+          phone: string | null
+          preferred_channel: string | null
+          profile_photo_url: string | null
+          program_affiliation: string | null
+          relationship_stage:
+            | Database["public"]["Enums"]["relationship_stage"]
+            | null
+          role: Database["public"]["Enums"]["contact_role"]
+          source: string | null
+          status: string | null
+          timezone: string | null
+          updated_at: string
+        }
+        Insert: {
+          auth_user_id?: string | null
+          consent_given?: boolean | null
+          created_at?: string
+          date_added?: string | null
+          email?: string | null
+          engagement_score?: number | null
+          external_id?: string | null
+          first_name?: string | null
+          full_name: string
+          id?: string
+          language_preference?: string | null
+          last_contacted?: string | null
+          last_name?: string | null
+          linkedin_url?: string | null
+          location_city?: string | null
+          location_country?: string | null
+          metadata?: Json | null
+          notes?: string | null
+          organization_id?: string | null
+          phone?: string | null
+          preferred_channel?: string | null
+          profile_photo_url?: string | null
+          program_affiliation?: string | null
+          relationship_stage?:
+            | Database["public"]["Enums"]["relationship_stage"]
+            | null
+          role?: Database["public"]["Enums"]["contact_role"]
+          source?: string | null
+          status?: string | null
+          timezone?: string | null
+          updated_at?: string
+        }
+        Update: {
+          auth_user_id?: string | null
+          consent_given?: boolean | null
+          created_at?: string
+          date_added?: string | null
+          email?: string | null
+          engagement_score?: number | null
+          external_id?: string | null
+          first_name?: string | null
+          full_name?: string
+          id?: string
+          language_preference?: string | null
+          last_contacted?: string | null
+          last_name?: string | null
+          linkedin_url?: string | null
+          location_city?: string | null
+          location_country?: string | null
+          metadata?: Json | null
+          notes?: string | null
+          organization_id?: string | null
+          phone?: string | null
+          preferred_channel?: string | null
+          profile_photo_url?: string | null
+          program_affiliation?: string | null
+          relationship_stage?:
+            | Database["public"]["Enums"]["relationship_stage"]
+            | null
+          role?: Database["public"]["Enums"]["contact_role"]
+          source?: string | null
+          status?: string | null
+          timezone?: string | null
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "contacts_organization_id_fkey"
+            columns: ["organization_id"]
+            isOneToOne: false
+            referencedRelation: "organizations"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      expertise_categories: {
+        Row: {
+          created_at: string
+          description: string | null
+          id: string
+          name: string
+          parent_id: string | null
+        }
+        Insert: {
+          created_at?: string
+          description?: string | null
+          id?: string
+          name: string
+          parent_id?: string | null
+        }
+        Update: {
+          created_at?: string
+          description?: string | null
+          id?: string
+          name?: string
+          parent_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "expertise_categories_parent_id_fkey"
+            columns: ["parent_id"]
+            isOneToOne: false
+            referencedRelation: "expertise_categories"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       mentor_waitlist: {
         Row: {
@@ -89,6 +350,105 @@ export type Database = {
           created_at?: string
           email?: string
           id?: string
+        }
+        Relationships: []
+      }
+      organization_tags: {
+        Row: {
+          category_id: string
+          created_at: string
+          id: string
+          organization_id: string
+        }
+        Insert: {
+          category_id: string
+          created_at?: string
+          id?: string
+          organization_id: string
+        }
+        Update: {
+          category_id?: string
+          created_at?: string
+          id?: string
+          organization_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "organization_tags_category_id_fkey"
+            columns: ["category_id"]
+            isOneToOne: false
+            referencedRelation: "expertise_categories"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "organization_tags_organization_id_fkey"
+            columns: ["organization_id"]
+            isOneToOne: false
+            referencedRelation: "organizations"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      organizations: {
+        Row: {
+          created_at: string
+          email: string | null
+          external_id: string | null
+          id: string
+          language_preference: string | null
+          linkedin_url: string | null
+          location_city: string | null
+          location_country: string | null
+          metadata: Json | null
+          name: string
+          notes: string | null
+          org_type: string | null
+          partner_type: Database["public"]["Enums"]["partner_type"] | null
+          phone: string | null
+          program_affiliation: string | null
+          timezone: string | null
+          updated_at: string
+          website: string | null
+        }
+        Insert: {
+          created_at?: string
+          email?: string | null
+          external_id?: string | null
+          id?: string
+          language_preference?: string | null
+          linkedin_url?: string | null
+          location_city?: string | null
+          location_country?: string | null
+          metadata?: Json | null
+          name: string
+          notes?: string | null
+          org_type?: string | null
+          partner_type?: Database["public"]["Enums"]["partner_type"] | null
+          phone?: string | null
+          program_affiliation?: string | null
+          timezone?: string | null
+          updated_at?: string
+          website?: string | null
+        }
+        Update: {
+          created_at?: string
+          email?: string | null
+          external_id?: string | null
+          id?: string
+          language_preference?: string | null
+          linkedin_url?: string | null
+          location_city?: string | null
+          location_country?: string | null
+          metadata?: Json | null
+          name?: string
+          notes?: string | null
+          org_type?: string | null
+          partner_type?: Database["public"]["Enums"]["partner_type"] | null
+          phone?: string | null
+          program_affiliation?: string | null
+          timezone?: string | null
+          updated_at?: string
+          website?: string | null
         }
         Relationships: []
       }
@@ -169,7 +529,34 @@ export type Database = {
       [_ in never]: never
     }
     Enums: {
-      [_ in never]: never
+      contact_role: "mentee" | "mentor" | "parent" | "educator" | "admin"
+      interaction_type:
+        | "call"
+        | "email"
+        | "whatsapp"
+        | "meeting"
+        | "event"
+        | "form_submission"
+        | "other"
+      outcome_status:
+        | "positive"
+        | "neutral"
+        | "negative"
+        | "pending"
+        | "no_response"
+      partner_type:
+        | "skill_partner"
+        | "ngo_partner"
+        | "govt_partner"
+        | "corporate_partner"
+        | "faith_partner"
+      relationship_stage:
+        | "new_lead"
+        | "contacted"
+        | "engaged"
+        | "qualified"
+        | "converted"
+        | "churned"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -296,6 +683,39 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {},
+    Enums: {
+      contact_role: ["mentee", "mentor", "parent", "educator", "admin"],
+      interaction_type: [
+        "call",
+        "email",
+        "whatsapp",
+        "meeting",
+        "event",
+        "form_submission",
+        "other",
+      ],
+      outcome_status: [
+        "positive",
+        "neutral",
+        "negative",
+        "pending",
+        "no_response",
+      ],
+      partner_type: [
+        "skill_partner",
+        "ngo_partner",
+        "govt_partner",
+        "corporate_partner",
+        "faith_partner",
+      ],
+      relationship_stage: [
+        "new_lead",
+        "contacted",
+        "engaged",
+        "qualified",
+        "converted",
+        "churned",
+      ],
+    },
   },
 } as const
