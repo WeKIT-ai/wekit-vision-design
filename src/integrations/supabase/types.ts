@@ -504,6 +504,10 @@ export type Database = {
           id: string
           submission_data: Json
           submitted_at: string | null
+          sync_error: string | null
+          zoho_lead_id: string | null
+          zoho_sync_status: string | null
+          zoho_synced_at: string | null
         }
         Insert: {
           created_at?: string
@@ -511,6 +515,10 @@ export type Database = {
           id?: string
           submission_data: Json
           submitted_at?: string | null
+          sync_error?: string | null
+          zoho_lead_id?: string | null
+          zoho_sync_status?: string | null
+          zoho_synced_at?: string | null
         }
         Update: {
           created_at?: string
@@ -518,6 +526,10 @@ export type Database = {
           id?: string
           submission_data?: Json
           submitted_at?: string | null
+          sync_error?: string | null
+          zoho_lead_id?: string | null
+          zoho_sync_status?: string | null
+          zoho_synced_at?: string | null
         }
         Relationships: []
       }

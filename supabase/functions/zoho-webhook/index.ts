@@ -92,6 +92,24 @@ const handler = async (req: Request): Promise<Response> => {
 
     console.log("Submission stored successfully:", data.id);
 
+    // Trigger CRM sync for this submission
+    try {
+      const syncResponse = await fetch(`${supabaseUrl}/functions/v1/zoho-crm-sync`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${supabaseServiceKey}`,
+        },
+        body: JSON.stringify({ submission_id: data.id }),
+      });
+
+      const syncResult = await syncResponse.json();
+      console.log("CRM sync result:", JSON.stringify(syncResult));
+    } catch (syncError) {
+      // Log but don't fail the webhook - the submission is already stored
+      console.error("CRM sync error (non-fatal):", syncError);
+    }
+
     return new Response(
       JSON.stringify({ success: true, id: data.id }),
       {
