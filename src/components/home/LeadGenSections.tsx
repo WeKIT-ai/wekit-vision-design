@@ -22,6 +22,9 @@ const LeadGenSections = () => {
                 frameBorder="0" 
                 className="h-[500px] w-full border-none"
                 src="https://forms.wekitmentoring.com/wekitmentoring/form/WotKareerIsiTWeKITInterestForm/formperma/Nd-1rWm5fatHjDCTeRo4JbuHwArUQOWpuvplDE38HHU"
+                allow="geolocation; microphone; camera"
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
               />
             </div>
           </div>
