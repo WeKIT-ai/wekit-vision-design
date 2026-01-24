@@ -40,12 +40,24 @@ async function getAccessToken(): Promise<string> {
   const clientId = Deno.env.get("ZOHO_CLIENT_ID");
   const clientSecret = Deno.env.get("ZOHO_CLIENT_SECRET");
   const refreshToken = Deno.env.get("ZOHO_REFRESH_TOKEN");
+  // Default to .in (India) but can be overridden with ZOHO_DOMAIN secret
+  const zohoDomain = Deno.env.get("ZOHO_DOMAIN") || "zoho.in";
 
   if (!clientId || !clientSecret || !refreshToken) {
     throw new Error("Missing Zoho OAuth credentials");
   }
 
-  const response = await fetch("https://accounts.zoho.in/oauth/v2/token", {
+  // Debug logging - show credential lengths (not values for security)
+  console.log("Debug: Zoho credentials check:");
+  console.log(`  - Client ID length: ${clientId.length}, starts with: ${clientId.substring(0, 10)}...`);
+  console.log(`  - Client Secret length: ${clientSecret.length}`);
+  console.log(`  - Refresh Token length: ${refreshToken.length}, starts with: ${refreshToken.substring(0, 10)}...`);
+  console.log(`  - Using domain: ${zohoDomain}`);
+
+  const tokenUrl = `https://accounts.${zohoDomain}/oauth/v2/token`;
+  console.log(`  - Token URL: ${tokenUrl}`);
+
+  const response = await fetch(tokenUrl, {
     method: "POST",
     headers: {
       "Content-Type": "application/x-www-form-urlencoded",
@@ -62,6 +74,7 @@ async function getAccessToken(): Promise<string> {
 
   if (data.error || !data.access_token) {
     console.error("Token refresh failed:", data);
+    console.error("Full Zoho response:", JSON.stringify(data));
     throw new Error(`Token refresh failed: ${data.error || "No access token returned"}`);
   }
 
