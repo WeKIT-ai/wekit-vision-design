@@ -1,15 +1,18 @@
 import { Users, TrendingUp } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import AnimatedSection from '@/components/ui/animated-section';
+import StaggeredChildren from '@/components/ui/staggered-children';
 
 const VisualImpact = () => {
   return (
-    <section className="py-16 px-6 md:px-8">
+    <section className="py-16 px-6 md:px-8 overflow-hidden">
       <div className="max-w-6xl mx-auto">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold text-gray-900 mb-4">Transforming Lives Through Technology</h2>
+        <AnimatedSection animation="fade-up" className="text-center mb-12">
+          <h2 className="text-3xl font-bold text-gray-900 mb-4 hover:text-blue-600 transition-colors duration-300">Transforming Lives Through Technology</h2>
           <p className="text-xl text-gray-600">Where innovation meets human potential</p>
-        </div>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        </AnimatedSection>
+        
+        <StaggeredChildren className="grid grid-cols-1 md:grid-cols-3 gap-8" staggerDelay={150} animation="fade-up">
           {/* Dynamic Video Card 1 */}
           <Link to="/courses" className="relative overflow-hidden rounded-2xl shadow-2xl group hover:scale-105 transition-all duration-500 cursor-pointer">
             <video
@@ -75,7 +78,7 @@ const VisualImpact = () => {
               <TrendingUp className="w-6 h-6 text-white animate-bounce" />
             </div>
           </div>
-        </div>
+        </StaggeredChildren>
       </div>
     </section>
   );
