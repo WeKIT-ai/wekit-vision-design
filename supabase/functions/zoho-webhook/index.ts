@@ -4,11 +4,39 @@ import { createClient } from "https://esm.sh/@supabase/supabase-js@2.49.1";
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
   "Access-Control-Allow-Headers":
-    "authorization, x-client-info, apikey, content-type",
+    "authorization, x-client-info, apikey, content-type, x-zoho-signature",
 };
 
 interface ZohoWebhookPayload {
   [key: string]: unknown;
+}
+
+// Constant-time string comparison to prevent timing attacks
+function secureCompare(a: string, b: string): boolean {
+  if (a.length !== b.length) {
+    return false;
+  }
+  let result = 0;
+  for (let i = 0; i < a.length; i++) {
+    result |= a.charCodeAt(i) ^ b.charCodeAt(i);
+  }
+  return result === 0;
+}
+
+// Generate HMAC-SHA256 signature for webhook validation
+async function generateSignature(payload: string, secret: string): Promise<string> {
+  const encoder = new TextEncoder();
+  const key = await crypto.subtle.importKey(
+    "raw",
+    encoder.encode(secret),
+    { name: "HMAC", hash: "SHA-256" },
+    false,
+    ["sign"]
+  );
+  const signature = await crypto.subtle.sign("HMAC", key, encoder.encode(payload));
+  return Array.from(new Uint8Array(signature))
+    .map((b) => b.toString(16).padStart(2, "0"))
+    .join("");
 }
 
 const handler = async (req: Request): Promise<Response> => {
@@ -27,6 +55,44 @@ const handler = async (req: Request): Promise<Response> => {
           headers: { "Content-Type": "application/json", ...corsHeaders },
         }
       );
+    }
+
+    // Get the webhook secret for validation
+    const webhookSecret = Deno.env.get("ZOHO_WEBHOOK_SECRET");
+    
+    // If webhook secret is configured, validate the signature
+    if (webhookSecret) {
+      const signature = req.headers.get("x-zoho-signature");
+      
+      if (!signature) {
+        console.error("Missing webhook signature");
+        return new Response(
+          JSON.stringify({ error: "Unauthorized - Missing signature" }),
+          {
+            status: 401,
+            headers: { "Content-Type": "application/json", ...corsHeaders },
+          }
+        );
+      }
+
+      // Clone the request to read body for signature verification
+      const bodyText = await req.clone().text();
+      const expectedSignature = await generateSignature(bodyText, webhookSecret);
+      
+      if (!secureCompare(signature, expectedSignature)) {
+        console.error("Invalid webhook signature");
+        return new Response(
+          JSON.stringify({ error: "Forbidden - Invalid signature" }),
+          {
+            status: 403,
+            headers: { "Content-Type": "application/json", ...corsHeaders },
+          }
+        );
+      }
+      
+      console.log("Webhook signature verified successfully");
+    } else {
+      console.warn("ZOHO_WEBHOOK_SECRET not configured - webhook validation disabled");
     }
 
     // Parse the webhook payload
