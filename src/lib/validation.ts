@@ -153,3 +153,15 @@ export const whitePaperSchema = z.object({
     .trim()
     .max(200, "Organization name must be less than 200 characters")
 });
+
+// Waitlist form validation
+export const waitlistSchema = z.object({
+  name: z.string()
+    .trim()
+    .min(2, "Name must be at least 2 characters")
+    .max(100, "Name must be less than 100 characters"),
+  email: z.string()
+    .trim()
+    .email("Please enter a valid email address")
+    .max(255, "Email must be less than 255 characters"),
+});

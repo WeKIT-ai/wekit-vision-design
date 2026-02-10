@@ -19,7 +19,17 @@ export default {
 			}
 		},
 		extend: {
+			fontFamily: {
+				montserrat: ['Montserrat', 'sans-serif'],
+				roboto: ['Roboto', 'sans-serif'],
+			},
 			colors: {
+				'wekit-black': '#180205',
+				'wekit-blue': '#0205F4',
+				'wekit-zaffre': '#0818A8',
+				'wekit-green': '#00665B',
+				'wekit-orange': '#FF5F1F',
+				'wekit-grey': '#D9D9D9',
 				border: 'hsl(var(--border))',
 				input: 'hsl(var(--input))',
 				ring: 'hsl(var(--ring))',
