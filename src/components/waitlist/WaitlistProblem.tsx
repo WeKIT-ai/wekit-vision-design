@@ -39,10 +39,10 @@ const WaitlistProblem = () => {
             <motion.div
               key={i}
               initial={{ opacity: 0, y: 30 }} animate={isInView ? { opacity: 1, y: 0 } : {}} transition={{ delay: 0.3 + i * 0.1 }}
-              className="bg-white rounded-2xl p-8 shadow-sm border border-gray-100"
+              className="bg-white rounded-2xl p-8 shadow-sm border border-gray-100 hover:-translate-y-1 transition-transform duration-300"
             >
               <span className="text-4xl block mb-4">{s.emoji}</span>
-              <p className="font-montserrat font-bold text-4xl text-wekit-black mb-2">{s.number}</p>
+              <p className="font-montserrat font-bold text-4xl mb-2 bg-gradient-to-r from-wekit-blue to-wekit-green bg-clip-text text-transparent">{s.number}</p>
               <p className="text-gray-500 font-roboto">{s.label}</p>
             </motion.div>
           ))}
