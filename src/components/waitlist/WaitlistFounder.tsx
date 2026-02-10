@@ -57,7 +57,7 @@ const WaitlistFounder = () => {
             </Button>
           </a>
 
-          <blockquote className="border-l-4 border-wekit-blue pl-6 py-4 bg-wekit-blue/5 rounded-r-xl">
+          <blockquote className="border-l-4 border-wekit-orange pl-6 py-4 bg-wekit-orange/5 rounded-r-xl">
             <p className="text-gray-700 italic leading-relaxed">"Every student deserves to discover a career they'll love. We-KIT is my commitment to making that discovery scientific, accessible, and empowering."</p>
             <footer className="mt-3 font-montserrat font-semibold text-sm text-wekit-black">— Yvonne Roberts, Founder & CEO</footer>
           </blockquote>

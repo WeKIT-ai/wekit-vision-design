@@ -33,11 +33,11 @@ const WaitlistCTA = () => {
           ))}
         </motion.ul>
 
-        <motion.form initial={{ opacity: 0, y: 20 }} animate={isInView ? { opacity: 1, y: 0 } : {}} transition={{ delay: 0.4 }} onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-3 max-w-xl mx-auto mb-6">
+        <motion.form initial={{ opacity: 0, y: 20 }} animate={isInView ? { opacity: 1, y: 0 } : {}} transition={{ delay: 0.4 }} onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-3 max-w-xl mx-auto mb-6 bg-white/10 border border-white/20 backdrop-blur-sm rounded-2xl p-4">
           <Input placeholder="Your Name" value={name} onChange={e => setName(e.target.value)} required disabled={isLoading} className="flex-1 h-14 rounded-xl bg-white/10 border-white/20 text-white placeholder:text-white/50 font-roboto" />
           <Input type="email" placeholder="Email Address" value={email} onChange={e => setEmail(e.target.value)} required disabled={isLoading} className="flex-1 h-14 rounded-xl bg-white/10 border-white/20 text-white placeholder:text-white/50 font-roboto" />
           <Button type="submit" disabled={isLoading} className="h-14 px-10 rounded-xl bg-wekit-orange hover:bg-wekit-orange/90 text-white font-montserrat font-bold text-base whitespace-nowrap">
-            {isLoading ? 'Joining...' : 'Join Now →'}
+            {isLoading ? 'Joining...' : 'Get Early Access →'}
           </Button>
         </motion.form>
 

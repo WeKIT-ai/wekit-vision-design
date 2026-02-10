@@ -11,17 +11,17 @@ const features = [
   {
     emoji: '📚', title: '1,288+ Career Paths',
     desc: "India's most comprehensive career database covering 21 career families including creative arts, sports, technology, and more.",
-    checks: [],
+    checks: ['Traditional + emerging careers', 'Salary insights (INR)', 'Growth projections 2026'],
   },
   {
     emoji: '✨', title: 'Smart Recommendations',
     desc: 'Advanced AI algorithms analyze your profile and match you with careers that align with your interests, skills, and personality.',
-    checks: [],
+    checks: ['Personalized rankings', 'Match strength scores', 'Alternative paths'],
   },
   {
     emoji: '💰', title: 'Scholarship Connect',
     desc: 'Get automatically matched with relevant scholarships based on your career choices and high-growth field selections.',
-    checks: [],
+    checks: ['Government schemes', 'Private scholarships', 'Financial aid options'],
   },
 ];
 
