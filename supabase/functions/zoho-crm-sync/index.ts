@@ -173,16 +173,36 @@ const handler = async (req: Request): Promise<Response> => {
 
     const supabase = createClient(supabaseUrl, supabaseServiceKey);
 
-    // Parse request body to get submission ID(s) to sync
+    // Parse and validate request body
+    const UUID_REGEX = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
     let submissionIds: string[] = [];
     
     if (req.method === "POST") {
       const body = await req.json();
       if (body.submission_id) {
+        if (typeof body.submission_id !== 'string' || !UUID_REGEX.test(body.submission_id)) {
+          return new Response(
+            JSON.stringify({ error: "Invalid submission_id format. Must be a valid UUID." }),
+            { status: 400, headers: { "Content-Type": "application/json", ...corsHeaders } }
+          );
+        }
         submissionIds = [body.submission_id];
       } else if (body.submission_ids) {
+        if (!Array.isArray(body.submission_ids) || body.submission_ids.length > 50) {
+          return new Response(
+            JSON.stringify({ error: "submission_ids must be an array with at most 50 items." }),
+            { status: 400, headers: { "Content-Type": "application/json", ...corsHeaders } }
+          );
+        }
+        const allValid = body.submission_ids.every((id: unknown) => typeof id === 'string' && UUID_REGEX.test(id as string));
+        if (!allValid) {
+          return new Response(
+            JSON.stringify({ error: "All submission_ids must be valid UUIDs." }),
+            { status: 400, headers: { "Content-Type": "application/json", ...corsHeaders } }
+          );
+        }
         submissionIds = body.submission_ids;
-      } else if (body.sync_all_pending) {
+      } else if (body.sync_all_pending === true) {
         // Get all pending submissions
         const { data: pendingSubmissions } = await supabase
           .from("zoho_form_submissions")

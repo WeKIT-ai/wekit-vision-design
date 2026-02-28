@@ -35,21 +35,29 @@ const EarlyAccessForm = () => {
         return;
       }
 
-      // Store in page_interactions table as early access signup
-      const { error } = await supabase
+      // Store PII in dedicated contact_submissions table
+      const { error: contactError } = await supabase
+        .from('contact_submissions')
+        .insert({
+          name: result.data.name,
+          email: result.data.email,
+          company: result.data.organization || null,
+          message: `Early Access Signup - User Type: ${result.data.userType}`
+        });
+
+      if (contactError) throw contactError;
+
+      // Log non-PII analytics only
+      await supabase
         .from('page_interactions')
         .insert({
           page_name: window.location.pathname,
           interaction_type: 'early_access_signup',
-          interaction_data: {
-            name: result.data.name,
-            email: result.data.email,
+          metadata: {
             user_type: result.data.userType,
-            organization: result.data.organization
+            source: 'early_access_form'
           }
         });
-
-      if (error) throw error;
 
       toast({
         title: "You're In!",

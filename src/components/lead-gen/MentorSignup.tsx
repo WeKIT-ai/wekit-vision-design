@@ -52,23 +52,30 @@ const MentorSignup = () => {
         return;
       }
 
-      // Store in page_interactions table as mentor signup
-      const { error } = await supabase
+      // Store PII in dedicated contact_submissions table
+      const { error: contactError } = await supabase
+        .from('contact_submissions')
+        .insert({
+          name: formData.name,
+          email: result.data.email,
+          company: result.data.company || null,
+          message: `Mentor Signup - Industry: ${result.data.industry}, Experience: ${result.data.experience}, Expertise: ${result.data.expertise}`
+        });
+
+      if (contactError) throw contactError;
+
+      // Log non-PII analytics only
+      await supabase
         .from('page_interactions')
         .insert({
           page_name: window.location.pathname,
           interaction_type: 'mentor_signup',
-          interaction_data: {
-            name: formData.name,
-            email: result.data.email,
-            company: result.data.company,
+          metadata: {
             industry: result.data.industry,
             experience: result.data.experience,
-            expertise: result.data.expertise
+            source: 'mentor_signup_form'
           }
         });
-
-      if (error) throw error;
 
       toast({
         title: "Welcome to WeKIT!",

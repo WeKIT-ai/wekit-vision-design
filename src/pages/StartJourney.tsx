@@ -80,24 +80,30 @@ const StartJourney = () => {
     setIsLoading(true);
     
     try {
+      // Store PII in dedicated contact_submissions table
+      const { error: contactError } = await supabase
+        .from('contact_submissions')
+        .insert({
+          name: formData.name,
+          email: formData.email,
+          company: null,
+          message: `Journey Signup - Persona: ${formData.persona}, Challenge: ${formData.challenge}, Dream: ${formData.dream}, Clarity: ${formData.clarity_scale}/10, Support: ${formData.support_type}, Has Mentor: ${formData.has_mentor}, Communication: ${formData.communication_style}, Matching: ${formData.matching_preference}${formData.additional_info ? ', Additional: ' + formData.additional_info : ''}`
+        });
+
+      if (contactError) throw contactError;
+
+      // Log non-PII analytics only
       const { error } = await supabase
         .from('page_interactions')
         .insert({
           page_name: '/start-journey',
           interaction_type: 'journey_signup',
-          interaction_data: {
-            name: formData.name,
-            email: formData.email,
-            phone: formData.phone,
+          metadata: {
             persona: formData.persona,
-            challenge: formData.challenge,
-            dream: formData.dream,
             clarity_scale: formData.clarity_scale,
             support_type: formData.support_type,
             has_mentor: formData.has_mentor,
-            communication_style: formData.communication_style,
-            matching_preference: formData.matching_preference,
-            additional_info: formData.additional_info
+            source: 'start_journey_form'
           }
         });
 
