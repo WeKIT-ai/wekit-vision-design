@@ -1,54 +1,120 @@
 
-# Waitlist Page Polish -- Aligning with Implementation Guide
+
+# Integrating Mentor Matching into the Main WeKIT Platform
 
 ## Overview
-The existing waitlist page already has all 12 sections in place with the correct content. This plan addresses the styling and content gaps between the current implementation and the uploaded Framer guide.
+The mentor-matching app ([wekit-mentor-matching](https://wekit-mentor-matching.lovable.app)) is currently a separate project with its own backend and authentication. This plan merges its pages, database tables, and edge function into the main WeKIT platform so users have a single login and a unified experience.
 
-## Changes
+## Current State
 
-### 1. Footer Overhaul (WaitlistFooter.tsx)
-The footer has the most differences from the guide:
-- **Add all 6 social media links** with proper URLs: LinkedIn, Instagram, Facebook, X (Twitter), YouTube, Reddit -- using lucide-react icons with orange hover effects
-- **Restructure to 4 columns**: Brand (with social icons), Product (links to page sections), Resources (Blog, Career Guides, FAQ, etc.), and "Get Launch Updates" (compact email subscribe form)
-- **Add Founder Row** between main footer and bottom bar: circular founder photo, "Connect with Founder Yvonne Roberts" text, LinkedIn button
-- **Add bottom bar**: Copyright left, "Privacy Policy | Terms of Service" center, "Made with heart in India" right
-- Use proper hover effects (orange background on social icons)
+**Mentor Matching App (separate project):**
+- Pages: Landing, Auth, Onboarding (role selection + profile form), Dashboard (view matches), FindMentor (browse/filter mentors)
+- Database tables: `profiles` (mentor/mentee profiles with skills, industry, goals, availability) and `matches` (mentor_id, mentee_id, compatibility_score, status)
+- Edge function: `find-matches` (compatibility algorithm scoring industry, skills, goals, availability, location)
+- Its own separate authentication (not shared with main app)
 
-### 2. Problem Stats Gradient Text (WaitlistProblem.tsx)
-- Apply Success-Gradient (blue to green) on stat numbers using `bg-clip-text text-transparent`
-- Add hover transform `translateY(-4px)` on stat cards
+**Main WeKIT App (this project):**
+- Already has `AuthContext` with sign-up, sign-in, sign-out, and social login (Google, LinkedIn)
+- Already has `contacts` table with similar fields (full_name, email, location, etc.)
+- Already has RBAC via `user_roles` table
 
-### 3. Features Section Enhancements (WaitlistFeatures.tsx)
-- Add checkmark lists to Feature Cards 2-4 per guide:
-  - Career Database: "Traditional + emerging careers", "Salary insights (INR)", "Growth projections 2026"
-  - Smart Recommendations: "Personalized rankings", "Match strength scores", "Alternative paths"
-  - Scholarship Connect: "Government schemes", "Private scholarships", "Financial aid options"
+## Integration Strategy
 
-### 4. CTA Button Text Update (WaitlistCTA.tsx)
-- Change submit button text from "Join Now" to "Get Early Access"
-- Add glassmorphism form container (white/10 bg, white/20 border, backdrop-blur)
+### 1. Database -- Create `profiles` and `matches` tables in THIS project
 
-### 5. Founder Quote Border Color Fix (WaitlistFounder.tsx)
-- Change quote border-left from `border-wekit-blue` to `border-wekit-orange` per guide spec
+Create a migration that adds:
 
-### 6. How It Works Cards (WaitlistHowItWorks.tsx)
-- Wrap each step in a white card with shadow and padding per guide (currently just text on background)
-- Increase number badge size to match guide (64px circle)
+**`mentor_profiles` table** (avoids name clash with potential future `profiles` table):
+- `id` (uuid, PK, references auth.users on delete cascade)
+- `role` (enum: `mentor` | `mentee`)
+- `full_name`, `email`, `bio`, `location` (text)
+- `industry` (text array), `skills` (text array), `goals` (text array), `availability` (text array)
+- `experience_level` (integer)
+- `avatar_url` (text, nullable)
+- `created_at`, `updated_at` (timestamps)
 
-## Technical Details
+**`mentor_matches` table:**
+- `id` (uuid, PK)
+- `mentor_id`, `mentee_id` (uuid, references mentor_profiles)
+- `compatibility_score` (integer)
+- `status` (enum: `pending` | `accepted` | `rejected`)
+- `created_at`, `updated_at` (timestamps)
 
-### Files to modify:
-1. `src/components/waitlist/WaitlistFooter.tsx` -- Major rewrite with 4-column layout, social icons, founder row, bottom bar
-2. `src/components/waitlist/WaitlistProblem.tsx` -- Add gradient text to numbers, hover effects on cards
-3. `src/components/waitlist/WaitlistFeatures.tsx` -- Add checkmark lists to all 4 feature cards
-4. `src/components/waitlist/WaitlistCTA.tsx` -- Update button text, add form container styling
-5. `src/components/waitlist/WaitlistFounder.tsx` -- Change quote border color to orange
-6. `src/components/waitlist/WaitlistHowItWorks.tsx` -- Add card wrappers to steps
+**RLS policies:**
+- Users can read/update their own `mentor_profiles` row
+- Users can read matches where they are mentor or mentee
+- Users can update match status on matches involving them
+- Insert on `mentor_profiles` allowed for authenticated users (own ID only)
+- Trigger to auto-create a profile row on user signup (linked to auth.users)
 
-### Database usage:
-- The footer email subscribe form will use the existing `newsletter_subscriptions` table for inserts
-- No new tables needed
+**Relationship to existing `contacts` table:** The `contacts` table is for CRM/admin use. `mentor_profiles` is user-facing. No foreign key between them -- they serve different purposes. An admin-side trigger or function could optionally sync data later.
 
-### Dependencies:
-- Uses existing lucide-react icons (Linkedin, Instagram, Facebook, Twitter, Youtube, ExternalLink)
-- No new packages required
+### 2. Edge Function -- Port `find-matches`
+
+Copy the `find-matches` edge function into `supabase/functions/find-matches/index.ts` in this project. Update table references from `profiles` to `mentor_profiles` and `matches` to `mentor_matches`.
+
+### 3. Pages -- Port and adapt 3 pages
+
+**New pages to create:**
+
+| Page | Route | Source | Changes |
+|------|-------|--------|---------|
+| MentorOnboarding | `/mentor-onboarding` | Onboarding.tsx | Use `AuthContext` instead of raw supabase.auth; table name to `mentor_profiles`; redirect to `/mentor-dashboard` |
+| MentorDashboard | `/mentor-dashboard` | Dashboard.tsx | Use `AuthContext`; remove custom header (uses main Navigation); table names updated |
+| FindMentor | `/find-mentor` | FindMentor.tsx | Use `AuthContext`; remove separate Navigation; table names updated |
+
+All three pages will be wrapped in `ProtectedRoute` so only logged-in users can access them. The existing `/auth` page handles login/signup with email, Google, and LinkedIn -- no separate auth flow needed.
+
+### 4. Navigation -- Add "Mentor Matching" link
+
+- Add a "Mentor Matching" nav item in `NavigationItems.tsx` pointing to `/mentor-dashboard`
+- Add the same in `MobileMenu.tsx`
+- When unauthenticated users click it, `ProtectedRoute` redirects them to `/auth`, and after login they return to the mentor page
+
+### 5. Routing -- Update App.tsx
+
+Add three new protected routes inside the main layout:
+
+```text
+/mentor-onboarding  ->  ProtectedRoute > MentorOnboarding
+/mentor-dashboard   ->  ProtectedRoute > MentorDashboard
+/find-mentor        ->  ProtectedRoute > FindMentor
+```
+
+### 6. Auto-redirect logic
+
+On `/mentor-dashboard`, if the user has no `mentor_profiles` row yet, redirect them to `/mentor-onboarding`. After onboarding completes and the `find-matches` function runs, redirect to `/mentor-dashboard`.
+
+## Database Mapping Summary
+
+```text
+Mentor-Matching App          Main App (this project)
+--------------------         -----------------------
+profiles                 ->  mentor_profiles (new table)
+matches                  ->  mentor_matches (new table)
+supabase.auth            ->  Same auth (AuthContext wraps it)
+find-matches (function)  ->  find-matches (ported edge function)
+```
+
+No data redundancy -- the existing `contacts` table is CRM-facing, `mentor_profiles` is user-facing. They coexist without duplication.
+
+## Files to Create/Modify
+
+| Action | File |
+|--------|------|
+| Create | `supabase/migrations/[timestamp]_mentor_matching.sql` (via migration tool) |
+| Create | `supabase/functions/find-matches/index.ts` |
+| Create | `src/pages/MentorOnboarding.tsx` |
+| Create | `src/pages/MentorDashboard.tsx` |
+| Create | `src/pages/FindMentor.tsx` |
+| Edit | `src/App.tsx` (add 3 routes) |
+| Edit | `src/components/navigation/NavigationItems.tsx` (add link) |
+| Edit | `src/components/navigation/MobileMenu.tsx` (add link) |
+
+## What Stays the Same
+
+- Single login via `/auth` (email + Google + LinkedIn) -- no new auth pages
+- Existing `contacts`, `page_interactions`, and all other tables remain untouched
+- Existing navigation structure preserved; mentor matching added as a new item
+- All existing pages and forms continue working with no changes
+
