@@ -37,22 +37,29 @@ const PartnershipInquiry = () => {
         return;
       }
 
-      // Store in page_interactions table as partnership inquiry
-      const { error } = await supabase
+      // Store PII in dedicated contact_submissions table
+      const { error: contactError } = await supabase
+        .from('contact_submissions')
+        .insert({
+          name: result.data.name,
+          email: result.data.email,
+          company: result.data.organization,
+          message: `Partnership Inquiry - Type: ${result.data.partnershipType}. Details: ${result.data.details}`
+        });
+
+      if (contactError) throw contactError;
+
+      // Log non-PII analytics only
+      await supabase
         .from('page_interactions')
         .insert({
           page_name: window.location.pathname,
           interaction_type: 'partnership_inquiry',
-          interaction_data: {
-            name: result.data.name,
-            email: result.data.email,
-            organization: result.data.organization,
+          metadata: {
             partnership_type: result.data.partnershipType,
-            details: result.data.details
+            source: 'partnership_form'
           }
         });
-
-      if (error) throw error;
 
       toast({
         title: "Partnership Inquiry Received!",

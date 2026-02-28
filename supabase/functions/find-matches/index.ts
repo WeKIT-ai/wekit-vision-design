@@ -6,6 +6,9 @@ const corsHeaders = {
   'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type, x-supabase-client-platform, x-supabase-client-platform-version, x-supabase-client-runtime, x-supabase-client-runtime-version',
 };
 
+// UUID v4 regex for input validation
+const UUID_REGEX = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
+
 interface Profile {
   id: string;
   role: string;
@@ -54,10 +57,15 @@ serve(async (req) => {
     const supabaseKey = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')!;
     const supabase = createClient(supabaseUrl, supabaseKey);
 
-    const { userId } = await req.json();
+    const body = await req.json();
+    const { userId } = body;
 
-    if (!userId) {
-      throw new Error('User ID is required');
+    // Validate userId is a valid UUID
+    if (!userId || typeof userId !== 'string' || !UUID_REGEX.test(userId)) {
+      return new Response(
+        JSON.stringify({ error: 'Invalid or missing userId. Must be a valid UUID.' }),
+        { status: 400, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
+      );
     }
 
     console.log('Finding matches for user:', userId);
@@ -143,7 +151,7 @@ serve(async (req) => {
   } catch (error: any) {
     console.error('Error finding matches:', error);
     return new Response(
-      JSON.stringify({ error: error.message }),
+      JSON.stringify({ error: 'An error occurred while finding matches' }),
       { 
         status: 500,
         headers: { ...corsHeaders, 'Content-Type': 'application/json' }
