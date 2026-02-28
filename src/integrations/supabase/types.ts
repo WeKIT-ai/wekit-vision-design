@@ -302,6 +302,102 @@ export type Database = {
           },
         ]
       }
+      mentor_matches: {
+        Row: {
+          compatibility_score: number
+          created_at: string
+          id: string
+          mentee_id: string
+          mentor_id: string
+          status: Database["public"]["Enums"]["match_status"]
+          updated_at: string
+        }
+        Insert: {
+          compatibility_score?: number
+          created_at?: string
+          id?: string
+          mentee_id: string
+          mentor_id: string
+          status?: Database["public"]["Enums"]["match_status"]
+          updated_at?: string
+        }
+        Update: {
+          compatibility_score?: number
+          created_at?: string
+          id?: string
+          mentee_id?: string
+          mentor_id?: string
+          status?: Database["public"]["Enums"]["match_status"]
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "mentor_matches_mentee_id_fkey"
+            columns: ["mentee_id"]
+            isOneToOne: false
+            referencedRelation: "mentor_profiles"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "mentor_matches_mentor_id_fkey"
+            columns: ["mentor_id"]
+            isOneToOne: false
+            referencedRelation: "mentor_profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      mentor_profiles: {
+        Row: {
+          availability: string[] | null
+          avatar_url: string | null
+          bio: string | null
+          created_at: string
+          email: string | null
+          experience_level: number | null
+          full_name: string
+          goals: string[] | null
+          id: string
+          industry: string[] | null
+          location: string | null
+          role: Database["public"]["Enums"]["mentor_role"]
+          skills: string[] | null
+          updated_at: string
+        }
+        Insert: {
+          availability?: string[] | null
+          avatar_url?: string | null
+          bio?: string | null
+          created_at?: string
+          email?: string | null
+          experience_level?: number | null
+          full_name: string
+          goals?: string[] | null
+          id: string
+          industry?: string[] | null
+          location?: string | null
+          role: Database["public"]["Enums"]["mentor_role"]
+          skills?: string[] | null
+          updated_at?: string
+        }
+        Update: {
+          availability?: string[] | null
+          avatar_url?: string | null
+          bio?: string | null
+          created_at?: string
+          email?: string | null
+          experience_level?: number | null
+          full_name?: string
+          goals?: string[] | null
+          id?: string
+          industry?: string[] | null
+          location?: string | null
+          role?: Database["public"]["Enums"]["mentor_role"]
+          skills?: string[] | null
+          updated_at?: string
+        }
+        Relationships: []
+      }
       mentor_waitlist: {
         Row: {
           created_at: string
@@ -581,6 +677,8 @@ export type Database = {
         | "event"
         | "form_submission"
         | "other"
+      match_status: "pending" | "accepted" | "rejected"
+      mentor_role: "mentor" | "mentee"
       outcome_status:
         | "positive"
         | "neutral"
@@ -738,6 +836,8 @@ export const Constants = {
         "form_submission",
         "other",
       ],
+      match_status: ["pending", "accepted", "rejected"],
+      mentor_role: ["mentor", "mentee"],
       outcome_status: [
         "positive",
         "neutral",

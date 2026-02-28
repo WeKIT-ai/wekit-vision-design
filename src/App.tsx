@@ -25,6 +25,10 @@ import NotFound from "./pages/NotFound";
 import Parents from "./pages/Parents";
 import MentorWaitlist from "./pages/MentorWaitlist";
 import Waitlist from "./pages/Waitlist";
+import MentorOnboarding from "./pages/MentorOnboarding";
+import MentorDashboard from "./pages/MentorDashboard";
+import FindMentor from "./pages/FindMentor";
+import ProtectedRoute from "./components/ProtectedRoute";
 const queryClient = new QueryClient();
 
 const App = () => (
@@ -61,6 +65,9 @@ const App = () => (
                       <Route path="/roadmap" element={<Roadmap />} />
                       <Route path="/white-paper" element={<WhitePaper />} />
                       <Route path="/mentor-waitlist" element={<MentorWaitlist />} />
+                      <Route path="/mentor-onboarding" element={<ProtectedRoute><MentorOnboarding /></ProtectedRoute>} />
+                      <Route path="/mentor-dashboard" element={<ProtectedRoute><MentorDashboard /></ProtectedRoute>} />
+                      <Route path="/find-mentor" element={<ProtectedRoute><FindMentor /></ProtectedRoute>} />
                       <Route path="*" element={<NotFound />} />
                     </Routes>
                   </main>

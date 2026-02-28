@@ -18,10 +18,11 @@ const MobileMenu = ({ isOpen, setIsOpen }: MobileMenuProps) => {
     { name: 'Home', path: '/' },
     { name: 'Schools & Colleges', path: '/schools' },
     { name: 'Students & Mentees', path: '/students' },
-    { name: 'Parents', path: 'https://lovable.dev/projects/db205b89-38c3-49ab-9fb5-591b507101f0', external: true },
+    { name: 'Parents', path: '/parents' },
     { name: 'Professionals', path: '/professionals' },
     { name: 'NGOs & Partners', path: '/ngos' },
     { name: 'Courses & Certifications', path: '/courses', highlight: true },
+    { name: 'Mentor Matching', path: '/mentor-dashboard' },
   ];
 
   const dropdownItems = [
@@ -38,37 +39,23 @@ const MobileMenu = ({ isOpen, setIsOpen }: MobileMenuProps) => {
         {/* Main Navigation Items */}
         <div className="space-y-1 mb-6">
           {navItems.map((item) => (
-            item.external ? (
-              <a
-                key={item.name}
-                href={item.path}
-                target="_blank"
-                rel="noopener noreferrer"
-                onClick={() => setIsOpen(false)}
-                className="flex items-center justify-between py-3 px-4 text-base font-medium text-muted-foreground hover:text-foreground hover:bg-accent/50 rounded-lg transition-all duration-200"
-              >
-                <span>{item.name}</span>
-                <ChevronRight size={16} className="opacity-50" />
-              </a>
-            ) : (
-              <Link
-                key={item.path}
-                to={item.path}
-                onClick={() => setIsOpen(false)}
-                className={`flex items-center justify-between py-3 px-4 text-base font-medium rounded-lg transition-all duration-200 ${
-                  location.pathname === item.path
-                    ? 'text-foreground bg-accent/70 shadow-sm'
-                    : item.highlight
-                    ? 'text-primary hover:text-primary/80 hover:bg-primary/10'
-                    : 'text-muted-foreground hover:text-foreground hover:bg-accent/50'
-                }`}
-              >
-                <span>{item.name}</span>
-                {location.pathname === item.path && (
-                  <div className="w-2 h-2 bg-primary rounded-full"></div>
-                )}
-              </Link>
-            )
+            <Link
+              key={item.path}
+              to={item.path}
+              onClick={() => setIsOpen(false)}
+              className={`flex items-center justify-between py-3 px-4 text-base font-medium rounded-lg transition-all duration-200 ${
+                location.pathname === item.path
+                  ? 'text-foreground bg-accent/70 shadow-sm'
+                  : item.highlight
+                  ? 'text-primary hover:text-primary/80 hover:bg-primary/10'
+                  : 'text-muted-foreground hover:text-foreground hover:bg-accent/50'
+              }`}
+            >
+              <span>{item.name}</span>
+              {location.pathname === item.path && (
+                <div className="w-2 h-2 bg-primary rounded-full"></div>
+              )}
+            </Link>
           ))}
         </div>
         
