@@ -31,6 +31,10 @@ const MobileMenu = ({ isOpen, setIsOpen }: MobileMenuProps) => {
     { name: 'About Us', path: '/about' },
   ];
 
+  const resourceItems = [
+    { name: 'White Paper', path: '/white-paper' },
+  ];
+
   if (!isOpen) return null;
 
   return (
@@ -96,7 +100,30 @@ const MobileMenu = ({ isOpen, setIsOpen }: MobileMenuProps) => {
             )
           ))}
         </div>
-        
+
+        {/* Resources */}
+        <div className="space-y-1 mb-6 pt-4 border-t border-border">
+          <h3 className="px-4 text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-2">
+            Resources
+          </h3>
+          {resourceItems.map((item) => (
+            <Link
+              key={item.path}
+              to={item.path}
+              onClick={() => setIsOpen(false)}
+              className={`flex items-center justify-between py-3 px-4 text-base font-medium rounded-lg transition-all duration-200 ${
+                location.pathname === item.path
+                  ? 'text-foreground bg-accent/70 shadow-sm'
+                  : 'text-muted-foreground hover:text-foreground hover:bg-accent/50'
+              }`}
+            >
+              <span>{item.name}</span>
+              {location.pathname === item.path && (
+                <div className="w-2 h-2 bg-primary rounded-full"></div>
+              )}
+            </Link>
+          ))}
+        </div>
         {/* Auth Section */}
         {user ? (
           <div className="pt-4 border-t border-border">

@@ -6,6 +6,7 @@ import { Button } from '@/components/ui/button';
 import NavigationItems from './navigation/NavigationItems';
 import InvestorsDropdown from './navigation/InvestorsDropdown';
 import AboutDropdown from './navigation/AboutDropdown';
+import ResourcesDropdown from './navigation/ResourcesDropdown';
 import AuthSection from './navigation/AuthSection';
 import MobileMenu from './navigation/MobileMenu';
 
@@ -42,6 +43,9 @@ const Navigation = () => {
                 <InvestorsDropdown />
               </div>
               <div className="animate-[slideUp_0.6s_ease-out_0.6s_both]">
+                <ResourcesDropdown />
+              </div>
+              <div className="animate-[slideUp_0.6s_ease-out_0.7s_both]">
                 <AboutDropdown />
               </div>
             </div>
