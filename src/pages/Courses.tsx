@@ -209,6 +209,107 @@ const Courses = () => {
         </div>
       </section>
 
+      {/* WeKIT Dental Assistant School Section */}
+      <section className="py-24 px-6 md:px-8 bg-gradient-to-br from-teal-900 to-emerald-900">
+        <div className="max-w-6xl mx-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            {/* Content */}
+            <div className="space-y-8">
+              <div className="inline-flex items-center px-4 py-2 bg-teal-500/20 rounded-full text-sm font-medium text-teal-300 mb-4">
+                <Target className="w-4 h-4 mr-2" />
+                Featured Program
+              </div>
+              <h2 className="text-4xl md:text-5xl font-bold text-white leading-tight">
+                WeKIT Dental
+                <br />
+                <span className="text-emerald-400">Assistant School</span>
+              </h2>
+              <p className="text-xl text-teal-100 leading-relaxed">
+                Train to become a certified dental assistant with hands-on clinical experience at top dental clinics. 
+                Perfect for 10th pass candidates looking to enter the healthcare industry with purpose-driven mentorship.
+              </p>
+              
+              {/* Key Features */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="flex items-center space-x-3 bg-white/10 p-4 rounded-lg">
+                  <BookOpen className="w-6 h-6 text-emerald-400" />
+                  <span className="text-white font-medium">Clinical Training</span>
+                </div>
+                <div className="flex items-center space-x-3 bg-white/10 p-4 rounded-lg">
+                  <Zap className="w-6 h-6 text-emerald-400" />
+                  <span className="text-white font-medium">Soft Skills Modules</span>
+                </div>
+                <div className="flex items-center space-x-3 bg-white/10 p-4 rounded-lg">
+                  <Users className="w-6 h-6 text-emerald-400" />
+                  <span className="text-white font-medium">1-on-1 Mentor</span>
+                </div>
+                <div className="flex items-center space-x-3 bg-white/10 p-4 rounded-lg">
+                  <Award className="w-6 h-6 text-emerald-400" />
+                  <span className="text-white font-medium">Certification</span>
+                </div>
+              </div>
+
+              {/* Career Paths */}
+              <div className="space-y-4">
+                <h3 className="text-xl font-semibold text-white">What You'll Learn:</h3>
+                <div className="flex flex-wrap gap-2">
+                  <span className="px-3 py-1 bg-emerald-500/20 text-emerald-300 rounded-full text-sm">Clinical Assisting</span>
+                  <span className="px-3 py-1 bg-teal-500/20 text-teal-300 rounded-full text-sm">Patient Care</span>
+                  <span className="px-3 py-1 bg-cyan-500/20 text-cyan-300 rounded-full text-sm">Office Management</span>
+                  <span className="px-3 py-1 bg-green-500/20 text-green-300 rounded-full text-sm">Dental Software</span>
+                </div>
+              </div>
+
+              <Button 
+                size="lg" 
+                className="bg-emerald-400 text-teal-900 hover:bg-emerald-300 px-8 py-6 text-lg font-medium rounded-full shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105"
+              >
+                Apply for Dental Assistant School
+                <ArrowRight className="ml-3" size={20} />
+              </Button>
+            </div>
+
+            {/* Stats Card */}
+            <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-8 border border-white/20">
+              <h3 className="text-2xl font-bold text-white mb-6">Programme Snapshot</h3>
+              <div className="space-y-6">
+                <div className="flex justify-between items-center">
+                  <span className="text-teal-200">Eligibility</span>
+                  <span className="text-lg font-bold text-emerald-400">10th Pass, 18+</span>
+                </div>
+                <div className="flex justify-between items-center">
+                  <span className="text-teal-200">Location</span>
+                  <span className="text-lg font-bold text-emerald-400">Top Dental Clinics</span>
+                </div>
+                <div className="flex justify-between items-center">
+                  <span className="text-teal-200">Course Fee</span>
+                  <span className="text-lg font-bold text-emerald-400">From ₹25,000</span>
+                </div>
+                <div className="flex justify-between items-center">
+                  <span className="text-teal-200">Scholarships</span>
+                  <span className="text-lg font-bold text-emerald-400">Available</span>
+                </div>
+              </div>
+              
+              <div className="mt-8 grid grid-cols-2 gap-3">
+                <div className="bg-teal-500/20 rounded-lg p-3 text-center">
+                  <p className="text-sm text-teal-200">Certifications</p>
+                </div>
+                <div className="bg-teal-500/20 rounded-lg p-3 text-center">
+                  <p className="text-sm text-teal-200">Professional Networks</p>
+                </div>
+                <div className="bg-teal-500/20 rounded-lg p-3 text-center">
+                  <p className="text-sm text-teal-200">Purpose-Driven</p>
+                </div>
+                <div className="bg-teal-500/20 rounded-lg p-3 text-center">
+                  <p className="text-sm text-teal-200">Global Reach</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Features Section */}
       <section className="py-24 px-6 md:px-8">
         <div className="max-w-6xl mx-auto">
