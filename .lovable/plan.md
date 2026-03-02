@@ -1,120 +1,104 @@
 
 
-# Integrating Mentor Matching into the Main WeKIT Platform
+# Security Fixes for Error-Level Findings
 
 ## Overview
-The mentor-matching app ([wekit-mentor-matching](https://wekit-mentor-matching.lovable.app)) is currently a separate project with its own backend and authentication. This plan merges its pages, database tables, and edge function into the main WeKIT platform so users have a single login and a unified experience.
+Four error-level security findings need to be addressed. This plan covers all of them plus a bug found during form review.
 
-## Current State
+## Finding 1: Edge function `find-matches` lacks authentication
 
-**Mentor Matching App (separate project):**
-- Pages: Landing, Auth, Onboarding (role selection + profile form), Dashboard (view matches), FindMentor (browse/filter mentors)
-- Database tables: `profiles` (mentor/mentee profiles with skills, industry, goals, availability) and `matches` (mentor_id, mentee_id, compatibility_score, status)
-- Edge function: `find-matches` (compatibility algorithm scoring industry, skills, goals, availability, location)
-- Its own separate authentication (not shared with main app)
+**Problem:** The `find-matches` edge function uses `SUPABASE_SERVICE_ROLE_KEY` and accepts any `userId` without verifying the caller is authenticated or that `userId` matches the caller.
 
-**Main WeKIT App (this project):**
-- Already has `AuthContext` with sign-up, sign-in, sign-out, and social login (Google, LinkedIn)
-- Already has `contacts` table with similar fields (full_name, email, location, etc.)
-- Already has RBAC via `user_roles` table
+**Fix:**
+- Add JWT authentication check using `getClaims()` per Lovable Cloud pattern
+- Create a user-scoped Supabase client using the caller's auth header
+- Validate that the `userId` in the request body matches the authenticated user's `sub` claim
+- Keep service role client only for inserting matches (needed to bypass RLS for cross-user inserts)
 
-## Integration Strategy
+**File:** `supabase/functions/find-matches/index.ts`
 
-### 1. Database -- Create `profiles` and `matches` tables in THIS project
+## Finding 2: Edge function `zoho-webhook` incomplete validation
 
-Create a migration that adds:
+**Problem:** The zoho-webhook accepts arbitrary JSON without schema validation. If `ZOHO_WEBHOOK_SECRET` is not set, it accepts all requests.
 
-**`mentor_profiles` table** (avoids name clash with potential future `profiles` table):
-- `id` (uuid, PK, references auth.users on delete cascade)
-- `role` (enum: `mentor` | `mentee`)
-- `full_name`, `email`, `bio`, `location` (text)
-- `industry` (text array), `skills` (text array), `goals` (text array), `availability` (text array)
-- `experience_level` (integer)
-- `avatar_url` (text, nullable)
-- `created_at`, `updated_at` (timestamps)
+**Fix:**
+- Make `ZOHO_WEBHOOK_SECRET` mandatory -- return 500 if not configured instead of silently skipping validation
+- Add basic schema validation for the webhook payload (enforce it's a non-empty object, cap payload size)
 
-**`mentor_matches` table:**
-- `id` (uuid, PK)
-- `mentor_id`, `mentee_id` (uuid, references mentor_profiles)
-- `compatibility_score` (integer)
-- `status` (enum: `pending` | `accepted` | `rejected`)
-- `created_at`, `updated_at` (timestamps)
+**File:** `supabase/functions/zoho-webhook/index.ts`
 
-**RLS policies:**
-- Users can read/update their own `mentor_profiles` row
-- Users can read matches where they are mentor or mentee
-- Users can update match status on matches involving them
-- Insert on `mentor_profiles` allowed for authenticated users (own ID only)
-- Trigger to auto-create a profile row on user signup (linked to auth.users)
+## Finding 3: Contact-related tables lack granular RLS
 
-**Relationship to existing `contacts` table:** The `contacts` table is for CRM/admin use. `mentor_profiles` is user-facing. No foreign key between them -- they serve different purposes. An admin-side trigger or function could optionally sync data later.
+**Problem:** `contact_tags`, `contact_interactions`, and `ai_embeddings` allow all authenticated users to SELECT all rows. These contain sensitive CRM data that should be admin-only (consistent with the `contacts` table fix).
 
-### 2. Edge Function -- Port `find-matches`
+**Fix:** Database migration to:
+- Drop the overly permissive `"Authenticated users can view contact tags"` policy, replace with admin-only
+- Drop `"Authenticated users can view interactions"`, replace with admin-only
+- Drop `"Authenticated users can view embeddings"`, replace with admin-only
 
-Copy the `find-matches` edge function into `supabase/functions/find-matches/index.ts` in this project. Update table references from `profiles` to `mentor_profiles` and `matches` to `mentor_matches`.
+**File:** New migration SQL
 
-### 3. Pages -- Port and adapt 3 pages
+## Finding 4: `contacts` table exposure (already fixed)
 
-**New pages to create:**
+**Status:** Already remediated in migration `20260209030358`. The security finding description confirms "FIXED". This finding will be deleted from the scan results.
 
-| Page | Route | Source | Changes |
-|------|-------|--------|---------|
-| MentorOnboarding | `/mentor-onboarding` | Onboarding.tsx | Use `AuthContext` instead of raw supabase.auth; table name to `mentor_profiles`; redirect to `/mentor-dashboard` |
-| MentorDashboard | `/mentor-dashboard` | Dashboard.tsx | Use `AuthContext`; remove custom header (uses main Navigation); table names updated |
-| FindMentor | `/find-mentor` | FindMentor.tsx | Use `AuthContext`; remove separate Navigation; table names updated |
+## Bug Fix: Newsletter form inserting non-existent column
 
-All three pages will be wrapped in `ProtectedRoute` so only logged-in users can access them. The existing `/auth` page handles login/signup with email, Google, and LinkedIn -- no separate auth flow needed.
+**Problem:** `NewsletterSignup.tsx` inserts `source_page` into `newsletter_subscriptions`, but that column doesn't exist on the table (only `id`, `email`, `created_at`).
 
-### 4. Navigation -- Add "Mentor Matching" link
+**Fix:** Remove `source_page` from the insert call.
 
-- Add a "Mentor Matching" nav item in `NavigationItems.tsx` pointing to `/mentor-dashboard`
-- Add the same in `MobileMenu.tsx`
-- When unauthenticated users click it, `ProtectedRoute` redirects them to `/auth`, and after login they return to the mentor page
+**File:** `src/components/lead-gen/NewsletterSignup.tsx`
 
-### 5. Routing -- Update App.tsx
+## Bug Fix: DemoRequestForm lacks Zod validation and database persistence
 
-Add three new protected routes inside the main layout:
+**Problem:** `DemoRequestForm.tsx` has no Zod schema validation (uses manual checks only), submits to an empty `ZOHO_WEBHOOK_URL` string (so nothing actually happens), and doesn't store data in the database.
 
-```text
-/mentor-onboarding  ->  ProtectedRoute > MentorOnboarding
-/mentor-dashboard   ->  ProtectedRoute > MentorDashboard
-/find-mentor        ->  ProtectedRoute > FindMentor
-```
+**Fix:**
+- Add a `demoRequestSchema` Zod validation (already exists in `validation.ts` but isn't used by this form -- however the existing schema fields don't match the form fields, so we'll use `contactFormSchema`-style validation)
+- Store PII in `contact_submissions` and log non-PII analytics to `page_interactions`
+- Remove the empty `ZOHO_WEBHOOK_URL` dead code
 
-### 6. Auto-redirect logic
+**File:** `src/components/lead-gen/DemoRequestForm.tsx`
 
-On `/mentor-dashboard`, if the user has no `mentor_profiles` row yet, redirect them to `/mentor-onboarding`. After onboarding completes and the `find-matches` function runs, redirect to `/mentor-dashboard`.
-
-## Database Mapping Summary
-
-```text
-Mentor-Matching App          Main App (this project)
---------------------         -----------------------
-profiles                 ->  mentor_profiles (new table)
-matches                  ->  mentor_matches (new table)
-supabase.auth            ->  Same auth (AuthContext wraps it)
-find-matches (function)  ->  find-matches (ported edge function)
-```
-
-No data redundancy -- the existing `contacts` table is CRM-facing, `mentor_profiles` is user-facing. They coexist without duplication.
+---
 
 ## Files to Create/Modify
 
-| Action | File |
-|--------|------|
-| Create | `supabase/migrations/[timestamp]_mentor_matching.sql` (via migration tool) |
-| Create | `supabase/functions/find-matches/index.ts` |
-| Create | `src/pages/MentorOnboarding.tsx` |
-| Create | `src/pages/MentorDashboard.tsx` |
-| Create | `src/pages/FindMentor.tsx` |
-| Edit | `src/App.tsx` (add 3 routes) |
-| Edit | `src/components/navigation/NavigationItems.tsx` (add link) |
-| Edit | `src/components/navigation/MobileMenu.tsx` (add link) |
+| Action | File | Purpose |
+|--------|------|---------|
+| Edit | `supabase/functions/find-matches/index.ts` | Add auth enforcement |
+| Edit | `supabase/functions/zoho-webhook/index.ts` | Require webhook secret, add payload validation |
+| Create | New migration SQL | Restrict RLS on contact_tags, contact_interactions, ai_embeddings |
+| Edit | `src/components/lead-gen/NewsletterSignup.tsx` | Remove non-existent source_page column |
+| Edit | `src/components/lead-gen/DemoRequestForm.tsx` | Add validation and database persistence |
+| Delete | Security findings | Remove resolved findings from scan results |
 
-## What Stays the Same
+## Technical Details
 
-- Single login via `/auth` (email + Google + LinkedIn) -- no new auth pages
-- Existing `contacts`, `page_interactions`, and all other tables remain untouched
-- Existing navigation structure preserved; mentor matching added as a new item
-- All existing pages and forms continue working with no changes
+### find-matches auth pattern:
+```text
+1. Extract Authorization header
+2. Create user-scoped client, call getClaims(token)
+3. Compare claims.sub with request body userId
+4. Reject if mismatch (403) or missing auth (401)
+5. Keep service role client for match inserts only
+```
 
+### RLS migration:
+```text
+DROP POLICY "Authenticated users can view contact tags" ON contact_tags;
+CREATE POLICY "Admins can view contact tags" ... USING (has_role(auth.uid(), 'admin'));
+
+DROP POLICY "Authenticated users can view interactions" ON contact_interactions;
+CREATE POLICY "Admins can view contact interactions" ... USING (has_role(auth.uid(), 'admin'));
+
+DROP POLICY "Authenticated users can view embeddings" ON ai_embeddings;
+CREATE POLICY "Admins can view AI embeddings" ... USING (has_role(auth.uid(), 'admin'));
+```
+
+### DemoRequestForm fix:
+- Add Zod schema for the form fields (fullName, email, phone, designation, organization, studentCount, programme, serviceFor)
+- Insert PII into contact_submissions
+- Log non-PII analytics (designation, studentCount, programme, serviceFor) into page_interactions
+- Remove dead ZOHO_WEBHOOK_URL code
