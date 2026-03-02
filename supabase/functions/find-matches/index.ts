@@ -54,13 +54,37 @@ serve(async (req) => {
 
   try {
     const supabaseUrl = Deno.env.get('SUPABASE_URL')!;
-    const supabaseKey = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')!;
-    const supabase = createClient(supabaseUrl, supabaseKey);
+    const supabaseAnonKey = Deno.env.get('SUPABASE_ANON_KEY')!;
+    const supabaseServiceKey = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')!;
 
+    // --- Authentication enforcement ---
+    const authHeader = req.headers.get('Authorization');
+    if (!authHeader?.startsWith('Bearer ')) {
+      return new Response(
+        JSON.stringify({ error: 'Authentication required' }),
+        { status: 401, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
+      );
+    }
+
+    const userClient = createClient(supabaseUrl, supabaseAnonKey, {
+      global: { headers: { Authorization: authHeader } }
+    });
+
+    const token = authHeader.replace('Bearer ', '');
+    const { data: claimsData, error: claimsError } = await userClient.auth.getClaims(token);
+    if (claimsError || !claimsData?.claims) {
+      return new Response(
+        JSON.stringify({ error: 'Invalid authentication' }),
+        { status: 401, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
+      );
+    }
+
+    const authenticatedUserId = claimsData.claims.sub;
+
+    // --- Parse and validate request body ---
     const body = await req.json();
     const { userId } = body;
 
-    // Validate userId is a valid UUID
     if (!userId || typeof userId !== 'string' || !UUID_REGEX.test(userId)) {
       return new Response(
         JSON.stringify({ error: 'Invalid or missing userId. Must be a valid UUID.' }),
@@ -68,7 +92,18 @@ serve(async (req) => {
       );
     }
 
-    console.log('Finding matches for user:', userId);
+    // Ensure the caller can only find matches for themselves
+    if (userId !== authenticatedUserId) {
+      return new Response(
+        JSON.stringify({ error: 'Unauthorized: cannot find matches for other users' }),
+        { status: 403, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
+      );
+    }
+
+    console.log('Finding matches for authenticated user:', userId);
+
+    // Service role client for cross-user reads and match inserts
+    const supabase = createClient(supabaseUrl, supabaseServiceKey);
 
     // Get user profile
     const { data: userProfile, error: profileError } = await supabase
