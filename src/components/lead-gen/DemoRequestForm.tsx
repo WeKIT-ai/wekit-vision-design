@@ -5,6 +5,8 @@ import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Calendar } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
+import { supabase } from '@/integrations/supabase/client';
+import { demoRequestSchema } from '@/lib/validation';
 
 const DemoRequestForm = () => {
   const [formData, setFormData] = useState({
@@ -20,47 +22,50 @@ const DemoRequestForm = () => {
   const [isLoading, setIsLoading] = useState(false);
   const { toast } = useToast();
 
-  // Replace this with your Zoho Forms webhook URL
-  const ZOHO_WEBHOOK_URL = '';
-
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
     
     try {
-      // Validate required fields
-      if (!formData.fullName || !formData.email || !formData.phone || 
-          !formData.designation || !formData.organization || !formData.studentCount) {
+      // Zod validation
+      const result = demoRequestSchema.safeParse(formData);
+      if (!result.success) {
         toast({
           title: "Validation Error",
-          description: "Please fill in all required fields",
+          description: result.error.errors[0].message,
           variant: "destructive"
         });
         setIsLoading(false);
         return;
       }
 
-      if (ZOHO_WEBHOOK_URL) {
-        // Submit to Zoho Forms webhook
-        await fetch(ZOHO_WEBHOOK_URL, {
-          method: 'POST',
-          mode: 'no-cors',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            full_name: formData.fullName,
-            email: formData.email,
-            phone: formData.phone,
-            designation: formData.designation,
-            organization: formData.organization,
-            student_count: formData.studentCount,
-            programme: formData.programme,
-            service_for: formData.serviceFor,
-            submitted_at: new Date().toISOString()
-          })
+      const validated = result.data;
+
+      // Store PII in contact_submissions
+      const { error: contactError } = await supabase
+        .from('contact_submissions')
+        .insert({
+          name: validated.fullName,
+          email: validated.email,
+          company: validated.organization,
+          message: `Demo Request | Phone: ${validated.phone} | Designation: ${validated.designation} | Students: ${validated.studentCount}${validated.programme ? ` | Programme: ${validated.programme}` : ''}${validated.serviceFor ? ` | Service For: ${validated.serviceFor}` : ''}`
         });
-      }
+
+      if (contactError) throw contactError;
+
+      // Log non-PII analytics to page_interactions
+      await supabase
+        .from('page_interactions')
+        .insert({
+          page_name: 'demo-request',
+          interaction_type: 'form_submission',
+          metadata: {
+            designation: validated.designation,
+            student_count: validated.studentCount,
+            programme: validated.programme || null,
+            service_for: validated.serviceFor || null
+          }
+        });
 
       toast({
         title: "Demo Request Submitted!",

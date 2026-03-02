@@ -7,6 +7,8 @@ const corsHeaders = {
     "authorization, x-client-info, apikey, content-type, x-zoho-signature",
 };
 
+const MAX_PAYLOAD_SIZE = 1_048_576; // 1 MB
+
 interface ZohoWebhookPayload {
   [key: string]: unknown;
 }
@@ -40,79 +42,90 @@ async function generateSignature(payload: string, secret: string): Promise<strin
 }
 
 const handler = async (req: Request): Promise<Response> => {
-  // Handle CORS preflight requests
   if (req.method === "OPTIONS") {
     return new Response(null, { headers: corsHeaders });
   }
 
   try {
-    // Only accept POST requests
     if (req.method !== "POST") {
       return new Response(
         JSON.stringify({ error: "Method not allowed" }),
-        {
-          status: 405,
-          headers: { "Content-Type": "application/json", ...corsHeaders },
-        }
+        { status: 405, headers: { "Content-Type": "application/json", ...corsHeaders } }
       );
     }
 
-    // Get the webhook secret for validation
+    // --- Mandatory webhook secret ---
     const webhookSecret = Deno.env.get("ZOHO_WEBHOOK_SECRET");
-    
-    // If webhook secret is configured, validate the signature
-    if (webhookSecret) {
-      const signature = req.headers.get("x-zoho-signature");
-      
-      if (!signature) {
-        console.error("Missing webhook signature");
-        return new Response(
-          JSON.stringify({ error: "Unauthorized - Missing signature" }),
-          {
-            status: 401,
-            headers: { "Content-Type": "application/json", ...corsHeaders },
-          }
-        );
-      }
-
-      // Clone the request to read body for signature verification
-      const bodyText = await req.clone().text();
-      const expectedSignature = await generateSignature(bodyText, webhookSecret);
-      
-      if (!secureCompare(signature, expectedSignature)) {
-        console.error("Invalid webhook signature");
-        return new Response(
-          JSON.stringify({ error: "Forbidden - Invalid signature" }),
-          {
-            status: 403,
-            headers: { "Content-Type": "application/json", ...corsHeaders },
-          }
-        );
-      }
-      
-      console.log("Webhook signature verified successfully");
-    } else {
-      console.warn("ZOHO_WEBHOOK_SECRET not configured - webhook validation disabled");
+    if (!webhookSecret) {
+      console.error("ZOHO_WEBHOOK_SECRET is not configured");
+      return new Response(
+        JSON.stringify({ error: "Server configuration error" }),
+        { status: 500, headers: { "Content-Type": "application/json", ...corsHeaders } }
+      );
     }
 
-    // Parse the webhook payload
+    const signature = req.headers.get("x-zoho-signature");
+    if (!signature) {
+      console.error("Missing webhook signature");
+      return new Response(
+        JSON.stringify({ error: "Unauthorized - Missing signature" }),
+        { status: 401, headers: { "Content-Type": "application/json", ...corsHeaders } }
+      );
+    }
+
+    // --- Payload size check ---
+    const contentLength = req.headers.get("content-length");
+    if (contentLength && parseInt(contentLength, 10) > MAX_PAYLOAD_SIZE) {
+      return new Response(
+        JSON.stringify({ error: "Payload too large" }),
+        { status: 413, headers: { "Content-Type": "application/json", ...corsHeaders } }
+      );
+    }
+
+    const bodyText = await req.clone().text();
+    if (bodyText.length > MAX_PAYLOAD_SIZE) {
+      return new Response(
+        JSON.stringify({ error: "Payload too large" }),
+        { status: 413, headers: { "Content-Type": "application/json", ...corsHeaders } }
+      );
+    }
+
+    // --- Signature verification ---
+    const expectedSignature = await generateSignature(bodyText, webhookSecret);
+    if (!secureCompare(signature, expectedSignature)) {
+      console.error("Invalid webhook signature");
+      return new Response(
+        JSON.stringify({ error: "Forbidden - Invalid signature" }),
+        { status: 403, headers: { "Content-Type": "application/json", ...corsHeaders } }
+      );
+    }
+
+    console.log("Webhook signature verified successfully");
+
+    // --- Parse and validate payload ---
     let payload: ZohoWebhookPayload;
-    
     const contentType = req.headers.get("content-type") || "";
-    
+
     if (contentType.includes("application/json")) {
       payload = await req.json();
     } else if (contentType.includes("application/x-www-form-urlencoded")) {
       const formData = await req.formData();
       payload = Object.fromEntries(formData.entries());
     } else {
-      // Try to parse as JSON anyway
       const text = await req.text();
       try {
         payload = JSON.parse(text);
       } catch {
         payload = { raw_data: text };
       }
+    }
+
+    // Validate payload is a non-empty object
+    if (!payload || typeof payload !== "object" || Array.isArray(payload) || Object.keys(payload).length === 0) {
+      return new Response(
+        JSON.stringify({ error: "Invalid payload: must be a non-empty object" }),
+        { status: 400, headers: { "Content-Type": "application/json", ...corsHeaders } }
+      );
     }
 
     console.log("Received Zoho webhook payload:", JSON.stringify(payload));
@@ -125,16 +138,12 @@ const handler = async (req: Request): Promise<Response> => {
       console.error("Missing Supabase credentials");
       return new Response(
         JSON.stringify({ error: "Server configuration error" }),
-        {
-          status: 500,
-          headers: { "Content-Type": "application/json", ...corsHeaders },
-        }
+        { status: 500, headers: { "Content-Type": "application/json", ...corsHeaders } }
       );
     }
 
     const supabase = createClient(supabaseUrl, supabaseServiceKey);
 
-    // Insert the submission into the database
     const { data, error } = await supabase
       .from("zoho_form_submissions")
       .insert({
@@ -149,10 +158,7 @@ const handler = async (req: Request): Promise<Response> => {
       console.error("Database insert error:", error);
       return new Response(
         JSON.stringify({ error: "Failed to store submission", details: error.message }),
-        {
-          status: 500,
-          headers: { "Content-Type": "application/json", ...corsHeaders },
-        }
+        { status: 500, headers: { "Content-Type": "application/json", ...corsHeaders } }
       );
     }
 
@@ -172,26 +178,19 @@ const handler = async (req: Request): Promise<Response> => {
       const syncResult = await syncResponse.json();
       console.log("CRM sync result:", JSON.stringify(syncResult));
     } catch (syncError) {
-      // Log but don't fail the webhook - the submission is already stored
       console.error("CRM sync error (non-fatal):", syncError);
     }
 
     return new Response(
       JSON.stringify({ success: true, id: data.id }),
-      {
-        status: 200,
-        headers: { "Content-Type": "application/json", ...corsHeaders },
-      }
+      { status: 200, headers: { "Content-Type": "application/json", ...corsHeaders } }
     );
   } catch (error: unknown) {
     const errorMessage = error instanceof Error ? error.message : "Unknown error";
     console.error("Error in zoho-webhook function:", errorMessage);
     return new Response(
       JSON.stringify({ error: errorMessage }),
-      {
-        status: 500,
-        headers: { "Content-Type": "application/json", ...corsHeaders },
-      }
+      { status: 500, headers: { "Content-Type": "application/json", ...corsHeaders } }
     );
   }
 };

@@ -32,8 +32,7 @@ const NewsletterSignup = () => {
       const { error } = await supabase
         .from('newsletter_subscriptions')
         .insert({
-          email: result.data.email,
-          source_page: window.location.pathname
+          email: result.data.email
         });
 
       if (error) throw error;

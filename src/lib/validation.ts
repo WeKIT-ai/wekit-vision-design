@@ -91,7 +91,7 @@ export const earlyAccessSchema = z.object({
 
 // Demo request form validation
 export const demoRequestSchema = z.object({
-  name: z.string()
+  fullName: z.string()
     .trim()
     .min(2, "Name must be at least 2 characters")
     .max(100, "Name must be less than 100 characters"),
@@ -99,15 +99,19 @@ export const demoRequestSchema = z.object({
     .trim()
     .email("Please enter a valid email address")
     .max(255, "Email must be less than 255 characters"),
+  phone: z.string()
+    .trim()
+    .regex(/^[\+]?[1-9]?[\d\s\-\(\)]{7,15}$/, "Please enter a valid phone number"),
+  designation: z.string()
+    .min(1, "Please select a designation"),
   organization: z.string()
     .trim()
-    .max(200, "Organization name must be less than 200 characters")
-    .optional()
-    .or(z.literal('')),
-  role: z.string()
-    .min(1, "Please select a role"),
-  numberOfStudents: z.string()
-    .min(1, "Please select number of students")
+    .min(1, "Organisation name is required")
+    .max(200, "Organisation name must be less than 200 characters"),
+  studentCount: z.string()
+    .min(1, "Please select number of students"),
+  programme: z.string().optional().or(z.literal('')),
+  serviceFor: z.string().optional().or(z.literal(''))
 });
 
 // Partnership inquiry validation
