@@ -1,104 +1,162 @@
 
 
-# Security Fixes for Error-Level Findings
+# Move All Forms to Zoho CRM
 
-## Overview
-Four error-level security findings need to be addressed. This plan covers all of them plus a bug found during form review.
+## Complete Form Inventory
 
-## Finding 1: Edge function `find-matches` lacks authentication
-
-**Problem:** The `find-matches` edge function uses `SUPABASE_SERVICE_ROLE_KEY` and accepts any `userId` without verifying the caller is authenticated or that `userId` matches the caller.
-
-**Fix:**
-- Add JWT authentication check using `getClaims()` per Lovable Cloud pattern
-- Create a user-scoped Supabase client using the caller's auth header
-- Validate that the `userId` in the request body matches the authenticated user's `sub` claim
-- Keep service role client only for inserting matches (needed to bypass RLS for cross-user inserts)
-
-**File:** `supabase/functions/find-matches/index.ts`
-
-## Finding 2: Edge function `zoho-webhook` incomplete validation
-
-**Problem:** The zoho-webhook accepts arbitrary JSON without schema validation. If `ZOHO_WEBHOOK_SECRET` is not set, it accepts all requests.
-
-**Fix:**
-- Make `ZOHO_WEBHOOK_SECRET` mandatory -- return 500 if not configured instead of silently skipping validation
-- Add basic schema validation for the webhook payload (enforce it's a non-empty object, cap payload size)
-
-**File:** `supabase/functions/zoho-webhook/index.ts`
-
-## Finding 3: Contact-related tables lack granular RLS
-
-**Problem:** `contact_tags`, `contact_interactions`, and `ai_embeddings` allow all authenticated users to SELECT all rows. These contain sensitive CRM data that should be admin-only (consistent with the `contacts` table fix).
-
-**Fix:** Database migration to:
-- Drop the overly permissive `"Authenticated users can view contact tags"` policy, replace with admin-only
-- Drop `"Authenticated users can view interactions"`, replace with admin-only
-- Drop `"Authenticated users can view embeddings"`, replace with admin-only
-
-**File:** New migration SQL
-
-## Finding 4: `contacts` table exposure (already fixed)
-
-**Status:** Already remediated in migration `20260209030358`. The security finding description confirms "FIXED". This finding will be deleted from the scan results.
-
-## Bug Fix: Newsletter form inserting non-existent column
-
-**Problem:** `NewsletterSignup.tsx` inserts `source_page` into `newsletter_subscriptions`, but that column doesn't exist on the table (only `id`, `email`, `created_at`).
-
-**Fix:** Remove `source_page` from the insert call.
-
-**File:** `src/components/lead-gen/NewsletterSignup.tsx`
-
-## Bug Fix: DemoRequestForm lacks Zod validation and database persistence
-
-**Problem:** `DemoRequestForm.tsx` has no Zod schema validation (uses manual checks only), submits to an empty `ZOHO_WEBHOOK_URL` string (so nothing actually happens), and doesn't store data in the database.
-
-**Fix:**
-- Add a `demoRequestSchema` Zod validation (already exists in `validation.ts` but isn't used by this form -- however the existing schema fields don't match the form fields, so we'll use `contactFormSchema`-style validation)
-- Store PII in `contact_submissions` and log non-PII analytics to `page_interactions`
-- Remove the empty `ZOHO_WEBHOOK_URL` dead code
-
-**File:** `src/components/lead-gen/DemoRequestForm.tsx`
+Here are all 9 forms on the website with their field names, ready for you to create matching Zoho CRM forms or web forms.
 
 ---
 
-## Files to Create/Modify
+### 1. Demo Request Form
+**Location:** Schools page (`/schools`)
+**Purpose:** Schools/colleges requesting a product demo
 
-| Action | File | Purpose |
-|--------|------|---------|
-| Edit | `supabase/functions/find-matches/index.ts` | Add auth enforcement |
-| Edit | `supabase/functions/zoho-webhook/index.ts` | Require webhook secret, add payload validation |
-| Create | New migration SQL | Restrict RLS on contact_tags, contact_interactions, ai_embeddings |
-| Edit | `src/components/lead-gen/NewsletterSignup.tsx` | Remove non-existent source_page column |
-| Edit | `src/components/lead-gen/DemoRequestForm.tsx` | Add validation and database persistence |
-| Delete | Security findings | Remove resolved findings from scan results |
+| Field | Type | Required |
+|-------|------|----------|
+| Full Name | Text | Yes |
+| Email Address | Email | Yes |
+| Phone Number | Phone | Yes |
+| Designation | Dropdown: Principal/Director, Vice Principal, Coordinator, Career Counselor, Teacher/Educator, Administrator, Trustee/Management, Other | Yes |
+| Name of Organisation | Text | Yes |
+| Number of Students | Dropdown: 1-100, 101-500, 501-1000, 1001-2500, 2500+ | Yes |
+| Programme Interest | Dropdown: WALS Lab, WABLS, WAPPS, WeKIT 360 Mentoring, WAFLE Lab, WAFFS, WAP3, Complete WeKIT Suite | No |
+| Service For | Dropdown: Students, Teachers, Parents, Entire Institution | No |
 
-## Technical Details
+---
 
-### find-matches auth pattern:
-```text
-1. Extract Authorization header
-2. Create user-scoped client, call getClaims(token)
-3. Compare claims.sub with request body userId
-4. Reject if mismatch (403) or missing auth (401)
-5. Keep service role client for match inserts only
-```
+### 2. Contact Form (Get in Touch)
+**Location:** Home page and other pages
+**Purpose:** General inquiries
 
-### RLS migration:
-```text
-DROP POLICY "Authenticated users can view contact tags" ON contact_tags;
-CREATE POLICY "Admins can view contact tags" ... USING (has_role(auth.uid(), 'admin'));
+| Field | Type | Required |
+|-------|------|----------|
+| Your Name | Text | Yes |
+| Email Address | Email | Yes |
+| Organization/Company | Text | No |
+| Message | Textarea | Yes |
 
-DROP POLICY "Authenticated users can view interactions" ON contact_interactions;
-CREATE POLICY "Admins can view contact interactions" ... USING (has_role(auth.uid(), 'admin'));
+---
 
-DROP POLICY "Authenticated users can view embeddings" ON ai_embeddings;
-CREATE POLICY "Admins can view AI embeddings" ... USING (has_role(auth.uid(), 'admin'));
-```
+### 3. Newsletter Signup
+**Location:** Home page, Schools page
+**Purpose:** Email newsletter subscription
 
-### DemoRequestForm fix:
-- Add Zod schema for the form fields (fullName, email, phone, designation, organization, studentCount, programme, serviceFor)
-- Insert PII into contact_submissions
-- Log non-PII analytics (designation, studentCount, programme, serviceFor) into page_interactions
-- Remove dead ZOHO_WEBHOOK_URL code
+| Field | Type | Required |
+|-------|------|----------|
+| Email | Email | Yes |
+
+---
+
+### 4. Early Access / Waitlist Form
+**Location:** Home page
+**Purpose:** Join early access list
+
+| Field | Type | Required |
+|-------|------|----------|
+| Your Name | Text | Yes |
+| Email Address | Email | Yes |
+| I am a... | Dropdown: Student, Educator, Professional, Administrator | Yes |
+| School/Organization | Text | No |
+
+---
+
+### 5. Mentor Signup (Become a Mentor)
+**Location:** Home page
+**Purpose:** Mentor interest expression
+
+| Field | Type | Required |
+|-------|------|----------|
+| Full Name | Text | Yes |
+| Email Address | Email | Yes |
+| Current Company | Text | No |
+| Industry | Dropdown: Technology, Finance, Healthcare, Education, Marketing, Consulting, Other | Yes |
+| Years of Experience | Dropdown: 3-5, 5-10, 10-15, 15+ | Yes |
+| Expertise Description | Textarea | Yes |
+
+---
+
+### 6. Partnership Inquiry
+**Location:** Schools page, Home page
+**Purpose:** Partnership/collaboration inquiries
+
+| Field | Type | Required |
+|-------|------|----------|
+| Contact Name | Text | Yes |
+| Email Address | Email | Yes |
+| Organization Name | Text | Yes |
+| Partnership Type | Dropdown: Strategic Partnership, Technology Integration, Content Collaboration, Funding/Investment, Distribution Partnership | Yes |
+| Details | Textarea | Yes |
+
+---
+
+### 7. Mentor Waitlist (Full Application)
+**Location:** `/mentor-waitlist`
+**Purpose:** Detailed mentor application
+
+| Field | Type | Required |
+|-------|------|----------|
+| First Name | Text | Yes |
+| Last Name | Text | Yes |
+| Email Address | Email | Yes |
+| Phone Number | Phone | No |
+| Company/Organization | Text | Yes |
+| Position/Title | Text | Yes |
+| Industry | Dropdown: Technology, Healthcare, Finance, Education, Marketing, Engineering, Design, Consulting, Non-profit, Government, Real Estate, Media, Retail, Manufacturing, Other | Yes |
+| Years of Experience | Number | Yes |
+| Areas of Expertise | Textarea (comma-separated) | Yes |
+| Preferred Meeting Format | Dropdown: Video calls, Phone calls, In-person, Chat/messaging, Email, Group sessions | No |
+| Time Commitment | Dropdown: 1-2 hrs/mo, 3-5 hrs/mo, 6-10 hrs/mo, 11+ hrs/mo, Flexible | No |
+| Availability | Textarea | No |
+| Mentoring Philosophy | Textarea | Yes |
+| Motivation | Textarea | Yes |
+
+---
+
+### 8. Waitlist Signup (Landing Page)
+**Location:** `/waitlist` (hero + CTA sections)
+**Purpose:** Student waitlist for product launch
+
+| Field | Type | Required |
+|-------|------|----------|
+| Your Name | Text | Yes |
+| Email Address | Email | Yes |
+
+---
+
+### 9. White Paper Download
+**Location:** `/white-paper`
+**Purpose:** Gated content download
+
+| Field | Type | Required |
+|-------|------|----------|
+| First Name | Text | Yes |
+| Last Name | Text | Yes |
+| Email | Email | Yes |
+| Organization | Text | Yes |
+
+---
+
+## Implementation Approach
+
+Once you create the corresponding Zoho CRM Web Forms (or Zoho Forms), there are two ways to integrate them:
+
+### Option A: Embed Zoho Web Forms via iframe
+- Replace each React form component with an iframe embedding the Zoho-hosted form
+- Zoho handles all data capture and CRM syncing automatically
+- Simplest approach; no backend code needed
+- Tradeoff: styling won't match the site perfectly
+
+### Option B: Keep custom UI, POST to Zoho Web-to-Lead endpoint
+- Keep the existing styled React forms
+- On submit, POST directly to Zoho's web-to-lead URL (or call the existing `zoho-crm-sync` backend function)
+- Data goes to Zoho CRM as Leads automatically
+- Best of both worlds: matching design + Zoho CRM capture
+
+### Recommended Next Steps
+1. Create 9 Zoho CRM Web Forms matching the fields above
+2. Choose Option A (embed) or Option B (custom UI with Zoho POST)
+3. Update each form component accordingly
+4. Remove or keep the local database persistence as a backup
+
+Let me know which approach you prefer (embed or custom UI) so I can implement accordingly.
