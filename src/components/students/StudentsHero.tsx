@@ -20,9 +20,10 @@ const StudentsHero = () => {
           <div className="absolute inset-0 bg-black/60"></div>
         </div>
 
-        <div className="absolute inset-0 z-20 flex items-center justify-center">
-          <div className="text-center max-w-4xl px-6">
-            <h1 className="text-4xl md:text-6xl font-bold font-montserrat text-white mb-8 leading-tight">
+        {/* Content - Bottom Left */}
+        <div className="absolute inset-0 z-20 flex items-end justify-start p-8 md:p-16 pb-32">
+          <div className="text-left max-w-2xl">
+            <h1 className="text-4xl md:text-6xl font-bold font-montserrat text-white mb-6 leading-tight">
               Stop Graduating Into
               <span className="block text-wekit-gold">Uncertainty</span>
             </h1>
@@ -30,10 +31,10 @@ const StudentsHero = () => {
               You're not alone if you feel unprepared for the job market. 68% of students graduate 
               without clear career direction or job-ready skills. We change that.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <div className="flex flex-col sm:flex-row gap-4">
               <Button 
                 size="lg" 
-                className="bg-primary text-primary-foreground hover:bg-primary/90 px-8 py-6 text-lg font-medium rounded-2xl shadow-sm hover:shadow-md transition-all duration-300 group"
+                className="bg-primary text-primary-foreground hover:bg-primary/90 px-8 py-6 text-lg font-medium shadow-sm hover:shadow-md transition-all duration-300 group"
               >
                 Start Your Success Story
                 <ArrowRight className="ml-2 transition-transform duration-300 group-hover:translate-x-1" size={20} />
@@ -41,7 +42,7 @@ const StudentsHero = () => {
               <Button 
                 size="lg" 
                 variant="outline"
-                className="px-8 py-6 text-lg font-medium rounded-2xl border-2 border-white text-white hover:bg-white/10 transition-all duration-300"
+                className="px-8 py-6 text-lg font-medium border-2 border-white text-white hover:bg-white/10 transition-all duration-300"
               >
                 See Success Stories
               </Button>
@@ -53,7 +54,7 @@ const StudentsHero = () => {
       {/* Content Section */}
       <section className="pt-20 pb-32 px-4 sm:px-6 lg:px-8 bg-wekit-soft relative overflow-hidden">
         <div className="max-w-7xl mx-auto text-center">
-          <div className="bg-card border border-border rounded-2xl p-6 max-w-2xl mx-auto mb-8 shadow-sm">
+          <div className="bg-card border border-border p-6 max-w-2xl mx-auto mb-8 shadow-sm">
             <div className="flex items-center justify-center mb-4">
               <Brain className="mr-3 text-wekit-teal" size={32} />
               <h3 className="text-xl font-semibold font-montserrat text-foreground">Discover Your Perfect Career Path</h3>
@@ -69,7 +70,7 @@ const StudentsHero = () => {
             >
               <Button 
                 size="lg" 
-                className="bg-primary text-primary-foreground hover:bg-primary/90 px-8 py-4 text-lg font-medium rounded-2xl shadow-sm hover:shadow-md transition-all duration-300 group"
+                className="bg-primary text-primary-foreground hover:bg-primary/90 px-8 py-4 text-lg font-medium shadow-sm hover:shadow-md transition-all duration-300 group"
               >
                 Take Psychometric Test
                 <ArrowRight className="ml-2 transition-transform duration-300 group-hover:translate-x-1" size={20} />
@@ -77,7 +78,7 @@ const StudentsHero = () => {
             </a>
           </div>
 
-          <div className="bg-wekit-primary/10 border border-wekit-primary/20 rounded-2xl p-6 max-w-2xl mx-auto mb-8">
+          <div className="bg-wekit-primary/10 border border-wekit-primary/20 p-6 max-w-2xl mx-auto mb-8">
             <p className="text-lg text-foreground">
               <strong>The Reality:</strong> Average job search takes 6+ months. 
               Our students land offers in under 3 months.

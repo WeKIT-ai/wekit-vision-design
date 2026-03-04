@@ -19,7 +19,7 @@ const TeamSection = () => {
           <a href="https://www.topmate.io/yvonne_roberts_wekit/page/5wlgL5jOcR" target="_blank" rel="noopener noreferrer">
             <Button 
               size="lg" 
-              className="bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white px-12 py-6 text-lg font-medium rounded-full shadow-2xl hover:shadow-xl transition-all duration-300 hover:scale-105 hover:-translate-y-1 group"
+              className="bg-primary text-primary-foreground hover:bg-primary/90 px-12 py-6 text-lg font-medium shadow-sm hover:shadow-md transition-all duration-300 group"
             >
               <Calendar className="mr-3 transition-transform duration-300 group-hover:rotate-12" size={20} />
               Book a Session with Our Founder

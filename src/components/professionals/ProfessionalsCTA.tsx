@@ -16,7 +16,7 @@ const ProfessionalsCTA = () => {
         <a href="/mentor-waitlist">
           <Button 
             size="lg" 
-            className="bg-white text-primary hover:bg-white/90 px-10 py-6 text-lg font-medium rounded-2xl shadow-sm hover:shadow-md transition-all duration-300"
+            className="bg-white text-primary hover:bg-white/90 px-10 py-6 text-lg font-medium shadow-sm hover:shadow-md transition-all duration-300"
           >
             Start Your Career Acceleration
             <ArrowRight className="ml-2" size={20} />

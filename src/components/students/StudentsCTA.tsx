@@ -33,13 +33,13 @@ const StudentsCTA = () => {
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <a href="https://purpose-pathway-pilot.lovable.app/" target="_blank" rel="noopener noreferrer" onClick={handleCareerAssessmentClick}>
-            <Button size="lg" className="bg-white text-primary hover:bg-white/90 px-8 py-6 text-lg font-medium rounded-2xl shadow-sm hover:shadow-md transition-all duration-300">
+            <Button size="lg" className="bg-white text-primary hover:bg-white/90 px-8 py-6 text-lg font-medium shadow-sm hover:shadow-md transition-all duration-300">
               Take Career Assessment
               <Brain className="ml-2" size={20} />
             </Button>
           </a>
           <a href="/start-journey" onClick={() => trackButtonClick('career_transformation')}>
-            <Button size="lg" variant="outline" className="border-2 border-white text-white hover:bg-white/10 px-8 py-6 text-lg font-medium rounded-2xl transition-all duration-300">
+            <Button size="lg" variant="outline" className="border-2 border-white text-white hover:bg-white/10 px-8 py-6 text-lg font-medium transition-all duration-300">
               Start Your Career Transformation
               <ArrowRight className="ml-2" size={20} />
             </Button>

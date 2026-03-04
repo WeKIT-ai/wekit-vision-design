@@ -35,7 +35,7 @@ const Parents = () => {
       <section className="max-w-4xl w-full mb-10">
         <div className="flex flex-col md:flex-row gap-8 justify-center items-center">
           {painPoints.map((p, i) => (
-            <div key={i} className="flex flex-col items-center text-center bg-card border border-border/60 rounded-2xl p-6 flex-1 shadow-sm hover:shadow-lg transition-all duration-300">
+            <div key={i} className="flex flex-col items-center text-center bg-card border border-border/60 p-6 flex-1 shadow-sm hover:shadow-lg transition-all duration-300">
               {p.icon}
               <div className="font-semibold font-montserrat text-foreground mt-3 text-lg">{p.title}</div>
               <div className="text-muted-foreground mt-1 text-sm">{p.desc}</div>
@@ -57,7 +57,7 @@ const Parents = () => {
         <div className="flex flex-col sm:flex-row gap-4 justify-center mt-8">
           <Button
             size="lg"
-            className="w-full sm:w-auto font-medium bg-primary text-primary-foreground hover:bg-primary/90 rounded-2xl px-8 py-6 text-lg shadow-sm hover:shadow-md transition-all duration-300"
+            className="w-full sm:w-auto font-medium bg-primary text-primary-foreground hover:bg-primary/90 px-8 py-6 text-lg shadow-sm hover:shadow-md transition-all duration-300"
             onClick={() => navigate("/white-paper")}
           >
             <ArrowDownToLine className="w-5 h-5 mr-2" />
@@ -71,7 +71,7 @@ const Parents = () => {
 
       {/* TESTIMONIAL */}
       <section className="w-full max-w-4xl mb-10">
-        <div className="rounded-2xl bg-card border border-border/60 shadow-sm py-8 px-5 flex flex-col items-center">
+        <div className="bg-card border border-border/60 shadow-sm py-8 px-5 flex flex-col items-center">
           <p className="text-lg italic text-foreground mb-3 font-medium">"I finally feel confident about supporting my son's career choices. The roadmap and mentorship worked wonders."</p>
           <span className="text-xs text-muted-foreground">— Priya S., WeKIT Parent</span>
         </div>
@@ -93,12 +93,12 @@ const Parents = () => {
 
       {/* SECONDARY CTA */}
       <section className="w-full max-w-2xl text-center mt-10">
-        <div className="bg-wekit-soft p-6 rounded-2xl border border-border/60 flex flex-col gap-3 items-center">
+        <div className="bg-wekit-soft p-6 border border-border/60 flex flex-col gap-3 items-center">
           <div className="font-semibold font-montserrat text-foreground text-lg">Ready to guide your child's future with confidence?</div>
           <Button
             size="lg"
             variant="outline"
-            className="w-full sm:w-auto border-2 border-primary text-primary hover:bg-primary hover:text-primary-foreground font-medium rounded-2xl px-8 py-4 transition-all duration-300"
+            className="w-full sm:w-auto border-2 border-primary text-primary hover:bg-primary hover:text-primary-foreground font-medium px-8 py-4 transition-all duration-300"
             onClick={() => navigate("/white-paper")}
           >
             <FileText className="w-5 h-5 mr-2" />

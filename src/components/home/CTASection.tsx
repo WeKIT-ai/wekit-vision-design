@@ -20,7 +20,7 @@ const CTASection = () => {
           <a href="/start-journey">
             <Button 
               size="lg" 
-              className="bg-white text-primary hover:bg-white/90 px-12 py-6 text-lg font-medium rounded-2xl shadow-sm hover:shadow-md transition-all duration-300 group"
+              className="bg-white text-primary hover:bg-white/90 px-12 py-6 text-lg font-medium shadow-sm hover:shadow-md transition-all duration-300 group"
             >
               Get Started Today
               <ArrowRight className="ml-3 transition-transform duration-300 group-hover:translate-x-1" size={20} />
@@ -30,7 +30,7 @@ const CTASection = () => {
             <Button 
               size="lg" 
               variant="outline"
-              className="border-2 border-white text-white hover:bg-white/10 px-12 py-6 text-lg font-medium rounded-2xl transition-all duration-300 group"
+              className="border-2 border-white text-white hover:bg-white/10 px-12 py-6 text-lg font-medium transition-all duration-300 group"
             >
               <Calendar className="mr-3" size={20} />
               Schedule a Call

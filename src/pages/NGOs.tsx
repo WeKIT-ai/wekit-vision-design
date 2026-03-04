@@ -38,10 +38,10 @@ const NGOs = () => {
             Partner with WeKIT to expand your reach, enhance your programs, and create lasting change in the lives of youth worldwide.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90 px-8 py-6 text-lg font-medium rounded-2xl shadow-sm hover:shadow-md transition-all duration-300 group">
+            <Button size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90 px-8 py-6 text-lg font-medium shadow-sm hover:shadow-md transition-all duration-300 group">
               Explore Partnership <ArrowRight className="ml-2 transition-transform duration-300 group-hover:translate-x-1" size={20} />
             </Button>
-            <Button size="lg" variant="outline" className="px-8 py-6 text-lg font-medium rounded-2xl border-2 border-primary text-primary hover:bg-primary hover:text-primary-foreground transition-all duration-300">
+            <Button size="lg" variant="outline" className="px-8 py-6 text-lg font-medium border-2 border-primary text-primary hover:bg-primary hover:text-primary-foreground transition-all duration-300">
               View Impact Report
             </Button>
           </div>
@@ -59,9 +59,9 @@ const NGOs = () => {
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {collaborationModels.map((model, index) => (
-              <Card key={index} className="border border-border/60 hover:shadow-lg transition-all duration-300 rounded-2xl bg-card">
+              <Card key={index} className="border border-border/60 hover:shadow-lg transition-all duration-300 bg-card">
                 <CardContent className="p-8 text-center">
-                  <div className="w-14 h-14 bg-wekit-soft rounded-2xl flex items-center justify-center mx-auto mb-6">
+                  <div className="w-14 h-14 bg-wekit-soft flex items-center justify-center mx-auto mb-6">
                     <model.icon size={28} className="text-wekit-teal" />
                   </div>
                   <h3 className="text-xl font-semibold font-montserrat text-foreground mb-4">{model.title}</h3>
@@ -82,7 +82,7 @@ const NGOs = () => {
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {impactMetrics.map((item, index) => (
-              <Card key={index} className="border border-border/60 hover:shadow-lg transition-all duration-300 rounded-2xl bg-card">
+              <Card key={index} className="border border-border/60 hover:shadow-lg transition-all duration-300 bg-card">
                 <CardContent className="p-8 text-center">
                   <div className="text-4xl font-bold text-wekit-teal mb-2">{item.value}</div>
                   <h3 className="text-lg font-semibold font-montserrat text-foreground mb-2">{item.metric}</h3>
@@ -111,19 +111,19 @@ const NGOs = () => {
               </div>
             </div>
             <div className="lg:pl-8">
-              <Card className="border border-border/60 shadow-sm rounded-2xl bg-card">
+              <Card className="border border-border/60 shadow-sm bg-card">
                 <CardContent className="p-8">
                   <h3 className="text-2xl font-semibold font-montserrat text-foreground mb-6">Start a Partnership</h3>
                   <form className="space-y-4">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                      <Input placeholder="Organization Name" className="rounded-xl" />
-                      <Input placeholder="Your Name" className="rounded-xl" />
+                      <Input placeholder="Organization Name" />
+                      <Input placeholder="Your Name" />
                     </div>
-                    <Input placeholder="Email Address" type="email" className="rounded-xl" />
-                    <Input placeholder="Phone Number" type="tel" className="rounded-xl" />
-                    <Input placeholder="Organization Website" type="url" className="rounded-xl" />
-                    <Textarea placeholder="Tell us about your organization and how you'd like to collaborate" rows={4} className="rounded-xl" />
-                    <Button className="w-full bg-primary text-primary-foreground hover:bg-primary/90 rounded-2xl">Submit Partnership Inquiry</Button>
+                    <Input placeholder="Email Address" type="email" />
+                    <Input placeholder="Phone Number" type="tel" />
+                    <Input placeholder="Organization Website" type="url" />
+                    <Textarea placeholder="Tell us about your organization and how you'd like to collaborate" rows={4} />
+                    <Button className="w-full bg-primary text-primary-foreground hover:bg-primary/90">Submit Partnership Inquiry</Button>
                   </form>
                 </CardContent>
               </Card>
@@ -145,9 +145,9 @@ const NGOs = () => {
               { org: 'Skills4Future Initiative', impact: '89% job placement rate', story: 'Combined their vocational training with our mentorship program for improved employment outcomes.' },
               { org: 'Girls in Tech Network', impact: '1,200 girls in STEM', story: 'Focused partnership on connecting young women with female tech professionals and role models.' }
             ].map((story, index) => (
-              <Card key={index} className="border border-border/60 hover:shadow-lg transition-all duration-300 rounded-2xl bg-card">
+              <Card key={index} className="border border-border/60 hover:shadow-lg transition-all duration-300 bg-card">
                 <CardContent className="p-8">
-                  <div className="w-14 h-14 bg-wekit-soft rounded-2xl flex items-center justify-center mx-auto mb-6">
+                  <div className="w-14 h-14 bg-wekit-soft flex items-center justify-center mx-auto mb-6">
                     <Heart size={28} className="text-wekit-teal" />
                   </div>
                   <h3 className="text-lg font-semibold font-montserrat text-foreground mb-2">{story.org}</h3>
@@ -165,7 +165,7 @@ const NGOs = () => {
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-3xl md:text-4xl font-bold font-montserrat text-primary-foreground mb-8">Ready to Amplify Your Impact?</h2>
           <p className="text-lg text-primary-foreground/70 mb-8">Join our network of partner organizations working together to create sustainable change in the lives of youth worldwide.</p>
-          <Button size="lg" className="bg-white text-primary hover:bg-white/90 px-10 py-6 text-lg font-medium rounded-2xl shadow-sm hover:shadow-md transition-all duration-300 group">
+          <Button size="lg" className="bg-white text-primary hover:bg-white/90 px-10 py-6 text-lg font-medium shadow-sm hover:shadow-md transition-all duration-300 group">
             Begin Partnership Discussion <ArrowRight className="ml-2 transition-transform duration-300 group-hover:translate-x-1" size={20} />
           </Button>
         </div>

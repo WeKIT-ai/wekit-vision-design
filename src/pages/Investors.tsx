@@ -48,10 +48,10 @@ const Investors = () => {
             Exceptional returns meet meaningful impact in the world's fastest-growing market.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90 px-8 py-6 text-lg font-medium rounded-2xl shadow-sm hover:shadow-md transition-all duration-300 group">
+            <Button size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90 px-8 py-6 text-lg font-medium shadow-sm hover:shadow-md transition-all duration-300 group">
               Request Investment Deck <ArrowRight className="ml-2 transition-transform duration-300 group-hover:translate-x-1" size={20} />
             </Button>
-            <Button size="lg" variant="outline" className="px-8 py-6 text-lg font-medium rounded-2xl border-2 border-primary text-primary hover:bg-primary hover:text-primary-foreground transition-all duration-300">
+            <Button size="lg" variant="outline" className="px-8 py-6 text-lg font-medium border-2 border-primary text-primary hover:bg-primary hover:text-primary-foreground transition-all duration-300">
               Schedule Call
             </Button>
           </div>
@@ -67,9 +67,9 @@ const Investors = () => {
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {marketOpportunity.map((item, index) => (
-              <Card key={index} className="border border-border/60 hover:shadow-lg transition-all duration-300 rounded-2xl bg-card">
+              <Card key={index} className="border border-border/60 hover:shadow-lg transition-all duration-300 bg-card">
                 <CardContent className="p-8 text-center">
-                  <div className="w-14 h-14 bg-wekit-soft rounded-2xl flex items-center justify-center mx-auto mb-6">
+                  <div className="w-14 h-14 bg-wekit-soft flex items-center justify-center mx-auto mb-6">
                     <item.icon size={28} className="text-wekit-teal" />
                   </div>
                   <div className="text-3xl font-bold text-wekit-teal mb-2">{item.stat}</div>
@@ -102,7 +102,7 @@ const Investors = () => {
               <h3 className="text-2xl font-semibold font-montserrat text-foreground mb-8">Key Performance Metrics</h3>
               <div className="space-y-4">
                 {keyMetrics.map((metric, index) => (
-                  <div key={index} className="bg-card p-6 rounded-2xl border border-border/60 shadow-sm">
+                  <div key={index} className="bg-card p-6 border border-border/60 shadow-sm">
                     <div className="flex justify-between items-center mb-2">
                       <span className="text-foreground font-medium">{metric.label}</span>
                       <span className="text-2xl font-bold text-wekit-teal">{metric.value}</span>
@@ -125,9 +125,9 @@ const Investors = () => {
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {investmentOpportunities.map((opp, index) => (
-              <Card key={index} className="border border-border/60 hover:shadow-lg transition-all duration-300 rounded-2xl bg-card">
+              <Card key={index} className="border border-border/60 hover:shadow-lg transition-all duration-300 bg-card">
                 <CardContent className="p-8 text-center">
-                  <div className="w-14 h-14 bg-wekit-soft rounded-2xl flex items-center justify-center mx-auto mb-6">
+                  <div className="w-14 h-14 bg-wekit-soft flex items-center justify-center mx-auto mb-6">
                     <opp.icon size={28} className="text-wekit-teal" />
                   </div>
                   <h3 className="text-xl font-semibold font-montserrat text-foreground mb-2">{opp.title}</h3>
@@ -147,34 +147,34 @@ const Investors = () => {
             <h2 className="text-3xl md:text-4xl font-bold font-montserrat text-foreground mb-4">Connect with Our Investment Team</h2>
             <p className="text-lg text-muted-foreground">Ready to learn more? Get in touch with our team to discuss next steps.</p>
           </div>
-          <Card className="border border-border/60 bg-card rounded-2xl shadow-sm">
+          <Card className="border border-border/60 bg-card shadow-sm">
             <CardContent className="p-8">
               <form className="space-y-6">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
                     <label className="block text-sm font-medium text-foreground mb-2">Name</label>
-                    <Input placeholder="Your full name" className="rounded-xl" />
+                    <Input placeholder="Your full name" />
                   </div>
                   <div>
                     <label className="block text-sm font-medium text-foreground mb-2">Organization</label>
-                    <Input placeholder="Investment firm or company" className="rounded-xl" />
+                    <Input placeholder="Investment firm or company" />
                   </div>
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
                     <label className="block text-sm font-medium text-foreground mb-2">Email</label>
-                    <Input placeholder="your.email@example.com" type="email" className="rounded-xl" />
+                    <Input placeholder="your.email@example.com" type="email" />
                   </div>
                   <div>
                     <label className="block text-sm font-medium text-foreground mb-2">Phone</label>
-                    <Input placeholder="Your phone number" type="tel" className="rounded-xl" />
+                    <Input placeholder="Your phone number" type="tel" />
                   </div>
                 </div>
                 <div>
                   <label className="block text-sm font-medium text-foreground mb-2">Investment Interest</label>
-                  <Textarea placeholder="Tell us about your investment thesis" rows={4} className="rounded-xl" />
+                  <Textarea placeholder="Tell us about your investment thesis" rows={4} />
                 </div>
-                <Button className="w-full bg-primary text-primary-foreground hover:bg-primary/90 rounded-2xl py-3 text-lg">Send Investment Inquiry</Button>
+                <Button className="w-full bg-primary text-primary-foreground hover:bg-primary/90 py-3 text-lg">Send Investment Inquiry</Button>
               </form>
             </CardContent>
           </Card>
@@ -186,7 +186,7 @@ const Investors = () => {
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-3xl md:text-4xl font-bold font-montserrat text-primary-foreground mb-8">Be Part of the Global Growth Story</h2>
           <p className="text-lg text-primary-foreground/70 mb-8">Join leading investors who are backing the next generation of global talent.</p>
-          <Button size="lg" className="bg-white text-primary hover:bg-white/90 px-10 py-6 text-lg font-medium rounded-2xl shadow-sm hover:shadow-md transition-all duration-300 group">
+          <Button size="lg" className="bg-white text-primary hover:bg-white/90 px-10 py-6 text-lg font-medium shadow-sm hover:shadow-md transition-all duration-300 group">
             Download Investment Deck <ArrowRight className="ml-2 transition-transform duration-300 group-hover:translate-x-1" size={20} />
           </Button>
         </div>

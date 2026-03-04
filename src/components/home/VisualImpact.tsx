@@ -1,4 +1,3 @@
-import { Users, TrendingUp } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 const VisualImpact = () => {
@@ -11,7 +10,7 @@ const VisualImpact = () => {
         </div>
         
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <Link to="/courses" className="relative overflow-hidden rounded-2xl shadow-sm group hover:shadow-lg transition-all duration-300 cursor-pointer">
+          <Link to="/courses" className="relative overflow-hidden shadow-sm group hover:shadow-lg transition-all duration-300 cursor-pointer">
             <video autoPlay muted loop playsInline className="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-700"
               poster="https://images.unsplash.com/photo-1605810230434-7631ac76ec81?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80">
               <source src="https://player.vimeo.com/external/434045526.sd.mp4?s=c27eecc69a27dbc4ff2b87d38afc35f1a9a1c3ef&profile_id=165&oauth2_token_id=57447761" type="video/mp4" />
@@ -23,7 +22,7 @@ const VisualImpact = () => {
             </div>
           </Link>
 
-          <div className="relative overflow-hidden rounded-2xl shadow-sm group hover:shadow-lg transition-all duration-300">
+          <div className="relative overflow-hidden shadow-sm group hover:shadow-lg transition-all duration-300">
             <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
               alt="AI-powered mentorship" className="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-700" />
             <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
@@ -33,7 +32,7 @@ const VisualImpact = () => {
             </div>
           </div>
 
-          <div className="relative overflow-hidden rounded-2xl shadow-sm group hover:shadow-lg transition-all duration-300">
+          <div className="relative overflow-hidden shadow-sm group hover:shadow-lg transition-all duration-300">
             <video autoPlay muted loop playsInline className="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-700"
               poster="https://images.unsplash.com/photo-1487058792275-0ad4aaf24ca7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80">
               <source src="https://player.vimeo.com/external/434045526.sd.mp4?s=c27eecc69a27dbc4ff2b87d38afc35f1a9a1c3ef&profile_id=165&oauth2_token_id=57447761" type="video/mp4" />
