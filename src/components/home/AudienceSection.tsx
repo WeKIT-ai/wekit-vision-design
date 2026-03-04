@@ -31,7 +31,7 @@ const AudienceSection = () => {
           {audiences.map((audience, index) => (
             <Card 
               key={index}
-              className="border border-border/60 hover:shadow-lg transition-all duration-300 group bg-card rounded-2xl overflow-hidden h-full"
+              className="border border-border/60 hover:shadow-lg transition-all duration-300 group bg-card overflow-hidden h-full"
             >
               <CardContent className="p-10 relative z-10">
                 <div className="mb-8">
@@ -46,7 +46,7 @@ const AudienceSection = () => {
                 <Link to={audience.link}>
                   <Button 
                     variant="outline" 
-                    className="w-full border-2 border-primary text-primary hover:bg-primary hover:text-primary-foreground rounded-2xl font-medium transition-all duration-300 group/button"
+                    className="w-full border-2 border-primary text-primary hover:bg-primary hover:text-primary-foreground font-medium transition-all duration-300 group/button"
                   >
                     Learn More
                     <ArrowRight className="ml-2 transition-transform duration-300 group-hover/button:translate-x-1" size={16} />

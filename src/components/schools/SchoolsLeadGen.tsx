@@ -1,18 +1,15 @@
 import DemoRequestForm from '@/components/lead-gen/DemoRequestForm';
-import NewsletterSignup from '@/components/lead-gen/NewsletterSignup';
-import EarlyAccessForm from '@/components/lead-gen/EarlyAccessForm';
 import PartnershipInquiry from '@/components/lead-gen/PartnershipInquiry';
 import WALSCompact from '@/components/schools/WALSCompact';
 
 const SchoolsLeadGen = () => {
   return (
     <>
-      {/* Lead Gen Section 1 - Quick Access Forms */}
-      <section className="py-16 px-6 md:px-8 bg-gray-50">
+      <section className="py-16 px-6 md:px-8 bg-wekit-soft">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">Start Making Your Students Job-Ready Today</h2>
-            <p className="text-xl text-gray-600">See how our platform can transform student outcomes at your institution</p>
+            <h2 className="text-3xl font-bold font-montserrat text-foreground mb-4">Start Making Your Students Job-Ready Today</h2>
+            <p className="text-xl text-muted-foreground">See how our platform can transform student outcomes at your institution</p>
           </div>
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
             <div className="lg:col-span-2">
@@ -25,12 +22,11 @@ const SchoolsLeadGen = () => {
         </div>
       </section>
 
-      {/* Lead Gen Section 2 - Partnership Focus */}
-      <section className="py-16 px-6 md:px-8">
+      <section className="py-16 px-6 md:px-8 bg-background">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">Ready to Connect Students with Industry?</h2>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+            <h2 className="text-3xl font-bold font-montserrat text-foreground mb-4">Ready to Connect Students with Industry?</h2>
+            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
               Let's discuss how we can solve your specific career services challenges and make your students industry-ready.
             </p>
           </div>

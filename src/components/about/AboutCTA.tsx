@@ -16,17 +16,17 @@ const AboutCTA = () => {
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <a href="/start-journey">
-            <Button size="lg" className="bg-white text-primary hover:bg-white/90 px-8 py-6 text-lg font-medium rounded-2xl shadow-sm hover:shadow-md transition-all duration-300">
+            <Button size="lg" className="bg-white text-primary hover:bg-white/90 px-8 py-6 text-lg font-medium shadow-sm hover:shadow-md transition-all duration-300">
               Join as Student
             </Button>
           </a>
           <a href="/mentor-waitlist">
-            <Button size="lg" variant="outline" className="border-2 border-white text-white hover:bg-white/10 px-8 py-6 text-lg font-medium rounded-2xl transition-all duration-300">
+            <Button size="lg" variant="outline" className="border-2 border-white text-white hover:bg-white/10 px-8 py-6 text-lg font-medium transition-all duration-300">
               Become a Mentor
             </Button>
           </a>
           <a href="https://www.topmate.io/yvonne_roberts_wekit/page/5wlgL5jOcR" target="_blank" rel="noopener noreferrer">
-            <Button size="lg" className="bg-white text-primary hover:bg-white/90 px-8 py-6 text-lg font-medium rounded-2xl shadow-sm hover:shadow-md transition-all duration-300">
+            <Button size="lg" className="bg-white text-primary hover:bg-white/90 px-8 py-6 text-lg font-medium shadow-sm hover:shadow-md transition-all duration-300">
               <Calendar className="mr-2" size={20} />
               Talk to Our Team
             </Button>
