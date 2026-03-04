@@ -25,13 +25,13 @@ const CareerLevels = () => {
   ];
 
   return (
-    <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50">
+    <section className="py-24 px-4 sm:px-6 lg:px-8 bg-wekit-soft">
       <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-16 animate-[slideUp_0.8s_ease-out]">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4 hover:text-purple-600 transition-colors duration-300">
+        <div className="text-center mb-16">
+          <h2 className="text-3xl md:text-4xl font-bold font-montserrat text-foreground mb-4">
             Solutions for Every Career Stage
           </h2>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto animate-[slideUp_0.8s_ease-out_0.2s_both]">
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
             Whether you're building foundations or reaching for the C-suite, 
             we have targeted programs for your level.
           </p>
@@ -39,32 +39,26 @@ const CareerLevels = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {careerLevels.map((level, index) => (
-            <Card 
-              key={index} 
-              className={`border-2 border-gray-200 hover:border-purple-300 hover:shadow-lg transition-all duration-500 hover:scale-105 hover:-translate-y-2 group cursor-pointer animate-[slideUp_0.8s_ease-out_${index * 0.2}s_both]`}
-            >
+            <Card key={index} className="border border-border/60 hover:shadow-lg transition-all duration-300 group rounded-2xl bg-card">
               <CardContent className="p-8">
-                <h3 className="text-xl font-bold text-gray-900 mb-4 group-hover:text-purple-600 transition-colors duration-300">
+                <h3 className="text-xl font-semibold font-montserrat text-foreground mb-4 group-hover:text-wekit-teal transition-colors duration-300">
                   {level.title}
                 </h3>
                 <div className="space-y-4">
-                  <div className="bg-red-50 p-4 rounded hover:bg-red-100 transition-colors duration-300 transform hover:translate-x-1">
-                    <p className="text-red-800 font-medium text-sm mb-1">Common Challenge:</p>
-                    <p className="text-red-700 text-sm">{level.challenge}</p>
+                  <div className="bg-wekit-soft p-4 rounded-2xl border-l-4 border-wekit-primary">
+                    <p className="text-foreground font-medium text-sm mb-1">Common Challenge:</p>
+                    <p className="text-muted-foreground text-sm">{level.challenge}</p>
                   </div>
-                  <div className="bg-purple-50 p-4 rounded hover:bg-purple-100 transition-colors duration-300 transform hover:translate-x-1">
-                    <p className="text-purple-800 font-medium text-sm mb-1">Our Approach:</p>
-                    <p className="text-purple-700 text-sm">{level.solution}</p>
+                  <div className="bg-wekit-soft p-4 rounded-2xl border-l-4 border-wekit-teal">
+                    <p className="text-foreground font-medium text-sm mb-1">Our Approach:</p>
+                    <p className="text-muted-foreground text-sm">{level.solution}</p>
                   </div>
                   <div className="space-y-2">
-                    <p className="text-gray-800 font-medium text-sm">Typical Outcomes:</p>
+                    <p className="text-foreground font-medium text-sm">Typical Outcomes:</p>
                     {level.outcomes.map((outcome, idx) => (
-                      <div 
-                        key={idx} 
-                        className={`flex items-center space-x-2 hover:translate-x-2 transition-transform duration-300 animate-[slideLeft_0.5s_ease-out_${idx * 0.1}s_both]`}
-                      >
-                        <CheckCircle className="text-green-500 flex-shrink-0 hover:animate-spin transition-transform duration-300" size={16} />
-                        <span className="text-gray-700 text-sm hover:text-green-600 transition-colors duration-300">{outcome}</span>
+                      <div key={idx} className="flex items-center space-x-2">
+                        <CheckCircle className="text-wekit-teal flex-shrink-0" size={16} />
+                        <span className="text-muted-foreground text-sm">{outcome}</span>
                       </div>
                     ))}
                   </div>
