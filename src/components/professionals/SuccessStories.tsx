@@ -27,40 +27,37 @@ const SuccessStories = () => {
   ];
 
   return (
-    <section className="py-20 px-4 sm:px-6 lg:px-8">
+    <section className="py-24 px-4 sm:px-6 lg:px-8 bg-background">
       <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-16 animate-[slideUp_0.8s_ease-out]">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4 hover:text-purple-600 transition-colors duration-300">
+        <div className="text-center mb-16">
+          <h2 className="text-3xl md:text-4xl font-bold font-montserrat text-foreground mb-4">
             Real Professionals, Real Results
           </h2>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto animate-[slideUp_0.8s_ease-out_0.2s_both]">
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
             See how professionals like you broke through career barriers with strategic mentorship.
           </p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {successStories.map((story, index) => (
-            <Card 
-              key={index} 
-              className={`border-2 border-gray-100 hover:shadow-lg transition-all duration-500 hover:scale-105 hover:-translate-y-2 group cursor-pointer animate-[slideUp_0.8s_ease-out_${index * 0.2}s_both]`}
-            >
+            <Card key={index} className="border border-border/60 hover:shadow-lg transition-all duration-300 group rounded-2xl bg-card">
               <CardContent className="p-8">
-                <div className="mb-6 group-hover:animate-pulse">
-                  <h3 className="text-lg font-bold text-gray-900 group-hover:text-purple-600 transition-colors duration-300">{story.name}</h3>
-                  <p className="text-purple-600 font-medium group-hover:text-purple-700 transition-colors duration-300">{story.role}</p>
+                <div className="mb-6">
+                  <h3 className="text-lg font-semibold font-montserrat text-foreground">{story.name}</h3>
+                  <p className="text-wekit-teal font-medium">{story.role}</p>
                 </div>
                 <div className="space-y-4 text-sm">
-                  <div className="bg-red-50 p-3 rounded hover:bg-red-100 transition-colors duration-300 transform hover:translate-x-1">
-                    <p className="text-red-800 font-medium mb-1">Challenge:</p>
-                    <p className="text-red-700">{story.challenge}</p>
+                  <div className="bg-wekit-soft p-3 rounded-2xl border-l-4 border-wekit-primary">
+                    <p className="text-foreground font-medium mb-1">Challenge:</p>
+                    <p className="text-muted-foreground">{story.challenge}</p>
                   </div>
-                  <div className="bg-purple-50 p-3 rounded hover:bg-purple-100 transition-colors duration-300 transform hover:translate-x-1">
-                    <p className="text-purple-800 font-medium mb-1">Solution:</p>
-                    <p className="text-purple-700">{story.solution}</p>
+                  <div className="bg-wekit-soft p-3 rounded-2xl border-l-4 border-wekit-teal">
+                    <p className="text-foreground font-medium mb-1">Solution:</p>
+                    <p className="text-muted-foreground">{story.solution}</p>
                   </div>
-                  <div className="bg-green-50 p-3 rounded hover:bg-green-100 transition-colors duration-300 transform hover:translate-x-1 hover:scale-105">
-                    <p className="text-green-800 font-medium mb-1">Outcome:</p>
-                    <p className="text-green-700 font-bold animate-pulse group-hover:animate-none">{story.outcome}</p>
+                  <div className="bg-wekit-soft p-3 rounded-2xl border-l-4 border-wekit-gold">
+                    <p className="text-foreground font-medium mb-1">Outcome:</p>
+                    <p className="text-wekit-teal font-bold">{story.outcome}</p>
                   </div>
                 </div>
               </CardContent>

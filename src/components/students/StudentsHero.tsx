@@ -1,14 +1,11 @@
 import { Button } from '@/components/ui/button';
 import { ArrowRight, Brain } from 'lucide-react';
-import AnimatedSection from '@/components/ui/animated-section';
-import FloatingElement from '@/components/ui/floating-element';
 
 const StudentsHero = () => {
   return (
     <>
       {/* Video Hero Section */}
       <section className="relative h-screen w-full overflow-hidden">
-        {/* Video Background */}
         <div className="absolute inset-0 z-0">
           <div className="w-full h-full bg-black">
             <iframe
@@ -20,96 +17,72 @@ const StudentsHero = () => {
               allowFullScreen
             ></iframe>
           </div>
-          {/* Dark overlay for better text readability */}
-          <div className="absolute inset-0 bg-black/50 animate-fade-in"></div>
+          <div className="absolute inset-0 bg-black/60"></div>
         </div>
 
-        {/* Floating elements */}
-        <FloatingElement className="absolute top-1/4 left-1/4 z-10" color="bg-green-400" size="lg" speed="slow" />
-        <FloatingElement className="absolute top-1/3 right-1/4 z-10" color="bg-red-400" size="md" speed="medium" delay={1} />
-        <FloatingElement className="absolute bottom-1/3 left-1/5 z-10" color="bg-yellow-400" size="sm" speed="fast" delay={2} />
-
-        {/* Hero Content Overlay */}
         <div className="absolute inset-0 z-20 flex items-center justify-center">
           <div className="text-center max-w-4xl px-6">
-            <AnimatedSection animation="zoom-in" duration={600}>
-              <h1 className="text-4xl md:text-6xl font-bold text-white mb-8 leading-tight drop-shadow-2xl">
-                Stop Graduating Into
-                <span className="block text-red-400 animate-pulse">Uncertainty</span>
-              </h1>
-            </AnimatedSection>
-            
-            <AnimatedSection animation="fade-up" delay={200}>
-              <p className="text-xl text-white/90 mb-8 drop-shadow-lg">
-                You're not alone if you feel unprepared for the job market. 68% of students graduate 
-                without clear career direction or job-ready skills. We change that.
-              </p>
-            </AnimatedSection>
-            
-            <AnimatedSection animation="fade-up" delay={400}>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Button 
-                  size="lg" 
-                  className="bg-green-600 hover:bg-green-700 text-white px-8 py-4 text-lg font-semibold rounded-full transition-all duration-300 hover:scale-110 hover:-translate-y-1 hover:shadow-green-500/25 hover:shadow-xl group"
-                >
-                  Start Your Success Story
-                  <ArrowRight className="ml-2 transition-transform duration-300 group-hover:translate-x-1" size={20} />
-                </Button>
-                <Button 
-                  size="lg" 
-                  variant="outline"
-                  className="px-8 py-4 text-lg font-semibold rounded-full border-2 border-white text-white hover:bg-white hover:text-gray-900 transition-all duration-300 hover:scale-110 hover:-translate-y-1"
-                >
-                  See Success Stories
-                </Button>
-              </div>
-            </AnimatedSection>
+            <h1 className="text-4xl md:text-6xl font-bold font-montserrat text-white mb-8 leading-tight">
+              Stop Graduating Into
+              <span className="block text-wekit-gold">Uncertainty</span>
+            </h1>
+            <p className="text-xl text-white/80 mb-8">
+              You're not alone if you feel unprepared for the job market. 68% of students graduate 
+              without clear career direction or job-ready skills. We change that.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Button 
+                size="lg" 
+                className="bg-primary text-primary-foreground hover:bg-primary/90 px-8 py-6 text-lg font-medium rounded-2xl shadow-sm hover:shadow-md transition-all duration-300 group"
+              >
+                Start Your Success Story
+                <ArrowRight className="ml-2 transition-transform duration-300 group-hover:translate-x-1" size={20} />
+              </Button>
+              <Button 
+                size="lg" 
+                variant="outline"
+                className="px-8 py-6 text-lg font-medium rounded-2xl border-2 border-white text-white hover:bg-white/10 transition-all duration-300"
+              >
+                See Success Stories
+              </Button>
+            </div>
           </div>
         </div>
       </section>
 
       {/* Content Section */}
-      <section className="pt-20 pb-32 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-red-50 to-white relative overflow-hidden">
-        {/* Floating elements */}
-        <FloatingElement className="absolute top-20 right-10" color="bg-blue-300" size="md" speed="slow" />
-        <FloatingElement className="absolute bottom-32 left-20" color="bg-red-300" size="sm" speed="medium" delay={1} />
-
+      <section className="pt-20 pb-32 px-4 sm:px-6 lg:px-8 bg-wekit-soft relative overflow-hidden">
         <div className="max-w-7xl mx-auto text-center">
-          {/* Psychometric Testing CTA */}
-          <AnimatedSection animation="fade-up" delay={100}>
-            <div className="bg-blue-100 border border-blue-300 rounded-lg p-6 max-w-2xl mx-auto mb-8 hover:shadow-lg hover:border-blue-400 transition-all duration-300 hover:-translate-y-1">
-              <div className="flex items-center justify-center mb-4">
-                <Brain className="mr-3 text-blue-600 animate-pulse" size={32} />
-                <h3 className="text-xl font-bold text-blue-800">Discover Your Perfect Career Path</h3>
-              </div>
-              <p className="text-blue-700 mb-4">
-                Take our advanced psychometric assessment to uncover careers that truly match your personality, 
-                skills, and interests. Get personalized insights that guide you to your ideal profession.
-              </p>
-              <a 
-                href="https://purpose-pathway-pilot.lovable.app/" 
-                target="_blank" 
-                rel="noopener noreferrer"
+          <div className="bg-card border border-border rounded-2xl p-6 max-w-2xl mx-auto mb-8 shadow-sm">
+            <div className="flex items-center justify-center mb-4">
+              <Brain className="mr-3 text-wekit-teal" size={32} />
+              <h3 className="text-xl font-semibold font-montserrat text-foreground">Discover Your Perfect Career Path</h3>
+            </div>
+            <p className="text-muted-foreground mb-4">
+              Take our advanced psychometric assessment to uncover careers that truly match your personality, 
+              skills, and interests. Get personalized insights that guide you to your ideal profession.
+            </p>
+            <a 
+              href="https://purpose-pathway-pilot.lovable.app/" 
+              target="_blank" 
+              rel="noopener noreferrer"
+            >
+              <Button 
+                size="lg" 
+                className="bg-primary text-primary-foreground hover:bg-primary/90 px-8 py-4 text-lg font-medium rounded-2xl shadow-sm hover:shadow-md transition-all duration-300 group"
               >
-                <Button 
-                  size="lg" 
-                  className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 text-lg font-semibold rounded-full transition-all duration-300 hover:scale-105 hover:-translate-y-1 group"
-                >
-                  Take Psychometric Test
-                  <ArrowRight className="ml-2 transition-transform duration-300 group-hover:translate-x-1" size={20} />
-                </Button>
-              </a>
-            </div>
-          </AnimatedSection>
+                Take Psychometric Test
+                <ArrowRight className="ml-2 transition-transform duration-300 group-hover:translate-x-1" size={20} />
+              </Button>
+            </a>
+          </div>
 
-          <AnimatedSection animation="fade-up" delay={200}>
-            <div className="bg-red-100 border border-red-300 rounded-lg p-6 max-w-2xl mx-auto mb-8 hover:shadow-lg hover:border-red-400 transition-all duration-300 hover:-translate-y-1">
-              <p className="text-lg text-red-800">
-                <strong>The Reality:</strong> Average job search takes 6+ months. 
-                Our students land offers in under 3 months.
-              </p>
-            </div>
-          </AnimatedSection>
+          <div className="bg-wekit-primary/10 border border-wekit-primary/20 rounded-2xl p-6 max-w-2xl mx-auto mb-8">
+            <p className="text-lg text-foreground">
+              <strong>The Reality:</strong> Average job search takes 6+ months. 
+              Our students land offers in under 3 months.
+            </p>
+          </div>
         </div>
       </section>
     </>
