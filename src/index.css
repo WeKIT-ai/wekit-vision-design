@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap");
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -32,7 +34,7 @@
     --input: 220 20% 92%;
     --ring: 210 28% 17%;
 
-    --radius: 0;
+    --radius: 0rem;
 
     --sidebar-background: 0 0% 98%;
     --sidebar-foreground: 240 5.3% 26.1%;
@@ -42,6 +44,12 @@
     --sidebar-accent-foreground: 210 28% 17%;
     --sidebar-border: 220 20% 92%;
     --sidebar-ring: 210 28% 17%;
+    --font-sans: Montserrat, ui-sans-serif, system-ui, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
+    --font-mono: "Roboto Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, Liberation Mono, Courier New, monospace;
+    --shadow-sm: 0px 1px 1.5px 0px hsla(0, 0%, 0%, 0.15);
+    --shadow: 0px 1px 3px 0px hsla(0, 0%, 0%, 0.15);
+    --shadow-md: 0px 1px 4.5px 0px hsla(0, 0%, 0%, 0.15);
+    --shadow-lg: 0px 1px 7.5px 0px hsla(0, 0%, 0%, 0.15);
   }
 
   .dark {
@@ -80,6 +88,13 @@
     --sidebar-accent-foreground: 0 0% 90%;
     --sidebar-border: 210 20% 13%;
     --sidebar-ring: 210 28% 17%;
+    --font-sans: Montserrat, ui-sans-serif, system-ui, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
+    --font-mono: "Roboto Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, Liberation Mono, Courier New, monospace;
+    --radius: 0rem;
+    --shadow-sm: 0px 1px 1.5px 0px hsla(0, 0%, 0%, 0.15);
+    --shadow: 0px 1px 3px 0px hsla(0, 0%, 0%, 0.15);
+    --shadow-md: 0px 1px 4.5px 0px hsla(0, 0%, 0%, 0.15);
+    --shadow-lg: 0px 1px 7.5px 0px hsla(0, 0%, 0%, 0.15);
   }
 }
 
