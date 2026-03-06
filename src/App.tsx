@@ -22,6 +22,10 @@ import StartJourney from "./pages/StartJourney";
 import Roadmap from "./pages/Roadmap";
 import WhitePaper from "./pages/WhitePaper";
 import NotFound from "./pages/NotFound";
+import Programs from "./pages/Programs";
+import Mentorship from "./pages/Mentorship";
+import Enterprise from "./pages/Enterprise";
+import Resources from "./pages/Resources";
 import Parents from "./pages/Parents";
 import MentorWaitlist from "./pages/MentorWaitlist";
 import Waitlist from "./pages/Waitlist";
@@ -64,6 +68,10 @@ const App = () => (
                       <Route path="/start-journey" element={<StartJourney />} />
                       <Route path="/roadmap" element={<Roadmap />} />
                       <Route path="/white-paper" element={<WhitePaper />} />
+                      <Route path="/programs" element={<Programs />} />
+                      <Route path="/mentorship" element={<Mentorship />} />
+                      <Route path="/enterprise" element={<Enterprise />} />
+                      <Route path="/resources" element={<Resources />} />
                       <Route path="/mentor-waitlist" element={<MentorWaitlist />} />
                       <Route path="/mentor-onboarding" element={<ProtectedRoute><MentorOnboarding /></ProtectedRoute>} />
                       <Route path="/mentor-dashboard" element={<ProtectedRoute><MentorDashboard /></ProtectedRoute>} />
