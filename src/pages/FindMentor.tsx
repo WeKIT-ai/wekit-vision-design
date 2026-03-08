@@ -52,15 +52,12 @@ const FindMentor = () => {
 
   const fetchMentors = async () => {
     try {
-      const { data, error } = await supabase
-        .from("mentor_profiles")
-        .select("id, full_name, bio, location, industry, skills, experience_level, availability, avatar_url, role")
-        .eq("role", "mentor");
+      const { data, error } = await supabase.rpc("search_mentors");
 
       if (error) throw error;
 
-      setMentors(data || []);
-      setFilteredMentors(data || []);
+      setMentors((data as MentorProfile[]) || []);
+      setFilteredMentors((data as MentorProfile[]) || []);
     } catch (error: any) {
       toast.error(error.message);
     } finally {

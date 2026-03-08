@@ -665,6 +665,21 @@ export type Database = {
         }
         Returns: boolean
       }
+      search_mentors: {
+        Args: never
+        Returns: {
+          availability: string[]
+          avatar_url: string
+          bio: string
+          experience_level: number
+          full_name: string
+          id: string
+          industry: string[]
+          location: string
+          role: Database["public"]["Enums"]["mentor_role"]
+          skills: string[]
+        }[]
+      }
     }
     Enums: {
       app_role: "admin" | "moderator" | "user"
