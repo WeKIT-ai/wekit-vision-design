@@ -7,6 +7,7 @@ import { Phone } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import { supabase } from '@/integrations/supabase/client';
 import { contactFormSchema } from '@/lib/validation';
+import { syncToZohoCRM } from '@/utils/zohoSync';
 
 const ContactForm = () => {
   const [formData, setFormData] = useState({
