@@ -62,7 +62,7 @@ async function getAccessToken(): Promise<string> {
   const data: ZohoTokenResponse = await response.json();
 
   if (data.error || !data.access_token) {
-    console.error("Token refresh failed:", JSON.stringify(data));
+    console.error("Token refresh failed:", data.error || "unknown error");
     throw new Error(`Token refresh failed: ${data.error || "No access token returned"}`);
   }
 
