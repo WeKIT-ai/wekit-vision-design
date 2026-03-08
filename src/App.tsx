@@ -32,6 +32,7 @@ import Waitlist from "./pages/Waitlist";
 import MentorOnboarding from "./pages/MentorOnboarding";
 import MentorDashboard from "./pages/MentorDashboard";
 import FindMentor from "./pages/FindMentor";
+import AdminSyncDashboard from "./pages/AdminSyncDashboard";
 import ProtectedRoute from "./components/ProtectedRoute";
 const queryClient = new QueryClient();
 
