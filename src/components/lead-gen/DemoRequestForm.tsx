@@ -7,6 +7,7 @@ import { Calendar } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import { supabase } from '@/integrations/supabase/client';
 import { demoRequestSchema } from '@/lib/validation';
+import { syncToZohoCRM } from '@/utils/zohoSync';
 
 const DemoRequestForm = () => {
   const [formData, setFormData] = useState({
