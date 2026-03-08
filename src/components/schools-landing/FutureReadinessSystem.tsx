@@ -58,14 +58,19 @@ const FutureReadinessSystem = () => {
   return (
     <section className="py-24 md:py-32 px-6 md:px-12 bg-background">
       <div className="max-w-6xl mx-auto">
-        <AnimatedSection animation="fade-up" className="text-center mb-6">
+        <AnimatedSection animation="fade-up" className="text-center mb-4">
           <h2 className="text-3xl md:text-5xl font-bold font-montserrat text-foreground leading-tight">
             The WeKIT Future Readiness System
           </h2>
         </AnimatedSection>
-        <AnimatedSection animation="fade-up" delay={100} className="text-center mb-16">
-          <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto">
-            Seven integrated components guiding students from self-discovery to career pathways.
+        <AnimatedSection animation="fade-up" delay={80} className="text-center mb-4">
+          <p className="text-lg md:text-xl font-medium text-secondary max-w-3xl mx-auto">
+            One integrated system. Seven components. Five-year student journey.
+          </p>
+        </AnimatedSection>
+        <AnimatedSection animation="fade-up" delay={120} className="text-center mb-16">
+          <p className="text-base text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+            The WeKIT Future Readiness System combines AI-powered career discovery, mentorship, future skills education, experiential learning, and career portfolios into a structured journey for Grades 8–12 students.
           </p>
         </AnimatedSection>
 
