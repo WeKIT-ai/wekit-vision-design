@@ -24,7 +24,7 @@ const AudienceSection = () => {
           <h2 className="text-4xl md:text-5xl font-bold font-montserrat text-foreground mb-4 leading-tight">
             One Platform. Five Ecosystems.
           </h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed font-light">
             An interconnected platform where every participant accelerates the other.
           </p>
         </motion.div>
@@ -42,9 +42,9 @@ const AudienceSection = () => {
             >
               <Link
                 to={c.link}
-                className="block bg-card border border-border p-7 text-center transition-shadow duration-500 hover:shadow-xl hover:border-secondary/40 h-full"
+                className="block glass rounded-2xl p-7 text-center transition-all duration-500 hover:bg-white/10 hover:border-secondary/40 h-full"
               >
-                <div className="w-14 h-14 mx-auto border border-secondary/30 flex items-center justify-center mb-5 group-hover:border-secondary group-hover:bg-secondary/5 transition-all duration-300">
+                <div className="w-14 h-14 mx-auto rounded-xl border border-secondary/30 flex items-center justify-center mb-5 group-hover:border-secondary group-hover:bg-secondary/10 transition-all duration-300">
                   <c.icon className="text-secondary" size={24} />
                 </div>
                 <h3 className="text-sm font-semibold font-montserrat text-foreground mb-1">{c.title}</h3>
