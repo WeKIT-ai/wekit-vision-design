@@ -114,7 +114,7 @@ serve(async (req) => {
 
     if (profileError) throw profileError;
 
-    console.log('User profile:', userProfile);
+    console.log('User profile loaded:', { id: userId, role: userProfile.role });
 
     // Get candidates (opposite role)
     const oppositeRole = userProfile.role === 'mentor' ? 'mentee' : 'mentor';

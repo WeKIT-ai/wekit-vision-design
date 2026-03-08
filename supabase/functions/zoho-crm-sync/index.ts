@@ -62,7 +62,7 @@ async function getAccessToken(): Promise<string> {
   const data: ZohoTokenResponse = await response.json();
 
   if (data.error || !data.access_token) {
-    console.error("Token refresh failed:", JSON.stringify(data));
+    console.error("Token refresh failed:", data.error || "unknown error");
     throw new Error(`Token refresh failed: ${data.error || "No access token returned"}`);
   }
 
@@ -175,7 +175,7 @@ async function createZohoLead(
   });
 
   const result: ZohoLeadResponse = await response.json();
-  console.log("Zoho CRM response:", JSON.stringify(result));
+  console.log("Zoho CRM response status:", result.data?.[0]?.status || result.status);
 
   if (result.data && result.data[0]) {
     const leadResult = result.data[0];
