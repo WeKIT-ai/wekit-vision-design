@@ -4,9 +4,10 @@ import { Target, Flame, ShieldCheck, Star } from 'lucide-react';
 
 const impacts = [
   { icon: Target, title: 'Stronger Career Clarity', desc: 'Students develop a concrete understanding of career pathways aligned with their strengths and values.' },
-  { icon: Flame, title: 'Purpose-Driven Learning', desc: 'Improved engagement as students connect academics to real-world career outcomes.' },
-  { icon: ShieldCheck, title: 'Enhanced Parent Confidence', desc: 'Transparent dashboards show parents measurable career development progress.' },
-  { icon: Star, title: 'School Differentiation', desc: 'Position your institution as a future-ready, innovative leader in career education.' },
+  { icon: Flame, title: 'Higher Student Engagement', desc: 'Improved engagement as students connect academics to real-world career outcomes.' },
+  { icon: ShieldCheck, title: 'Improved Parent Trust', desc: 'Transparent dashboards show parents measurable career development progress.' },
+  { icon: Star, title: 'Enhanced University & Career Readiness', desc: 'Students graduate with verified portfolios, mentorship experience, and career clarity.' },
+  { icon: Target, title: 'School Differentiation', desc: 'Position your institution as a future-ready, innovative leader in career education.' },
 ];
 
 const InstitutionalImpact = () => {

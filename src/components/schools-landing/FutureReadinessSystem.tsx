@@ -49,8 +49,8 @@ const layers = [
     num: '07',
     icon: FolderOpen,
     title: 'Purpose & Pathways Portfolio (WAP³)',
-    desc: 'A 5-year digital career development portfolio.',
-    outcome: 'Verified career readiness transcript.',
+    desc: 'A five-year digital transcript capturing certifications, projects, mentorship journeys, reflections, and leadership evidence.',
+    outcome: 'Verified career readiness portfolio.',
   },
 ];
 
