@@ -5,7 +5,7 @@ import { ArrowRight, Heart, Compass, Wallet, Search, Bot, Users, Backpack, Rocke
 import { motion, AnimatePresence } from 'framer-motion';
 import { useRef } from 'react';
 
-const iconMap: Record<string, React.ComponentType<{ size?: number; className?: string }>> = {
+const iconMap: Record<string, typeof Heart> = {
   Heart, Compass, Wallet, Search, Bot, Users, Backpack, Rocket, Crown, GraduationCap, Zap, Navigation, Briefcase, Star, Home, Shield, UserPlus, Award, BookOpen, Globe, Mountain, TrendingUp, BarChart3, Sparkles, Target, Code, FileText, Handshake,
 };
 
