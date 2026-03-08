@@ -11,8 +11,8 @@ const Hero = () => {
           <img
             src="/lovable-uploads/c6564568-f266-425d-8f95-03d5389bdff0.png"
             alt="Your future is waiting"
-            className="w-full h-full object-cover"
-          />
+            className="w-full h-full object-cover" />
+          
           <div className="absolute inset-0 bg-black/50"></div>
         </div>
 
@@ -20,7 +20,7 @@ const Hero = () => {
         <div className="absolute inset-0 z-20 flex items-end justify-start p-8 md:p-16 pb-32">
           <div className="text-left max-w-2xl">
             <div className="bg-black/40 backdrop-blur-sm p-8 mb-6">
-              <h1 className="text-4xl md:text-6xl font-bold font-montserrat text-white leading-tight">
+              <h1 className="text-4xl font-bold font-montserrat text-white leading-tight md:text-5xl">
                 Mentoring the Future
                 <br />
                 <span className="text-wekit-gold">
@@ -32,24 +32,24 @@ const Hero = () => {
                 </span>
               </h1>
             </div>
-            <p className="text-lg md:text-xl text-white/90 mb-8 max-w-lg font-semibold">
+            <p className="text-lg mb-8 max-w-lg font-semibold text-center text-primary-foreground md:text-4xl">
               WeKIT = Wot Kareer Is iT?
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
               <a href="/mentor-waitlist">
-                <Button 
-                  size="lg" 
-                  className="bg-primary text-primary-foreground hover:bg-primary/90 px-12 py-6 text-lg font-medium shadow-sm hover:shadow-md transition-all duration-300 group"
-                >
+                <Button
+                  size="lg"
+                  className="bg-primary text-primary-foreground hover:bg-primary/90 px-12 py-6 text-lg font-medium shadow-sm hover:shadow-md transition-all duration-300 group">
+                  
                   Join Our Mentor Community
                   <ArrowRight className="ml-3 transition-transform duration-300 group-hover:translate-x-1" size={20} />
                 </Button>
               </a>
               <a href="https://www.topmate.io/yvonne_roberts_wekit/page/5wlgL5jOcR" target="_blank" rel="noopener noreferrer">
-                <Button 
-                  size="lg" 
-                  className="bg-white text-primary hover:bg-white/90 px-12 py-6 text-lg font-medium shadow-sm hover:shadow-md transition-all duration-300 group border-2 border-white"
-                >
+                <Button
+                  size="lg"
+                  className="bg-white text-primary hover:bg-white/90 px-12 py-6 text-lg font-medium shadow-sm hover:shadow-md transition-all duration-300 group border-2 border-white">
+                  
                   <Calendar className="mr-3" size={20} />
                   Book a Consultation
                 </Button>
@@ -105,20 +105,20 @@ const Hero = () => {
             {/* Button Container */}
             <div className="pt-8 flex flex-col sm:flex-row gap-4 justify-center">
               <a href="/start-journey">
-                <Button 
-                  size="lg" 
-                  className="bg-primary text-primary-foreground hover:bg-primary/90 px-12 py-6 text-lg font-medium shadow-sm hover:shadow-md transition-all duration-300 group"
-                >
+                <Button
+                  size="lg"
+                  className="bg-primary text-primary-foreground hover:bg-primary/90 px-12 py-6 text-lg font-medium shadow-sm hover:shadow-md transition-all duration-300 group">
+                  
                   Start Here
                   <ArrowRight className="ml-3 transition-transform duration-300 group-hover:translate-x-1" size={20} />
                 </Button>
               </a>
               <a href="https://www.topmate.io/yvonne_roberts_wekit/page/5wlgL5jOcR" target="_blank" rel="noopener noreferrer">
-                <Button 
-                  size="lg" 
+                <Button
+                  size="lg"
                   variant="outline"
-                  className="border-2 border-primary text-primary hover:bg-primary hover:text-primary-foreground px-12 py-6 text-lg font-medium transition-all duration-300 group"
-                >
+                  className="border-2 border-primary text-primary hover:bg-primary hover:text-primary-foreground px-12 py-6 text-lg font-medium transition-all duration-300 group">
+                  
                   <Calendar className="mr-3" size={20} />
                   Book a Consultation
                 </Button>
@@ -127,8 +127,8 @@ const Hero = () => {
           </div>
         </div>
       </section>
-    </>
-  );
+    </>);
+
 };
 
 export default Hero;
