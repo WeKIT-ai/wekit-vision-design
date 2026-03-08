@@ -8,6 +8,7 @@ import { Handshake } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import { supabase } from '@/integrations/supabase/client';
 import { partnershipInquirySchema } from '@/lib/validation';
+import { syncToZohoCRM } from '@/utils/zohoSync';
 
 const PartnershipInquiry = () => {
   const [formData, setFormData] = useState({
