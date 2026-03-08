@@ -81,6 +81,17 @@ const MentorWaitlist = () => {
 
       if (error) throw error;
 
+      // Sync to Zoho CRM (fire-and-forget)
+      syncToZohoCRM({
+        form_type: 'mentor-waitlist',
+        first_name: formData.first_name,
+        last_name: formData.last_name,
+        email: formData.email,
+        phone: formData.phone,
+        company: formData.company,
+        description: `Mentor Waitlist | Position: ${formData.position} | Industry: ${formData.industry} | Experience: ${formData.experience_years} yrs | Specialties: ${formData.specialties} | Philosophy: ${formData.mentoring_philosophy}`,
+      });
+
       toast({
         title: "Thank you for joining!",
         description: "We'll be in touch soon about mentor opportunities.",

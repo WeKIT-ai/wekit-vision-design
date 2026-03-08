@@ -36,6 +36,15 @@ export const useWaitlistForm = () => {
         metadata: { name: result.data.name, email: result.data.email }
       });
 
+      // Sync to Zoho CRM (fire-and-forget)
+      syncToZohoCRM({
+        form_type: 'waitlist',
+        first_name: result.data.name,
+        last_name: result.data.name,
+        email: result.data.email,
+        description: 'Waitlist signup',
+      });
+
       toast({ title: "You're on the list! 🎉", description: "We'll notify you as soon as We-KIT launches." });
       setName('');
       setEmail('');

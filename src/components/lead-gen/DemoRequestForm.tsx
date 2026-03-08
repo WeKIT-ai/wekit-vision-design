@@ -54,6 +54,17 @@ const DemoRequestForm = () => {
 
       if (contactError) throw contactError;
 
+      // Sync to Zoho CRM (fire-and-forget)
+      syncToZohoCRM({
+        form_type: 'demo-request',
+        first_name: validated.fullName,
+        last_name: validated.fullName,
+        email: validated.email,
+        phone: validated.phone,
+        company: validated.organization,
+        description: `Demo Request | Designation: ${validated.designation} | Students: ${validated.studentCount}${validated.programme ? ` | Programme: ${validated.programme}` : ''}${validated.serviceFor ? ` | Service For: ${validated.serviceFor}` : ''}`,
+      });
+
       // Log non-PII analytics to page_interactions
       await supabase
         .from('page_interactions')

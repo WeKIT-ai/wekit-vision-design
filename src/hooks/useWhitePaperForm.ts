@@ -38,13 +38,16 @@ export const useWhitePaperForm = (): UseWhitePaperFormReturn => {
       
       // Simulate API call
       await new Promise(resolve => setTimeout(resolve, 1500));
-      
-      // Here you would typically send the data to your backend
-      // const response = await fetch('/api/white-paper-download', {
-      //   method: 'POST',
-      //   headers: { 'Content-Type': 'application/json' },
-      //   body: JSON.stringify(result.data)
-      // });
+
+      // Sync to Zoho CRM (fire-and-forget)
+      syncToZohoCRM({
+        form_type: 'white-paper',
+        first_name: result.data.firstName,
+        last_name: result.data.lastName,
+        email: result.data.email,
+        company: result.data.organization || '',
+        description: 'White paper download request',
+      });
       
       toast({
         title: "Success!",

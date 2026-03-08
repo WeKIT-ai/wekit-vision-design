@@ -38,6 +38,13 @@ const NewsletterSignup = () => {
 
       if (error) throw error;
 
+      // Sync to Zoho CRM (fire-and-forget)
+      syncToZohoCRM({
+        form_type: 'newsletter',
+        email: result.data.email,
+        description: 'Newsletter subscription',
+      });
+
       toast({
         title: "Welcome to WeKIT!",
         description: "You've been subscribed to our newsletter.",

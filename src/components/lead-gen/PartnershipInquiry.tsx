@@ -50,6 +50,16 @@ const PartnershipInquiry = () => {
 
       if (contactError) throw contactError;
 
+      // Sync to Zoho CRM (fire-and-forget)
+      syncToZohoCRM({
+        form_type: 'partnership-inquiry',
+        first_name: result.data.name,
+        last_name: result.data.name,
+        email: result.data.email,
+        company: result.data.organization,
+        description: `Partnership Inquiry - Type: ${result.data.partnershipType}. Details: ${result.data.details}`,
+      });
+
       // Log non-PII analytics only
       await supabase
         .from('page_interactions')

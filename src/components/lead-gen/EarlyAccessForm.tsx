@@ -48,6 +48,16 @@ const EarlyAccessForm = () => {
 
       if (contactError) throw contactError;
 
+      // Sync to Zoho CRM (fire-and-forget)
+      syncToZohoCRM({
+        form_type: 'early-access',
+        first_name: result.data.name,
+        last_name: result.data.name,
+        email: result.data.email,
+        company: result.data.organization || '',
+        description: `Early Access Signup - User Type: ${result.data.userType}`,
+      });
+
       // Log non-PII analytics only
       await supabase
         .from('page_interactions')

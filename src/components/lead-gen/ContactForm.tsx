@@ -48,6 +48,16 @@ const ContactForm = () => {
 
       if (error) throw error;
 
+      // Sync to Zoho CRM (fire-and-forget)
+      syncToZohoCRM({
+        form_type: 'contact-form',
+        first_name: result.data.name,
+        last_name: result.data.name,
+        email: result.data.email,
+        company: result.data.company || '',
+        description: result.data.message,
+      });
+
       toast({
         title: "Message Sent!",
         description: "We'll get back to you within 24 hours.",
