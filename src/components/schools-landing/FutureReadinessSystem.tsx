@@ -14,8 +14,8 @@ const layers = [
     num: '02',
     icon: Heart,
     title: 'Life Skills Lab (WALS)',
-    desc: 'Identity development, leadership, resilience, ethics, and emotional intelligence.',
-    outcome: 'Stronger self-awareness and confidence.',
+    desc: 'Identity development, emotional intelligence, leadership, resilience, ethics, and digital citizenship.',
+    outcome: 'Students develop strong personal foundations.',
   },
   {
     num: '03',
