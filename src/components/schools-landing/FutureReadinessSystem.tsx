@@ -7,50 +7,50 @@ const layers = [
     num: '01',
     icon: Compass,
     title: 'Purpose & Pathways Studio (WAPPS)',
-    desc: 'AI-powered career discovery linking psychometrics, strengths, and values to future career pathways.',
-    outcome: 'AI-generated career map.',
+    desc: 'AI-powered career discovery linking student strengths, psychometric insights, and values with future career pathways.',
+    outcome: 'Personalized AI-guided career map.',
   },
   {
     num: '02',
     icon: Heart,
     title: 'Life Skills Lab (WALS)',
-    desc: 'Identity development, leadership, resilience, ethics, and emotional intelligence.',
-    outcome: 'Stronger self-awareness and confidence.',
+    desc: 'Identity development, emotional intelligence, leadership, resilience, ethics, and digital citizenship.',
+    outcome: 'Students develop strong personal foundations.',
   },
   {
     num: '03',
     icon: Coins,
     title: 'Financial Literacy & Entrepreneurship Lab (WAFLE)',
-    desc: 'Budgeting, digital payments, financial planning, and entrepreneurial thinking.',
-    outcome: 'Financial confidence and value creation mindset.',
+    desc: 'Budgeting, digital payments, personal finance, and entrepreneurial thinking.',
+    outcome: 'Students gain financial confidence and value creation mindset.',
   },
   {
     num: '04',
     icon: Cpu,
-    title: 'Future Skills (WAFES)',
-    desc: 'AI literacy, sustainability awareness, emerging technologies.',
-    outcome: 'Skills aligned with future careers.',
+    title: 'Future Skills Lab (WAFES)',
+    desc: 'Future-of-work competencies including AI literacy, sustainability awareness, digital productivity, and emerging technologies.',
+    outcome: 'Students develop future-ready capabilities.',
   },
   {
     num: '05',
     icon: Backpack,
     title: 'Bagless Learning Studio (WABLS)',
-    desc: 'Experiential learning aligned with NEP guidelines.',
-    outcome: 'Real-world exposure and applied learning.',
+    desc: 'Experiential learning aligned with NEP guidelines including outdoor learning, partner programs, and industry exposure.',
+    outcome: 'Applied learning and real-world experience.',
   },
   {
     num: '06',
     icon: Users,
     title: 'WeKIT 360 Mentorship',
-    desc: 'Mentor matching connecting students with professionals and alumni.',
-    outcome: 'Industry guidance and career insights.',
+    desc: 'Structured mentoring ecosystem connecting students with professionals and alumni.',
+    outcome: 'Career insights and guidance from industry mentors.',
   },
   {
     num: '07',
     icon: FolderOpen,
     title: 'Purpose & Pathways Portfolio (WAP³)',
-    desc: 'A 5-year digital career development portfolio.',
-    outcome: 'Verified career readiness transcript.',
+    desc: 'A five-year digital transcript capturing certifications, projects, mentorship journeys, reflections, and leadership evidence.',
+    outcome: 'Verified career readiness portfolio.',
   },
 ];
 
@@ -58,14 +58,19 @@ const FutureReadinessSystem = () => {
   return (
     <section className="py-24 md:py-32 px-6 md:px-12 bg-background">
       <div className="max-w-6xl mx-auto">
-        <AnimatedSection animation="fade-up" className="text-center mb-6">
+        <AnimatedSection animation="fade-up" className="text-center mb-4">
           <h2 className="text-3xl md:text-5xl font-bold font-montserrat text-foreground leading-tight">
             The WeKIT Future Readiness System
           </h2>
         </AnimatedSection>
-        <AnimatedSection animation="fade-up" delay={100} className="text-center mb-16">
-          <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto">
-            Seven integrated components guiding students from self-discovery to career pathways.
+        <AnimatedSection animation="fade-up" delay={80} className="text-center mb-4">
+          <p className="text-lg md:text-xl font-medium text-secondary max-w-3xl mx-auto">
+            One integrated system. Seven components. Five-year student journey.
+          </p>
+        </AnimatedSection>
+        <AnimatedSection animation="fade-up" delay={120} className="text-center mb-16">
+          <p className="text-base text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+            The WeKIT Future Readiness System combines AI-powered career discovery, mentorship, future skills education, experiential learning, and career portfolios into a structured journey for Grades 8–12 students.
           </p>
         </AnimatedSection>
 
