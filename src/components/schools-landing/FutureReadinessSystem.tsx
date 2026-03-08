@@ -7,8 +7,8 @@ const layers = [
     num: '01',
     icon: Compass,
     title: 'Purpose & Pathways Studio (WAPPS)',
-    desc: 'AI-powered career discovery linking psychometrics, strengths, and values to future career pathways.',
-    outcome: 'AI-generated career map.',
+    desc: 'AI-powered career discovery linking student strengths, psychometric insights, and values with future career pathways.',
+    outcome: 'Personalized AI-guided career map.',
   },
   {
     num: '02',
