@@ -35,8 +35,8 @@ const layers = [
     num: '05',
     icon: Backpack,
     title: 'Bagless Learning Studio (WABLS)',
-    desc: 'Experiential learning aligned with NEP guidelines.',
-    outcome: 'Real-world exposure and applied learning.',
+    desc: 'Experiential learning aligned with NEP guidelines including outdoor learning, partner programs, and industry exposure.',
+    outcome: 'Applied learning and real-world experience.',
   },
   {
     num: '06',
