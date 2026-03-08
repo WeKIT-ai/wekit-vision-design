@@ -48,7 +48,7 @@ const MegaMenuPanel = ({ config, onClose, activeCategory, setActiveCategory }: M
                 <nav className="space-y-1">
                   {activeGroup.links.map((link) => (
                     <Link
-                      key={link.path}
+                      key={link.label}
                       to={link.path}
                       onClick={onClose}
                       className="block px-3 py-2.5 text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-muted/50 transition-colors group"
