@@ -25,7 +25,6 @@ const Navigation = () => {
   const { user } = useAuth();
   const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
-  // Scroll-aware header
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
     window.addEventListener('scroll', onScroll, { passive: true });
@@ -68,14 +67,14 @@ const Navigation = () => {
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-700 ${
         scrolled || hasOpenPanel || activeMenu === 'About'
-          ? 'bg-background/95 backdrop-blur-xl border-b border-border shadow-sm'
-          : 'bg-background/60 backdrop-blur-md border-b border-transparent'
+          ? 'bg-background/80 backdrop-blur-2xl border-b border-white/10 shadow-lg shadow-black/20'
+          : 'bg-transparent border-b border-transparent'
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-16 lg:h-18">
+        <div className="flex justify-between items-center h-16 lg:h-20">
           {/* Logo */}
           <div className="flex-shrink-0">
             <Link to="/" className="flex items-center hover:opacity-80 transition-opacity duration-300" aria-label="WeKIT Home">
@@ -89,23 +88,21 @@ const Navigation = () => {
 
           {/* Desktop Navigation */}
           <div className="hidden lg:flex items-center gap-0.5">
-            {/* Home */}
             <Link
               to="/"
-              className="px-3.5 py-2 text-[13px] font-semibold text-foreground/80 hover:text-foreground transition-colors duration-200"
+              className="px-3.5 py-2 text-[13px] font-medium text-white/70 hover:text-white transition-colors duration-300"
               onMouseEnter={closeMenu}
             >
               Home
             </Link>
 
-            {/* Mega menu triggers */}
             {megaMenus.map((item) => (
               <button
                 key={item.label}
-                className={`group flex items-center gap-1 px-3.5 py-2 text-[13px] font-semibold transition-all duration-200 ${
+                className={`group flex items-center gap-1 px-3.5 py-2 text-[13px] font-medium transition-all duration-300 ${
                   activeMenu === item.label
-                    ? 'text-foreground'
-                    : 'text-foreground/80 hover:text-foreground'
+                    ? 'text-white'
+                    : 'text-white/70 hover:text-white'
                 }`}
                 onMouseEnter={() => openMenu(item.label)}
                 onMouseLeave={scheduleClose}
@@ -115,24 +112,22 @@ const Navigation = () => {
                   size={12}
                   className={`transition-transform duration-300 ${activeMenu === item.label ? 'rotate-180' : ''}`}
                 />
-                {/* Active indicator */}
                 <span
-                  className={`absolute bottom-0 left-1/2 -translate-x-1/2 h-[2px] bg-primary rounded-full transition-all duration-300 ${
+                  className={`absolute bottom-0 left-1/2 -translate-x-1/2 h-[2px] bg-accent rounded-full transition-all duration-300 ${
                     activeMenu === item.label ? 'w-6 opacity-100' : 'w-0 opacity-0'
                   }`}
                 />
               </button>
             ))}
 
-            {/* About dropdown */}
             <div
               className="relative"
               onMouseEnter={() => openMenu('About')}
               onMouseLeave={scheduleClose}
             >
               <button
-                className={`group flex items-center gap-1 px-3.5 py-2 text-[13px] font-semibold transition-all duration-200 ${
-                  activeMenu === 'About' ? 'text-foreground' : 'text-foreground/80 hover:text-foreground'
+                className={`group flex items-center gap-1 px-3.5 py-2 text-[13px] font-medium transition-all duration-300 ${
+                  activeMenu === 'About' ? 'text-white' : 'text-white/70 hover:text-white'
                 }`}
               >
                 About
@@ -141,11 +136,11 @@ const Navigation = () => {
               <AnimatePresence>
                 {activeMenu === 'About' && (
                   <motion.div
-                    initial={{ opacity: 0, y: -4 }}
+                    initial={{ opacity: 0, y: -8 }}
                     animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -4 }}
-                    transition={{ duration: 0.2 }}
-                    className="absolute top-full right-0 w-56 bg-background/95 backdrop-blur-xl border border-border shadow-lg py-2 rounded-lg mt-1"
+                    exit={{ opacity: 0, y: -8 }}
+                    transition={{ duration: 0.25 }}
+                    className="absolute top-full right-0 w-56 glass rounded-xl py-2 mt-2 shadow-xl"
                     onMouseEnter={cancelClose}
                     onMouseLeave={scheduleClose}
                   >
@@ -154,11 +149,11 @@ const Navigation = () => {
                         key={link.path}
                         to={link.path}
                         onClick={closeMenu}
-                        className="group block px-4 py-2.5 text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-muted/50 transition-all duration-200"
+                        className="group block px-4 py-2.5 text-sm font-medium text-white/60 hover:text-white hover:bg-white/5 transition-all duration-200 rounded-lg mx-1"
                       >
                         <span className="relative">
                           {link.label}
-                          <span className="absolute -bottom-0.5 left-0 w-0 h-[1px] bg-foreground group-hover:w-full transition-all duration-300" />
+                          <span className="absolute -bottom-0.5 left-0 w-0 h-[1px] bg-accent group-hover:w-full transition-all duration-300" />
                         </span>
                       </Link>
                     ))}
@@ -169,18 +164,18 @@ const Navigation = () => {
           </div>
 
           {/* Desktop Auth */}
-          <div className="hidden lg:flex items-center gap-2.5">
+          <div className="hidden lg:flex items-center gap-3">
             {user ? (
               <UserMenu />
             ) : (
               <>
                 <Link to="/auth">
-                  <Button variant="ghost" size="sm" className="text-foreground/80 hover:text-foreground font-semibold text-[13px] h-9">
+                  <Button variant="ghost" size="sm" className="text-white/70 hover:text-white font-medium text-[13px] h-9">
                     Login
                   </Button>
                 </Link>
                 <Link to="/waitlist">
-                  <Button size="sm" className="bg-primary text-primary-foreground font-semibold px-5 text-[13px] h-9 rounded-md hover:bg-primary/90 transition-colors duration-200">
+                  <Button size="sm" variant="accent" className="font-semibold px-6 text-[13px] h-9">
                     Join WeKIT
                   </Button>
                 </Link>
@@ -195,7 +190,7 @@ const Navigation = () => {
               size="sm"
               onClick={() => setMobileOpen(!mobileOpen)}
               aria-label={mobileOpen ? 'Close menu' : 'Open menu'}
-              className="p-2"
+              className="p-2 text-white"
             >
               {mobileOpen ? <X size={22} /> : <Menu size={22} />}
             </Button>
