@@ -5,12 +5,12 @@ import { GraduationCap, Users, Briefcase, Rocket, Building2 } from 'lucide-react
 import { Link } from 'react-router-dom';
 
 const ecosystemCards = [
-  { icon: GraduationCap, title: 'Educational Institutions', desc: 'Schools, colleges, and learning institutions', anchor: '#institutions' },
-  { icon: Users, title: 'Youth & Families', desc: 'Students and young professionals', anchor: '#youth' },
-  { icon: Briefcase, title: 'Mentors & Professionals', desc: 'Industry mentors and career guides', anchor: '#mentors' },
-  { icon: Rocket, title: 'Entrepreneurship', desc: 'Founders and purpose-driven innovators', anchor: '#entrepreneurship' },
-  { icon: Building2, title: 'Partners & Organizations', desc: 'Corporates, NGOs, and government', anchor: '#partners' },
-];
+{ icon: GraduationCap, title: 'Educational Institutions', desc: 'Schools, colleges, and learning institutions', anchor: '#institutions' },
+{ icon: Users, title: 'Youth & Families', desc: 'Students and young professionals', anchor: '#youth' },
+{ icon: Briefcase, title: 'Mentors & Professionals', desc: 'Industry mentors and career guides', anchor: '#mentors' },
+{ icon: Rocket, title: 'Entrepreneurship', desc: 'Founders and purpose-driven innovators', anchor: '#entrepreneurship' },
+{ icon: Building2, title: 'Partners & Organizations', desc: 'Corporates, NGOs, and government', anchor: '#partners' }];
+
 
 const ProgramsHero = () => {
   return (
@@ -24,8 +24,8 @@ const ProgramsHero = () => {
           loop
           playsInline
           className="absolute inset-0 w-full h-full object-cover"
-          poster="https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?auto=compress&cs=tinysrgb&w=1920"
-        >
+          poster="https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?auto=compress&cs=tinysrgb&w=1920">
+          
           <source src="https://videos.pexels.com/video-files/3209828/3209828-uhd_2560_1440_25fps.mp4" type="video/mp4" />
         </video>
         <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/60 to-black/40" />
@@ -36,8 +36,8 @@ const ProgramsHero = () => {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="inline-block border border-white/20 px-5 py-2 text-xs tracking-[0.3em] uppercase text-white/70 mb-8 backdrop-blur-sm bg-white/5"
-            >
+              className="inline-block border border-white/20 px-5 py-2 text-xs tracking-[0.3em] uppercase text-white/70 mb-8 backdrop-blur-sm bg-white/5">
+              
               WeKIT Ecosystem
             </motion.div>
 
@@ -45,8 +45,8 @@ const ProgramsHero = () => {
               initial={{ opacity: 0, y: 50 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 1, delay: 0.4 }}
-              className="text-5xl md:text-7xl lg:text-8xl font-bold font-montserrat text-white leading-[0.95] tracking-tight mb-8"
-            >
+              className="text-5xl md:text-7xl lg:text-8xl font-bold font-montserrat text-white leading-[0.95] tracking-tight mb-8">
+              
               Mentoring the
               <br />
               <span className="text-accent">Future of Work</span>
@@ -56,8 +56,8 @@ const ProgramsHero = () => {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.7 }}
-              className="text-lg md:text-2xl text-white/80 font-light leading-relaxed mb-4 max-w-3xl"
-            >
+              className="text-lg md:text-2xl text-white/80 font-light leading-relaxed mb-4 max-w-3xl">
+              
               From discovering strengths to choosing the right college, mentors, and careers — WeKIT connects youth, families, schools, and organizations through an AI-powered mentorship ecosystem.
             </motion.p>
 
@@ -65,8 +65,8 @@ const ProgramsHero = () => {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.9 }}
-              className="text-base md:text-lg text-white/50 font-light leading-relaxed max-w-2xl mb-10"
-            >
+              className="text-base md:text-lg text-white/50 font-light leading-relaxed max-w-2xl mb-10">
+              
               WeKIT connects learners, mentors, educators, and industry through a unified ecosystem that guides individuals from self-discovery to meaningful careers and entrepreneurship.
             </motion.p>
 
@@ -74,8 +74,8 @@ const ProgramsHero = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 1.1 }}
-              className="flex flex-col sm:flex-row gap-4"
-            >
+              className="flex flex-col sm:flex-row gap-4">
+              
               <a href="#institutions">
                 <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 px-10 py-7 text-base font-semibold tracking-wide transition-all duration-300 hover:translate-y-[-2px] hover:shadow-2xl group">
                   Explore Programs
@@ -83,7 +83,7 @@ const ProgramsHero = () => {
                 </Button>
               </a>
               <Link to="/enterprise">
-                <Button size="lg" variant="outline" className="border-2 border-white/30 text-white hover:bg-white/10 px-10 py-7 text-base font-medium transition-all duration-300 hover:translate-y-[-2px] backdrop-blur-sm">
+                <Button size="lg" variant="outline" className="border-2 border-white/30 text-white px-10 py-7 text-base font-medium transition-all duration-300 hover:translate-y-[-2px] backdrop-blur-sm bg-primary">
                   Partner With WeKIT
                 </Button>
               </Link>
@@ -95,8 +95,8 @@ const ProgramsHero = () => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 2 }}
-          className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10"
-        >
+          className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10">
+          
           <motion.div animate={{ y: [0, 10, 0] }} transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}>
             <ChevronDown className="text-white/40" size={32} />
           </motion.div>
@@ -111,8 +111,8 @@ const ProgramsHero = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.7 }}
-            className="text-center mb-16"
-          >
+            className="text-center mb-16">
+            
             <h2 className="text-3xl md:text-4xl font-bold font-montserrat text-foreground mb-3">
               One Platform. Five Ecosystems.
             </h2>
@@ -122,29 +122,29 @@ const ProgramsHero = () => {
           </motion.div>
 
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-5">
-            {ecosystemCards.map((c, i) => (
-              <motion.a
-                key={c.title}
-                href={c.anchor}
-                initial={{ opacity: 0, y: 40 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: i * 0.1 }}
-                whileHover={{ y: -8, scale: 1.03 }}
-                className="bg-card border border-border p-7 text-center transition-shadow duration-500 hover:shadow-xl hover:border-secondary/40 group cursor-pointer"
-              >
+            {ecosystemCards.map((c, i) =>
+            <motion.a
+              key={c.title}
+              href={c.anchor}
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: i * 0.1 }}
+              whileHover={{ y: -8, scale: 1.03 }}
+              className="bg-card border border-border p-7 text-center transition-shadow duration-500 hover:shadow-xl hover:border-secondary/40 group cursor-pointer">
+              
                 <div className="w-14 h-14 mx-auto border border-secondary/30 flex items-center justify-center mb-5 group-hover:border-secondary group-hover:bg-secondary/5 transition-all duration-300">
                   <c.icon className="text-secondary" size={24} />
                 </div>
                 <h3 className="text-sm font-semibold font-montserrat text-foreground mb-1">{c.title}</h3>
                 <p className="text-xs text-muted-foreground">{c.desc}</p>
               </motion.a>
-            ))}
+            )}
           </div>
         </div>
       </section>
-    </>
-  );
+    </>);
+
 };
 
 export default ProgramsHero;
