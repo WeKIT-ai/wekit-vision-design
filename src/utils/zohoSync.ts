@@ -25,7 +25,7 @@ export async function syncToZohoCRM(data: ZohoSyncData): Promise<void> {
       .from('zoho_form_submissions')
       .insert([{
         form_id: data.form_type,
-        submission_data: data as Record<string, unknown>,
+        submission_data: JSON.parse(JSON.stringify(data)),
         submitted_at: new Date().toISOString(),
       }])
       .select('id')
