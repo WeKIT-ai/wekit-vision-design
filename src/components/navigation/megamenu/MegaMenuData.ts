@@ -196,62 +196,52 @@ export const coursesMenu: MegaMenuConfig = {
   label: 'Courses',
   categories: [
     'Life Skills',
-    'Leadership',
-    'Career Design',
+    'AI & Future Skills',
     'Financial Literacy',
-    'AI & Digital Skills',
-    'Corporate Programs',
+    'Leadership',
+    'Purpose & Career',
   ],
   groups: [
     {
       title: 'Life Skills',
       links: [
-        { label: 'Identity & Self Awareness', path: '/courses#identity-self-awareness' },
-        { label: 'Emotional Intelligence', path: '/courses#emotional-intelligence' },
-        { label: 'Resilience & Stress Management', path: '/courses#resilience-stress' },
-        { label: 'Ethics & Decision Making', path: '/courses#ethics-decision-making' },
+        { label: 'Identity & Self Awareness', path: '/courses#identity-self-awareness', icon: 'Heart' },
+        { label: 'Emotional Intelligence', path: '/courses#emotional-intelligence', icon: 'Sparkles' },
+        { label: 'Resilience & Stress Management', path: '/courses#resilience-stress', icon: 'Shield' },
+        { label: 'Ethics & Decision Making', path: '/courses#ethics-decision-making', icon: 'Target' },
       ],
     },
     {
-      title: 'Leadership',
+      title: 'AI & Future Skills',
       links: [
-        { label: 'Leadership Presence', path: '/courses#leadership-presence' },
-        { label: 'Influence & Communication', path: '/courses#influence-communication' },
-        { label: 'Purpose-Led Leadership', path: '/courses#purpose-led-leadership' },
-      ],
-    },
-    {
-      title: 'Career Design',
-      links: [
-        { label: 'Purpose Architecture Lab', path: '/courses#purpose-architecture' },
-        { label: 'Career Strategy', path: '/courses#career-strategy' },
-        { label: 'Personal Brand Building', path: '/courses#personal-brand' },
+        { label: 'AI Literacy', path: '/courses#ai-literacy', icon: 'Bot' },
+        { label: 'Responsible AI', path: '/courses#responsible-ai', icon: 'Shield' },
+        { label: 'Digital Reputation', path: '/courses#digital-reputation', icon: 'Globe' },
+        { label: 'AI Productivity Tools', path: '/courses#ai-productivity', icon: 'Zap' },
       ],
     },
     {
       title: 'Financial Literacy',
       links: [
-        { label: 'Money Foundations', path: '/courses#money-foundations' },
-        { label: 'Financial Intelligence', path: '/courses#financial-intelligence' },
-        { label: 'Wealth Design', path: '/courses#wealth-design' },
+        { label: 'Money Foundations', path: '/courses#money-foundations', icon: 'Wallet' },
+        { label: 'Financial Intelligence', path: '/courses#financial-intelligence', icon: 'TrendingUp' },
+        { label: 'Wealth Design', path: '/courses#wealth-design', icon: 'Star' },
       ],
     },
     {
-      title: 'AI & Digital Skills',
+      title: 'Leadership',
       links: [
-        { label: 'AI Literacy', path: '/courses#ai-literacy' },
-        { label: 'Responsible AI', path: '/courses#responsible-ai' },
-        { label: 'Digital Reputation', path: '/courses#digital-reputation' },
-        { label: 'AI Productivity Tools', path: '/courses#ai-productivity' },
+        { label: 'Leadership Presence', path: '/courses#leadership-presence', icon: 'Crown' },
+        { label: 'Influence & Communication', path: '/courses#influence-communication', icon: 'Users' },
+        { label: 'Purpose-Led Leadership', path: '/courses#purpose-led-leadership', icon: 'Compass' },
       ],
     },
     {
-      title: 'Corporate Programs',
+      title: 'Purpose & Career',
       links: [
-        { label: 'Resilient Leadership', path: '/courses#resilient-leadership' },
-        { label: 'Responsible AI Adoption', path: '/courses#responsible-ai-adoption' },
-        { label: 'Digital Transformation Mindset', path: '/courses#digital-transformation' },
-        { label: 'Talent Architecture', path: '/courses#talent-architecture' },
+        { label: 'Purpose Architecture Lab', path: '/courses#purpose-architecture', icon: 'Compass' },
+        { label: 'Career Strategy', path: '/courses#career-strategy', icon: 'Navigation' },
+        { label: 'Personal Brand Building', path: '/courses#personal-brand', icon: 'Star' },
       ],
     },
   ],
@@ -263,10 +253,11 @@ export const mentorshipMenu: MegaMenuConfig = {
     {
       title: 'Mentorship Programs',
       links: [
-        { label: 'Find a Mentor', path: '/find-mentor' },
-        { label: 'Become a Mentor', path: '/mentor-waitlist' },
-        { label: 'Mentor Network', path: '/mentor-dashboard' },
-        { label: 'Executive Mentorship', path: '/mentorship#executive' },
+        { label: 'Find a Mentor', path: '/find-mentor', icon: 'Search' },
+        { label: 'Become a Mentor', path: '/mentor-waitlist', icon: 'UserPlus' },
+        { label: 'Mentor Network', path: '/mentor-dashboard', icon: 'Users' },
+        { label: 'Mentor Certification', path: '/programs#mentors', icon: 'Award' },
+        { label: 'Mentor Training Lab', path: '/programs#mentors', icon: 'BookOpen' },
       ],
     },
   ],
@@ -276,43 +267,43 @@ export const mentorshipMenu: MegaMenuConfig = {
     description: 'Connect with experienced professionals and industry leaders guiding the next generation of innovators.',
     buttonLabel: 'Find a Mentor',
     buttonPath: '/find-mentor',
+    videoUrl: 'https://videos.pexels.com/video-files/6893992/6893992-uhd_2732_1440_25fps.mp4',
   },
 };
 
 export const enterpriseMenu: MegaMenuConfig = {
   label: 'Enterprise',
-  categories: ['Schools', 'Universities', 'Corporates', 'Government & NGOs'],
+  categories: ['Schools & Colleges', 'Corporate', 'CSR & NGO', 'EdTech'],
   groups: [
     {
-      title: 'Schools',
+      title: 'Schools & Colleges',
       links: [
-        { label: 'Life Skills Lab', path: '/schools#life-skills' },
-        { label: 'Purpose Architecture Labs', path: '/schools#purpose-architecture' },
-        { label: 'Career Portfolio Programs', path: '/schools#career-portfolio' },
+        { label: 'Life Skills Lab', path: '/schools#life-skills', icon: 'Heart' },
+        { label: 'Purpose Architecture Labs', path: '/schools#purpose-architecture', icon: 'Compass' },
+        { label: 'Career Portfolio Programs', path: '/schools#career-portfolio', icon: 'FileText' },
       ],
     },
     {
-      title: 'Universities',
+      title: 'Corporate',
       links: [
-        { label: 'Career Acceleration Programs', path: '/students#career-acceleration' },
-        { label: 'Mentorship Platforms', path: '/students#mentorship-platforms' },
-        { label: 'Leadership Development', path: '/students#leadership-development' },
+        { label: 'Corporate Leadership Programs', path: '/professionals#leadership-labs', icon: 'Crown' },
+        { label: 'AI Workforce Readiness', path: '/professionals#ai-workforce', icon: 'Bot' },
+        { label: 'Employee Financial Wellness', path: '/professionals#financial-wellness', icon: 'Wallet' },
       ],
     },
     {
-      title: 'Corporates',
+      title: 'CSR & NGO',
       links: [
-        { label: 'Leadership Development Labs', path: '/professionals#leadership-labs' },
-        { label: 'AI Workforce Readiness', path: '/professionals#ai-workforce' },
-        { label: 'Employee Financial Wellness', path: '/professionals#financial-wellness' },
+        { label: 'CSR Youth Mentorship Programs', path: '/ngos#youth-skilling', icon: 'Heart' },
+        { label: 'NGO Partnerships', path: '/ngos#career-readiness', icon: 'Handshake' },
+        { label: 'Purpose Discovery Programs', path: '/ngos#purpose-discovery', icon: 'Compass' },
       ],
     },
     {
-      title: 'Government & NGOs',
+      title: 'EdTech',
       links: [
-        { label: 'Youth Skilling Programs', path: '/ngos#youth-skilling' },
-        { label: 'Career Readiness Initiatives', path: '/ngos#career-readiness' },
-        { label: 'Purpose Discovery Programs', path: '/ngos#purpose-discovery' },
+        { label: 'EdTech Integrations', path: '/enterprise', icon: 'Code' },
+        { label: 'Content Licensing', path: '/enterprise', icon: 'FileText' },
       ],
     },
   ],
@@ -325,39 +316,39 @@ export const resourcesMenu: MegaMenuConfig = {
     {
       title: 'Insights',
       links: [
-        { label: 'Articles', path: '/resources#articles' },
-        { label: 'Research & Reports', path: '/resources#research' },
+        { label: 'Blog', path: '/resources#articles', icon: 'FileText' },
+        { label: 'Whitepapers', path: '/white-paper', icon: 'BookOpen' },
+        { label: 'Research Reports', path: '/resources#research', icon: 'BarChart3' },
       ],
     },
     {
       title: 'Tools',
       links: [
-        { label: 'Career Tools', path: '/resources#career-tools' },
-        { label: 'Purpose Assessments', path: '/resources#assessments' },
+        { label: 'Career Tools', path: '/resources#career-tools', icon: 'Compass' },
+        { label: 'Youth Career Guides', path: '/resources#assessments', icon: 'GraduationCap' },
       ],
     },
     {
       title: 'Community',
       links: [
-        { label: 'White Paper', path: '/white-paper' },
+        { label: 'White Paper', path: '/white-paper', icon: 'FileText' },
       ],
     },
     {
       title: 'Events',
       links: [
-        { label: 'Workshops & Events', path: '/resources#workshops' },
+        { label: 'Events & Workshops', path: '/resources#workshops', icon: 'Sparkles' },
       ],
     },
   ],
 };
 
 export const aboutLinks: MegaMenuLink[] = [
-  { label: 'About WeKIT', path: '/about' },
-  { label: 'Founder', path: '/about#founder' },
-  { label: 'Advisory Board', path: '/about#advisory' },
+  { label: 'Our Mission', path: '/about' },
+  { label: 'Our Story', path: '/about#story' },
   { label: 'Partners', path: '/about#partners' },
-  { label: 'Impact', path: '/about#impact' },
-  { label: 'Contact', path: '/about#contact' },
+  { label: 'Media & Press', path: '/about#impact' },
+  { label: 'Careers', path: '/about#contact' },
 ];
 
 export const allMenus = [programsMenu, coursesMenu, mentorshipMenu, enterpriseMenu, resourcesMenu];
