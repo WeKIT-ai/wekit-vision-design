@@ -2,6 +2,7 @@ export interface MegaMenuLink {
   label: string;
   path: string;
   description?: string;
+  icon?: string;
 }
 
 export interface MegaMenuGroup {
@@ -15,6 +16,7 @@ export interface MegaMenuFeatured {
   description: string;
   buttonLabel: string;
   buttonPath: string;
+  videoUrl?: string;
 }
 
 export interface MegaMenuConfig {
@@ -23,69 +25,170 @@ export interface MegaMenuConfig {
   categories?: string[];
   groups: MegaMenuGroup[];
   featured?: MegaMenuFeatured;
+  /** Audience-specific featured cards keyed by category name */
+  featuredByCategory?: Record<string, MegaMenuFeatured>;
 }
 
+// Programs mega menu — contextual by audience
 export const programsMenu: MegaMenuConfig = {
   label: 'Programs',
   categories: [
-    'Educational Institutions',
-    'Youth & Families',
+    'Schools & Colleges',
+    'University Students',
+    'Young Professionals',
+    'Parents & Families',
     'Mentors & Professionals',
-    'Entrepreneurship',
-    'Partners & Organizations',
+    'Corporates',
+    'NGOs & CSR Teams',
+    'EdTech Platforms',
   ],
   groups: [
     {
-      title: 'Educational Institutions',
+      title: 'Schools & Colleges',
       links: [
-        { label: 'Future Readiness System', path: '/programs#institutions', description: 'AI-powered career discovery & mentorship for schools' },
-        { label: 'School Partnership Discovery', path: '/schools', description: 'Bring WeKIT to your institution' },
-        { label: 'Student Journey (Grades 8–12)', path: '/programs#institutions', description: 'Five-year structured career pathway' },
+        { label: 'Life Skills Lab', path: '/programs#institutions', icon: 'Heart' },
+        { label: 'Purpose Architecture Lab', path: '/programs#institutions', icon: 'Compass' },
+        { label: 'Financial Literacy Lab', path: '/programs#institutions', icon: 'Wallet' },
+        { label: 'Career Discovery Program', path: '/programs#institutions', icon: 'Search' },
+        { label: 'AI Readiness for Youth', path: '/programs#institutions', icon: 'Bot' },
+        { label: 'WeKIT 360 Mentorship', path: '/programs#institutions', icon: 'Users' },
+        { label: 'Bagless Learning Studio', path: '/programs#institutions', icon: 'Backpack' },
       ],
     },
     {
-      title: 'Youth & Families',
+      title: 'University Students',
       links: [
-        { label: 'Career Discovery Assessment', path: '/programs#youth' },
-        { label: 'Purpose Architecture Lab', path: '/programs#youth' },
-        { label: 'Future Skills Learning Paths', path: '/programs#youth' },
-        { label: 'Mentorship Access', path: '/programs#youth' },
+        { label: 'Career Acceleration Program', path: '/students#career-acceleration', icon: 'Rocket' },
+        { label: 'Mentorship Platform Access', path: '/students#mentorship-platforms', icon: 'Users' },
+        { label: 'Leadership Development', path: '/students#leadership-development', icon: 'Crown' },
+        { label: 'College Discovery Community', path: '/programs#youth', icon: 'GraduationCap' },
+        { label: 'Future Skills Courses', path: '/programs#youth', icon: 'Zap' },
+      ],
+    },
+    {
+      title: 'Young Professionals',
+      links: [
+        { label: 'Career Navigation', path: '/professionals', icon: 'Navigation' },
+        { label: 'Purpose Architecture Lab', path: '/professionals#purpose', icon: 'Compass' },
+        { label: 'Executive Mentorship', path: '/mentorship#executive', icon: 'Briefcase' },
+        { label: 'Personal Brand Building', path: '/courses#personal-brand', icon: 'Star' },
+      ],
+    },
+    {
+      title: 'Parents & Families',
+      links: [
+        { label: 'Future-Proof Parenting', path: '/programs#parents', icon: 'Home' },
+        { label: 'Purpose-Driven Family Leadership', path: '/programs#parents', icon: 'Heart' },
+        { label: 'Raising Leaders of Character', path: '/programs#parents', icon: 'Shield' },
+        { label: 'Financial Wisdom for Families', path: '/programs#parents', icon: 'Wallet' },
+        { label: 'The Mentored Family', path: '/programs#parents', icon: 'Users' },
       ],
     },
     {
       title: 'Mentors & Professionals',
       links: [
-        { label: 'Become a Mentor', path: '/mentor-waitlist' },
-        { label: 'Mentor Certification Program', path: '/programs#mentors' },
-        { label: 'Mentor Training Lab', path: '/programs#mentors' },
-        { label: 'WeKIT Experience Collective', path: '/programs#mentors' },
+        { label: 'Become a Mentor', path: '/mentor-waitlist', icon: 'UserPlus' },
+        { label: 'Mentor Certification Program', path: '/programs#mentors', icon: 'Award' },
+        { label: 'Mentor Training Lab', path: '/programs#mentors', icon: 'BookOpen' },
+        { label: 'WeKIT Experience Collective', path: '/programs#mentors', icon: 'Globe' },
       ],
     },
     {
-      title: 'Entrepreneurship',
+      title: 'Corporates',
       links: [
-        { label: 'Founder Discovery Lab', path: '/programs#entrepreneurship' },
-        { label: 'Startup Mentorship Network', path: '/programs#entrepreneurship' },
-        { label: 'Angel Readiness Program', path: '/programs#entrepreneurship' },
-        { label: 'Student Entrepreneurship Labs', path: '/programs#entrepreneurship' },
+        { label: 'CSR Youth Mentorship Programs', path: '/programs#partners', icon: 'Heart' },
+        { label: 'Corporate Leadership Expeditions', path: '/programs#experiential', icon: 'Mountain' },
+        { label: 'Future Talent Pipeline', path: '/enterprise', icon: 'TrendingUp' },
+        { label: 'Impact Analytics Dashboards', path: '/enterprise', icon: 'BarChart3' },
       ],
     },
     {
-      title: 'Partners & Organizations',
+      title: 'NGOs & CSR Teams',
       links: [
-        { label: 'Corporate Partnerships', path: '/programs#partners' },
-        { label: 'NGO & Foundation Programs', path: '/programs#partners' },
-        { label: 'Government & Policy Programs', path: '/programs#partners' },
-        { label: 'Enterprise Solutions', path: '/enterprise' },
+        { label: 'Youth Skilling Programs', path: '/ngos#youth-skilling', icon: 'Sparkles' },
+        { label: 'Career Readiness Initiatives', path: '/ngos#career-readiness', icon: 'Target' },
+        { label: 'Purpose Discovery Programs', path: '/ngos#purpose-discovery', icon: 'Compass' },
+        { label: 'Community Impact Programs', path: '/programs#partners', icon: 'Users' },
+      ],
+    },
+    {
+      title: 'EdTech Platforms',
+      links: [
+        { label: 'API Integration (Coming Soon)', path: '/programs#partners', icon: 'Code' },
+        { label: 'Content Licensing', path: '/programs#partners', icon: 'FileText' },
+        { label: 'Partnership Inquiry', path: '/enterprise', icon: 'Handshake' },
       ],
     },
   ],
   featured: {
     title: 'Flagship Program',
-    subtitle: 'WeKIT Future Readiness System',
-    description: 'A seven-component, five-year infrastructure combining AI career discovery, mentorship, life skills, and career portfolios for Grades 8–12.',
-    buttonLabel: 'Explore for Schools',
-    buttonPath: '/schools',
+    subtitle: 'Purpose Architecture Lab',
+    description: 'An AI-powered purpose and career discovery system helping students explore strengths, values, and career pathways.',
+    buttonLabel: 'Explore Program',
+    buttonPath: '/programs#institutions',
+    videoUrl: 'https://videos.pexels.com/video-files/3195394/3195394-uhd_2560_1440_25fps.mp4',
+  },
+  featuredByCategory: {
+    'Schools & Colleges': {
+      title: 'Flagship Program',
+      subtitle: 'WeKIT Future Readiness System',
+      description: 'A seven-component, five-year infrastructure combining AI career discovery, mentorship, life skills, and career portfolios for Grades 8–12.',
+      buttonLabel: 'Explore for Schools',
+      buttonPath: '/schools',
+      videoUrl: 'https://videos.pexels.com/video-files/3195394/3195394-uhd_2560_1440_25fps.mp4',
+    },
+    'University Students': {
+      title: 'Featured',
+      subtitle: 'College Discovery Community',
+      description: 'Students explore peer-reviewed college insights and connect with alumni for real-world guidance on campus life, academics, and careers.',
+      buttonLabel: 'Explore Community',
+      buttonPath: '/programs#youth',
+      videoUrl: 'https://videos.pexels.com/video-files/6893992/6893992-uhd_2732_1440_25fps.mp4',
+    },
+    'Young Professionals': {
+      title: 'Featured',
+      subtitle: 'Purpose Architecture Lab',
+      description: 'An AI-powered purpose and career discovery system helping professionals explore strengths, values, and career pathways.',
+      buttonLabel: 'Explore Program',
+      buttonPath: '/professionals',
+      videoUrl: 'https://videos.pexels.com/video-files/3195394/3195394-uhd_2560_1440_25fps.mp4',
+    },
+    'Parents & Families': {
+      title: 'Featured',
+      subtitle: 'Future-Proof Parenting',
+      description: 'Equip your family with purpose, financial wisdom, and leadership skills that prepare children for a rapidly changing world.',
+      buttonLabel: 'Learn More',
+      buttonPath: '/programs#parents',
+    },
+    'Mentors & Professionals': {
+      title: 'Featured',
+      subtitle: 'Global Mentor Network',
+      description: 'Connect with experienced professionals and industry leaders guiding the next generation of innovators and changemakers.',
+      buttonLabel: 'Become a Mentor',
+      buttonPath: '/mentor-waitlist',
+      videoUrl: 'https://videos.pexels.com/video-files/6893992/6893992-uhd_2732_1440_25fps.mp4',
+    },
+    'Corporates': {
+      title: 'Enterprise',
+      subtitle: 'Corporate Impact Programs',
+      description: 'Create scalable mentoring ecosystems and future talent pipelines through CSR, leadership expeditions, and impact analytics.',
+      buttonLabel: 'Explore Enterprise',
+      buttonPath: '/enterprise',
+    },
+    'NGOs & CSR Teams': {
+      title: 'Impact',
+      subtitle: 'Community Impact Programs',
+      description: 'Partner with WeKIT to deliver youth skilling, career readiness, and purpose discovery at scale.',
+      buttonLabel: 'Partner With Us',
+      buttonPath: '/ngos',
+    },
+    'EdTech Platforms': {
+      title: 'Coming Soon',
+      subtitle: 'EdTech Integration',
+      description: 'WeKIT is building open APIs and content licensing options for EdTech platforms seeking to embed career readiness and mentorship.',
+      buttonLabel: 'Express Interest',
+      buttonPath: '/enterprise',
+    },
   },
 };
 
