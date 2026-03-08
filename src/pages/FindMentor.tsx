@@ -54,7 +54,7 @@ const FindMentor = () => {
     try {
       const { data, error } = await supabase
         .from("mentor_profiles")
-        .select("*")
+        .select("id, full_name, bio, location, industry, skills, experience_level, availability, avatar_url, role")
         .eq("role", "mentor");
 
       if (error) throw error;

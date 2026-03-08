@@ -128,7 +128,7 @@ const handler = async (req: Request): Promise<Response> => {
       );
     }
 
-    console.log("Received Zoho webhook payload:", JSON.stringify(payload));
+    console.log("Received Zoho webhook payload for form:", (payload as Record<string, unknown>).form_id || "unknown");
 
     // Create Supabase client with service role for bypassing RLS
     const supabaseUrl = Deno.env.get("SUPABASE_URL");
