@@ -23,11 +23,11 @@ export async function syncToZohoCRM(data: ZohoSyncData): Promise<void> {
     // 1. Save to zoho_form_submissions
     const { data: submission, error: insertError } = await supabase
       .from('zoho_form_submissions')
-      .insert({
+      .insert([{
         form_id: data.form_type,
         submission_data: data as Record<string, unknown>,
         submitted_at: new Date().toISOString(),
-      })
+      }])
       .select('id')
       .single();
 
