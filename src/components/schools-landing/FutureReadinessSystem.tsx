@@ -27,9 +27,9 @@ const layers = [
   {
     num: '04',
     icon: Cpu,
-    title: 'Future Skills (WAFES)',
-    desc: 'AI literacy, sustainability awareness, emerging technologies.',
-    outcome: 'Skills aligned with future careers.',
+    title: 'Future Skills Lab (WAFES)',
+    desc: 'Future-of-work competencies including AI literacy, sustainability awareness, digital productivity, and emerging technologies.',
+    outcome: 'Students develop future-ready capabilities.',
   },
   {
     num: '05',
