@@ -8,6 +8,7 @@ import { ArrowRight, Heart, Users, Lightbulb, CheckCircle } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import { useNavigate } from 'react-router-dom';
 import { supabase } from '@/integrations/supabase/client';
+import { syncToZohoCRM } from '@/utils/zohoSync';
 
 const MentorWaitlist = () => {
   const [currentStep, setCurrentStep] = useState(1);
