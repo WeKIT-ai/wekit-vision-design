@@ -1,78 +1,48 @@
 import { Link } from 'react-router-dom';
-import { motion } from 'framer-motion';
-import { ArrowUpRight } from 'lucide-react';
-
-const cards = [
-  {
-    title: 'Collaborative Learning',
-    subtitle: 'Building tomorrow\'s leaders through shared experiences',
-    image: 'https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?auto=compress&cs=tinysrgb&w=800',
-    link: '/courses',
-  },
-  {
-    title: 'AI-Powered Matching',
-    subtitle: 'Smart mentor connections driven by purpose',
-    image: 'https://images.pexels.com/photos/3861969/pexels-photo-3861969.jpeg?auto=compress&cs=tinysrgb&w=800',
-    link: '/mentorship',
-  },
-  {
-    title: 'Future-Ready Skills',
-    subtitle: 'Technology meets human potential',
-    image: 'https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?auto=compress&cs=tinysrgb&w=800',
-    link: '/programs',
-  },
-];
 
 const VisualImpact = () => {
   return (
-    <section className="py-24 md:py-32 px-6 md:px-12 bg-background">
-      <div className="max-w-7xl mx-auto">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.7 }}
-          className="text-center mb-16"
-        >
-          <h2 className="text-3xl md:text-5xl font-bold font-montserrat text-foreground mb-4 tracking-tight">
-            Transforming Lives Through Technology
-          </h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Where innovation meets human potential
-          </p>
-        </motion.div>
+    <section className="py-24 px-6 md:px-8 overflow-hidden bg-background">
+      <div className="max-w-6xl mx-auto">
+        <div className="text-center mb-12">
+          <h2 className="text-3xl font-bold font-montserrat text-foreground mb-4">Transforming Lives Through Technology</h2>
+          <p className="text-xl text-muted-foreground">Where innovation meets human potential</p>
+        </div>
+        
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <Link to="/courses" className="relative overflow-hidden shadow-sm group hover:shadow-lg transition-all duration-300 cursor-pointer">
+            <video autoPlay muted loop playsInline className="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-700"
+              poster="https://images.unsplash.com/photo-1605810230434-7631ac76ec81?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80">
+              <source src="https://player.vimeo.com/external/434045526.sd.mp4?s=c27eecc69a27dbc4ff2b87d38afc35f1a9a1c3ef&profile_id=165&oauth2_token_id=57447761" type="video/mp4" />
+            </video>
+            <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
+            <div className="absolute bottom-4 left-4 text-white">
+              <h3 className="text-lg font-semibold font-montserrat">Collaborative Learning</h3>
+              <p className="text-sm opacity-90">Building tomorrow's leaders</p>
+            </div>
+          </Link>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {cards.map((card, i) => (
-            <motion.div
-              key={card.title}
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: i * 0.15 }}
-            >
-              <Link to={card.link} className="group block relative rounded-2xl overflow-hidden aspect-[4/5] card-cinematic">
-                <img
-                  src={card.image}
-                  alt={card.title}
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                  loading="lazy"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
-                <div className="absolute bottom-0 left-0 right-0 p-6 md:p-8">
-                  <div className="flex items-end justify-between">
-                    <div>
-                      <h3 className="text-xl font-bold font-montserrat text-white mb-1">{card.title}</h3>
-                      <p className="text-sm text-white/60">{card.subtitle}</p>
-                    </div>
-                    <div className="glass w-10 h-10 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 group-hover:translate-x-0 -translate-x-2">
-                      <ArrowUpRight className="text-white" size={18} />
-                    </div>
-                  </div>
-                </div>
-              </Link>
-            </motion.div>
-          ))}
+          <div className="relative overflow-hidden shadow-sm group hover:shadow-lg transition-all duration-300">
+            <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+              alt="AI-powered mentorship" className="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-700" />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
+            <div className="absolute bottom-4 left-4 text-white">
+              <h3 className="text-lg font-semibold font-montserrat">AI-Powered Matching</h3>
+              <p className="text-sm opacity-90">Smart mentor connections</p>
+            </div>
+          </div>
+
+          <div className="relative overflow-hidden shadow-sm group hover:shadow-lg transition-all duration-300">
+            <video autoPlay muted loop playsInline className="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-700"
+              poster="https://images.unsplash.com/photo-1487058792275-0ad4aaf24ca7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80">
+              <source src="https://player.vimeo.com/external/434045526.sd.mp4?s=c27eecc69a27dbc4ff2b87d38afc35f1a9a1c3ef&profile_id=165&oauth2_token_id=57447761" type="video/mp4" />
+            </video>
+            <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
+            <div className="absolute bottom-4 left-4 text-white">
+              <h3 className="text-lg font-semibold font-montserrat">Future-Ready Skills</h3>
+              <p className="text-sm opacity-90">Technology meets purpose</p>
+            </div>
+          </div>
         </div>
       </div>
     </section>

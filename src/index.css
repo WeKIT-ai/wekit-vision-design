@@ -1,6 +1,5 @@
-@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap");
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -8,13 +7,13 @@
 @layer base {
   :root {
     --background: 0 0% 100%;
-    --foreground: 220 20% 10%;
+    --foreground: 0 0% 17.3%;
 
     --card: 0 0% 100%;
-    --card-foreground: 220 20% 10%;
+    --card-foreground: 0 0% 17.3%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 220 20% 10%;
+    --popover-foreground: 0 0% 17.3%;
 
     --primary: 210 28% 17%;
     --primary-foreground: 0 0% 100%;
@@ -22,8 +21,8 @@
     --secondary: 170 35% 28%;
     --secondary-foreground: 0 0% 100%;
 
-    --muted: 220 20% 96%;
-    --muted-foreground: 220 10% 46%;
+    --muted: 216 25% 97%;
+    --muted-foreground: 218 15% 46%;
 
     --accent: 41 44% 56%;
     --accent-foreground: 0 0% 100%;
@@ -31,20 +30,11 @@
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 220 15% 91%;
-    --input: 220 15% 91%;
+    --border: 220 20% 92%;
+    --input: 220 20% 92%;
     --ring: 210 28% 17%;
 
-    --radius: 0.75rem;
-
-    /* Cinematic design tokens */
-    --cinematic-dark: 220 20% 6%;
-    --cinematic-dark-subtle: 220 18% 10%;
-    --cinematic-overlay: 220 20% 6%;
-    --glass-bg: 0 0% 100% / 0.06;
-    --glass-border: 0 0% 100% / 0.1;
-    --glow-primary: 170 35% 28%;
-    --glow-accent: 41 44% 56%;
+    --radius: 0rem;
 
     --sidebar-background: 0 0% 98%;
     --sidebar-foreground: 240 5.3% 26.1%;
@@ -56,21 +46,20 @@
     --sidebar-ring: 210 28% 17%;
     --font-sans: Montserrat, ui-sans-serif, system-ui, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
     --font-mono: "Roboto Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, Liberation Mono, Courier New, monospace;
-    --shadow-sm: 0px 1px 2px 0px hsla(0, 0%, 0%, 0.06);
-    --shadow: 0px 2px 8px 0px hsla(0, 0%, 0%, 0.08);
-    --shadow-md: 0px 4px 16px 0px hsla(0, 0%, 0%, 0.1);
-    --shadow-lg: 0px 8px 32px 0px hsla(0, 0%, 0%, 0.12);
-    --shadow-cinematic: 0px 16px 64px -16px hsla(0, 0%, 0%, 0.25);
+    --shadow-sm: 0px 1px 1.5px 0px hsla(0, 0%, 0%, 0.15);
+    --shadow: 0px 1px 3px 0px hsla(0, 0%, 0%, 0.15);
+    --shadow-md: 0px 1px 4.5px 0px hsla(0, 0%, 0%, 0.15);
+    --shadow-lg: 0px 1px 7.5px 0px hsla(0, 0%, 0%, 0.15);
   }
 
   .dark {
-    --background: 220 20% 6%;
+    --background: 210 28% 7%;
     --foreground: 0 0% 95%;
 
-    --card: 220 18% 10%;
+    --card: 210 28% 10%;
     --card-foreground: 0 0% 95%;
 
-    --popover: 220 18% 10%;
+    --popover: 210 28% 10%;
     --popover-foreground: 0 0% 95%;
 
     --primary: 0 0% 95%;
@@ -101,7 +90,7 @@
     --sidebar-ring: 210 28% 17%;
     --font-sans: Montserrat, ui-sans-serif, system-ui, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
     --font-mono: "Roboto Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, Liberation Mono, Courier New, monospace;
-    --radius: 0.75rem;
+    --radius: 0rem;
     --shadow-sm: 0px 1px 1.5px 0px hsla(0, 0%, 0%, 0.15);
     --shadow: 0px 1px 3px 0px hsla(0, 0%, 0%, 0.15);
     --shadow-md: 0px 1px 4.5px 0px hsla(0, 0%, 0%, 0.15);
@@ -115,78 +104,10 @@
   }
 
   body {
-    @apply bg-background text-foreground antialiased;
-    font-family: 'Montserrat', ui-sans-serif, system-ui, sans-serif;
+    @apply bg-background text-foreground font-roboto antialiased;
   }
 
   h1, h2, h3, h4, h5, h6 {
     @apply font-montserrat;
-  }
-}
-
-@layer utilities {
-  /* Glass morphism utilities */
-  .glass {
-    background: hsla(0, 0%, 100%, 0.06);
-    backdrop-filter: blur(24px);
-    -webkit-backdrop-filter: blur(24px);
-    border: 1px solid hsla(0, 0%, 100%, 0.1);
-  }
-
-  .glass-light {
-    background: hsla(0, 0%, 100%, 0.8);
-    backdrop-filter: blur(24px);
-    -webkit-backdrop-filter: blur(24px);
-    border: 1px solid hsla(0, 0%, 0%, 0.06);
-  }
-
-  /* Cinematic text gradients */
-  .text-gradient-cinematic {
-    background: linear-gradient(135deg, hsl(170, 35%, 45%), hsl(41, 44%, 56%));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-  }
-
-  /* Cinematic section backgrounds */
-  .bg-cinematic {
-    background: hsl(220, 20%, 6%);
-  }
-
-  .bg-cinematic-subtle {
-    background: hsl(220, 18%, 10%);
-  }
-
-  /* Premium card hover effect */
-  .card-cinematic {
-    @apply rounded-2xl overflow-hidden transition-all duration-500;
-    box-shadow: 0 4px 20px -4px hsla(0, 0%, 0%, 0.1);
-  }
-
-  .card-cinematic:hover {
-    transform: translateY(-6px) scale(1.015);
-    box-shadow: 0 20px 60px -12px hsla(0, 0%, 0%, 0.2);
-  }
-
-  /* Smooth scroll */
-  html {
-    scroll-behavior: smooth;
-  }
-
-  /* Video overlay gradient */
-  .video-overlay {
-    background: linear-gradient(
-      to top,
-      hsla(220, 20%, 6%, 0.95) 0%,
-      hsla(220, 20%, 6%, 0.7) 30%,
-      hsla(220, 20%, 6%, 0.4) 60%,
-      hsla(220, 20%, 6%, 0.2) 100%
-    );
-  }
-
-  /* Section divider */
-  .section-divider {
-    height: 1px;
-    background: linear-gradient(90deg, transparent, hsla(0, 0%, 100%, 0.1), transparent);
   }
 }
