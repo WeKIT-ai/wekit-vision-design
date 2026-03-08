@@ -77,6 +77,7 @@ const App = () => (
                       <Route path="/mentor-onboarding" element={<ProtectedRoute><MentorOnboarding /></ProtectedRoute>} />
                       <Route path="/mentor-dashboard" element={<ProtectedRoute><MentorDashboard /></ProtectedRoute>} />
                       <Route path="/find-mentor" element={<ProtectedRoute><FindMentor /></ProtectedRoute>} />
+                      <Route path="/admin/sync" element={<ProtectedRoute><AdminSyncDashboard /></ProtectedRoute>} />
                       <Route path="*" element={<NotFound />} />
                     </Routes>
                   </main>
