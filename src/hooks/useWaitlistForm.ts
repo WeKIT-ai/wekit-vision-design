@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useToast } from '@/hooks/use-toast';
 import { supabase } from '@/integrations/supabase/client';
 import { waitlistSchema } from '@/lib/validation';
+import { syncToZohoCRM } from '@/utils/zohoSync';
 
 export const useWaitlistForm = () => {
   const [name, setName] = useState('');
@@ -33,6 +34,15 @@ export const useWaitlistForm = () => {
       await supabase.from('psychometric_test_leads').insert({
         referral_source: 'waitlist_page',
         metadata: { name: result.data.name, email: result.data.email }
+      });
+
+      // Sync to Zoho CRM (fire-and-forget)
+      syncToZohoCRM({
+        form_type: 'waitlist',
+        first_name: result.data.name,
+        last_name: result.data.name,
+        email: result.data.email,
+        description: 'Waitlist signup',
       });
 
       toast({ title: "You're on the list! 🎉", description: "We'll notify you as soon as We-KIT launches." });

@@ -8,6 +8,7 @@ import { UserPlus } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import { supabase } from '@/integrations/supabase/client';
 import { mentorSignupSchema } from '@/lib/validation';
+import { syncToZohoCRM } from '@/utils/zohoSync';
 
 const MentorSignup = () => {
   const [formData, setFormData] = useState({
@@ -63,6 +64,16 @@ const MentorSignup = () => {
         });
 
       if (contactError) throw contactError;
+
+      // Sync to Zoho CRM (fire-and-forget)
+      syncToZohoCRM({
+        form_type: 'mentor-signup',
+        first_name: result.data.firstName,
+        last_name: result.data.lastName,
+        email: result.data.email,
+        company: result.data.company || '',
+        description: `Mentor Signup - Industry: ${result.data.industry}, Experience: ${result.data.experience}, Expertise: ${result.data.expertise}`,
+      });
 
       // Log non-PII analytics only
       await supabase

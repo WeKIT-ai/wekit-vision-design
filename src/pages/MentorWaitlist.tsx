@@ -8,6 +8,7 @@ import { ArrowRight, Heart, Users, Lightbulb, CheckCircle } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import { useNavigate } from 'react-router-dom';
 import { supabase } from '@/integrations/supabase/client';
+import { syncToZohoCRM } from '@/utils/zohoSync';
 
 const MentorWaitlist = () => {
   const [currentStep, setCurrentStep] = useState(1);
@@ -79,6 +80,17 @@ const MentorWaitlist = () => {
         });
 
       if (error) throw error;
+
+      // Sync to Zoho CRM (fire-and-forget)
+      syncToZohoCRM({
+        form_type: 'mentor-waitlist',
+        first_name: formData.first_name,
+        last_name: formData.last_name,
+        email: formData.email,
+        phone: formData.phone,
+        company: formData.company,
+        description: `Mentor Waitlist | Position: ${formData.position} | Industry: ${formData.industry} | Experience: ${formData.experience_years} yrs | Specialties: ${formData.specialties} | Philosophy: ${formData.mentoring_philosophy}`,
+      });
 
       toast({
         title: "Thank you for joining!",

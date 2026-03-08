@@ -7,6 +7,7 @@ import { Phone } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import { supabase } from '@/integrations/supabase/client';
 import { contactFormSchema } from '@/lib/validation';
+import { syncToZohoCRM } from '@/utils/zohoSync';
 
 const ContactForm = () => {
   const [formData, setFormData] = useState({
@@ -46,6 +47,16 @@ const ContactForm = () => {
         });
 
       if (error) throw error;
+
+      // Sync to Zoho CRM (fire-and-forget)
+      syncToZohoCRM({
+        form_type: 'contact-form',
+        first_name: result.data.name,
+        last_name: result.data.name,
+        email: result.data.email,
+        company: result.data.company || '',
+        description: result.data.message,
+      });
 
       toast({
         title: "Message Sent!",

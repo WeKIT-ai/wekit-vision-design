@@ -4,7 +4,7 @@ import { createClient } from "https://esm.sh/@supabase/supabase-js@2.49.1";
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
   "Access-Control-Allow-Headers":
-    "authorization, x-client-info, apikey, content-type",
+    "authorization, x-client-info, apikey, content-type, x-supabase-client-platform, x-supabase-client-platform-version, x-supabase-client-runtime, x-supabase-client-runtime-version",
 };
 
 interface ZohoTokenResponse {
@@ -18,9 +18,7 @@ interface ZohoTokenResponse {
 interface ZohoLeadResponse {
   data?: Array<{
     code: string;
-    details: {
-      id: string;
-    };
+    details: { id: string };
     message: string;
     status: string;
   }>;
@@ -40,28 +38,19 @@ async function getAccessToken(): Promise<string> {
   const clientId = Deno.env.get("ZOHO_CLIENT_ID");
   const clientSecret = Deno.env.get("ZOHO_CLIENT_SECRET");
   const refreshToken = Deno.env.get("ZOHO_REFRESH_TOKEN");
-  // Default to .in (India) but can be overridden with ZOHO_DOMAIN secret
   const zohoDomain = Deno.env.get("ZOHO_DOMAIN") || "zoho.in";
 
   if (!clientId || !clientSecret || !refreshToken) {
     throw new Error("Missing Zoho OAuth credentials");
   }
 
-  // Debug logging - show credential lengths (not values for security)
-  console.log("Debug: Zoho credentials check:");
-  console.log(`  - Client ID length: ${clientId.length}, starts with: ${clientId.substring(0, 10)}...`);
-  console.log(`  - Client Secret length: ${clientSecret.length}`);
-  console.log(`  - Refresh Token length: ${refreshToken.length}, starts with: ${refreshToken.substring(0, 10)}...`);
-  console.log(`  - Using domain: ${zohoDomain}`);
+  console.log(`Using Zoho domain: ${zohoDomain}`);
 
   const tokenUrl = `https://accounts.${zohoDomain}/oauth/v2/token`;
-  console.log(`  - Token URL: ${tokenUrl}`);
 
   const response = await fetch(tokenUrl, {
     method: "POST",
-    headers: {
-      "Content-Type": "application/x-www-form-urlencoded",
-    },
+    headers: { "Content-Type": "application/x-www-form-urlencoded" },
     body: new URLSearchParams({
       grant_type: "refresh_token",
       client_id: clientId,
@@ -73,8 +62,7 @@ async function getAccessToken(): Promise<string> {
   const data: ZohoTokenResponse = await response.json();
 
   if (data.error || !data.access_token) {
-    console.error("Token refresh failed:", data);
-    console.error("Full Zoho response:", JSON.stringify(data));
+    console.error("Token refresh failed:", JSON.stringify(data));
     throw new Error(`Token refresh failed: ${data.error || "No access token returned"}`);
   }
 
@@ -82,65 +70,107 @@ async function getAccessToken(): Promise<string> {
   return data.access_token;
 }
 
+// Lead source labels per form type
+const LEAD_SOURCE_MAP: Record<string, string> = {
+  "wot-kareer-interest": "WeKIT Website - Wot Kareer Interest Form",
+  "contact-form": "WeKIT Website - Contact Form",
+  "newsletter": "WeKIT Website - Newsletter Signup",
+  "demo-request": "WeKIT Website - Demo Request",
+  "early-access": "WeKIT Website - Early Access Signup",
+  "mentor-signup": "WeKIT Website - Mentor Signup",
+  "partnership-inquiry": "WeKIT Website - Partnership Inquiry",
+  "waitlist": "WeKIT Website - Waitlist Signup",
+  "white-paper": "WeKIT Website - White Paper Download",
+  "mentor-waitlist": "WeKIT Website - Mentor Waitlist",
+};
+
 // Map form submission data to Zoho CRM Lead format
 function mapToZohoLead(submissionData: Record<string, unknown>): Record<string, unknown> {
-  // Field mapping based on Zoho Form structure:
-  // Field_1: Salutation, Field_2: First Name, Field_3: Last Name
-  // Field_5: Email, Field_6: Phone
-  // Field_10: Street, Field_11: City, Field_12: State, Field_13: Zip, Field_14: Country
-  // Field_17/Field_18: Description fields
-  
-  const firstName = submissionData.Field_2 as string || "";
-  const lastName = submissionData.Field_3 as string || "";
-  const email = submissionData.Field_5 as string || "";
-  const phone = submissionData.Field_6 as string || "";
-  
-  // Build address components
-  const street = submissionData.Field_10 as string || "";
-  const city = submissionData.Field_11 as string || "";
-  const state = submissionData.Field_12 as string || "";
-  const zipCode = submissionData.Field_13 as string || "";
-  const country = submissionData.Field_14 as string || "";
-  
-  // Build description from additional fields
-  const descriptionParts: string[] = [];
-  if (submissionData.Field_17) descriptionParts.push(submissionData.Field_17 as string);
-  if (submissionData.Field_18) descriptionParts.push(submissionData.Field_18 as string);
-  if (submissionData.Field_7) descriptionParts.push(`Organization: ${submissionData.Field_7}`);
-  if (submissionData.Field_8) descriptionParts.push(`Role: ${submissionData.Field_8}`);
+  const formType = (submissionData.form_type as string) || "unknown";
+
+  // Check if this is a Zoho Forms webhook submission (Field_X format)
+  if (submissionData.Field_2 || submissionData.Field_5) {
+    return mapZohoFormFields(submissionData);
+  }
+
+  // Generic website form mapping
+  const firstName = (submissionData.first_name as string) || "";
+  const lastName = (submissionData.last_name as string) || "";
+  const email = (submissionData.email as string) || "";
+  const phone = (submissionData.phone as string) || "";
+  const company = (submissionData.company as string) || "";
+  const description = (submissionData.description as string) || "";
 
   const lead: Record<string, unknown> = {
     First_Name: firstName,
-    Last_Name: lastName || firstName || "Unknown", // Last name is required in Zoho
+    Last_Name: lastName || firstName || "Unknown",
+    Email: email,
+    Lead_Source: LEAD_SOURCE_MAP[formType] || `WeKIT Website - ${formType}`,
+  };
+
+  if (phone) lead.Phone = phone;
+  if (company) lead.Company = company;
+  if (description) lead.Description = description;
+
+  return lead;
+}
+
+// Legacy: Map Zoho Forms webhook field names (Field_1, Field_2, etc.)
+function mapZohoFormFields(data: Record<string, unknown>): Record<string, unknown> {
+  const firstName = (data.Field_2 as string) || "";
+  const lastName = (data.Field_3 as string) || "";
+  const email = (data.Field_5 as string) || "";
+  const phone = (data.Field_6 as string) || "";
+
+  const street = (data.Field_10 as string) || "";
+  const city = (data.Field_11 as string) || "";
+  const state = (data.Field_12 as string) || "";
+  const zipCode = (data.Field_13 as string) || "";
+  const country = (data.Field_14 as string) || "";
+
+  const descriptionParts: string[] = [];
+  if (data.Field_17) descriptionParts.push(data.Field_17 as string);
+  if (data.Field_18) descriptionParts.push(data.Field_18 as string);
+  if (data.Field_7) descriptionParts.push(`Organization: ${data.Field_7}`);
+  if (data.Field_8) descriptionParts.push(`Role: ${data.Field_8}`);
+
+  const lead: Record<string, unknown> = {
+    First_Name: firstName,
+    Last_Name: lastName || firstName || "Unknown",
     Email: email,
     Phone: phone,
     Lead_Source: "WeKIT Website - Wot Kareer Interest Form",
   };
 
-  // Add optional fields if they have values
-  if (submissionData.Field_1) lead.Salutation = submissionData.Field_1;
+  if (data.Field_1) lead.Salutation = data.Field_1;
   if (street) lead.Street = street;
   if (city) lead.City = city;
   if (state) lead.State = state;
   if (zipCode) lead.Zip_Code = zipCode;
   if (country) lead.Country = country;
-  if (submissionData.Field_7) lead.Company = submissionData.Field_7;
+  if (data.Field_7) lead.Company = data.Field_7;
   if (descriptionParts.length > 0) lead.Description = descriptionParts.join("\n");
 
   return lead;
 }
 
 // Create lead in Zoho CRM
-async function createZohoLead(accessToken: string, leadData: Record<string, unknown>): Promise<{ success: boolean; leadId?: string; error?: string }> {
-  const response = await fetch("https://www.zohoapis.in/crm/v2/Leads", {
+async function createZohoLead(
+  accessToken: string,
+  leadData: Record<string, unknown>
+): Promise<{ success: boolean; leadId?: string; error?: string }> {
+  const zohoDomain = Deno.env.get("ZOHO_DOMAIN") || "zoho.in";
+  const apiBase = `https://www.zohoapis.${zohoDomain === "zoho.com" ? "com" : "in"}`;
+
+  const response = await fetch(`${apiBase}/crm/v2/Leads`, {
     method: "POST",
     headers: {
-      "Authorization": `Zoho-oauthtoken ${accessToken}`,
+      Authorization: `Zoho-oauthtoken ${accessToken}`,
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
       data: [leadData],
-      trigger: ["workflow"], // Trigger any workflows in Zoho CRM
+      trigger: ["workflow"],
     }),
   });
 
@@ -173,14 +203,13 @@ const handler = async (req: Request): Promise<Response> => {
 
     const supabase = createClient(supabaseUrl, supabaseServiceKey);
 
-    // Parse and validate request body
     const UUID_REGEX = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
     let submissionIds: string[] = [];
-    
+
     if (req.method === "POST") {
       const body = await req.json();
       if (body.submission_id) {
-        if (typeof body.submission_id !== 'string' || !UUID_REGEX.test(body.submission_id)) {
+        if (typeof body.submission_id !== "string" || !UUID_REGEX.test(body.submission_id)) {
           return new Response(
             JSON.stringify({ error: "Invalid submission_id format. Must be a valid UUID." }),
             { status: 400, headers: { "Content-Type": "application/json", ...corsHeaders } }
@@ -194,7 +223,9 @@ const handler = async (req: Request): Promise<Response> => {
             { status: 400, headers: { "Content-Type": "application/json", ...corsHeaders } }
           );
         }
-        const allValid = body.submission_ids.every((id: unknown) => typeof id === 'string' && UUID_REGEX.test(id as string));
+        const allValid = body.submission_ids.every(
+          (id: unknown) => typeof id === "string" && UUID_REGEX.test(id as string)
+        );
         if (!allValid) {
           return new Response(
             JSON.stringify({ error: "All submission_ids must be valid UUIDs." }),
@@ -203,13 +234,12 @@ const handler = async (req: Request): Promise<Response> => {
         }
         submissionIds = body.submission_ids;
       } else if (body.sync_all_pending === true) {
-        // Get all pending submissions
         const { data: pendingSubmissions } = await supabase
           .from("zoho_form_submissions")
           .select("id")
           .eq("zoho_sync_status", "pending")
           .limit(50);
-        
+
         submissionIds = pendingSubmissions?.map((s: { id: string }) => s.id) || [];
       }
     }
@@ -223,10 +253,8 @@ const handler = async (req: Request): Promise<Response> => {
 
     console.log(`Syncing ${submissionIds.length} submissions to Zoho CRM`);
 
-    // Get fresh access token
     const accessToken = await getAccessToken();
 
-    // Fetch submissions to sync
     const { data: submissions, error: fetchError } = await supabase
       .from("zoho_form_submissions")
       .select("id, submission_data, zoho_sync_status")
@@ -238,16 +266,12 @@ const handler = async (req: Request): Promise<Response> => {
 
     const results: Array<{ id: string; success: boolean; leadId?: string; error?: string }> = [];
 
-    // Process each submission
     for (const submission of (submissions as FormSubmission[]) || []) {
       try {
-        // Map form data to Zoho Lead format
         const leadData = mapToZohoLead(submission.submission_data);
-        
-        // Create lead in Zoho CRM
+
         const createResult = await createZohoLead(accessToken, leadData);
-        
-        // Update submission with sync result
+
         await supabase
           .from("zoho_form_submissions")
           .update({
@@ -268,7 +292,7 @@ const handler = async (req: Request): Promise<Response> => {
         console.log(`Submission ${submission.id}: ${createResult.success ? "synced" : "failed"}`);
       } catch (err) {
         const errorMessage = err instanceof Error ? err.message : "Unknown error";
-        
+
         await supabase
           .from("zoho_form_submissions")
           .update({
@@ -282,8 +306,8 @@ const handler = async (req: Request): Promise<Response> => {
       }
     }
 
-    const successCount = results.filter(r => r.success).length;
-    const failCount = results.filter(r => !r.success).length;
+    const successCount = results.filter((r) => r.success).length;
+    const failCount = results.filter((r) => !r.success).length;
 
     return new Response(
       JSON.stringify({
@@ -293,14 +317,13 @@ const handler = async (req: Request): Promise<Response> => {
       }),
       { status: 200, headers: { "Content-Type": "application/json", ...corsHeaders } }
     );
-
   } catch (error) {
     const errorMessage = error instanceof Error ? error.message : "Unknown error";
     console.error("Error in zoho-crm-sync function:", errorMessage);
-    return new Response(
-      JSON.stringify({ error: errorMessage }),
-      { status: 500, headers: { "Content-Type": "application/json", ...corsHeaders } }
-    );
+    return new Response(JSON.stringify({ error: errorMessage }), {
+      status: 500,
+      headers: { "Content-Type": "application/json", ...corsHeaders },
+    });
   }
 };
 

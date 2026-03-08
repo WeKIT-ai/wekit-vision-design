@@ -6,6 +6,7 @@ import { Mail } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import { supabase } from '@/integrations/supabase/client';
 import { newsletterSchema } from '@/lib/validation';
+import { syncToZohoCRM } from '@/utils/zohoSync';
 
 const NewsletterSignup = () => {
   const [email, setEmail] = useState('');
@@ -36,6 +37,13 @@ const NewsletterSignup = () => {
         });
 
       if (error) throw error;
+
+      // Sync to Zoho CRM (fire-and-forget)
+      syncToZohoCRM({
+        form_type: 'newsletter',
+        email: result.data.email,
+        description: 'Newsletter subscription',
+      });
 
       toast({
         title: "Welcome to WeKIT!",

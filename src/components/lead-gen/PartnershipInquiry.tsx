@@ -8,6 +8,7 @@ import { Handshake } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import { supabase } from '@/integrations/supabase/client';
 import { partnershipInquirySchema } from '@/lib/validation';
+import { syncToZohoCRM } from '@/utils/zohoSync';
 
 const PartnershipInquiry = () => {
   const [formData, setFormData] = useState({
@@ -48,6 +49,16 @@ const PartnershipInquiry = () => {
         });
 
       if (contactError) throw contactError;
+
+      // Sync to Zoho CRM (fire-and-forget)
+      syncToZohoCRM({
+        form_type: 'partnership-inquiry',
+        first_name: result.data.name,
+        last_name: result.data.name,
+        email: result.data.email,
+        company: result.data.organization,
+        description: `Partnership Inquiry - Type: ${result.data.partnershipType}. Details: ${result.data.details}`,
+      });
 
       // Log non-PII analytics only
       await supabase
