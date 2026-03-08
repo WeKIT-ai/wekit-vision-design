@@ -42,8 +42,8 @@ const layers = [
     num: '06',
     icon: Users,
     title: 'WeKIT 360 Mentorship',
-    desc: 'Mentor matching connecting students with professionals and alumni.',
-    outcome: 'Industry guidance and career insights.',
+    desc: 'Structured mentoring ecosystem connecting students with professionals and alumni.',
+    outcome: 'Career insights and guidance from industry mentors.',
   },
   {
     num: '07',
