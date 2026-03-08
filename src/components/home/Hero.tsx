@@ -19,15 +19,19 @@ const Hero = () => {
         {/* Hero Content - Bottom Left */}
         <div className="absolute inset-0 z-20 flex items-end justify-start p-8 md:p-16 pb-32">
           <div className="text-left max-w-2xl">
-             <h1 className="text-5xl md:text-7xl lg:text-8xl font-extrabold font-montserrat text-white leading-[1.05] tracking-tight">
+            <div className="bg-black/40 backdrop-blur-sm p-8 mb-6">
+              <h1 className="text-4xl md:text-6xl font-bold font-montserrat text-white leading-tight">
                 Mentoring the Future
+                <br />
+                <span className="text-wekit-gold">
+                  Powered by AI
+                </span>
+                <br />
+                <span className="text-white/90">
+                  Driven by Purpose
+                </span>
               </h1>
-              <h1 className="text-5xl md:text-7xl lg:text-8xl font-extrabold font-montserrat text-wekit-gold leading-[1.05] tracking-tight">
-                Powered by AI
-              </h1>
-              <h1 className="text-5xl md:text-7xl lg:text-8xl font-extrabold font-montserrat text-white/90 leading-[1.05] tracking-tight">
-                Driven by Purpose
-              </h1>
+            </div>
             <p className="text-lg md:text-xl text-white/90 mb-8 max-w-lg font-semibold">
               WeKIT = Wot Kareer Is iT?
             </p>
