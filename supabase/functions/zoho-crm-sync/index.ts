@@ -241,6 +241,38 @@ const handler = async (req: Request): Promise<Response> => {
           .limit(50);
 
         submissionIds = pendingSubmissions?.map((s: { id: string }) => s.id) || [];
+      } else if (body.retry_failed === true) {
+        // Reset failed submissions back to pending and retry them
+        const maxRetries = body.max_retries || 3;
+        const { data: failedSubmissions } = await supabase
+          .from("zoho_form_submissions")
+          .select("id, submission_data")
+          .eq("zoho_sync_status", "failed")
+          .limit(50);
+
+        if (failedSubmissions && failedSubmissions.length > 0) {
+          // Filter out submissions that have been retried too many times
+          const retryable = failedSubmissions.filter((s: { id: string; submission_data: Record<string, unknown> }) => {
+            const retryCount = (s.submission_data as Record<string, unknown>)?._retry_count;
+            return typeof retryCount !== "number" || retryCount < maxRetries;
+          });
+
+          // Update retry count and reset status to pending
+          for (const s of retryable) {
+            const currentCount = ((s.submission_data as Record<string, unknown>)?._retry_count as number) || 0;
+            await supabase
+              .from("zoho_form_submissions")
+              .update({
+                zoho_sync_status: "pending",
+                sync_error: null,
+                submission_data: { ...(s.submission_data as Record<string, unknown>), _retry_count: currentCount + 1 },
+              })
+              .eq("id", s.id);
+          }
+
+          submissionIds = retryable.map((s: { id: string }) => s.id);
+          console.log(`Retrying ${submissionIds.length} failed submissions (skipped ${failedSubmissions.length - submissionIds.length} exceeded max retries)`);
+        }
       }
     }
 
