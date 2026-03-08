@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useToast } from '@/hooks/use-toast';
 import { supabase } from '@/integrations/supabase/client';
 import { waitlistSchema } from '@/lib/validation';
+import { syncToZohoCRM } from '@/utils/zohoSync';
 
 export const useWaitlistForm = () => {
   const [name, setName] = useState('');
