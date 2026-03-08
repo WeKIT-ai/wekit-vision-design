@@ -21,8 +21,8 @@ const layers = [
     num: '03',
     icon: Coins,
     title: 'Financial Literacy & Entrepreneurship Lab (WAFLE)',
-    desc: 'Budgeting, digital payments, financial planning, and entrepreneurial thinking.',
-    outcome: 'Financial confidence and value creation mindset.',
+    desc: 'Budgeting, digital payments, personal finance, and entrepreneurial thinking.',
+    outcome: 'Students gain financial confidence and value creation mindset.',
   },
   {
     num: '04',
