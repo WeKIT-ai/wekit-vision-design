@@ -1,6 +1,4 @@
 import { motion } from 'framer-motion';
-import AnimatedSection from '@/components/ui/animated-section';
-import StaggeredChildren from '@/components/ui/staggered-children';
 import { UserCheck, Award, BookOpen, Globe, ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
@@ -15,47 +13,60 @@ const MentorsAndProfessionals = () => {
   return (
     <section id="mentors" className="py-28 md:py-36 px-6 md:px-12 bg-background">
       <div className="max-w-6xl mx-auto">
-        <AnimatedSection animation="fade-up" className="mb-16">
-          <span className="inline-block border border-secondary/30 px-4 py-1.5 text-xs tracking-[0.3em] uppercase text-secondary font-semibold mb-6">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7 }}
+          className="mb-16"
+        >
+          <span className="inline-block glass rounded-full px-4 py-1.5 text-xs tracking-[0.3em] uppercase text-secondary font-semibold mb-6">
             Mentors & Professionals
           </span>
           <h2 className="text-4xl md:text-6xl font-bold font-montserrat text-foreground leading-tight mb-4">
             Mentors &
             <br />Professionals
           </h2>
-          <p className="text-lg text-muted-foreground max-w-2xl">
+          <p className="text-lg text-muted-foreground max-w-2xl font-light">
             Join a global community of mentors guiding the next generation. Earn recognition, certification, and create lasting impact.
           </p>
-        </AnimatedSection>
+        </motion.div>
 
-        <StaggeredChildren className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12" staggerDelay={100} animation="zoom-in">
-          {programs.map((p) => (
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
+          {programs.map((p, i) => (
             <motion.div
               key={p.title}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: i * 0.1 }}
               whileHover={{ y: -6, scale: 1.02 }}
-              className="bg-card border border-border p-8 md:p-10 transition-shadow duration-500 hover:shadow-xl hover:border-accent/40 group"
+              className="glass rounded-2xl p-8 md:p-10 transition-all duration-500 hover:bg-white/10 hover:border-accent/40 group"
             >
-              <div className="w-12 h-12 border border-accent/40 flex items-center justify-center mb-5 group-hover:bg-accent/10 group-hover:border-accent transition-colors duration-300">
+              <div className="w-12 h-12 rounded-xl border border-accent/40 flex items-center justify-center mb-5 group-hover:bg-accent/10 group-hover:border-accent transition-colors duration-300">
                 <p.icon className="text-accent" size={22} />
               </div>
               <h3 className="text-xl font-semibold font-montserrat text-foreground mb-3">{p.title}</h3>
               <p className="text-sm text-muted-foreground leading-relaxed">{p.desc}</p>
             </motion.div>
           ))}
-        </StaggeredChildren>
+        </div>
 
-        {/* Highlight strip */}
-        <AnimatedSection animation="fade-up" delay={200}>
-          <div className="bg-wekit-soft border border-border p-8 md:p-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
-            <div>
-              <h4 className="text-xl font-semibold font-montserrat text-foreground mb-2">Recognition. Certification. Impact.</h4>
-              <p className="text-sm text-muted-foreground max-w-xl">Mentors receive verified certifications, community recognition, and tools to measure their mentoring impact.</p>
-            </div>
-            <Link to="/mentor-waitlist" className="inline-flex items-center gap-2 text-secondary font-semibold text-sm whitespace-nowrap hover:gap-3 transition-all duration-300">
-              Join as Mentor <ArrowRight size={16} />
-            </Link>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: 0.3 }}
+          className="glass rounded-2xl p-8 md:p-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-4"
+        >
+          <div>
+            <h4 className="text-xl font-semibold font-montserrat text-foreground mb-2">Recognition. Certification. Impact.</h4>
+            <p className="text-sm text-muted-foreground max-w-xl">Mentors receive verified certifications, community recognition, and tools to measure their mentoring impact.</p>
           </div>
-        </AnimatedSection>
+          <Link to="/mentor-waitlist" className="inline-flex items-center gap-2 text-accent font-semibold text-sm whitespace-nowrap hover:gap-3 transition-all duration-300">
+            Join as Mentor <ArrowRight size={16} />
+          </Link>
+        </motion.div>
       </div>
     </section>
   );
