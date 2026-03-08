@@ -83,7 +83,7 @@ const ProgramsHero = () => {
                 </Button>
               </a>
               <Link to="/enterprise">
-                <Button size="lg" variant="outline" className="border-2 border-white/30 text-white px-10 py-7 text-base font-medium transition-all duration-300 hover:translate-y-[-2px] backdrop-blur-sm bg-primary">
+                <Button size="lg" variant="outline" className="border-2 border-white/30 text-white px-10 py-7 text-base transition-all duration-300 hover:translate-y-[-2px] backdrop-blur-sm bg-primary font-bold">
                   Partner With WeKIT
                 </Button>
               </Link>
