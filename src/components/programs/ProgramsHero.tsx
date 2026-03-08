@@ -1,10 +1,8 @@
 import { Button } from '@/components/ui/button';
-import { ChevronDown } from 'lucide-react';
+import { ChevronDown, ArrowRight } from 'lucide-react';
 import { motion } from 'framer-motion';
-import heroBg from '@/assets/schools-hero-bg.jpg';
-import AnimatedSection from '@/components/ui/animated-section';
-import StaggeredChildren from '@/components/ui/staggered-children';
 import { GraduationCap, Users, Briefcase, Rocket, Building2 } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const ecosystemCards = [
   { icon: GraduationCap, title: 'Educational Institutions', desc: 'Schools, colleges, and learning institutions', anchor: '#institutions' },
@@ -17,89 +15,132 @@ const ecosystemCards = [
 const ProgramsHero = () => {
   return (
     <>
-      {/* Hero */}
-      <section className="relative min-h-[85vh] flex items-end overflow-hidden">
-        <div
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-          style={{ backgroundImage: `url(${heroBg})` }}
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-black/30" />
+      {/* Cinematic Video Hero */}
+      <section className="relative min-h-screen flex items-end overflow-hidden">
+        {/* Video Background */}
+        <video
+          autoPlay
+          muted
+          loop
+          playsInline
+          className="absolute inset-0 w-full h-full object-cover"
+          poster="https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?auto=compress&cs=tinysrgb&w=1920"
+        >
+          <source src="https://videos.pexels.com/video-files/3209828/3209828-uhd_2560_1440_25fps.mp4" type="video/mp4" />
+        </video>
+        <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/60 to-black/40" />
 
-        <div className="relative z-10 w-full px-6 md:px-12 lg:px-20 pb-20 md:pb-28 pt-40">
-          <div className="max-w-4xl">
+        <div className="relative z-10 w-full px-6 md:px-12 lg:px-20 pb-24 md:pb-32 pt-48">
+          <div className="max-w-5xl">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="inline-block border border-white/30 px-4 py-1.5 text-sm tracking-widest uppercase text-white/80 mb-6"
+              className="inline-block border border-white/20 px-5 py-2 text-xs tracking-[0.3em] uppercase text-white/70 mb-8 backdrop-blur-sm bg-white/5"
             >
               WeKIT Ecosystem
             </motion.div>
 
             <motion.h1
-              initial={{ opacity: 0, y: 40 }}
+              initial={{ opacity: 0, y: 50 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.9, delay: 0.4 }}
-              className="text-4xl md:text-6xl lg:text-7xl font-bold font-montserrat text-white leading-[1.05] tracking-tight mb-6"
+              transition={{ duration: 1, delay: 0.4 }}
+              className="text-5xl md:text-7xl lg:text-8xl font-bold font-montserrat text-white leading-[0.95] tracking-tight mb-8"
             >
-              Programs & Solutions
+              Mentoring the
+              <br />
+              <span className="text-accent">Future of Work</span>
             </motion.h1>
 
             <motion.p
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.6 }}
-              className="text-xl md:text-2xl text-white/80 font-light leading-relaxed mb-3 max-w-3xl"
+              transition={{ duration: 0.8, delay: 0.7 }}
+              className="text-lg md:text-2xl text-white/80 font-light leading-relaxed mb-4 max-w-3xl"
             >
-              AI-powered mentorship, career discovery, and real-world pathways for students, professionals, and institutions.
+              From discovering strengths to choosing the right college, mentors, and careers — WeKIT connects youth, families, schools, and organizations through an AI-powered mentorship ecosystem.
             </motion.p>
 
             <motion.p
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.7 }}
-              className="text-base md:text-lg text-white/60 font-light leading-relaxed max-w-2xl"
+              transition={{ duration: 0.8, delay: 0.9 }}
+              className="text-base md:text-lg text-white/50 font-light leading-relaxed max-w-2xl mb-10"
             >
               WeKIT connects learners, mentors, educators, and industry through a unified ecosystem that guides individuals from self-discovery to meaningful careers and entrepreneurship.
             </motion.p>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 1.1 }}
+              className="flex flex-col sm:flex-row gap-4"
+            >
+              <a href="#institutions">
+                <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 px-10 py-7 text-base font-semibold tracking-wide transition-all duration-300 hover:translate-y-[-2px] hover:shadow-2xl group">
+                  Explore Programs
+                  <ArrowRight className="ml-2 transition-transform duration-300 group-hover:translate-x-1" size={18} />
+                </Button>
+              </a>
+              <Link to="/enterprise">
+                <Button size="lg" variant="outline" className="border-2 border-white/30 text-white hover:bg-white/10 px-10 py-7 text-base font-medium transition-all duration-300 hover:translate-y-[-2px] backdrop-blur-sm">
+                  Partner With WeKIT
+                </Button>
+              </Link>
+            </motion.div>
           </div>
         </div>
 
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 1.5 }}
-          className="absolute bottom-6 left-1/2 -translate-x-1/2 z-10"
+          transition={{ delay: 2 }}
+          className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10"
         >
-          <motion.div animate={{ y: [0, 8, 0] }} transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}>
-            <ChevronDown className="text-white/50" size={28} />
+          <motion.div animate={{ y: [0, 10, 0] }} transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}>
+            <ChevronDown className="text-white/40" size={32} />
           </motion.div>
         </motion.div>
       </section>
 
       {/* Ecosystem Cards */}
-      <section className="py-20 px-6 md:px-12 bg-background">
+      <section className="py-24 px-6 md:px-12 bg-background">
         <div className="max-w-6xl mx-auto">
-          <AnimatedSection animation="fade-up" className="text-center mb-14">
-            <h2 className="text-2xl md:text-3xl font-bold font-montserrat text-foreground">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7 }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-3xl md:text-4xl font-bold font-montserrat text-foreground mb-3">
               One Platform. Five Ecosystems.
             </h2>
-          </AnimatedSection>
-          <StaggeredChildren className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-5" staggerDelay={80} animation="fade-up">
-            {ecosystemCards.map((c) => (
-              <a
+            <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
+              An interconnected platform where every participant accelerates the other.
+            </p>
+          </motion.div>
+
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-5">
+            {ecosystemCards.map((c, i) => (
+              <motion.a
                 key={c.title}
                 href={c.anchor}
-                className="bg-card border border-border p-6 text-center transition-all duration-500 hover:-translate-y-2 hover:shadow-lg hover:border-secondary/40 group"
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: i * 0.1 }}
+                whileHover={{ y: -8, scale: 1.03 }}
+                className="bg-card border border-border p-7 text-center transition-shadow duration-500 hover:shadow-xl hover:border-secondary/40 group cursor-pointer"
               >
-                <div className="w-12 h-12 mx-auto border border-secondary/30 flex items-center justify-center mb-4 group-hover:border-secondary group-hover:bg-secondary/5 transition-colors duration-300">
-                  <c.icon className="text-secondary" size={22} />
+                <div className="w-14 h-14 mx-auto border border-secondary/30 flex items-center justify-center mb-5 group-hover:border-secondary group-hover:bg-secondary/5 transition-all duration-300">
+                  <c.icon className="text-secondary" size={24} />
                 </div>
                 <h3 className="text-sm font-semibold font-montserrat text-foreground mb-1">{c.title}</h3>
                 <p className="text-xs text-muted-foreground">{c.desc}</p>
-              </a>
+              </motion.a>
             ))}
-          </StaggeredChildren>
+          </div>
         </div>
       </section>
     </>
