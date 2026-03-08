@@ -44,13 +44,16 @@ const App = () => (
       <BrowserRouter>
         <AuthProvider>
           <ScrollToTop />
-          <div className="min-h-screen flex flex-col bg-background">
+          <div className="min-h-screen flex flex-col bg-white">
             <Routes>
+              {/* Standalone page with its own nav/footer */}
               <Route path="/waitlist" element={<Waitlist />} />
+
+              {/* Main layout pages */}
               <Route path="*" element={
                 <>
                   <Navigation />
-                  <main className="flex-1">
+                  <main className="flex-1 pt-20">
                     <Routes>
                       <Route path="/" element={<Index />} />
                       <Route path="/auth" element={<Auth />} />

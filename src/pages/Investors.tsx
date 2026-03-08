@@ -1,8 +1,8 @@
 import { Button } from '@/components/ui/button';
+import { Card, CardContent } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { TrendingUp, DollarSign, Globe, Users, Target, BarChart3, ArrowRight, CheckCircle } from 'lucide-react';
-import { motion } from 'framer-motion';
 
 const Investors = () => {
   const marketOpportunity = [
@@ -35,21 +35,26 @@ const Investors = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-background overflow-hidden">
+    <div className="min-h-screen pt-16 overflow-hidden bg-background">
       {/* Hero */}
-      <section className="relative py-32 px-4 sm:px-6 lg:px-8 section-darker">
+      <section className="relative pt-20 pb-32 px-4 sm:px-6 lg:px-8 bg-wekit-soft">
         <div className="max-w-7xl mx-auto text-center">
-          <motion.h1 initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }} className="text-4xl md:text-6xl font-bold font-montserrat text-foreground mb-8 leading-[1.05] tracking-tight">
+          <h1 className="text-4xl md:text-6xl font-bold font-montserrat text-foreground mb-8">
             Invest in the
-            <span className="block text-gradient">Future of Youth</span>
-          </motion.h1>
-          <motion.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.2 }} className="text-xl text-muted-foreground max-w-3xl mx-auto mb-8 font-light">
-            Join us in building the largest youth empowerment platform globally.
-          </motion.p>
-          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.4 }} className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button size="xl" variant="accent" className="group">Request Investment Deck <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" size={18} /></Button>
-            <Button size="xl" variant="outline">Schedule Call</Button>
-          </motion.div>
+            <span className="block text-wekit-teal">Future of Youth</span>
+          </h1>
+          <p className="text-xl text-muted-foreground max-w-3xl mx-auto mb-8">
+            Join us in building the largest youth empowerment platform globally. 
+            Exceptional returns meet meaningful impact in the world's fastest-growing market.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Button size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90 px-8 py-6 text-lg font-medium shadow-sm hover:shadow-md transition-all duration-300 group">
+              Request Investment Deck <ArrowRight className="ml-2 transition-transform duration-300 group-hover:translate-x-1" size={20} />
+            </Button>
+            <Button size="lg" variant="outline" className="px-8 py-6 text-lg font-medium border-2 border-primary text-primary hover:bg-primary hover:text-primary-foreground transition-all duration-300">
+              Schedule Call
+            </Button>
+          </div>
         </div>
       </section>
 
@@ -58,50 +63,54 @@ const Investors = () => {
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold font-montserrat text-foreground mb-4">Massive Market Opportunity</h2>
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">The global youth population represents the largest untapped market for educational technology.</p>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {marketOpportunity.map((item, i) => (
-              <motion.div key={i} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5, delay: i * 0.1 }}
-                className="glass rounded-2xl p-8 text-center hover:-translate-y-1 transition-all duration-300">
-                <div className="w-14 h-14 rounded-xl glass flex items-center justify-center mx-auto mb-6">
-                  <item.icon size={28} className="text-accent" />
-                </div>
-                <div className="text-3xl font-bold text-accent mb-2">{item.stat}</div>
-                <h3 className="text-lg font-semibold font-montserrat text-foreground mb-2">{item.title}</h3>
-                <p className="text-muted-foreground text-sm">{item.description}</p>
-              </motion.div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {marketOpportunity.map((item, index) => (
+              <Card key={index} className="border border-border/60 hover:shadow-lg transition-all duration-300 bg-card">
+                <CardContent className="p-8 text-center">
+                  <div className="w-14 h-14 bg-wekit-soft flex items-center justify-center mx-auto mb-6">
+                    <item.icon size={28} className="text-wekit-teal" />
+                  </div>
+                  <div className="text-3xl font-bold text-wekit-teal mb-2">{item.stat}</div>
+                  <h3 className="text-lg font-semibold font-montserrat text-foreground mb-2">{item.title}</h3>
+                  <p className="text-muted-foreground text-sm">{item.description}</p>
+                </CardContent>
+              </Card>
             ))}
           </div>
         </div>
       </section>
 
       {/* Traction */}
-      <section className="py-24 px-4 sm:px-6 lg:px-8 section-darker">
-        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12">
-          <div>
-            <h2 className="text-3xl md:text-4xl font-bold font-montserrat text-foreground mb-8">Proven Traction</h2>
-            <p className="text-lg text-muted-foreground mb-8 font-light">Strong product-market fit with consistent growth.</p>
-            <div className="space-y-4">
-              {traction.map((item, i) => (
-                <div key={i} className="flex items-center space-x-3">
-                  <CheckCircle className="text-secondary flex-shrink-0" size={20} />
-                  <span className="text-muted-foreground">{item}</span>
-                </div>
-              ))}
-            </div>
-          </div>
-          <div>
-            <h3 className="text-2xl font-semibold font-montserrat text-foreground mb-8">Key Performance Metrics</h3>
-            <div className="space-y-4">
-              {keyMetrics.map((metric, i) => (
-                <div key={i} className="glass rounded-xl p-6">
-                  <div className="flex justify-between items-center mb-2">
-                    <span className="text-foreground font-medium">{metric.label}</span>
-                    <span className="text-2xl font-bold text-accent">{metric.value}</span>
+      <section className="py-24 px-4 sm:px-6 lg:px-8 bg-wekit-soft">
+        <div className="max-w-7xl mx-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+            <div>
+              <h2 className="text-3xl md:text-4xl font-bold font-montserrat text-foreground mb-8">Proven Traction</h2>
+              <p className="text-lg text-muted-foreground mb-8">Our platform has demonstrated strong product-market fit with consistent growth across all key metrics.</p>
+              <div className="space-y-4">
+                {traction.map((item, index) => (
+                  <div key={index} className="flex items-center space-x-3">
+                    <CheckCircle className="text-wekit-teal flex-shrink-0" size={20} />
+                    <span className="text-muted-foreground">{item}</span>
                   </div>
-                  <p className="text-sm text-muted-foreground">{metric.trend}</p>
-                </div>
-              ))}
+                ))}
+              </div>
+            </div>
+            <div>
+              <h3 className="text-2xl font-semibold font-montserrat text-foreground mb-8">Key Performance Metrics</h3>
+              <div className="space-y-4">
+                {keyMetrics.map((metric, index) => (
+                  <div key={index} className="bg-card p-6 border border-border/60 shadow-sm">
+                    <div className="flex justify-between items-center mb-2">
+                      <span className="text-foreground font-medium">{metric.label}</span>
+                      <span className="text-2xl font-bold text-wekit-teal">{metric.value}</span>
+                    </div>
+                    <p className="text-sm text-muted-foreground">{metric.trend}</p>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </div>
@@ -112,52 +121,74 @@ const Investors = () => {
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold font-montserrat text-foreground mb-4">Investment Opportunities</h2>
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">Multiple investment rounds available to support our growth strategy.</p>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {investmentOpportunities.map((opp, i) => (
-              <motion.div key={i} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5, delay: i * 0.1 }}
-                className="glass rounded-2xl p-8 text-center hover:-translate-y-1 transition-all duration-300">
-                <div className="w-14 h-14 rounded-xl glass flex items-center justify-center mx-auto mb-6">
-                  <opp.icon size={28} className="text-accent" />
-                </div>
-                <h3 className="text-xl font-semibold font-montserrat text-foreground mb-2">{opp.title}</h3>
-                <div className="text-2xl font-bold text-accent mb-4">{opp.amount}</div>
-                <p className="text-muted-foreground">{opp.use}</p>
-              </motion.div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {investmentOpportunities.map((opp, index) => (
+              <Card key={index} className="border border-border/60 hover:shadow-lg transition-all duration-300 bg-card">
+                <CardContent className="p-8 text-center">
+                  <div className="w-14 h-14 bg-wekit-soft flex items-center justify-center mx-auto mb-6">
+                    <opp.icon size={28} className="text-wekit-teal" />
+                  </div>
+                  <h3 className="text-xl font-semibold font-montserrat text-foreground mb-2">{opp.title}</h3>
+                  <div className="text-2xl font-bold text-wekit-teal mb-4">{opp.amount}</div>
+                  <p className="text-muted-foreground">{opp.use}</p>
+                </CardContent>
+              </Card>
             ))}
           </div>
         </div>
       </section>
 
       {/* Contact */}
-      <section className="py-24 px-4 sm:px-6 lg:px-8 section-darker">
+      <section className="py-24 px-4 sm:px-6 lg:px-8 bg-wekit-soft">
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold font-montserrat text-foreground mb-4">Connect with Our Investment Team</h2>
+            <p className="text-lg text-muted-foreground">Ready to learn more? Get in touch with our team to discuss next steps.</p>
           </div>
-          <div className="glass rounded-2xl p-8">
-            <form className="space-y-6">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div><label className="block text-sm font-medium text-foreground mb-2">Name</label><Input placeholder="Your full name" className="bg-white/5 border-white/10 rounded-xl" /></div>
-                <div><label className="block text-sm font-medium text-foreground mb-2">Organization</label><Input placeholder="Investment firm" className="bg-white/5 border-white/10 rounded-xl" /></div>
-              </div>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div><label className="block text-sm font-medium text-foreground mb-2">Email</label><Input type="email" placeholder="email@example.com" className="bg-white/5 border-white/10 rounded-xl" /></div>
-                <div><label className="block text-sm font-medium text-foreground mb-2">Phone</label><Input type="tel" placeholder="Phone number" className="bg-white/5 border-white/10 rounded-xl" /></div>
-              </div>
-              <div><label className="block text-sm font-medium text-foreground mb-2">Investment Interest</label><Textarea placeholder="Tell us about your investment thesis" rows={4} className="bg-white/5 border-white/10 rounded-xl" /></div>
-              <Button className="w-full" variant="accent" size="lg">Send Investment Inquiry</Button>
-            </form>
-          </div>
+          <Card className="border border-border/60 bg-card shadow-sm">
+            <CardContent className="p-8">
+              <form className="space-y-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div>
+                    <label className="block text-sm font-medium text-foreground mb-2">Name</label>
+                    <Input placeholder="Your full name" />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-foreground mb-2">Organization</label>
+                    <Input placeholder="Investment firm or company" />
+                  </div>
+                </div>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div>
+                    <label className="block text-sm font-medium text-foreground mb-2">Email</label>
+                    <Input placeholder="your.email@example.com" type="email" />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-foreground mb-2">Phone</label>
+                    <Input placeholder="Your phone number" type="tel" />
+                  </div>
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-foreground mb-2">Investment Interest</label>
+                  <Textarea placeholder="Tell us about your investment thesis" rows={4} />
+                </div>
+                <Button className="w-full bg-primary text-primary-foreground hover:bg-primary/90 py-3 text-lg">Send Investment Inquiry</Button>
+              </form>
+            </CardContent>
+          </Card>
         </div>
       </section>
 
       {/* Final CTA */}
-      <section className="relative py-28 px-4 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-accent/10 via-background to-secondary/10" />
-        <div className="max-w-4xl mx-auto text-center relative z-10">
-          <h2 className="text-3xl md:text-4xl font-bold font-montserrat text-foreground mb-8">Be Part of the Global Growth Story</h2>
-          <Button size="xl" variant="accent" className="group">Download Investment Deck <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" size={18} /></Button>
+      <section className="py-24 px-4 sm:px-6 lg:px-8 bg-primary">
+        <div className="max-w-4xl mx-auto text-center">
+          <h2 className="text-3xl md:text-4xl font-bold font-montserrat text-primary-foreground mb-8">Be Part of the Global Growth Story</h2>
+          <p className="text-lg text-primary-foreground/70 mb-8">Join leading investors who are backing the next generation of global talent.</p>
+          <Button size="lg" className="bg-white text-primary hover:bg-white/90 px-10 py-6 text-lg font-medium shadow-sm hover:shadow-md transition-all duration-300 group">
+            Download Investment Deck <ArrowRight className="ml-2 transition-transform duration-300 group-hover:translate-x-1" size={20} />
+          </Button>
         </div>
       </section>
     </div>
