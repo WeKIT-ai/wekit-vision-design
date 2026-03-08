@@ -1,59 +1,57 @@
-import { Card, CardContent } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
-import { ArrowRight, Users, GraduationCap, Briefcase, Heart, TrendingUp } from 'lucide-react';
+import { motion } from 'framer-motion';
+import { GraduationCap, Users, Briefcase, Rocket, Building2, ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
+const ecosystemCards = [
+  { icon: GraduationCap, title: 'Educational Institutions', desc: 'Schools, colleges, and learning institutions', link: '/programs#institutions' },
+  { icon: Users, title: 'Youth & Families', desc: 'Students and young professionals', link: '/programs#youth' },
+  { icon: Briefcase, title: 'Mentors & Professionals', desc: 'Industry mentors and career guides', link: '/programs#mentors' },
+  { icon: Rocket, title: 'Entrepreneurship', desc: 'Founders and purpose-driven innovators', link: '/programs#entrepreneurship' },
+  { icon: Building2, title: 'Partners & Organizations', desc: 'Corporates, NGOs, and government', link: '/programs#partners' },
+];
+
 const AudienceSection = () => {
-  const audiences = [
-    { title: 'Schools & Educational Institutions', description: 'Partner with us to integrate AI-driven mentorship into your curriculum.', icon: GraduationCap, link: '/schools' },
-    { title: 'Students', description: 'Access personalized mentorship, upskilling programs, and career roadmaps.', icon: Users, link: '/students' },
-    { title: 'Young Professionals', description: 'Advance your career through networking, skill development, and strategic guidance.', icon: Briefcase, link: '/professionals' },
-    { title: 'NGOs', description: 'Collaborate with us to amplify your impact and reach more youth.', icon: Heart, link: '/ngos' },
-    { title: 'Investors', description: 'Join us in building the future of youth development through sustainable solutions.', icon: TrendingUp, link: '/investors' }
-  ];
-
   return (
-    <section className="relative py-32 px-6 md:px-8 overflow-hidden bg-background">
+    <section className="py-28 md:py-36 px-6 md:px-12 bg-background">
       <div className="max-w-6xl mx-auto">
-        <div className="text-center mb-24 space-y-8">
-          <h2 className="text-4xl md:text-5xl font-bold font-montserrat text-foreground leading-tight">
-            Who We
-            <br />
-            <span className="text-wekit-teal">Serve</span>
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7 }}
+          className="text-center mb-20"
+        >
+          <h2 className="text-4xl md:text-5xl font-bold font-montserrat text-foreground mb-4 leading-tight">
+            One Platform. Five Ecosystems.
           </h2>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-            Our ecosystem brings together diverse stakeholders united by a common goal: 
-            empowering youth to achieve their full potential.
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
+            An interconnected platform where every participant accelerates the other.
           </p>
-        </div>
+        </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {audiences.map((audience, index) => (
-            <Card 
-              key={index}
-              className="border border-border/60 hover:shadow-lg transition-all duration-300 group bg-card overflow-hidden h-full"
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-5">
+          {ecosystemCards.map((c, i) => (
+            <motion.div
+              key={c.title}
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: i * 0.1 }}
+              whileHover={{ y: -8, scale: 1.03 }}
+              className="group"
             >
-              <CardContent className="p-10 relative z-10">
-                <div className="mb-8">
-                  <audience.icon size={40} className="text-foreground group-hover:text-wekit-teal transition-colors duration-300" />
+              <Link
+                to={c.link}
+                className="block bg-card border border-border p-7 text-center transition-shadow duration-500 hover:shadow-xl hover:border-secondary/40 h-full"
+              >
+                <div className="w-14 h-14 mx-auto border border-secondary/30 flex items-center justify-center mb-5 group-hover:border-secondary group-hover:bg-secondary/5 transition-all duration-300">
+                  <c.icon className="text-secondary" size={24} />
                 </div>
-                <h3 className="text-2xl font-semibold font-montserrat text-foreground mb-4 leading-tight group-hover:text-wekit-teal transition-colors duration-300">
-                  {audience.title}
-                </h3>
-                <p className="text-muted-foreground mb-8 leading-relaxed">
-                  {audience.description}
-                </p>
-                <Link to={audience.link}>
-                  <Button 
-                    variant="outline" 
-                    className="w-full border-2 border-primary text-primary hover:bg-primary hover:text-primary-foreground font-medium transition-all duration-300 group/button"
-                  >
-                    Learn More
-                    <ArrowRight className="ml-2 transition-transform duration-300 group-hover/button:translate-x-1" size={16} />
-                  </Button>
-                </Link>
-              </CardContent>
-            </Card>
+                <h3 className="text-sm font-semibold font-montserrat text-foreground mb-1">{c.title}</h3>
+                <p className="text-xs text-muted-foreground mb-3">{c.desc}</p>
+                <ArrowRight className="mx-auto text-secondary opacity-0 group-hover:opacity-100 transition-all duration-300 group-hover:translate-x-1" size={16} />
+              </Link>
+            </motion.div>
           ))}
         </div>
       </div>
