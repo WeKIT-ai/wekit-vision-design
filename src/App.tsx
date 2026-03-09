@@ -35,6 +35,7 @@ import FindMentor from "./pages/FindMentor";
 import AdminSyncDashboard from "./pages/AdminSyncDashboard";
 import TermsAndConditions from "./pages/TermsAndConditions";
 import CollegeDiscovery from "./pages/CollegeDiscovery";
+import TrustCenter from "./pages/TrustCenter";
 import ProtectedRoute from "./components/ProtectedRoute";
 const queryClient = new QueryClient();
 
@@ -81,6 +82,7 @@ const App = () => (
                       <Route path="/find-mentor" element={<ProtectedRoute><FindMentor /></ProtectedRoute>} />
                       <Route path="/admin/sync" element={<ProtectedRoute><AdminSyncDashboard /></ProtectedRoute>} />
                       <Route path="/terms" element={<TermsAndConditions />} />
+                      <Route path="/trust" element={<TrustCenter />} />
                       <Route path="/discover" element={<CollegeDiscovery />} />
                       <Route path="*" element={<NotFound />} />
                     </Routes>
