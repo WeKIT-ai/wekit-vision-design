@@ -213,6 +213,48 @@ Map user queries to actions:
 
 Remember: You are a supportive mentor guiding users to discover their purpose and navigate their career journey. The Career Clarity 360 Assessment is your primary tool for helping confused users find clarity.`;
 
+// --- SOCIAL MEDIA INTEGRATION PLACEHOLDERS ---
+// TODO: Replace these with actual API calls when tokens/keys are available in Supabase secrets
+async function fetchYouTubeLatest() {
+  // const YOUTUBE_API_KEY = Deno.env.get('YOUTUBE_API_KEY');
+  // const response = await fetch(`https://www.googleapis.com/youtube/v3/search?...`);
+  return "- YouTube: [Placeholder: Latest WeKIT Video on Youth Mentorship] (Link: https://youtube.com/@WeKITMentoring)";
+}
+
+async function fetchInstagramLatest() {
+  // const INSTAGRAM_TOKEN = Deno.env.get('INSTAGRAM_TOKEN');
+  // const response = await fetch(`https://graph.instagram.com/me/media?...`);
+  return "- Instagram: [Placeholder: Latest post about discovering your Career DNA] (Link: https://instagram.com/we.kit.mentoring)";
+}
+
+async function fetchLinkedInLatest() {
+  // const LINKEDIN_TOKEN = Deno.env.get('LINKEDIN_TOKEN');
+  // const response = await fetch(`https://api.linkedin.com/v2/ugcPosts?...`);
+  return "- LinkedIn: [Placeholder: Announcement about our new corporate partnership] (Link: https://linkedin.com/company/we-kit-mentoring)";
+}
+
+async function fetchFacebookLatest() {
+  // const FACEBOOK_TOKEN = Deno.env.get('FACEBOOK_TOKEN');
+  // const response = await fetch(`https://graph.facebook.com/v18.0/me/posts?...`);
+  return "- Facebook: [Placeholder: Recap of the latest school career discovery workshop] (Link: https://facebook.com/wekitorg)";
+}
+
+async function getLiveSocialMediaContext() {
+  try {
+    const [yt, ig, li, fb] = await Promise.all([
+      fetchYouTubeLatest(),
+      fetchInstagramLatest(),
+      fetchLinkedInLatest(),
+      fetchFacebookLatest()
+    ]);
+    return `\n\n# LATEST SOCIAL MEDIA UPDATES\nWhen users ask about news, updates, or our latest social media posts, use this live context:\n${yt}\n${ig}\n${li}\n${fb}`;
+  } catch (e) {
+    console.error("Error fetching social media:", e);
+    return ""; // Fail gracefully if APIs fail
+  }
+}
+// ---------------------------------------------
+
 serve(async (req) => {
   if (req.method === "OPTIONS") return new Response(null, { headers: corsHeaders });
 
@@ -220,6 +262,10 @@ serve(async (req) => {
     const { messages } = await req.json();
     const LOVABLE_API_KEY = Deno.env.get("LOVABLE_API_KEY");
     if (!LOVABLE_API_KEY) throw new Error("LOVABLE_API_KEY is not configured");
+
+    // Fetch dynamic social media content (placeholders for now)
+    const socialMediaContext = await getLiveSocialMediaContext();
+    const dynamicSystemPrompt = SYSTEM_PROMPT + socialMediaContext;
 
     const response = await fetch("https://ai.gateway.lovable.dev/v1/chat/completions", {
       method: "POST",
@@ -230,7 +276,7 @@ serve(async (req) => {
       body: JSON.stringify({
         model: "google/gemini-3-flash-preview",
         messages: [
-          { role: "system", content: SYSTEM_PROMPT },
+          { role: "system", content: dynamicSystemPrompt },
           ...messages,
         ],
         stream: true,
