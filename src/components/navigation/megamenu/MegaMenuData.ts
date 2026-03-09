@@ -61,7 +61,7 @@ export const programsMenu: MegaMenuConfig = {
         { label: 'Career Acceleration Program', path: '/students#career-acceleration', icon: 'Rocket' },
         { label: 'Mentorship Platform Access', path: '/students#mentorship-platforms', icon: 'Users' },
         { label: 'Leadership Development', path: '/students#leadership-development', icon: 'Crown' },
-        { label: 'College Discovery Community', path: '/programs#youth', icon: 'GraduationCap' },
+        { label: 'College Discovery Community', path: 'https://wekit.ai/discover', icon: 'GraduationCap' },
         { label: 'Future Skills Courses', path: '/programs#youth', icon: 'Zap' },
       ],
     },
@@ -142,7 +142,7 @@ export const programsMenu: MegaMenuConfig = {
       subtitle: 'College Discovery Community',
       description: 'Students explore peer-reviewed college insights and connect with alumni for real-world guidance on campus life, academics, and careers.',
       buttonLabel: 'Explore Community',
-      buttonPath: '/programs#youth',
+      buttonPath: 'https://wekit.ai/discover',
       videoUrl: 'https://videos.pexels.com/video-files/6893992/6893992-uhd_2732_1440_25fps.mp4',
     },
     'Young Professionals': {

@@ -31,11 +31,17 @@ const StudentsCTA = () => {
           Join thousands of students who went from career confusion to landing 
           their dream jobs. Your success story starts today.
         </p>
-        <div className="flex flex-col sm:flex-row gap-4 justify-center">
+        <div className="flex flex-col sm:flex-row gap-4 justify-center flex-wrap">
           <a href="https://wekit.ai/" target="_blank" rel="noopener noreferrer" onClick={handleCareerAssessmentClick}>
             <Button size="lg" className="bg-white text-primary hover:bg-white/90 px-8 py-6 text-lg font-medium shadow-sm hover:shadow-md transition-all duration-300">
               Take Career Assessment
               <Brain className="ml-2" size={20} />
+            </Button>
+          </a>
+          <a href="https://wekit.ai/discover" target="_blank" rel="noopener noreferrer" onClick={() => trackButtonClick('college_discovery')}>
+            <Button size="lg" className="bg-white text-primary hover:bg-white/90 px-8 py-6 text-lg font-medium shadow-sm hover:shadow-md transition-all duration-300">
+              Discover Colleges
+              <ArrowRight className="ml-2" size={20} />
             </Button>
           </a>
           <a href="/start-journey" onClick={() => trackButtonClick('career_transformation')}>

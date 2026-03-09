@@ -77,7 +77,7 @@ const CollegeFeedbackSection = () => {
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
             <a 
-              href="https://wekit-college-dicovery.lovable.app/" 
+              href="https://wekit.ai/discover" 
               target="_blank" 
               rel="noopener noreferrer"
               className="inline-block"
