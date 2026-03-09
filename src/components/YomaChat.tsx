@@ -212,9 +212,8 @@ const YomaChat = () => {
             <div className="flex items-center justify-between px-5 py-4 bg-[#0205F4] shrink-0">
               <div className="flex items-center gap-3">
                 <div className="relative">
-                  <div className="w-9 h-9 rounded-full bg-white/20 flex items-center justify-center">
-                    <Bot size={18} className="text-white" />
-                  </div>
+                  <img src={YOMA_AVATAR} alt="YOMA" className="w-9 h-9 rounded-full object-cover" />
+                  <span className="absolute -bottom-0.5 -right-0.5 w-2.5 h-2.5 rounded-full bg-[#00665B] border-2 border-[#0205F4]" />
                   <span className="absolute -bottom-0.5 -right-0.5 w-2.5 h-2.5 rounded-full bg-[#00665B] border-2 border-[#0205F4]" />
                 </div>
                 <div>
