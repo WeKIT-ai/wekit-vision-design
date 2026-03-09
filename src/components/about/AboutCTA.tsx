@@ -15,7 +15,7 @@ const AboutCTA = () => {
           "Wot Kareer Is iT?" — Let's find out together
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
-          <a href="/start-journey">
+          <a href="https://purpose-pathway-pilot.lovable.app/" target="_blank" rel="noopener noreferrer">
             <Button size="lg" className="bg-white text-primary hover:bg-white/90 px-8 py-6 text-lg font-medium shadow-sm hover:shadow-md transition-all duration-300">
               Join as Student
             </Button>

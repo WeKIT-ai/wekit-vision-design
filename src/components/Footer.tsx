@@ -70,6 +70,8 @@ const Footer = () => {
           <div className="flex flex-col md:flex-row items-center gap-4 md:gap-8 text-sm">
             <span>© 2025 WeKIT International Pvt Limited. All rights reserved.</span>
             <span className="hidden md:inline text-[hsl(210,20%,25%)]">|</span>
+            <Link to="/terms" className="text-[hsl(0,0%,75%)] hover:text-[hsl(0,0%,95%)] transition-colors">Terms & Conditions</Link>
+            <span className="hidden md:inline text-[hsl(210,20%,25%)]">|</span>
             <span>Global Operations</span>
           </div>
 
