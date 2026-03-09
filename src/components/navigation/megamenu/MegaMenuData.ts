@@ -61,7 +61,7 @@ export const programsMenu: MegaMenuConfig = {
         { label: 'Career Acceleration Program', path: '/students#career-acceleration', icon: 'Rocket' },
         { label: 'Mentorship Platform Access', path: '/students#mentorship-platforms', icon: 'Users' },
         { label: 'Leadership Development', path: '/students#leadership-development', icon: 'Crown' },
-        { label: 'College Discovery Community', path: '/programs#youth', icon: 'GraduationCap' },
+        { label: 'College Discovery Community', path: 'https://wekit.ai/discover', icon: 'GraduationCap' },
         { label: 'Future Skills Courses', path: '/programs#youth', icon: 'Zap' },
       ],
     },
