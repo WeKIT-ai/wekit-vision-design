@@ -1,7 +1,9 @@
 import { useState, useRef, useEffect, useCallback } from 'react';
-import { X, Send, Bot, User, ChevronRight, MessageSquare, Sparkles } from 'lucide-react';
+import { X, Send, User, ChevronRight, MessageSquare, Sparkles } from 'lucide-react';
 import ReactMarkdown from 'react-markdown';
 import { motion, AnimatePresence } from 'framer-motion';
+
+const YOMA_AVATAR = '/yoma-avatar.png';
 
 type Message = {
   role: 'user' | 'assistant';
