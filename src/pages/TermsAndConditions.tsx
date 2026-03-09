@@ -108,7 +108,7 @@ const TermsAndConditions = () => {
           <h2>16. Governing Law</h2>
           <p>These Terms are governed by the laws of India. Any disputes shall fall under the jurisdiction of the courts located in Bangalore, Karnataka, India.</p>
 
-          <h2 className="mt-12 pt-8 border-t border-border">Privacy and Data Protection</h2>
+          <h2 id="privacy" className="mt-12 pt-8 border-t border-border">Privacy and Data Protection</h2>
           <p className="italic text-sm">(DPDP Act 2023 Compliance)</p>
           <p>WeKIT processes personal data in accordance with the Digital Personal Data Protection Act, 2023 (DPDP Act).</p>
 
