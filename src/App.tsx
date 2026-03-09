@@ -81,6 +81,7 @@ const App = () => (
                       <Route path="/find-mentor" element={<ProtectedRoute><FindMentor /></ProtectedRoute>} />
                       <Route path="/admin/sync" element={<ProtectedRoute><AdminSyncDashboard /></ProtectedRoute>} />
                       <Route path="/terms" element={<TermsAndConditions />} />
+                      <Route path="/discover" element={<CollegeDiscovery />} />
                       <Route path="*" element={<NotFound />} />
                     </Routes>
                   </main>

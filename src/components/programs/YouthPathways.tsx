@@ -55,9 +55,9 @@ const YouthPathways = () => {
               <h3 className="text-xl font-semibold font-montserrat text-white mb-3">{p.title}</h3>
               <p className="text-sm text-white/60 leading-relaxed mb-4">{p.desc}</p>
               {p.link && (
-                <a href={p.link} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-accent text-sm font-semibold hover:gap-3 transition-all duration-300">
-                  {p.linkLabel} <ExternalLink size={14} />
-                </a>
+                <Link to={p.link} className="inline-flex items-center gap-2 text-accent text-sm font-semibold hover:gap-3 transition-all duration-300">
+                  {p.linkLabel} <ArrowRight size={14} />
+                </Link>
               )}
             </motion.div>
           ))}

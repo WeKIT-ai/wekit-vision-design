@@ -38,7 +38,7 @@ const StudentsCTA = () => {
               <Brain className="ml-2" size={20} />
             </Button>
           </a>
-          <a href="https://wekit.ai/discover" target="_blank" rel="noopener noreferrer" onClick={() => trackButtonClick('college_discovery')}>
+          <a href="/discover" onClick={() => trackButtonClick('college_discovery')}>
             <Button size="lg" className="bg-white text-primary hover:bg-white/90 px-8 py-6 text-lg font-medium shadow-sm hover:shadow-md transition-all duration-300">
               Discover Colleges
               <ArrowRight className="ml-2" size={20} />
