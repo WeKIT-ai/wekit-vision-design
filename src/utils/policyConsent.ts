@@ -8,7 +8,7 @@ export const recordPolicyConsent = async (
   metadata?: Record<string, unknown>
 ) => {
   try {
-    await supabase.from('policy_consent_records').insert({
+    await (supabase as any).from('policy_consent_records').insert({
       user_identifier: userIdentifier,
       form_source: formSource,
       terms_version: CURRENT_POLICY_VERSION,
