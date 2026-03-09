@@ -1,4 +1,15 @@
+import { useState } from 'react';
+import { Checkbox } from '@/components/ui/checkbox';
+import { Button } from '@/components/ui/button';
+import { toast } from 'sonner';
+
 const TermsAndConditions = () => {
+  const [accepted, setAccepted] = useState(false);
+
+  const handleAccept = () => {
+    toast.success('You have accepted the Terms & Conditions and Child Safety Policy.');
+  };
+
   return (
     <div className="min-h-screen bg-background">
       <section className="py-16 px-4 sm:px-6 lg:px-8">
@@ -143,6 +154,149 @@ const TermsAndConditions = () => {
             Website: <a href="https://www.wekitmentoring.com" className="text-primary hover:underline">https://www.wekitmentoring.com</a><br />
             Email: <a href="mailto:hi@wekitmentoring.com" className="text-primary hover:underline">hi@wekitmentoring.com</a>
           </p>
+
+          {/* Child Safety & Safeguarding Policy */}
+          <h1 className="text-4xl font-bold text-foreground mb-2 mt-16 pt-12 border-t-2 border-border">Child Safety &amp; Safeguarding Policy</h1>
+          <p className="text-sm text-muted-foreground mb-8">
+            <strong>WeKIT.ai / WeKIT Mentoring Platform</strong><br />
+            Last Updated: 9 March 2026
+          </p>
+
+          <h2>1. Purpose</h2>
+          <p>WeKIT is committed to providing a safe, respectful, and supportive environment for all users, particularly children and young people.</p>
+          <p>This Child Safety and Safeguarding Policy establishes guidelines and safeguards to protect minors using the WeKIT platform.</p>
+
+          <h2>2. Scope</h2>
+          <p>This policy applies to:</p>
+          <ul>
+            <li>Students and young users</li>
+            <li>Mentors and volunteers</li>
+            <li>Educators and institutions</li>
+            <li>Employees and contractors</li>
+            <li>Community members using the platform</li>
+          </ul>
+          <p>The policy applies to interactions occurring through:</p>
+          <ul>
+            <li>The WeKIT platform</li>
+            <li>Mentorship programs</li>
+            <li>Educational programs</li>
+            <li>Community discussions</li>
+            <li>AI tools such as YOMA – Your Online Mentor Assistant</li>
+          </ul>
+
+          <h2>3. Commitment to Child Safety</h2>
+          <p>WeKIT commits to:</p>
+          <ul>
+            <li>Protecting children from harm, abuse, exploitation, or harassment</li>
+            <li>Maintaining a respectful mentoring environment</li>
+            <li>Implementing safeguards for online interactions</li>
+            <li>Ensuring responsible conduct by mentors and platform participants</li>
+          </ul>
+
+          <h2>4. Definition of a Child</h2>
+          <p>For the purposes of this policy, a child is defined as any individual under the age of 18 years.</p>
+
+          <h2>5. Safeguarding Principles</h2>
+          <p>WeKIT follows the following safeguarding principles:</p>
+          <ul>
+            <li>Safety of children is the highest priority</li>
+            <li>All children must be treated with dignity and respect</li>
+            <li>Online interactions must remain appropriate and professional</li>
+            <li>Privacy and personal data of minors must be protected</li>
+          </ul>
+
+          <h2>6. Parental and Institutional Consent</h2>
+          <p>Users under the age of 18 may participate only with parental or guardian consent, OR through authorized educational institutions or programs.</p>
+          <p>Parents and guardians are encouraged to supervise children's participation.</p>
+
+          <h2>7. Mentor Conduct Guidelines</h2>
+          <p>Mentors interacting with minors must:</p>
+          <ul>
+            <li>Maintain professional boundaries</li>
+            <li>Avoid private or inappropriate communication</li>
+            <li>Communicate respectfully and responsibly</li>
+            <li>Avoid sharing personal contact details unless permitted through the platform</li>
+          </ul>
+          <p>Mentors must not:</p>
+          <ul>
+            <li>Engage in harassment or inappropriate conversations</li>
+            <li>Request personal or sensitive information from minors</li>
+            <li>Exploit their mentoring position</li>
+          </ul>
+          <p>Violations may result in immediate removal from the platform.</p>
+
+          <h2>8. Communication Safety</h2>
+          <p>WeKIT may monitor certain platform interactions to ensure safety. Safety measures may include:</p>
+          <ul>
+            <li>Moderation of community content</li>
+            <li>Reporting mechanisms for inappropriate behavior</li>
+            <li>Removal of harmful content or users</li>
+          </ul>
+
+          <h2>9. Reporting Concerns</h2>
+          <p>Users may report concerns about unsafe behavior. Reports can include:</p>
+          <ul>
+            <li>Harassment</li>
+            <li>Inappropriate messaging</li>
+            <li>Exploitation</li>
+            <li>Bullying</li>
+            <li>Harmful content</li>
+          </ul>
+          <p>Reports should be submitted via: <a href="mailto:support@wekitmentoring.com" className="text-primary hover:underline">support@wekitmentoring.com</a></p>
+          <p>WeKIT will review all reports promptly and take appropriate action.</p>
+
+          <h2>10. Response to Safety Concerns</h2>
+          <p>If a safeguarding concern is identified, WeKIT may:</p>
+          <ul>
+            <li>Investigate the situation</li>
+            <li>Suspend or terminate accounts</li>
+            <li>Report violations to relevant authorities where required</li>
+          </ul>
+
+          <h2>11. Online Privacy Protection</h2>
+          <p>WeKIT follows the Digital Personal Data Protection Act, 2023 (DPDP Act) and implements safeguards for minors' data.</p>
+          <p>Children's data will only be processed with parental consent or through institutional participation.</p>
+
+          <h2>12. Responsible Use of AI</h2>
+          <p>AI tools including YOMA – Your Online Mentor Assistant are designed to support learning and exploration.</p>
+          <p>AI interactions must remain respectful and appropriate. Users should avoid sharing sensitive personal information in AI chats.</p>
+
+          <h2>13. Policy Updates</h2>
+          <p>This Child Safety &amp; Safeguarding Policy may be updated periodically to reflect evolving best practices.</p>
+
+          <h2>14. Contact for Safeguarding Concerns</h2>
+          <p>For safety concerns or reports, contact:</p>
+          <p>
+            <strong>WeKIT International Pvt Ltd</strong><br />
+            Bangalore, Karnataka, India
+          </p>
+          <p>
+            Email: <a href="mailto:hi@wekitmentoring.com" className="text-primary hover:underline">hi@wekitmentoring.com</a>
+          </p>
+
+          {/* Acceptance Checkbox */}
+          <div className="mt-16 pt-8 border-t-2 border-border not-prose">
+            <div className="bg-muted p-6 rounded-lg">
+              <div className="flex items-start gap-3">
+                <Checkbox
+                  id="accept-terms"
+                  checked={accepted}
+                  onCheckedChange={(checked) => setAccepted(checked === true)}
+                  className="mt-1"
+                />
+                <label htmlFor="accept-terms" className="text-sm text-muted-foreground leading-relaxed cursor-pointer">
+                  I have read and agree to the <strong className="text-foreground">Terms and Conditions</strong> and the <strong className="text-foreground">Child Safety &amp; Safeguarding Policy</strong> of WeKIT International Pvt Ltd.
+                </label>
+              </div>
+              <Button
+                onClick={handleAccept}
+                disabled={!accepted}
+                className="mt-4 bg-primary text-primary-foreground font-semibold px-8"
+              >
+                Accept &amp; Continue
+              </Button>
+            </div>
+          </div>
         </div>
       </section>
     </div>
