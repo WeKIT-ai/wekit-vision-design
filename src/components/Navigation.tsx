@@ -179,7 +179,7 @@ const Navigation = () => {
                     Login
                   </Button>
                 </Link>
-                <a href="https://purpose-pathway-pilot.lovable.app/" target="_blank" rel="noopener noreferrer">
+                <a href="https://wekit.ai/" target="_blank" rel="noopener noreferrer">
                   <Button size="sm" className="bg-primary text-primary-foreground font-semibold px-5 text-[13px] h-9 rounded-md hover:bg-primary/90 transition-colors duration-200">
                     Join WeKIT
                   </Button>

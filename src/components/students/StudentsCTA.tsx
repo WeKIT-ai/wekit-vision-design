@@ -32,7 +32,7 @@ const StudentsCTA = () => {
           their dream jobs. Your success story starts today.
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
-          <a href="https://purpose-pathway-pilot.lovable.app/" target="_blank" rel="noopener noreferrer" onClick={handleCareerAssessmentClick}>
+          <a href="https://wekit.ai/" target="_blank" rel="noopener noreferrer" onClick={handleCareerAssessmentClick}>
             <Button size="lg" className="bg-white text-primary hover:bg-white/90 px-8 py-6 text-lg font-medium shadow-sm hover:shadow-md transition-all duration-300">
               Take Career Assessment
               <Brain className="ml-2" size={20} />
