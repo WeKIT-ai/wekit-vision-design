@@ -152,12 +152,21 @@ const MegaMenuPanel = ({ config, onClose, activeCategory, setActiveCategory }: M
                     <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-muted-foreground mb-2">{featured.title}</p>
                     <h4 className="text-lg font-bold text-foreground mb-2 font-montserrat leading-tight">{featured.subtitle}</h4>
                     <p className="text-sm text-muted-foreground mb-5 leading-relaxed line-clamp-3">{featured.description}</p>
-                    <Link to={featured.buttonPath} onClick={onClose}>
-                      <Button size="sm" className="bg-primary text-primary-foreground hover:bg-primary/90 group/btn">
-                        {featured.buttonLabel}
-                        <ArrowRight size={14} className="ml-2 group-hover/btn:translate-x-0.5 transition-transform duration-200" />
-                      </Button>
-                    </Link>
+                    {featured.buttonPath.startsWith('http') ? (
+                      <a href={featured.buttonPath} target="_blank" rel="noopener noreferrer" onClick={onClose}>
+                        <Button size="sm" className="bg-primary text-primary-foreground hover:bg-primary/90 group/btn">
+                          {featured.buttonLabel}
+                          <ArrowRight size={14} className="ml-2 group-hover/btn:translate-x-0.5 transition-transform duration-200" />
+                        </Button>
+                      </a>
+                    ) : (
+                      <Link to={featured.buttonPath} onClick={onClose}>
+                        <Button size="sm" className="bg-primary text-primary-foreground hover:bg-primary/90 group/btn">
+                          {featured.buttonLabel}
+                          <ArrowRight size={14} className="ml-2 group-hover/btn:translate-x-0.5 transition-transform duration-200" />
+                        </Button>
+                      </Link>
+                    )}
                   </div>
 
                   {/* Glow effect on hover */}
