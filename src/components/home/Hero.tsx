@@ -32,7 +32,7 @@ const Hero = () => {
               WeKIT = Wot Kareer Is iT?
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
-              <a href="/mentor-waitlist">
+              <a href="https://wekit.ai/">
                 <Button
                   size="lg"
                   className="bg-primary text-primary-foreground hover:bg-primary/90 px-12 py-6 text-lg font-medium shadow-sm hover:shadow-md transition-all duration-300 group"
