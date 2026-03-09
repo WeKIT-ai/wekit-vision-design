@@ -61,6 +61,7 @@ const MentorWaitlist = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (!policyAccepted) { setShowPolicyError(true); return; }
     setIsLoading(true);
     
     try {
@@ -85,7 +86,8 @@ const MentorWaitlist = () => {
 
       if (error) throw error;
 
-      // Sync to Zoho CRM (fire-and-forget)
+      recordPolicyConsent(formData.email, 'mentor-waitlist');
+
       syncToZohoCRM({
         form_type: 'mentor-waitlist',
         first_name: formData.first_name,
@@ -101,7 +103,7 @@ const MentorWaitlist = () => {
         description: "We'll be in touch soon about mentor opportunities.",
       });
       
-      setCurrentStep(3); // Success step
+      setCurrentStep(3);
       
     } catch (error) {
       toast({
