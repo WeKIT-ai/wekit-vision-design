@@ -31,6 +31,8 @@ const MentorWaitlist = () => {
     motivation: ''
   });
   const [isLoading, setIsLoading] = useState(false);
+  const [policyAccepted, setPolicyAccepted] = useState(false);
+  const [showPolicyError, setShowPolicyError] = useState(false);
   const { toast } = useToast();
   const navigate = useNavigate();
 
