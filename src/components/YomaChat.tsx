@@ -1,7 +1,9 @@
 import { useState, useRef, useEffect, useCallback } from 'react';
-import { X, Send, Bot, User, ChevronRight, MessageSquare, Sparkles } from 'lucide-react';
+import { X, Send, User, ChevronRight, MessageSquare, Sparkles } from 'lucide-react';
 import ReactMarkdown from 'react-markdown';
 import { motion, AnimatePresence } from 'framer-motion';
+
+const YOMA_AVATAR = '/yoma-avatar.png';
 
 type Message = {
   role: 'user' | 'assistant';
@@ -210,9 +212,8 @@ const YomaChat = () => {
             <div className="flex items-center justify-between px-5 py-4 bg-[#0205F4] shrink-0">
               <div className="flex items-center gap-3">
                 <div className="relative">
-                  <div className="w-9 h-9 rounded-full bg-white/20 flex items-center justify-center">
-                    <Bot size={18} className="text-white" />
-                  </div>
+                  <img src={YOMA_AVATAR} alt="YOMA" className="w-9 h-9 rounded-full object-cover" />
+                  <span className="absolute -bottom-0.5 -right-0.5 w-2.5 h-2.5 rounded-full bg-[#00665B] border-2 border-[#0205F4]" />
                   <span className="absolute -bottom-0.5 -right-0.5 w-2.5 h-2.5 rounded-full bg-[#00665B] border-2 border-[#0205F4]" />
                 </div>
                 <div>
@@ -239,12 +240,13 @@ const YomaChat = () => {
                   className={`flex gap-2.5 ${msg.role === 'user' ? 'flex-row-reverse' : 'flex-row'}`}
                 >
                   {/* Avatar */}
-                  <div className={`w-7 h-7 rounded-full flex items-center justify-center shrink-0 mt-0.5 ${msg.role === 'assistant' ? 'bg-[#0205F4]' : 'bg-[#180205]'}`}>
-                    {msg.role === 'assistant'
-                      ? <Bot size={14} className="text-white" />
-                      : <User size={14} className="text-white" />
-                    }
-                  </div>
+                  {msg.role === 'assistant' ? (
+                    <img src={YOMA_AVATAR} alt="YOMA" className="w-7 h-7 rounded-full object-cover shrink-0 mt-0.5" />
+                  ) : (
+                    <div className="w-7 h-7 rounded-full flex items-center justify-center shrink-0 mt-0.5 bg-[#180205]">
+                      <User size={14} className="text-white" />
+                    </div>
+                  )}
 
                   {/* Bubble */}
                   <div className={`max-w-[78%] ${msg.role === 'user' ? 'items-end' : 'items-start'} flex flex-col gap-1`}>
@@ -266,9 +268,7 @@ const YomaChat = () => {
               {/* Typing indicator */}
               {isShowingTyping && (
                 <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="flex gap-2.5">
-                  <div className="w-7 h-7 rounded-full bg-[#0205F4] flex items-center justify-center shrink-0">
-                    <Bot size={14} className="text-white" />
-                  </div>
+                  <img src={YOMA_AVATAR} alt="YOMA" className="w-7 h-7 rounded-full object-cover shrink-0" />
                   <div className="bg-white rounded-2xl rounded-tl-sm px-4 py-3 shadow-sm border border-gray-100">
                     <TypingDots />
                   </div>
