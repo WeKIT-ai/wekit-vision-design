@@ -8,29 +8,6 @@ import EarlyAccessForm from '@/components/lead-gen/EarlyAccessForm';
 const LeadGenSections = () => {
   return (
     <>
-      {/* Be Part of Reshaping the Future of Work Section */}
-      <section className="py-16 px-6 md:px-8 bg-wekit-soft">
-        <div className="max-w-4xl mx-auto">
-          <div className="text-center mb-8">
-            <h2 className="text-3xl font-bold font-montserrat text-foreground mb-4">Be Part of Reshaping the Future of Work</h2>
-            <p className="text-xl text-muted-foreground">Join our community and help shape the next generation of career development</p>
-          </div>
-          <div className="flex justify-center">
-            <div className="w-full bg-card shadow-lg overflow-hidden border border-border">
-              <iframe 
-                aria-label='Be Part of Reshaping the Future of Work' 
-                frameBorder="0" 
-                className="h-[500px] w-full border-none"
-                src="https://forms.wekitmentoring.com/wekitmentoring/form/WotKareerIsiTWeKITInterestForm/formperma/Nd-1rWm5fatHjDCTeRo4JbuHwArUQOWpuvplDE38HHU"
-                allow="geolocation; microphone; camera"
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-              />
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* Lead Gen Section 1 - Quick Engagement */}
       <section className="py-16 px-6 md:px-8 bg-background">
         <div className="max-w-6xl mx-auto">
