@@ -35,6 +35,7 @@ import FindMentor from "./pages/FindMentor";
 import AdminSyncDashboard from "./pages/AdminSyncDashboard";
 import TermsAndConditions from "./pages/TermsAndConditions";
 import CollegeDiscovery from "./pages/CollegeDiscovery";
+import TrustCenter from "./pages/TrustCenter";
 import ProtectedRoute from "./components/ProtectedRoute";
 const queryClient = new QueryClient();
 
