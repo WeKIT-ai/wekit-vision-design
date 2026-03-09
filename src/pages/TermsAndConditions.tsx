@@ -274,6 +274,89 @@ const TermsAndConditions = () => {
             Email: <a href="mailto:hi@wekitmentoring.com" className="text-primary hover:underline">hi@wekitmentoring.com</a>
           </p>
 
+          {/* Mentor Code of Conduct & Ethics Policy */}
+          <h1 id="mentor-code" className="text-4xl font-bold text-foreground mb-2 mt-16 pt-12 border-t-2 border-border">Mentor Code of Conduct &amp; Ethics Policy</h1>
+          <p className="text-sm text-muted-foreground mb-8">
+            <strong>WeKIT.ai / WeKIT Mentoring Platform</strong><br />
+            Last Updated: 9 March 2026
+          </p>
+
+          <h2>1. Purpose</h2>
+          <p>The purpose of this Mentor Code of Conduct is to ensure that all mentoring interactions on the WeKIT platform are conducted in a professional, respectful, and safe manner.</p>
+          <p>Mentors play a vital role in guiding students and young professionals. This policy establishes ethical standards for mentors participating in WeKIT programs.</p>
+
+          <h2>2. Who This Applies To</h2>
+          <p>This policy applies to all individuals acting as mentors through the WeKIT platform, including:</p>
+          <ul>
+            <li>Professional mentors</li>
+            <li>Alumni mentors</li>
+            <li>Volunteer mentors</li>
+            <li>Corporate mentors</li>
+            <li>Advisors and guest speakers</li>
+          </ul>
+
+          <h2>3. Mentor Responsibilities</h2>
+          <p>Mentors are expected to:</p>
+          <ul>
+            <li>Provide guidance based on personal knowledge and experience</li>
+            <li>Act in a respectful and supportive manner</li>
+            <li>Encourage independent thinking and responsible decision-making</li>
+            <li>Maintain appropriate professional boundaries</li>
+            <li>Promote a safe learning environment</li>
+          </ul>
+          <p>Mentors should focus on helping mentees explore career pathways, develop skills and confidence, and build networks and opportunities.</p>
+
+          <h2>4. Professional Conduct</h2>
+          <p>Mentors must:</p>
+          <ul>
+            <li>Treat mentees with dignity and respect</li>
+            <li>Maintain professionalism in all communications</li>
+            <li>Avoid discriminatory language or behavior</li>
+            <li>Respect cultural, social, and personal differences</li>
+          </ul>
+          <p>Mentors should ensure that interactions remain constructive and appropriate.</p>
+
+          <h2>5. Boundaries and Appropriate Communication</h2>
+          <p>Mentors must maintain professional boundaries. Mentors must not:</p>
+          <ul>
+            <li>Engage in inappropriate personal relationships with mentees</li>
+            <li>Request sensitive personal information</li>
+            <li>Communicate in a manner that could be perceived as harassment or intimidation</li>
+            <li>Exploit mentoring relationships for personal, financial, or professional gain</li>
+          </ul>
+          <p>Where possible, communication should occur through the WeKIT platform.</p>
+
+          <h2>6. Child Protection Requirements</h2>
+          <p>When mentoring minors (users under 18):</p>
+          <ul>
+            <li>Mentors must maintain extra caution and professionalism</li>
+            <li>Inappropriate language or behavior is strictly prohibited</li>
+            <li>Communication should remain focused on learning and career development</li>
+          </ul>
+          <p>Mentors must comply with the WeKIT Child Safety &amp; Safeguarding Policy.</p>
+
+          <h2>7. Confidentiality</h2>
+          <p>Mentors should respect the privacy of mentees. Information shared during mentoring conversations should not be disclosed to third parties without consent, except where required for safety or legal reasons.</p>
+
+          <h2>8. Conflict of Interest</h2>
+          <p>Mentors should disclose any potential conflicts of interest that may affect mentoring relationships. Mentors should not exploit mentees for business promotion, recruitment, or financial gain.</p>
+
+          <h2>9. Reporting Concerns</h2>
+          <p>Mentors must report any concerns about inappropriate behavior, harassment, or safety issues involving mentees.</p>
+          <p>Reports should be submitted to: <a href="mailto:hi@wekitmentoring.com" className="text-primary hover:underline">hi@wekitmentoring.com</a></p>
+
+          <h2>10. Violations</h2>
+          <p>Violation of this policy may result in:</p>
+          <ul>
+            <li>Suspension of mentoring privileges</li>
+            <li>Removal from the platform</li>
+            <li>Reporting to relevant authorities where required</li>
+          </ul>
+
+          <h2>11. Commitment to Ethical Mentorship</h2>
+          <p>By participating as a mentor on the WeKIT platform, mentors agree to uphold the values of integrity, responsibility, respect, and professionalism.</p>
+          <p>These values help ensure that mentoring remains a safe and empowering experience for all participants.</p>
+
           {/* Acceptance Checkbox */}
           <div className="mt-16 pt-8 border-t-2 border-border not-prose">
             <div className="bg-muted p-6 rounded-lg">
@@ -285,7 +368,7 @@ const TermsAndConditions = () => {
                   className="mt-1"
                 />
                 <label htmlFor="accept-terms" className="text-sm text-muted-foreground leading-relaxed cursor-pointer">
-                  I have read and agree to the <strong className="text-foreground">Terms and Conditions</strong> and the <strong className="text-foreground">Child Safety &amp; Safeguarding Policy</strong> of WeKIT International Pvt Ltd.
+                  I have read and agree to the <strong className="text-foreground">Terms and Conditions</strong>, <strong className="text-foreground">Privacy Policy</strong>, <strong className="text-foreground">Child Safety &amp; Safeguarding Policy</strong>, and <strong className="text-foreground">Mentor Code of Conduct</strong> of WeKIT International Pvt Ltd.
                 </label>
               </div>
               <Button
