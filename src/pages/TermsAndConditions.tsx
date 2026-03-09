@@ -156,7 +156,7 @@ const TermsAndConditions = () => {
           </p>
 
           {/* Child Safety & Safeguarding Policy */}
-          <h1 className="text-4xl font-bold text-foreground mb-2 mt-16 pt-12 border-t-2 border-border">Child Safety &amp; Safeguarding Policy</h1>
+          <h1 id="safeguarding" className="text-4xl font-bold text-foreground mb-2 mt-16 pt-12 border-t-2 border-border">Child Safety &amp; Safeguarding Policy</h1>
           <p className="text-sm text-muted-foreground mb-8">
             <strong>WeKIT.ai / WeKIT Mentoring Platform</strong><br />
             Last Updated: 9 March 2026
