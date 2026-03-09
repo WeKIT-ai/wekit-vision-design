@@ -2,7 +2,6 @@
 import Hero from '@/components/home/Hero';
 import VisualImpact from '@/components/home/VisualImpact';
 import YomaSection from '@/components/home/YomaSection';
-import TeamSection from '@/components/home/TeamSection';
 import LeadGenSections from '@/components/home/LeadGenSections';
 import MissionStatement from '@/components/home/MissionStatement';
 import AudienceSection from '@/components/home/AudienceSection';
@@ -14,7 +13,6 @@ const Index = () => {
       <Hero />
       <VisualImpact />
       <YomaSection />
-      <TeamSection />
       <LeadGenSections />
       <MissionStatement />
       <AudienceSection />
