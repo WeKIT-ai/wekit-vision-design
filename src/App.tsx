@@ -33,6 +33,7 @@ import MentorOnboarding from "./pages/MentorOnboarding";
 import MentorDashboard from "./pages/MentorDashboard";
 import FindMentor from "./pages/FindMentor";
 import AdminSyncDashboard from "./pages/AdminSyncDashboard";
+import TermsAndConditions from "./pages/TermsAndConditions";
 import ProtectedRoute from "./components/ProtectedRoute";
 const queryClient = new QueryClient();
 
@@ -78,6 +79,7 @@ const App = () => (
                       <Route path="/mentor-dashboard" element={<ProtectedRoute><MentorDashboard /></ProtectedRoute>} />
                       <Route path="/find-mentor" element={<ProtectedRoute><FindMentor /></ProtectedRoute>} />
                       <Route path="/admin/sync" element={<ProtectedRoute><AdminSyncDashboard /></ProtectedRoute>} />
+                      <Route path="/terms" element={<TermsAndConditions />} />
                       <Route path="*" element={<NotFound />} />
                     </Routes>
                   </main>
