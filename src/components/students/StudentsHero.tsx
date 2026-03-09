@@ -40,7 +40,7 @@ const StudentsHero = () => {
                   <ArrowRight className="ml-2 transition-transform duration-300 group-hover:translate-x-1" size={20} />
                 </Button>
               </a>
-              <a href="https://wekit.ai/discover" target="_blank" rel="noopener noreferrer">
+              <a href="/discover">
                 <Button
                   size="lg"
                   variant="outline"
