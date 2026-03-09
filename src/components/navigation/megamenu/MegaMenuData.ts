@@ -346,6 +346,7 @@ export const resourcesMenu: MegaMenuConfig = {
 export const aboutLinks: MegaMenuLink[] = [
   { label: 'Our Mission', path: '/about' },
   { label: 'Our Story', path: '/about#story' },
+  { label: 'Trust Center', path: '/trust' },
   { label: 'Partners', path: '/about#partners' },
   { label: 'Media & Press', path: '/about#impact' },
   { label: 'Careers', path: '/about#contact' },
