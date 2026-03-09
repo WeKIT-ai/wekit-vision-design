@@ -406,10 +406,16 @@ const MentorWaitlist = () => {
                         placeholder="Share your motivation for wanting to mentor others"
                       />
                     </div>
+
+                    <PolicyAcceptance
+                      accepted={policyAccepted}
+                      onAcceptedChange={(v) => { setPolicyAccepted(v); if (v) setShowPolicyError(false); }}
+                      showError={showPolicyError}
+                    />
                     
                     <Button 
                       type="submit" 
-                      disabled={isLoading || !formData.first_name || !formData.last_name || !formData.email || !formData.company || !formData.position || !formData.industry || !formData.experience_years || !formData.specialties || !formData.mentoring_philosophy || !formData.motivation}
+                      disabled={isLoading || !policyAccepted || !formData.first_name || !formData.last_name || !formData.email || !formData.company || !formData.position || !formData.industry || !formData.experience_years || !formData.specialties || !formData.mentoring_philosophy || !formData.motivation}
                       className="w-full h-14 text-lg bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white rounded-full border-0 shadow-2xl hover:shadow-xl transition-all duration-300 hover:scale-105 hover:-translate-y-1 group"
                     >
                       {isLoading ? "Submitting..." : "Submit My Application"}
