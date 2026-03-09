@@ -8,41 +8,34 @@ import { useToast } from '@/hooks/use-toast';
 import { supabase } from '@/integrations/supabase/client';
 import { demoRequestSchema } from '@/lib/validation';
 import { syncToZohoCRM } from '@/utils/zohoSync';
+import PolicyAcceptance from '@/components/PolicyAcceptance';
+import { recordPolicyConsent } from '@/utils/policyConsent';
 
 const DemoRequestForm = () => {
   const [formData, setFormData] = useState({
-    fullName: '',
-    email: '',
-    phone: '',
-    designation: '',
-    organization: '',
-    studentCount: '',
-    programme: '',
-    serviceFor: ''
+    fullName: '', email: '', phone: '', designation: '',
+    organization: '', studentCount: '', programme: '', serviceFor: ''
   });
   const [isLoading, setIsLoading] = useState(false);
+  const [policyAccepted, setPolicyAccepted] = useState(false);
+  const [showPolicyError, setShowPolicyError] = useState(false);
   const { toast } = useToast();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (!policyAccepted) { setShowPolicyError(true); return; }
     setIsLoading(true);
     
     try {
-      // Zod validation
       const result = demoRequestSchema.safeParse(formData);
       if (!result.success) {
-        toast({
-          title: "Validation Error",
-          description: result.error.errors[0].message,
-          variant: "destructive"
-        });
+        toast({ title: "Validation Error", description: result.error.errors[0].message, variant: "destructive" });
         setIsLoading(false);
         return;
       }
 
       const validated = result.data;
 
-      // Store PII in contact_submissions
       const { error: contactError } = await supabase
         .from('contact_submissions')
         .insert({
@@ -54,103 +47,46 @@ const DemoRequestForm = () => {
 
       if (contactError) throw contactError;
 
-      // Sync to Zoho CRM (fire-and-forget)
+      recordPolicyConsent(validated.email, 'demo-request');
+
       syncToZohoCRM({
         form_type: 'demo-request',
-        first_name: validated.fullName,
-        last_name: validated.fullName,
-        email: validated.email,
-        phone: validated.phone,
-        company: validated.organization,
+        first_name: validated.fullName, last_name: validated.fullName,
+        email: validated.email, phone: validated.phone, company: validated.organization,
         description: `Demo Request | Designation: ${validated.designation} | Students: ${validated.studentCount}${validated.programme ? ` | Programme: ${validated.programme}` : ''}${validated.serviceFor ? ` | Service For: ${validated.serviceFor}` : ''}`,
       });
 
-      // Log non-PII analytics to page_interactions
-      await supabase
-        .from('page_interactions')
-        .insert({
-          page_name: 'demo-request',
-          interaction_type: 'form_submission',
-          metadata: {
-            designation: validated.designation,
-            student_count: validated.studentCount,
-            programme: validated.programme || null,
-            service_for: validated.serviceFor || null
-          }
-        });
+      await supabase.from('page_interactions').insert({
+        page_name: 'demo-request', interaction_type: 'form_submission',
+        metadata: { designation: validated.designation, student_count: validated.studentCount, programme: validated.programme || null, service_for: validated.serviceFor || null }
+      });
 
-      toast({
-        title: "Demo Request Submitted!",
-        description: "Our team will get in touch with you shortly.",
-      });
-      setFormData({ 
-        fullName: '', email: '', phone: '', designation: '', 
-        organization: '', studentCount: '', programme: '', serviceFor: '' 
-      });
+      toast({ title: "Demo Request Submitted!", description: "Our team will get in touch with you shortly." });
+      setFormData({ fullName: '', email: '', phone: '', designation: '', organization: '', studentCount: '', programme: '', serviceFor: '' });
+      setPolicyAccepted(false); setShowPolicyError(false);
     } catch (error) {
-      toast({
-        title: "Error",
-        description: "Failed to submit request. Please try again.",
-        variant: "destructive"
-      });
+      toast({ title: "Error", description: "Failed to submit request. Please try again.", variant: "destructive" });
     } finally {
       setIsLoading(false);
     }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setFormData(prev => ({
-      ...prev,
-      [e.target.name]: e.target.value
-    }));
+    setFormData(prev => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
   return (
     <div className="bg-white p-8 rounded-lg border border-gray-200 shadow-sm">
       <div className="mb-6">
         <h3 className="text-2xl font-bold text-gray-900 mb-2">Request a Demo</h3>
-        <p className="text-gray-600">
-          Share your details <span className="text-primary font-medium">here</span>, and our team will get in touch with you.
-        </p>
+        <p className="text-gray-600">Share your details <span className="text-primary font-medium">here</span>, and our team will get in touch with you.</p>
       </div>
       <form onSubmit={handleSubmit} className="space-y-4">
-        <Input
-          name="fullName"
-          placeholder="Full Name*"
-          value={formData.fullName}
-          onChange={handleChange}
-          required
-          disabled={isLoading}
-          className="border-teal-400 focus:border-teal-500"
-        />
-        <Input
-          name="email"
-          type="email"
-          placeholder="Email Address*"
-          value={formData.email}
-          onChange={handleChange}
-          required
-          disabled={isLoading}
-          className="border-teal-400 focus:border-teal-500"
-        />
-        <Input
-          name="phone"
-          type="tel"
-          placeholder="Phone Number*"
-          value={formData.phone}
-          onChange={handleChange}
-          required
-          disabled={isLoading}
-          className="border-teal-400 focus:border-teal-500"
-        />
-        <Select 
-          value={formData.designation} 
-          onValueChange={(value) => setFormData(prev => ({ ...prev, designation: value }))} 
-          disabled={isLoading}
-        >
-          <SelectTrigger className="border-teal-400 focus:border-teal-500">
-            <SelectValue placeholder="Designation*" />
-          </SelectTrigger>
+        <Input name="fullName" placeholder="Full Name*" value={formData.fullName} onChange={handleChange} required disabled={isLoading} className="border-teal-400 focus:border-teal-500" />
+        <Input name="email" type="email" placeholder="Email Address*" value={formData.email} onChange={handleChange} required disabled={isLoading} className="border-teal-400 focus:border-teal-500" />
+        <Input name="phone" type="tel" placeholder="Phone Number*" value={formData.phone} onChange={handleChange} required disabled={isLoading} className="border-teal-400 focus:border-teal-500" />
+        <Select value={formData.designation} onValueChange={(value) => setFormData(prev => ({ ...prev, designation: value }))} disabled={isLoading}>
+          <SelectTrigger className="border-teal-400 focus:border-teal-500"><SelectValue placeholder="Designation*" /></SelectTrigger>
           <SelectContent>
             <SelectItem value="principal">Principal/Director</SelectItem>
             <SelectItem value="vice_principal">Vice Principal</SelectItem>
@@ -162,23 +98,9 @@ const DemoRequestForm = () => {
             <SelectItem value="other">Other</SelectItem>
           </SelectContent>
         </Select>
-        <Input
-          name="organization"
-          placeholder="Name of Organisation*"
-          value={formData.organization}
-          onChange={handleChange}
-          required
-          disabled={isLoading}
-          className="border-teal-400 focus:border-teal-500"
-        />
-        <Select 
-          value={formData.studentCount} 
-          onValueChange={(value) => setFormData(prev => ({ ...prev, studentCount: value }))} 
-          disabled={isLoading}
-        >
-          <SelectTrigger className="border-teal-400 focus:border-teal-500">
-            <SelectValue placeholder="Number of Students*" />
-          </SelectTrigger>
+        <Input name="organization" placeholder="Name of Organisation*" value={formData.organization} onChange={handleChange} required disabled={isLoading} className="border-teal-400 focus:border-teal-500" />
+        <Select value={formData.studentCount} onValueChange={(value) => setFormData(prev => ({ ...prev, studentCount: value }))} disabled={isLoading}>
+          <SelectTrigger className="border-teal-400 focus:border-teal-500"><SelectValue placeholder="Number of Students*" /></SelectTrigger>
           <SelectContent>
             <SelectItem value="1-100">1-100</SelectItem>
             <SelectItem value="101-500">101-500</SelectItem>
@@ -187,14 +109,8 @@ const DemoRequestForm = () => {
             <SelectItem value="2500+">2500+</SelectItem>
           </SelectContent>
         </Select>
-        <Select 
-          value={formData.programme} 
-          onValueChange={(value) => setFormData(prev => ({ ...prev, programme: value }))} 
-          disabled={isLoading}
-        >
-          <SelectTrigger className="border-teal-400 focus:border-teal-500">
-            <SelectValue placeholder="Which programme are you interested in?" />
-          </SelectTrigger>
+        <Select value={formData.programme} onValueChange={(value) => setFormData(prev => ({ ...prev, programme: value }))} disabled={isLoading}>
+          <SelectTrigger className="border-teal-400 focus:border-teal-500"><SelectValue placeholder="Which programme are you interested in?" /></SelectTrigger>
           <SelectContent>
             <SelectItem value="wals">WALS Lab – Life Skills Lab</SelectItem>
             <SelectItem value="wabls">WABLS – Bagless Learning Studio</SelectItem>
@@ -206,14 +122,8 @@ const DemoRequestForm = () => {
             <SelectItem value="complete">Complete WeKIT Suite</SelectItem>
           </SelectContent>
         </Select>
-        <Select 
-          value={formData.serviceFor} 
-          onValueChange={(value) => setFormData(prev => ({ ...prev, serviceFor: value }))} 
-          disabled={isLoading}
-        >
-          <SelectTrigger className="border-teal-400 focus:border-teal-500">
-            <SelectValue placeholder="Who do you need the service for?" />
-          </SelectTrigger>
+        <Select value={formData.serviceFor} onValueChange={(value) => setFormData(prev => ({ ...prev, serviceFor: value }))} disabled={isLoading}>
+          <SelectTrigger className="border-teal-400 focus:border-teal-500"><SelectValue placeholder="Who do you need the service for?" /></SelectTrigger>
           <SelectContent>
             <SelectItem value="students">Students</SelectItem>
             <SelectItem value="teachers">Teachers</SelectItem>
@@ -221,11 +131,8 @@ const DemoRequestForm = () => {
             <SelectItem value="institution">Entire Institution</SelectItem>
           </SelectContent>
         </Select>
-        <Button 
-          type="submit" 
-          className="w-full bg-teal-600 hover:bg-teal-700 text-white py-3" 
-          disabled={isLoading}
-        >
+        <PolicyAcceptance accepted={policyAccepted} onAcceptedChange={(v) => { setPolicyAccepted(v); if (v) setShowPolicyError(false); }} showError={showPolicyError} />
+        <Button type="submit" className="w-full bg-teal-600 hover:bg-teal-700 text-white py-3" disabled={isLoading || !policyAccepted}>
           {isLoading ? 'Submitting...' : 'Submit'}
         </Button>
       </form>

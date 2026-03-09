@@ -7,55 +7,41 @@ import { useToast } from '@/hooks/use-toast';
 import { supabase } from '@/integrations/supabase/client';
 import { newsletterSchema } from '@/lib/validation';
 import { syncToZohoCRM } from '@/utils/zohoSync';
+import PolicyAcceptance from '@/components/PolicyAcceptance';
+import { recordPolicyConsent } from '@/utils/policyConsent';
 
 const NewsletterSignup = () => {
   const [email, setEmail] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  const [policyAccepted, setPolicyAccepted] = useState(false);
+  const [showPolicyError, setShowPolicyError] = useState(false);
   const { toast } = useToast();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (!policyAccepted) { setShowPolicyError(true); return; }
     setIsLoading(true);
     
     try {
-      // Validate input
       const result = newsletterSchema.safeParse({ email });
       if (!result.success) {
-        toast({
-          title: "Validation Error",
-          description: result.error.errors[0].message,
-          variant: "destructive"
-        });
+        toast({ title: "Validation Error", description: result.error.errors[0].message, variant: "destructive" });
         setIsLoading(false);
         return;
       }
 
-      const { error } = await supabase
-        .from('newsletter_subscriptions')
-        .insert({
-          email: result.data.email
-        });
-
+      const { error } = await supabase.from('newsletter_subscriptions').insert({ email: result.data.email });
       if (error) throw error;
 
-      // Sync to Zoho CRM (fire-and-forget)
-      syncToZohoCRM({
-        form_type: 'newsletter',
-        email: result.data.email,
-        description: 'Newsletter subscription',
-      });
+      recordPolicyConsent(result.data.email, 'newsletter');
 
-      toast({
-        title: "Welcome to WeKIT!",
-        description: "You've been subscribed to our newsletter.",
-      });
+      syncToZohoCRM({ form_type: 'newsletter', email: result.data.email, description: 'Newsletter subscription' });
+
+      toast({ title: "Welcome to WeKIT!", description: "You've been subscribed to our newsletter." });
       setEmail('');
+      setPolicyAccepted(false); setShowPolicyError(false);
     } catch (error) {
-      toast({
-        title: "Error",
-        description: "Failed to subscribe. Please try again.",
-        variant: "destructive"
-      });
+      toast({ title: "Error", description: "Failed to subscribe. Please try again.", variant: "destructive" });
     } finally {
       setIsLoading(false);
     }
@@ -69,19 +55,14 @@ const NewsletterSignup = () => {
       </div>
       <p className="text-gray-600 mb-2">Get the latest insights on youth mentorship and AI-driven education from WeKIT International.</p>
       <p className="text-sm text-gray-500 mb-4 italic">"Wot Kareer Is iT?" - Stay informed about career development</p>
-      <form onSubmit={handleSubmit} className="flex gap-3">
-        <Input
-          type="email"
-          placeholder="Enter your email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          required
-          className="flex-1"
-          disabled={isLoading}
-        />
-        <Button type="submit" className="bg-blue-600 hover:bg-blue-700" disabled={isLoading}>
-          {isLoading ? 'Subscribing...' : 'Subscribe'}
-        </Button>
+      <form onSubmit={handleSubmit} className="space-y-3">
+        <div className="flex gap-3">
+          <Input type="email" placeholder="Enter your email" value={email} onChange={(e) => setEmail(e.target.value)} required className="flex-1" disabled={isLoading} />
+          <Button type="submit" className="bg-blue-600 hover:bg-blue-700" disabled={isLoading || !policyAccepted}>
+            {isLoading ? 'Subscribing...' : 'Subscribe'}
+          </Button>
+        </div>
+        <PolicyAcceptance accepted={policyAccepted} onAcceptedChange={(v) => { setPolicyAccepted(v); if (v) setShowPolicyError(false); }} showError={showPolicyError} />
       </form>
     </div>
   );
