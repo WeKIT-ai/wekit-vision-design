@@ -8,6 +8,8 @@ import { useToast } from '@/hooks/use-toast';
 import { supabase } from '@/integrations/supabase/client';
 import { contactFormSchema } from '@/lib/validation';
 import { syncToZohoCRM } from '@/utils/zohoSync';
+import PolicyAcceptance from '@/components/PolicyAcceptance';
+import { recordPolicyConsent } from '@/utils/policyConsent';
 
 const ContactForm = () => {
   const [formData, setFormData] = useState({
@@ -17,21 +19,24 @@ const ContactForm = () => {
     message: ''
   });
   const [isLoading, setIsLoading] = useState(false);
+  const [policyAccepted, setPolicyAccepted] = useState(false);
+  const [showPolicyError, setShowPolicyError] = useState(false);
   const { toast } = useToast();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    
+    if (!policyAccepted) {
+      setShowPolicyError(true);
+      return;
+    }
+    
     setIsLoading(true);
     
     try {
-      // Validate input
       const result = contactFormSchema.safeParse(formData);
       if (!result.success) {
-        toast({
-          title: "Validation Error",
-          description: result.error.errors[0].message,
-          variant: "destructive"
-        });
+        toast({ title: "Validation Error", description: result.error.errors[0].message, variant: "destructive" });
         setIsLoading(false);
         return;
       }
@@ -48,7 +53,8 @@ const ContactForm = () => {
 
       if (error) throw error;
 
-      // Sync to Zoho CRM (fire-and-forget)
+      recordPolicyConsent(result.data.email, 'contact-form');
+
       syncToZohoCRM({
         form_type: 'contact-form',
         first_name: result.data.name,
@@ -58,27 +64,19 @@ const ContactForm = () => {
         description: result.data.message,
       });
 
-      toast({
-        title: "Message Sent!",
-        description: "We'll get back to you within 24 hours.",
-      });
+      toast({ title: "Message Sent!", description: "We'll get back to you within 24 hours." });
       setFormData({ name: '', email: '', company: '', message: '' });
+      setPolicyAccepted(false);
+      setShowPolicyError(false);
     } catch (error) {
-      toast({
-        title: "Error",
-        description: "Failed to send message. Please try again.",
-        variant: "destructive"
-      });
+      toast({ title: "Error", description: "Failed to send message. Please try again.", variant: "destructive" });
     } finally {
       setIsLoading(false);
     }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setFormData(prev => ({
-      ...prev,
-      [e.target.name]: e.target.value
-    }));
+    setFormData(prev => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
   return (
@@ -90,41 +88,13 @@ const ContactForm = () => {
       <p className="text-gray-600 mb-6">Ready to transform youth development? Let's discuss your needs.</p>
       <form onSubmit={handleSubmit} className="space-y-4">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <Input
-            name="name"
-            placeholder="Your Name"
-            value={formData.name}
-            onChange={handleChange}
-            required
-            disabled={isLoading}
-          />
-          <Input
-            name="email"
-            type="email"
-            placeholder="Email Address"
-            value={formData.email}
-            onChange={handleChange}
-            required
-            disabled={isLoading}
-          />
+          <Input name="name" placeholder="Your Name" value={formData.name} onChange={handleChange} required disabled={isLoading} />
+          <Input name="email" type="email" placeholder="Email Address" value={formData.email} onChange={handleChange} required disabled={isLoading} />
         </div>
-        <Input
-          name="company"
-          placeholder="Organization/Company"
-          value={formData.company}
-          onChange={handleChange}
-          disabled={isLoading}
-        />
-        <Textarea
-          name="message"
-          placeholder="Tell us about your goals and how we can help..."
-          rows={4}
-          value={formData.message}
-          onChange={handleChange}
-          required
-          disabled={isLoading}
-        />
-        <Button type="submit" className="w-full bg-green-600 hover:bg-green-700" disabled={isLoading}>
+        <Input name="company" placeholder="Organization/Company" value={formData.company} onChange={handleChange} disabled={isLoading} />
+        <Textarea name="message" placeholder="Tell us about your goals and how we can help..." rows={4} value={formData.message} onChange={handleChange} required disabled={isLoading} />
+        <PolicyAcceptance accepted={policyAccepted} onAcceptedChange={(v) => { setPolicyAccepted(v); if (v) setShowPolicyError(false); }} showError={showPolicyError} />
+        <Button type="submit" className="w-full bg-green-600 hover:bg-green-700" disabled={isLoading || !policyAccepted}>
           {isLoading ? 'Sending...' : 'Send Message'}
         </Button>
       </form>

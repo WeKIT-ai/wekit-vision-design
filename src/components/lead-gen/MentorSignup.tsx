@@ -9,106 +9,64 @@ import { useToast } from '@/hooks/use-toast';
 import { supabase } from '@/integrations/supabase/client';
 import { mentorSignupSchema } from '@/lib/validation';
 import { syncToZohoCRM } from '@/utils/zohoSync';
+import PolicyAcceptance from '@/components/PolicyAcceptance';
+import { recordPolicyConsent } from '@/utils/policyConsent';
 
 const MentorSignup = () => {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    company: '',
-    industry: '',
-    experience: '',
-    expertise: ''
-  });
+  const [formData, setFormData] = useState({ name: '', email: '', company: '', industry: '', experience: '', expertise: '' });
   const [isLoading, setIsLoading] = useState(false);
+  const [policyAccepted, setPolicyAccepted] = useState(false);
+  const [showPolicyError, setShowPolicyError] = useState(false);
   const { toast } = useToast();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (!policyAccepted) { setShowPolicyError(true); return; }
     setIsLoading(true);
     
     try {
-      // Split name into first and last for validation
       const nameParts = formData.name.trim().split(' ');
       const firstName = nameParts[0] || '';
       const lastName = nameParts.slice(1).join(' ') || nameParts[0] || '';
 
-      // Validate input
       const result = mentorSignupSchema.safeParse({
-        firstName,
-        lastName,
-        email: formData.email,
-        company: formData.company,
-        industry: formData.industry,
-        experience: formData.experience,
-        expertise: formData.expertise
+        firstName, lastName, email: formData.email, company: formData.company,
+        industry: formData.industry, experience: formData.experience, expertise: formData.expertise
       });
       
       if (!result.success) {
-        toast({
-          title: "Validation Error",
-          description: result.error.errors[0].message,
-          variant: "destructive"
-        });
+        toast({ title: "Validation Error", description: result.error.errors[0].message, variant: "destructive" });
         setIsLoading(false);
         return;
       }
 
-      // Store PII in dedicated contact_submissions table
-      const { error: contactError } = await supabase
-        .from('contact_submissions')
-        .insert({
-          name: formData.name,
-          email: result.data.email,
-          company: result.data.company || null,
-          message: `Mentor Signup - Industry: ${result.data.industry}, Experience: ${result.data.experience}, Expertise: ${result.data.expertise}`
-        });
-
+      const { error: contactError } = await supabase.from('contact_submissions').insert({
+        name: formData.name, email: result.data.email, company: result.data.company || null,
+        message: `Mentor Signup - Industry: ${result.data.industry}, Experience: ${result.data.experience}, Expertise: ${result.data.expertise}`
+      });
       if (contactError) throw contactError;
 
-      // Sync to Zoho CRM (fire-and-forget)
-      syncToZohoCRM({
-        form_type: 'mentor-signup',
-        first_name: result.data.firstName,
-        last_name: result.data.lastName,
-        email: result.data.email,
-        company: result.data.company || '',
-        description: `Mentor Signup - Industry: ${result.data.industry}, Experience: ${result.data.experience}, Expertise: ${result.data.expertise}`,
+      recordPolicyConsent(result.data.email, 'mentor-signup');
+
+      syncToZohoCRM({ form_type: 'mentor-signup', first_name: result.data.firstName, last_name: result.data.lastName, email: result.data.email, company: result.data.company || '', description: `Mentor Signup - Industry: ${result.data.industry}, Experience: ${result.data.experience}, Expertise: ${result.data.expertise}` });
+
+      await supabase.from('page_interactions').insert({
+        page_name: window.location.pathname, interaction_type: 'mentor_signup',
+        metadata: { industry: result.data.industry, experience: result.data.experience, source: 'mentor_signup_form' }
       });
 
-      // Log non-PII analytics only
-      await supabase
-        .from('page_interactions')
-        .insert({
-          page_name: window.location.pathname,
-          interaction_type: 'mentor_signup',
-          metadata: {
-            industry: result.data.industry,
-            experience: result.data.experience,
-            source: 'mentor_signup_form'
-          }
-        });
-
-      toast({
-        title: "Welcome to WeKIT!",
-        description: "Your mentor application has been submitted. We'll be in touch soon!",
-      });
+      toast({ title: "Welcome to WeKIT!", description: "Your mentor application has been submitted. We'll be in touch soon!" });
       setFormData({ name: '', email: '', company: '', industry: '', experience: '', expertise: '' });
+      setPolicyAccepted(false); setShowPolicyError(false);
     } catch (error) {
-      toast({
-        title: "Error",
-        description: "Failed to submit application. Please try again.",
-        variant: "destructive"
-      });
+      toast({ title: "Error", description: "Failed to submit application. Please try again.", variant: "destructive" });
     } finally {
       setIsLoading(false);
     }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setFormData(prev => ({
-      ...prev,
-      [e.target.name]: e.target.value
-    }));
+    setFormData(prev => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
   return (
@@ -120,36 +78,13 @@ const MentorSignup = () => {
       <p className="text-gray-600 mb-6">Share your expertise and help shape the next generation of leaders.</p>
       <form onSubmit={handleSubmit} className="space-y-4">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <Input
-            name="name"
-            placeholder="Full Name"
-            value={formData.name}
-            onChange={handleChange}
-            required
-            disabled={isLoading}
-          />
-          <Input
-            name="email"
-            type="email"
-            placeholder="Email Address"
-            value={formData.email}
-            onChange={handleChange}
-            required
-            disabled={isLoading}
-          />
+          <Input name="name" placeholder="Full Name" value={formData.name} onChange={handleChange} required disabled={isLoading} />
+          <Input name="email" type="email" placeholder="Email Address" value={formData.email} onChange={handleChange} required disabled={isLoading} />
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <Input
-            name="company"
-            placeholder="Current Company"
-            value={formData.company}
-            onChange={handleChange}
-            disabled={isLoading}
-          />
+          <Input name="company" placeholder="Current Company" value={formData.company} onChange={handleChange} disabled={isLoading} />
           <Select value={formData.industry} onValueChange={(value) => setFormData(prev => ({ ...prev, industry: value }))} disabled={isLoading}>
-            <SelectTrigger>
-              <SelectValue placeholder="Industry" />
-            </SelectTrigger>
+            <SelectTrigger><SelectValue placeholder="Industry" /></SelectTrigger>
             <SelectContent>
               <SelectItem value="technology">Technology</SelectItem>
               <SelectItem value="finance">Finance</SelectItem>
@@ -162,9 +97,7 @@ const MentorSignup = () => {
           </Select>
         </div>
         <Select value={formData.experience} onValueChange={(value) => setFormData(prev => ({ ...prev, experience: value }))} disabled={isLoading}>
-          <SelectTrigger>
-            <SelectValue placeholder="Years of Experience" />
-          </SelectTrigger>
+          <SelectTrigger><SelectValue placeholder="Years of Experience" /></SelectTrigger>
           <SelectContent>
             <SelectItem value="3-5">3-5 years</SelectItem>
             <SelectItem value="5-10">5-10 years</SelectItem>
@@ -172,16 +105,9 @@ const MentorSignup = () => {
             <SelectItem value="15+">15+ years</SelectItem>
           </SelectContent>
         </Select>
-        <Textarea
-          name="expertise"
-          placeholder="Describe your expertise and what you'd like to mentor students in..."
-          rows={3}
-          value={formData.expertise}
-          onChange={handleChange}
-          required
-          disabled={isLoading}
-        />
-        <Button type="submit" className="w-full bg-orange-600 hover:bg-orange-700" disabled={isLoading}>
+        <Textarea name="expertise" placeholder="Describe your expertise and what you'd like to mentor students in..." rows={3} value={formData.expertise} onChange={handleChange} required disabled={isLoading} />
+        <PolicyAcceptance accepted={policyAccepted} onAcceptedChange={(v) => { setPolicyAccepted(v); if (v) setShowPolicyError(false); }} showError={showPolicyError} />
+        <Button type="submit" className="w-full bg-orange-600 hover:bg-orange-700" disabled={isLoading || !policyAccepted}>
           {isLoading ? 'Applying...' : 'Apply as Mentor'}
         </Button>
       </form>

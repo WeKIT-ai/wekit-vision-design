@@ -9,6 +9,8 @@ import { useToast } from '@/hooks/use-toast';
 import { useNavigate } from 'react-router-dom';
 import { supabase } from '@/integrations/supabase/client';
 import { syncToZohoCRM } from '@/utils/zohoSync';
+import PolicyAcceptance from '@/components/PolicyAcceptance';
+import { recordPolicyConsent } from '@/utils/policyConsent';
 
 const MentorWaitlist = () => {
   const [currentStep, setCurrentStep] = useState(1);
@@ -29,6 +31,8 @@ const MentorWaitlist = () => {
     motivation: ''
   });
   const [isLoading, setIsLoading] = useState(false);
+  const [policyAccepted, setPolicyAccepted] = useState(false);
+  const [showPolicyError, setShowPolicyError] = useState(false);
   const { toast } = useToast();
   const navigate = useNavigate();
 
@@ -57,6 +61,7 @@ const MentorWaitlist = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (!policyAccepted) { setShowPolicyError(true); return; }
     setIsLoading(true);
     
     try {
@@ -81,7 +86,8 @@ const MentorWaitlist = () => {
 
       if (error) throw error;
 
-      // Sync to Zoho CRM (fire-and-forget)
+      recordPolicyConsent(formData.email, 'mentor-waitlist');
+
       syncToZohoCRM({
         form_type: 'mentor-waitlist',
         first_name: formData.first_name,
@@ -97,7 +103,7 @@ const MentorWaitlist = () => {
         description: "We'll be in touch soon about mentor opportunities.",
       });
       
-      setCurrentStep(3); // Success step
+      setCurrentStep(3);
       
     } catch (error) {
       toast({
@@ -400,10 +406,16 @@ const MentorWaitlist = () => {
                         placeholder="Share your motivation for wanting to mentor others"
                       />
                     </div>
+
+                    <PolicyAcceptance
+                      accepted={policyAccepted}
+                      onAcceptedChange={(v) => { setPolicyAccepted(v); if (v) setShowPolicyError(false); }}
+                      showError={showPolicyError}
+                    />
                     
                     <Button 
                       type="submit" 
-                      disabled={isLoading || !formData.first_name || !formData.last_name || !formData.email || !formData.company || !formData.position || !formData.industry || !formData.experience_years || !formData.specialties || !formData.mentoring_philosophy || !formData.motivation}
+                      disabled={isLoading || !policyAccepted || !formData.first_name || !formData.last_name || !formData.email || !formData.company || !formData.position || !formData.industry || !formData.experience_years || !formData.specialties || !formData.mentoring_philosophy || !formData.motivation}
                       className="w-full h-14 text-lg bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white rounded-full border-0 shadow-2xl hover:shadow-xl transition-all duration-300 hover:scale-105 hover:-translate-y-1 group"
                     >
                       {isLoading ? "Submitting..." : "Submit My Application"}

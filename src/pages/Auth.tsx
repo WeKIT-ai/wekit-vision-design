@@ -9,6 +9,8 @@ import { Alert, AlertDescription } from '@/components/ui/alert';
 import { useAuth } from '@/contexts/AuthContext';
 import { LogIn, Linkedin, Github, Mail, Loader2, User as UserIcon, AlertCircle } from 'lucide-react';
 import { supabase } from '@/integrations/supabase/client';
+import PolicyAcceptance from '@/components/PolicyAcceptance';
+import { recordPolicyConsent } from '@/utils/policyConsent';
 
 const Auth = () => {
   const [isSignUp, setIsSignUp] = useState(false);
@@ -18,6 +20,8 @@ const Auth = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
   const [message, setMessage] = useState('');
+  const [policyAccepted, setPolicyAccepted] = useState(false);
+  const [showPolicyError, setShowPolicyError] = useState(false);
   
   const { signUp, signIn, user } = useAuth();
   const navigate = useNavigate();
@@ -31,29 +35,26 @@ const Auth = () => {
   }, [user, navigate, location]);
 
   const validatePassword = (password: string): string | null => {
-    if (password.length < 8) {
-      return 'Password must be at least 8 characters long';
-    }
-    if (!/(?=.*[a-z])(?=.*[A-Z])(?=.*\d)/.test(password)) {
-      return 'Password must contain at least one uppercase letter, one lowercase letter, and one number';
-    }
+    if (password.length < 8) return 'Password must be at least 8 characters long';
+    if (!/(?=.*[a-z])(?=.*[A-Z])(?=.*\d)/.test(password)) return 'Password must contain at least one uppercase letter, one lowercase letter, and one number';
     return null;
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    
+    if (isSignUp && !policyAccepted) {
+      setShowPolicyError(true);
+      return;
+    }
+    
     setLoading(true);
     setError('');
     setMessage('');
 
-    // Validate password strength for sign up
     if (isSignUp) {
       const passwordError = validatePassword(password);
-      if (passwordError) {
-        setError(passwordError);
-        setLoading(false);
-        return;
-      }
+      if (passwordError) { setError(passwordError); setLoading(false); return; }
     }
 
     try {
@@ -66,13 +67,12 @@ const Auth = () => {
             setError(error.message);
           }
         } else {
+          recordPolicyConsent(email, 'auth-signup');
           setMessage('Check your email for a confirmation link!');
         }
       } else {
         const { error } = await signIn(email, password);
-        if (error) {
-          setError('Invalid email or password. Please try again.');
-        }
+        if (error) setError('Invalid email or password. Please try again.');
       }
     } catch (err) {
       setError('An unexpected error occurred. Please try again.');
@@ -81,28 +81,22 @@ const Auth = () => {
     }
   };
 
-  // --- Social login with security (Google/LinkedIn) ---
   const oauthProviders = [
     { id: 'google', label: "Continue with Google", icon: <LogIn size={18} className="mr-2 text-blue-600" /> },
     { id: 'linkedin_oidc', label: "Continue with LinkedIn", icon: <Linkedin size={18} className="mr-2 text-blue-700" /> },
-    // Add more as needed.
   ];
 
   const socialLogin = async (provider: string) => {
+    if (isSignUp && !policyAccepted) { setShowPolicyError(true); return; }
     setError('');
     setLoading(true);
     try {
       const { error } = await supabase.auth.signInWithOAuth({
         provider: provider as any,
-        options: {
-          redirectTo: `${window.location.origin}/`,
-        }
+        options: { redirectTo: `${window.location.origin}/` }
       });
-      if (error) {
-        setError(error.message || 'Social login failed');
-      } else {
-        setMessage('Redirecting to ' + provider + '...');
-      }
+      if (error) { setError(error.message || 'Social login failed'); }
+      else { setMessage('Redirecting to ' + provider + '...'); }
     } catch (e: any) {
       setError('Unexpected error occurred with ' + provider);
     } finally {
@@ -124,30 +118,15 @@ const Auth = () => {
 
         <Card className="rounded-none border-gray-200 shadow-none">
           <CardHeader>
-            <CardTitle className="text-xl font-medium">
-              {isSignUp ? 'Sign Up' : 'Sign In'}
-            </CardTitle>
-            <CardDescription>
-              {isSignUp 
-                ? 'Enter your details to create an account'
-                : 'Enter your credentials to access your account'
-              }
-            </CardDescription>
+            <CardTitle className="text-xl font-medium">{isSignUp ? 'Sign Up' : 'Sign In'}</CardTitle>
+            <CardDescription>{isSignUp ? 'Enter your details to create an account' : 'Enter your credentials to access your account'}</CardDescription>
           </CardHeader>
           <CardContent>
-            {/* --- Social auth section --- */}
             <div className="mb-4 flex flex-col gap-2 w-full">
               {oauthProviders.map(({ id, label, icon }) => (
-                <Button
-                  key={id}
-                  variant="outline"
-                  type="button"
-                  disabled={loading}
-                  onClick={() => socialLogin(id)}
-                  className={`w-full border border-gray-200 hover:bg-gray-100 shadow-none font-medium ${id === 'google' ? 'text-blue-600' : id === 'linkedin_oidc' ? 'text-blue-700' : ''}`}
-                >
-                  {icon}
-                  {label}
+                <Button key={id} variant="outline" type="button" disabled={loading} onClick={() => socialLogin(id)}
+                  className={`w-full border border-gray-200 hover:bg-gray-100 shadow-none font-medium ${id === 'google' ? 'text-blue-600' : id === 'linkedin_oidc' ? 'text-blue-700' : ''}`}>
+                  {icon}{label}
                 </Button>
               ))}
             </div>
@@ -157,50 +136,29 @@ const Auth = () => {
               {isSignUp && (
                 <div>
                   <Label htmlFor="fullName">Full Name</Label>
-                  <Input
-                    id="fullName"
-                    type="text"
-                    value={fullName}
-                    onChange={(e) => setFullName(e.target.value)}
-                    required={isSignUp}
-                    className="rounded-none"
-                    placeholder="Enter your full name"
-                  />
+                  <Input id="fullName" type="text" value={fullName} onChange={(e) => setFullName(e.target.value)} required={isSignUp} className="rounded-none" placeholder="Enter your full name" />
                 </div>
               )}
               
               <div>
                 <Label htmlFor="email">Email</Label>
-                <Input
-                  id="email"
-                  type="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  required
-                  className="rounded-none"
-                  placeholder="Enter your email"
-                />
+                <Input id="email" type="email" value={email} onChange={(e) => setEmail(e.target.value)} required className="rounded-none" placeholder="Enter your email" />
               </div>
               
               <div>
                 <Label htmlFor="password">Password</Label>
-                <Input
-                  id="password"
-                  type="password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  required
-                  className="rounded-none"
-                  placeholder="Enter your password"
-                  minLength={8}
-                  autoComplete={isSignUp ? "new-password" : "current-password"}
-                />
-                {isSignUp && (
-                  <p className="mt-1 text-xs text-gray-500">
-                    Password must be at least 8 characters with uppercase, lowercase, and number
-                  </p>
-                )}
+                <Input id="password" type="password" value={password} onChange={(e) => setPassword(e.target.value)} required className="rounded-none" placeholder="Enter your password" minLength={8} autoComplete={isSignUp ? "new-password" : "current-password"} />
+                {isSignUp && <p className="mt-1 text-xs text-gray-500">Password must be at least 8 characters with uppercase, lowercase, and number</p>}
               </div>
+
+              {isSignUp && (
+                <PolicyAcceptance
+                  accepted={policyAccepted}
+                  onAcceptedChange={(v) => { setPolicyAccepted(v); if (v) setShowPolicyError(false); }}
+                  showError={showPolicyError}
+                  showMinorNotice
+                />
+              )}
 
               {error && (
                 <Alert variant="destructive" className="rounded-none flex items-start gap-2">
@@ -216,31 +174,15 @@ const Auth = () => {
                 </Alert>
               )}
 
-              <Button
-                type="submit"
-                disabled={loading}
-                className="w-full bg-black hover:bg-gray-800 text-white rounded-none font-medium"
-              >
+              <Button type="submit" disabled={loading || (isSignUp && !policyAccepted)} className="w-full bg-black hover:bg-gray-800 text-white rounded-none font-medium">
                 {loading ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : null}
                 {loading ? 'Processing...' : (isSignUp ? 'Sign Up' : 'Sign In')}
               </Button>
             </form>
 
             <div className="mt-6 text-center">
-              <button
-                type="button"
-                onClick={() => {
-                  setIsSignUp(!isSignUp);
-                  setError('');
-                  setMessage('');
-                }}
-                className="text-sm text-gray-600 hover:text-gray-900 transition-colors"
-                disabled={loading}
-              >
-                {isSignUp 
-                  ? 'Already have an account? Sign in' 
-                  : "Don't have an account? Sign up"
-                }
+              <button type="button" onClick={() => { setIsSignUp(!isSignUp); setError(''); setMessage(''); setPolicyAccepted(false); setShowPolicyError(false); }} className="text-sm text-gray-600 hover:text-gray-900 transition-colors" disabled={loading}>
+                {isSignUp ? 'Already have an account? Sign in' : "Don't have an account? Sign up"}
               </button>
             </div>
           </CardContent>
