@@ -33,6 +33,7 @@ import MentorOnboarding from "./pages/MentorOnboarding";
 import MentorDashboard from "./pages/MentorDashboard";
 import FindMentor from "./pages/FindMentor";
 import AdminSyncDashboard from "./pages/AdminSyncDashboard";
+import TermsAndConditions from "./pages/TermsAndConditions";
 import ProtectedRoute from "./components/ProtectedRoute";
 const queryClient = new QueryClient();
 
