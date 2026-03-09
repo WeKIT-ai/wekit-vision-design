@@ -268,9 +268,7 @@ const YomaChat = () => {
               {/* Typing indicator */}
               {isShowingTyping && (
                 <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="flex gap-2.5">
-                  <div className="w-7 h-7 rounded-full bg-[#0205F4] flex items-center justify-center shrink-0">
-                    <Bot size={14} className="text-white" />
-                  </div>
+                  <img src={YOMA_AVATAR} alt="YOMA" className="w-7 h-7 rounded-full object-cover shrink-0" />
                   <div className="bg-white rounded-2xl rounded-tl-sm px-4 py-3 shadow-sm border border-gray-100">
                     <TypingDots />
                   </div>
