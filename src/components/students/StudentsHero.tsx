@@ -32,20 +32,22 @@ const StudentsHero = () => {
               without clear career direction or job-ready skills. We change that.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
-              <Button
-                size="lg"
-                className="bg-primary text-primary-foreground hover:bg-primary/90 px-8 py-6 text-lg font-medium shadow-sm hover:shadow-md transition-all duration-300 group">
-                
-                Start Your Success Story
-                <ArrowRight className="ml-2 transition-transform duration-300 group-hover:translate-x-1" size={20} />
-              </Button>
-              <Button
-                size="lg"
-                variant="outline"
-                className="px-8 py-6 text-lg font-medium border-2 border-white text-white transition-all duration-300 bg-primary">
-                
-                See Success Stories
-              </Button>
+              <a href="https://wekit.ai/" target="_blank" rel="noopener noreferrer">
+                <Button
+                  size="lg"
+                  className="bg-primary text-primary-foreground hover:bg-primary/90 px-8 py-6 text-lg font-medium shadow-sm hover:shadow-md transition-all duration-300 group">
+                  Start Your Success Story
+                  <ArrowRight className="ml-2 transition-transform duration-300 group-hover:translate-x-1" size={20} />
+                </Button>
+              </a>
+              <a href="https://wekit.ai/discover" target="_blank" rel="noopener noreferrer">
+                <Button
+                  size="lg"
+                  variant="outline"
+                  className="px-8 py-6 text-lg font-medium border-2 border-white text-white transition-all duration-300 bg-transparent hover:bg-white/10">
+                  Discover Colleges
+                </Button>
+              </a>
             </div>
           </div>
         </div>
