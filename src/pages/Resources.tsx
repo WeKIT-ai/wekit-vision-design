@@ -87,11 +87,11 @@ const Resources = () => (
               Read the White Paper
             </Button>
           </Link>
-          <Link to="/waitlist">
+          <a href="https://purpose-pathway-pilot.lovable.app/" target="_blank" rel="noopener noreferrer">
             <Button size="lg" variant="outline" className="border-primary-foreground/30 text-primary-foreground hover:bg-primary-foreground/10 px-8 py-6 text-base">
               Join WeKIT
             </Button>
-          </Link>
+          </a>
         </div>
       </div>
     </section>
