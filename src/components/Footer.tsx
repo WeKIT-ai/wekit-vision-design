@@ -1,80 +1,85 @@
 import { Youtube, Facebook, Linkedin, Instagram, Mail } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { ChevronRight } from 'lucide-react';
 
 const Footer = () => {
   return (
-    <footer className="bg-background border-t border-border">
-      <div className="max-w-6xl mx-auto px-6 md:px-8 py-24">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-16">
-          <div className="col-span-1 md:col-span-2 space-y-8">
-            <div className="flex items-center space-x-4">
-              <img 
-                src="/lovable-uploads/db13bc26-be3a-46c4-852b-6148fcd3edae.png" 
-                alt="WeKIT Logo" 
-                className="h-12 w-auto"
-              />
-              <div>
-                <h3 className="text-2xl font-semibold font-montserrat text-foreground">WeKIT</h3>
-                <p className="text-sm text-muted-foreground">Wot Kareer Is iT?</p>
-              </div>
-            </div>
-            <p className="text-muted-foreground leading-relaxed max-w-md text-lg">
-              Rooting you in your purpose. Empowering youth through AI-driven mentorship, bridging the gap between potential and opportunity.
-            </p>
-            <div className="flex space-x-6">
-              <a href="https://www.youtube.com/@WeKITMentoring" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-foreground transition-colors duration-300">
-                <Youtube size={24} />
-              </a>
-              <a href="https://www.facebook.com/wekitorg" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-foreground transition-colors duration-300">
-                <Facebook size={24} />
-              </a>
-              <a href="https://www.linkedin.com/company/we-kit-mentoring" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-foreground transition-colors duration-300">
-                <Linkedin size={24} />
-              </a>
-              <a href="https://www.instagram.com/we.kit.mentoring" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-foreground transition-colors duration-300">
-                <Instagram size={24} />
-              </a>
-              <a href="mailto:hello@wekitmentoring.com" className="text-muted-foreground hover:text-foreground transition-colors duration-300">
-                <Mail size={24} />
-              </a>
-            </div>
+    <footer className="bg-[hsl(210,28%,10%)] text-[hsl(0,0%,75%)]">
+      <div className="max-w-7xl mx-auto px-6 md:px-8">
+        {/* Main footer content */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-12 py-16 md:py-20">
+          {/* Column 1 */}
+          <div className="space-y-4">
+            <Link to="/about" className="block text-[hsl(0,0%,95%)] hover:text-[hsl(0,0%,100%)] font-medium transition-colors">About</Link>
+            <Link to="/programs" className="block text-[hsl(0,0%,95%)] hover:text-[hsl(0,0%,100%)] font-medium transition-colors">Programs</Link>
+            <Link to="/schools" className="block text-[hsl(0,0%,95%)] hover:text-[hsl(0,0%,100%)] font-medium transition-colors">Schools</Link>
+            <Link to="/mentorship" className="block text-[hsl(0,0%,95%)] hover:text-[hsl(0,0%,100%)] font-medium transition-colors">Mentorship</Link>
+            <Link to="/start-journey" className="block text-[hsl(0,0%,95%)] hover:text-[hsl(0,0%,100%)] font-medium transition-colors">Start now</Link>
           </div>
 
-          <div className="space-y-6">
-            <h4 className="font-semibold font-montserrat text-foreground text-lg">Quick Links</h4>
-            <ul className="space-y-4">
-              <li><Link to="/schools" className="text-muted-foreground hover:text-foreground transition-colors duration-300">Schools</Link></li>
-              <li><Link to="/students" className="text-muted-foreground hover:text-foreground transition-colors duration-300">Students</Link></li>
-              <li><Link to="/parents" className="text-muted-foreground hover:text-foreground transition-colors duration-300">Parents</Link></li>
-              <li><Link to="/professionals" className="text-muted-foreground hover:text-foreground transition-colors duration-300">Professionals</Link></li>
-              <li><Link to="/ngos" className="text-muted-foreground hover:text-foreground transition-colors duration-300">NGOs</Link></li>
-              <li><Link to="/investors" className="text-muted-foreground hover:text-foreground transition-colors duration-300">Investors</Link></li>
-              <li><Link to="/about" className="text-muted-foreground hover:text-foreground transition-colors duration-300">About Us</Link></li>
-            </ul>
+          {/* Column 2 */}
+          <div className="space-y-4">
+            <Link to="/students" className="block text-[hsl(0,0%,95%)] hover:text-[hsl(0,0%,100%)] font-medium transition-colors">Students</Link>
+            <Link to="/parents" className="block text-[hsl(0,0%,95%)] hover:text-[hsl(0,0%,100%)] font-medium transition-colors">Parents</Link>
+            <Link to="/professionals" className="block text-[hsl(0,0%,95%)] hover:text-[hsl(0,0%,100%)] font-medium transition-colors">Professionals</Link>
+            <Link to="/resources" className="block text-[hsl(0,0%,95%)] hover:text-[hsl(0,0%,100%)] font-medium transition-colors">Resources</Link>
+            <Link to="/courses" className="block text-[hsl(0,0%,95%)] hover:text-[hsl(0,0%,100%)] font-medium transition-colors">Courses</Link>
           </div>
 
-          <div className="space-y-6">
-            <h4 className="font-semibold font-montserrat text-foreground text-lg">Contact</h4>
-            <ul className="space-y-4">
-              <li>
-                <a href="mailto:hello@wekitmentoring.com" className="text-muted-foreground hover:text-foreground transition-colors duration-300">
-                  hello@wekitmentoring.com
-                </a>
-              </li>
-              <li>
-                <a href="mailto:support@wekitmentoring.com" className="text-muted-foreground hover:text-foreground transition-colors duration-300">
-                  support@wekitmentoring.com
-                </a>
-              </li>
-              <li className="text-muted-foreground">Global Operations</li>
-            </ul>
+          {/* Column 3 */}
+          <div className="space-y-4">
+            <Link to="/ngos" className="block text-[hsl(0,0%,95%)] hover:text-[hsl(0,0%,100%)] font-medium transition-colors">NGOs</Link>
+            <Link to="/investors" className="block text-[hsl(0,0%,95%)] hover:text-[hsl(0,0%,100%)] font-medium transition-colors">Investors</Link>
+            <Link to="/enterprise" className="block text-[hsl(0,0%,95%)] hover:text-[hsl(0,0%,100%)] font-medium transition-colors">Enterprise</Link>
+            <Link to="/roadmap" className="block text-[hsl(0,0%,95%)] hover:text-[hsl(0,0%,100%)] font-medium transition-colors">Roadmap</Link>
+          </div>
+
+          {/* Column 4 - Contact */}
+          <div className="space-y-8">
+            <div>
+              <a href="mailto:hello@wekitmentoring.com" className="inline-flex items-center text-[hsl(0,0%,95%)] font-semibold hover:text-[hsl(0,0%,100%)] transition-colors">
+                Get in Touch <ChevronRight className="ml-1 h-4 w-4" />
+              </a>
+              <p className="mt-2 text-sm leading-relaxed">
+                Reach out for partnerships, programs, or to learn how WeKIT can support your community.
+              </p>
+            </div>
+            <div>
+              <a href="mailto:support@wekitmentoring.com" className="inline-flex items-center text-[hsl(0,0%,95%)] font-semibold hover:text-[hsl(0,0%,100%)] transition-colors">
+                Media Inquiries <ChevronRight className="ml-1 h-4 w-4" />
+              </a>
+              <p className="mt-2 text-sm leading-relaxed">
+                Members of the press and media are welcome to contact us.
+              </p>
+            </div>
           </div>
         </div>
 
-        <div className="border-t border-border mt-16 pt-8">
-          <p className="text-muted-foreground text-center">
-            © 2024 WeKIT International Pvt Limited. All rights reserved.
-          </p>
+        {/* Bottom bar */}
+        <div className="border-t border-[hsl(210,20%,18%)] py-6 flex flex-col md:flex-row items-center justify-between gap-4">
+          <div className="flex flex-col md:flex-row items-center gap-4 md:gap-8 text-sm">
+            <span>© 2025 WeKIT International Pvt Limited. All rights reserved.</span>
+            <span className="hidden md:inline text-[hsl(210,20%,25%)]">|</span>
+            <span>Global Operations</span>
+          </div>
+
+          <div className="flex items-center space-x-5">
+            <a href="https://www.instagram.com/we.kit.mentoring" target="_blank" rel="noopener noreferrer" className="text-[hsl(0,0%,60%)] hover:text-[hsl(0,0%,95%)] transition-colors">
+              <Instagram size={18} />
+            </a>
+            <a href="https://www.facebook.com/wekitorg" target="_blank" rel="noopener noreferrer" className="text-[hsl(0,0%,60%)] hover:text-[hsl(0,0%,95%)] transition-colors">
+              <Facebook size={18} />
+            </a>
+            <a href="https://www.youtube.com/@WeKITMentoring" target="_blank" rel="noopener noreferrer" className="text-[hsl(0,0%,60%)] hover:text-[hsl(0,0%,95%)] transition-colors">
+              <Youtube size={18} />
+            </a>
+            <a href="https://www.linkedin.com/company/we-kit-mentoring" target="_blank" rel="noopener noreferrer" className="text-[hsl(0,0%,60%)] hover:text-[hsl(0,0%,95%)] transition-colors">
+              <Linkedin size={18} />
+            </a>
+            <a href="mailto:hello@wekitmentoring.com" className="text-[hsl(0,0%,60%)] hover:text-[hsl(0,0%,95%)] transition-colors">
+              <Mail size={18} />
+            </a>
+          </div>
         </div>
       </div>
     </footer>
