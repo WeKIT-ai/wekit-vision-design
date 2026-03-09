@@ -6,8 +6,18 @@ const Footer = () => {
   return (
     <footer className="bg-[hsl(210,28%,10%)] text-[hsl(0,0%,75%)]">
       <div className="max-w-7xl mx-auto px-6 md:px-8">
+        {/* Logo */}
+        <div className="pt-16 md:pt-20 pb-10 flex items-center space-x-3">
+          <img 
+            src="/lovable-uploads/db13bc26-be3a-46c4-852b-6148fcd3edae.png" 
+            alt="WeKIT Logo" 
+            className="h-10 w-auto"
+          />
+          <span className="text-[hsl(0,0%,95%)] text-xl font-semibold font-montserrat">WeKIT</span>
+        </div>
+
         {/* Main footer content */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-12 py-16 md:py-20">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-12 pb-16 md:pb-20">
           {/* Column 1 */}
           <div className="space-y-4">
             <Link to="/about" className="block text-[hsl(0,0%,95%)] hover:text-[hsl(0,0%,100%)] font-medium transition-colors">About</Link>
