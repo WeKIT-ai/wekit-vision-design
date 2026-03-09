@@ -66,7 +66,6 @@ const Footer = () => {
                   support@wekitmentoring.com
                 </a>
               </li>
-              <li className="text-muted-foreground">London, UK</li>
               <li className="text-muted-foreground">Global Operations</li>
             </ul>
           </div>
