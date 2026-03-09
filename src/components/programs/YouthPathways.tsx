@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 
 const programs = [
   { icon: Brain, title: 'AI Career Discovery', desc: 'AI-powered psychometric profiling that maps student strengths, values, and interests to career pathways.' },
-  { icon: GraduationCap, title: 'College Discovery Community', desc: 'Students explore peer-reviewed college insights and connect with alumni for real-world guidance.', link: 'https://wekit.ai/discover', linkLabel: 'Explore College Discovery' },
+  { icon: GraduationCap, title: 'College Discovery Community', desc: 'Students explore peer-reviewed college insights and connect with alumni for real-world guidance.', link: '/discover', linkLabel: 'Explore College Discovery' },
   { icon: Users, title: 'Mentor Network', desc: 'One-on-one and group mentorship with verified industry professionals and alumni.' },
   { icon: Cpu, title: 'Future Skills Courses', desc: 'Curated learning journeys in AI literacy, digital productivity, sustainability, and emerging technologies.' },
 ];
