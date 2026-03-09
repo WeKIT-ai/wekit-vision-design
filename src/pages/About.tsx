@@ -114,7 +114,7 @@ const About = () => {
         </div>
       </section>
 
-      <AboutTeam />
+      
       <AboutCTA />
     </div>
   );
