@@ -4,7 +4,7 @@ import AboutHero from '@/components/about/AboutHero';
 import AboutStory from '@/components/about/AboutStory';
 import AboutMission from '@/components/about/AboutMission';
 import AboutImpact from '@/components/about/AboutImpact';
-import AboutTeam from '@/components/about/AboutTeam';
+
 import AboutCTA from '@/components/about/AboutCTA';
 import NewsletterSignup from '@/components/lead-gen/NewsletterSignup';
 import ContactForm from '@/components/lead-gen/ContactForm';
