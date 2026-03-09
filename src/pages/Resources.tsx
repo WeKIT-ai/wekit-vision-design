@@ -184,7 +184,7 @@ const Resources = () => (
         <p className="text-xl text-primary-foreground/70 mb-10">
           Get access to the latest insights, tools, and events when you join the WeKIT community.
         </p>
-        <a href="https://purpose-pathway-pilot.lovable.app/" target="_blank" rel="noopener noreferrer">
+        <a href="https://wekit.ai/" target="_blank" rel="noopener noreferrer">
           <Button size="lg" className="bg-accent text-accent-foreground font-semibold px-10 py-6 text-base">
             Join WeKIT
           </Button>

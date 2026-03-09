@@ -184,7 +184,7 @@ const MegaMenuMobile = ({ isOpen, setIsOpen }: MegaMenuMobileProps) => {
                   Login
                 </Button>
               </Link>
-              <a href="https://purpose-pathway-pilot.lovable.app/" target="_blank" rel="noopener noreferrer" onClick={close}>
+              <a href="https://wekit.ai/" target="_blank" rel="noopener noreferrer" onClick={close}>
                 <Button className="w-full bg-primary text-primary-foreground font-semibold mt-2">
                   Join WeKIT
                 </Button>

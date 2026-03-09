@@ -64,7 +64,7 @@ const StudentsHero = () => {
               skills, and interests. Get personalized insights that guide you to your ideal profession.
             </p>
             <a
-              href="https://purpose-pathway-pilot.lovable.app/"
+              href="https://wekit.ai/"
               target="_blank"
               rel="noopener noreferrer">
               
