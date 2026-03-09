@@ -1,6 +1,5 @@
-
-import { Button } from '@/components/ui/button';
-import { ArrowRight, Calendar } from 'lucide-react';
+import { Button } from "@/components/ui/button";
+import { ArrowRight, Calendar } from "lucide-react";
 
 const Hero = () => {
   return (
@@ -11,8 +10,9 @@ const Hero = () => {
           <img
             src="/lovable-uploads/c6564568-f266-425d-8f95-03d5389bdff0.png"
             alt="Your future is waiting"
-            className="w-full h-full object-cover" />
-          
+            className="w-full h-full object-cover"
+          />
+
           <div className="absolute inset-0 bg-black/50"></div>
         </div>
 
@@ -23,13 +23,9 @@ const Hero = () => {
               <h1 className="text-4xl font-bold font-montserrat text-white leading-tight md:text-5xl">
                 Mentoring the Future
                 <br />
-                <span className="text-wekit-gold">
-                  Powered by AI
-                </span>
+                <span className="text-wekit-gold">Powered by AI</span>
                 <br />
-                <span className="text-white/90">
-                  Driven by Purpose
-                </span>
+                <span className="text-white/90">Driven by Purpose</span>
               </h1>
             </div>
             <p className="text-lg mb-8 max-w-lg font-semibold text-center text-primary-foreground md:text-4xl">
@@ -39,17 +35,21 @@ const Hero = () => {
               <a href="/mentor-waitlist">
                 <Button
                   size="lg"
-                  className="bg-primary text-primary-foreground hover:bg-primary/90 px-12 py-6 text-lg font-medium shadow-sm hover:shadow-md transition-all duration-300 group">
-                  
-                  Join Our Mentor Community
+                  className="bg-primary text-primary-foreground hover:bg-primary/90 px-12 py-6 text-lg font-medium shadow-sm hover:shadow-md transition-all duration-300 group"
+                >
+                  Find your career
                   <ArrowRight className="ml-3 transition-transform duration-300 group-hover:translate-x-1" size={20} />
                 </Button>
               </a>
-              <a href="https://www.topmate.io/yvonne_roberts_wekit/page/5wlgL5jOcR" target="_blank" rel="noopener noreferrer">
+              <a
+                href="https://www.topmate.io/yvonne_roberts_wekit/page/5wlgL5jOcR"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <Button
                   size="lg"
-                  className="bg-white text-primary hover:bg-white/90 px-12 py-6 text-lg font-medium shadow-sm hover:shadow-md transition-all duration-300 group border-2 border-white">
-                  
+                  className="bg-white text-primary hover:bg-white/90 px-12 py-6 text-lg font-medium shadow-sm hover:shadow-md transition-all duration-300 group border-2 border-white"
+                >
                   <Calendar className="mr-3" size={20} />
                   Book a Consultation
                 </Button>
@@ -66,59 +66,53 @@ const Hero = () => {
             <h1 className="text-4xl md:text-6xl font-bold font-montserrat text-foreground leading-[1.1] tracking-tight">
               Mentoring the Future.
               <br />
-              <span className="text-wekit-teal">
-                Powered by AI.
-              </span>
+              <span className="text-wekit-teal">Powered by AI.</span>
               <br />
-              <span className="text-foreground/80">
-                Driven by Purpose.
-              </span>
+              <span className="text-foreground/80">Driven by Purpose.</span>
             </h1>
-            
+
             <p className="text-xl md:text-2xl text-muted-foreground max-w-4xl mx-auto leading-relaxed">
-              We bridge the gap between potential and opportunity through AI-driven mentorship, 
-              connecting youth with the guidance they need to thrive in tomorrow's world.
+              We bridge the gap between potential and opportunity through AI-driven mentorship, connecting youth with
+              the guidance they need to thrive in tomorrow's world.
             </p>
-            
+
             {/* Statistics */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto pt-8">
               <div className="text-center space-y-2">
-                <div className="text-3xl md:text-4xl font-bold text-wekit-teal">
-                  10,000+
-                </div>
+                <div className="text-3xl md:text-4xl font-bold text-wekit-teal">10,000+</div>
                 <p className="text-muted-foreground font-medium">Youth Mentored</p>
               </div>
               <div className="text-center space-y-2">
-                <div className="text-3xl md:text-4xl font-bold text-wekit-teal">
-                  500+
-                </div>
+                <div className="text-3xl md:text-4xl font-bold text-wekit-teal">500+</div>
                 <p className="text-muted-foreground font-medium">Expert Mentors</p>
               </div>
               <div className="text-center space-y-2">
-                <div className="text-3xl md:text-4xl font-bold text-wekit-teal">
-                  95%
-                </div>
+                <div className="text-3xl md:text-4xl font-bold text-wekit-teal">95%</div>
                 <p className="text-muted-foreground font-medium">Success Rate</p>
               </div>
             </div>
-            
+
             {/* Button Container */}
             <div className="pt-8 flex flex-col sm:flex-row gap-4 justify-center">
               <a href="/start-journey">
                 <Button
                   size="lg"
-                  className="bg-primary text-primary-foreground hover:bg-primary/90 px-12 py-6 text-lg font-medium shadow-sm hover:shadow-md transition-all duration-300 group">
-                  
+                  className="bg-primary text-primary-foreground hover:bg-primary/90 px-12 py-6 text-lg font-medium shadow-sm hover:shadow-md transition-all duration-300 group"
+                >
                   Start Here
                   <ArrowRight className="ml-3 transition-transform duration-300 group-hover:translate-x-1" size={20} />
                 </Button>
               </a>
-              <a href="https://www.topmate.io/yvonne_roberts_wekit/page/5wlgL5jOcR" target="_blank" rel="noopener noreferrer">
+              <a
+                href="https://www.topmate.io/yvonne_roberts_wekit/page/5wlgL5jOcR"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <Button
                   size="lg"
                   variant="outline"
-                  className="border-2 border-primary text-primary hover:bg-primary hover:text-primary-foreground px-12 py-6 text-lg font-medium transition-all duration-300 group">
-                  
+                  className="border-2 border-primary text-primary hover:bg-primary hover:text-primary-foreground px-12 py-6 text-lg font-medium transition-all duration-300 group"
+                >
                   <Calendar className="mr-3" size={20} />
                   Book a Consultation
                 </Button>
@@ -127,8 +121,8 @@ const Hero = () => {
           </div>
         </div>
       </section>
-    </>);
-
+    </>
+  );
 };
 
 export default Hero;
