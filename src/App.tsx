@@ -82,7 +82,7 @@ const App = () => (
                     </Routes>
                   </main>
                   <Footer />
-                  <TwaktoChat />
+                  <YomaChat />
                 </>
               } />
             </Routes>
