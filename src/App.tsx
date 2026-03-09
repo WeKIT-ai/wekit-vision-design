@@ -6,7 +6,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { AuthProvider } from "./contexts/AuthContext";
 import Navigation from "./components/Navigation";
 import Footer from "./components/Footer";
-import TwaktoChat from "./components/TwaktoChat";
+import YomaChat from "./components/YomaChat";
 import ScrollToTop from "./components/ScrollToTop";
 import Index from "./pages/Index";
 import Auth from "./pages/Auth";
@@ -82,7 +82,7 @@ const App = () => (
                     </Routes>
                   </main>
                   <Footer />
-                  <TwaktoChat />
+                  <YomaChat />
                 </>
               } />
             </Routes>
