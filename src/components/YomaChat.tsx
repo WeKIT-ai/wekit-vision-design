@@ -240,12 +240,13 @@ const YomaChat = () => {
                   className={`flex gap-2.5 ${msg.role === 'user' ? 'flex-row-reverse' : 'flex-row'}`}
                 >
                   {/* Avatar */}
-                  <div className={`w-7 h-7 rounded-full flex items-center justify-center shrink-0 mt-0.5 ${msg.role === 'assistant' ? 'bg-[#0205F4]' : 'bg-[#180205]'}`}>
-                    {msg.role === 'assistant'
-                      ? <Bot size={14} className="text-white" />
-                      : <User size={14} className="text-white" />
-                    }
-                  </div>
+                  {msg.role === 'assistant' ? (
+                    <img src={YOMA_AVATAR} alt="YOMA" className="w-7 h-7 rounded-full object-cover shrink-0 mt-0.5" />
+                  ) : (
+                    <div className="w-7 h-7 rounded-full flex items-center justify-center shrink-0 mt-0.5 bg-[#180205]">
+                      <User size={14} className="text-white" />
+                    </div>
+                  )}
 
                   {/* Bubble */}
                   <div className={`max-w-[78%] ${msg.role === 'user' ? 'items-end' : 'items-start'} flex flex-col gap-1`}>
