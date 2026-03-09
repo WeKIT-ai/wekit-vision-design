@@ -142,7 +142,7 @@ export const programsMenu: MegaMenuConfig = {
       subtitle: 'College Discovery Community',
       description: 'Students explore peer-reviewed college insights and connect with alumni for real-world guidance on campus life, academics, and careers.',
       buttonLabel: 'Explore Community',
-      buttonPath: '/programs#youth',
+      buttonPath: 'https://wekit.ai/discover',
       videoUrl: 'https://videos.pexels.com/video-files/6893992/6893992-uhd_2732_1440_25fps.mp4',
     },
     'Young Professionals': {
