@@ -572,6 +572,39 @@ export type Database = {
         }
         Relationships: []
       }
+      policy_consent_records: {
+        Row: {
+          accepted_at: string
+          form_source: string
+          id: string
+          metadata: Json | null
+          privacy_version: string
+          safeguarding_version: string
+          terms_version: string
+          user_identifier: string
+        }
+        Insert: {
+          accepted_at?: string
+          form_source: string
+          id?: string
+          metadata?: Json | null
+          privacy_version?: string
+          safeguarding_version?: string
+          terms_version?: string
+          user_identifier: string
+        }
+        Update: {
+          accepted_at?: string
+          form_source?: string
+          id?: string
+          metadata?: Json | null
+          privacy_version?: string
+          safeguarding_version?: string
+          terms_version?: string
+          user_identifier?: string
+        }
+        Relationships: []
+      }
       psychometric_test_leads: {
         Row: {
           created_at: string
