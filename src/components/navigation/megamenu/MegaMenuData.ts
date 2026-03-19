@@ -200,6 +200,7 @@ export const coursesMenu: MegaMenuConfig = {
     'Financial Literacy',
     'Leadership',
     'Purpose & Career',
+    'Vocational',
   ],
   groups: [
     {
@@ -242,6 +243,13 @@ export const coursesMenu: MegaMenuConfig = {
         { label: 'Purpose Architecture Lab', path: '/courses#purpose-architecture', icon: 'Compass' },
         { label: 'Career Strategy', path: '/courses#career-strategy', icon: 'Navigation' },
         { label: 'Personal Brand Building', path: '/courses#personal-brand', icon: 'Star' },
+      ],
+    },
+    {
+      title: 'Vocational',
+      links: [
+        { label: 'WeKIT Smiles — Dental Training', path: '/smiles', icon: 'Smile' },
+        { label: 'WeKIT Drone Pilot School', path: '/courses#drone-school', icon: 'Target' },
       ],
     },
   ],

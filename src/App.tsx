@@ -36,6 +36,7 @@ import AdminSyncDashboard from "./pages/AdminSyncDashboard";
 import TermsAndConditions from "./pages/TermsAndConditions";
 import CollegeDiscovery from "./pages/CollegeDiscovery";
 import TrustCenter from "./pages/TrustCenter";
+import WeKITSmiles from "./pages/WeKITSmiles";
 import ProtectedRoute from "./components/ProtectedRoute";
 const queryClient = new QueryClient();
 
@@ -83,6 +84,7 @@ const App = () => (
                       <Route path="/admin/sync" element={<ProtectedRoute><AdminSyncDashboard /></ProtectedRoute>} />
                       <Route path="/terms" element={<TermsAndConditions />} />
                       <Route path="/trust" element={<TrustCenter />} />
+                      <Route path="/smiles" element={<WeKITSmiles />} />
                       <Route path="/discover" element={<CollegeDiscovery />} />
                       <Route path="*" element={<NotFound />} />
                     </Routes>
