@@ -36,6 +36,7 @@ import AdminSyncDashboard from "./pages/AdminSyncDashboard";
 import TermsAndConditions from "./pages/TermsAndConditions";
 import CollegeDiscovery from "./pages/CollegeDiscovery";
 import TrustCenter from "./pages/TrustCenter";
+import WeKITSmiles from "./pages/WeKITSmiles";
 import ProtectedRoute from "./components/ProtectedRoute";
 const queryClient = new QueryClient();
 
