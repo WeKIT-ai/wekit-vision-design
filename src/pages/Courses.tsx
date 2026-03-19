@@ -326,74 +326,31 @@ const Courses = () => {
         </div>
       </section>
 
-      {/* Vocational Programs — Dental Assistant */}
+      {/* WeKIT Smiles Teaser */}
       <section className="py-24 px-6 md:px-8 bg-wekit-teal">
-        <div className="max-w-6xl mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div className="space-y-8">
-              <div className="inline-flex items-center px-4 py-2 bg-white/15 rounded-full text-sm font-medium text-white">
-                <Target className="w-4 h-4 mr-2" />
-                Featured Program
-              </div>
-              <h2 className="text-4xl md:text-5xl font-bold font-montserrat text-white leading-tight">
-                WeKIT Dental
-                <br />
-                <span className="text-wekit-gold">Assistant School</span>
-              </h2>
-              <p className="text-xl text-white/80 leading-relaxed">
-                Train to become a certified dental assistant with hands-on clinical experience at top dental clinics.
-                Perfect for 10th pass candidates looking to enter the healthcare industry with purpose-driven mentorship.
-              </p>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                {[
-                  { icon: BookOpen, label: 'Clinical Training' },
-                  { icon: Zap, label: 'Soft Skills Modules' },
-                  { icon: Users, label: '1-on-1 Mentor' },
-                  { icon: Award, label: 'Certification' },
-                ].map(item => (
-                  <div key={item.label} className="flex items-center space-x-3 bg-white/10 p-4">
-                    <item.icon className="w-6 h-6 text-wekit-gold" />
-                    <span className="text-white font-medium">{item.label}</span>
-                  </div>
-                ))}
-              </div>
-              <div className="space-y-4">
-                <h3 className="text-xl font-semibold text-white">What You'll Learn:</h3>
-                <div className="flex flex-wrap gap-2">
-                  {['Clinical Assisting', 'Patient Care', 'Office Management', 'Dental Software'].map(tag => (
-                    <span key={tag} className="px-3 py-1 bg-white/10 text-white/90 text-sm">{tag}</span>
-                  ))}
-                </div>
-              </div>
-              <Button size="lg" className="bg-wekit-gold text-primary hover:bg-wekit-gold/90 px-8 py-6 text-lg font-medium shadow-sm hover:shadow-md transition-all duration-300">
-                Apply for Dental Assistant School
-                <ArrowRight className="ml-3" size={20} />
-              </Button>
-            </div>
-            <div className="bg-white/10 backdrop-blur-sm p-8 border border-white/20">
-              <h3 className="text-2xl font-bold font-montserrat text-white mb-6">Programme Snapshot</h3>
-              <div className="space-y-6">
-                {[
-                  ['Eligibility', '10th Pass, 18+'],
-                  ['Location', 'Top Dental Clinics'],
-                  ['Course Fee', 'From ₹25,000'],
-                  ['Scholarships', 'Available'],
-                ].map(([label, value]) => (
-                  <div key={label} className="flex justify-between items-center">
-                    <span className="text-white/70">{label}</span>
-                    <span className="text-lg font-bold text-wekit-gold">{value}</span>
-                  </div>
-                ))}
-              </div>
-              <div className="mt-8 grid grid-cols-2 gap-3">
-                {['Certifications', 'Professional Networks', 'Purpose-Driven', 'Global Reach'].map(tag => (
-                  <div key={tag} className="bg-white/10 p-3 text-center">
-                    <p className="text-sm text-white/80">{tag}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
+        <div className="max-w-6xl mx-auto text-center space-y-8">
+          <div className="inline-flex items-center px-4 py-2 bg-white/15 rounded-full text-sm font-medium text-white">
+            <Target className="w-4 h-4 mr-2" />
+            Vocational Programme
           </div>
+          <h2 className="text-4xl md:text-5xl font-bold font-montserrat text-white leading-tight">
+            WeKIT <span className="text-wekit-gold">Smiles</span>
+          </h2>
+          <p className="text-xl text-white/80 max-w-3xl mx-auto leading-relaxed">
+            A purpose-driven dental assistant training programme combining clinical excellence
+            with mentorship, life skills, and career architecture. Starting from ₹25,000.
+          </p>
+          <div className="flex flex-wrap justify-center gap-3">
+            {['10th Pass Eligible', 'Industry Certification', 'Placement Support', 'Scholarships Available'].map(tag => (
+              <span key={tag} className="px-4 py-2 bg-white/10 border border-white/15 text-white/90 text-sm font-medium rounded-full">{tag}</span>
+            ))}
+          </div>
+          <Link to="/smiles">
+            <Button size="lg" className="bg-wekit-gold text-primary hover:bg-wekit-gold/90 px-10 py-6 text-lg font-medium shadow-lg hover:shadow-xl transition-all duration-300">
+              Explore WeKIT Smiles
+              <ArrowRight className="ml-3" size={20} />
+            </Button>
+          </Link>
         </div>
       </section>
 

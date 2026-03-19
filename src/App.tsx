@@ -84,6 +84,7 @@ const App = () => (
                       <Route path="/admin/sync" element={<ProtectedRoute><AdminSyncDashboard /></ProtectedRoute>} />
                       <Route path="/terms" element={<TermsAndConditions />} />
                       <Route path="/trust" element={<TrustCenter />} />
+                      <Route path="/smiles" element={<WeKITSmiles />} />
                       <Route path="/discover" element={<CollegeDiscovery />} />
                       <Route path="*" element={<NotFound />} />
                     </Routes>

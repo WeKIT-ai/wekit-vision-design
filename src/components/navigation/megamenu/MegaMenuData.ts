@@ -200,6 +200,7 @@ export const coursesMenu: MegaMenuConfig = {
     'Financial Literacy',
     'Leadership',
     'Purpose & Career',
+    'Vocational',
   ],
   groups: [
     {
