@@ -83,7 +83,7 @@ const WeKITSmiles = () => {
               </Button>
             </Link>
             <a href="#curriculum">
-              <Button size="lg" variant="outline" className="border-2 border-white/30 text-white hover:bg-white/10 px-10 py-6 text-lg font-medium transition-all duration-300">
+              <Button size="lg" variant="outline" className="border-2 border-white/50 text-white bg-white/10 hover:bg-white/20 px-10 py-6 text-lg font-medium transition-all duration-300">
                 View Curriculum
               </Button>
             </a>
