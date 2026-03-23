@@ -1,5 +1,6 @@
 
 import { Lightbulb, Building2, Heart, Quote } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const AboutStory = () => {
   return (
