@@ -98,18 +98,18 @@ const AboutStory = () => {
             </div>
             <div className="space-y-6">
               {/* Timeline milestones */}
-              <div className="flex items-start gap-4 p-5 rounded-xl bg-accent/30 border border-border">
+              <Link to="/ngos#nrect" className="flex items-start gap-4 p-5 rounded-xl bg-accent/30 border border-border hover:bg-accent/50 transition-colors group">
                 <div className="flex-shrink-0 w-12 h-12 rounded-lg bg-wekit-teal/20 flex items-center justify-center">
                   <Heart className="w-6 h-6 text-wekit-teal" />
                 </div>
                 <div>
-                  <p className="font-semibold text-foreground">NRECT — May 2011, Bangalore</p>
+                  <p className="font-semibold text-foreground group-hover:text-wekit-teal transition-colors">NRECT — May 2011, Bangalore</p>
                   <p className="text-sm text-muted-foreground">
                     Napoleon Roberts Education & Charitable Trust was incorporated to deliver grassroots 
                     mentoring initiatives in schools and communities.
                   </p>
                 </div>
-              </div>
+              </Link>
               <div className="flex items-start gap-4 p-5 rounded-xl bg-accent/30 border border-border">
                 <div className="flex-shrink-0 w-12 h-12 rounded-lg bg-wekit-teal/20 flex items-center justify-center">
                   <Building2 className="w-6 h-6 text-wekit-teal" />
