@@ -1,6 +1,7 @@
 
 import Hero from '@/components/home/Hero';
 import VisualImpact from '@/components/home/VisualImpact';
+import EcosystemOverview from '@/components/home/EcosystemOverview';
 import YomaSection from '@/components/home/YomaSection';
 import LeadGenSections from '@/components/home/LeadGenSections';
 import MissionStatement from '@/components/home/MissionStatement';
@@ -12,6 +13,7 @@ const Index = () => {
     <div className="min-h-screen bg-white">
       <Hero />
       <VisualImpact />
+      <EcosystemOverview />
       <YomaSection />
       <LeadGenSections />
       <MissionStatement />
