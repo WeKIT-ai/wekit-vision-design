@@ -62,6 +62,7 @@ export const programsMenu: MegaMenuConfig = {
         { label: 'Mentorship Platform Access', path: '/students#mentorship-platforms', icon: 'Users' },
         { label: 'Leadership Development', path: '/students#leadership-development', icon: 'Crown' },
         { label: 'College Discovery Community', path: '/discover', icon: 'GraduationCap' },
+        { label: 'Career Clarity Cohort', path: 'https://forms.zohopublic.in/wekitmentoring/form/WeKITaiCareerrClarityCohortNowAcceptingWaitlistApp/formperma/H3wR2cXuow9jY8eQztUTxurXFBhRMx_Pkt0Q0xJOKL0', icon: 'Target' },
         { label: 'Future Skills Courses', path: '/programs#youth', icon: 'Zap' },
       ],
     },
