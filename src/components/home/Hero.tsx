@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Calendar } from "lucide-react";
+import oakTree from "@/assets/oak-tree.png";
 
 const Hero = () => {
   return (
@@ -62,14 +63,21 @@ const Hero = () => {
       {/* Text Content Section */}
       <section className="relative py-24 px-6 md:px-8 bg-wekit-soft min-h-screen flex items-center overflow-hidden">
         <div className="max-w-6xl mx-auto relative z-10">
+          <div className="flex flex-col md:flex-row items-center justify-center gap-8 md:gap-16">
+            <div className="text-center md:text-left space-y-4 flex-1">
+              <h1 className="text-4xl md:text-6xl font-bold font-montserrat text-foreground leading-[1.1] tracking-tight">
+                Rooting you in what you
+                <br />
+                <span className="text-wekit-teal">were meant to be</span>
+                <br />
+                <span className="text-foreground/80">and do.</span>
+              </h1>
+            </div>
+            <div className="flex-shrink-0 w-48 h-48 md:w-72 md:h-72">
+              <img src={oakTree} alt="Oak tree with deep roots symbolizing growth and purpose" width={800} height={1024} className="w-full h-full object-contain" />
+            </div>
+          </div>
           <div className="text-center space-y-12">
-            <h1 className="text-4xl md:text-6xl font-bold font-montserrat text-foreground leading-[1.1] tracking-tight">
-              Rooting you in what you
-              <br />
-              <span className="text-wekit-teal">were meant to be</span>
-              <br />
-              <span className="text-foreground/80">and do.</span>
-            </h1>
 
             <p className="text-xl md:text-2xl text-muted-foreground max-w-4xl mx-auto leading-relaxed">
               We bridge the gap between potential and opportunity through AI-driven mentorship, connecting youth with
