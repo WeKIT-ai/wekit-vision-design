@@ -109,7 +109,7 @@ const NRECTSection = () => {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a 
-              href="https://nrect.org/" 
+              href="https://nrect.lovable.app" 
               target="_blank" 
               rel="noopener noreferrer"
             >
@@ -122,7 +122,7 @@ const NRECTSection = () => {
               </Button>
             </a>
             <a 
-              href="https://nrect.org/" 
+              href="https://nrect.lovable.app" 
               target="_blank" 
               rel="noopener noreferrer"
             >
@@ -136,7 +136,7 @@ const NRECTSection = () => {
               </Button>
             </a>
             <a 
-              href="https://nrect.org/" 
+              href="https://nrect.lovable.app" 
               target="_blank" 
               rel="noopener noreferrer"
             >
