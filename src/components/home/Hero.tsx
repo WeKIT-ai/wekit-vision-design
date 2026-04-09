@@ -62,20 +62,18 @@ const Hero = () => {
 
       {/* Text Content Section */}
       <section className="relative py-24 px-6 md:px-8 bg-wekit-soft min-h-screen flex items-center overflow-hidden">
+        <div className="absolute inset-0 z-0">
+          <img src={oakTreePeople} alt="Majestic oak tree with people gathering around it" className="w-full h-full object-cover opacity-20" />
+        </div>
         <div className="max-w-6xl mx-auto relative z-10">
-          <div className="flex flex-col md:flex-row items-center justify-center gap-8 md:gap-16">
-            <div className="text-center md:text-left space-y-4 flex-1">
-              <h1 className="text-4xl md:text-6xl font-bold font-montserrat text-foreground leading-[1.1] tracking-tight">
-                Rooting you in what you
-                <br />
-                <span className="text-wekit-teal">were meant to be</span>
-                <br />
-                <span className="text-foreground/80">and do.</span>
-              </h1>
-            </div>
-            <div className="flex-shrink-0 w-48 h-48 md:w-72 md:h-72">
-              <img src={oakTree} alt="Oak tree with deep roots symbolizing growth and purpose" width={800} height={1024} className="w-full h-full object-contain" />
-            </div>
+          <div className="text-center space-y-4 mb-12">
+            <h1 className="text-4xl md:text-6xl font-bold font-montserrat text-foreground leading-[1.1] tracking-tight">
+              Rooting you in what you
+              <br />
+              <span className="text-wekit-teal">were meant to be</span>
+              <br />
+              <span className="text-foreground/80">and do.</span>
+            </h1>
           </div>
           <div className="text-center space-y-12">
 
