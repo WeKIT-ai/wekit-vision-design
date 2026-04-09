@@ -64,11 +64,11 @@ const Hero = () => {
         <div className="max-w-6xl mx-auto relative z-10">
           <div className="text-center space-y-12">
             <h1 className="text-4xl md:text-6xl font-bold font-montserrat text-foreground leading-[1.1] tracking-tight">
-              Mentoring the Future.
+              Rooting you in what you
               <br />
-              <span className="text-wekit-teal">Powered by AI.</span>
+              <span className="text-wekit-teal">were meant to be</span>
               <br />
-              <span className="text-foreground/80">Driven by Purpose.</span>
+              <span className="text-foreground/80">and do.</span>
             </h1>
 
             <p className="text-xl md:text-2xl text-muted-foreground max-w-4xl mx-auto leading-relaxed">
