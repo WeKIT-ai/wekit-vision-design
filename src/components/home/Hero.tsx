@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Calendar } from "lucide-react";
-import oakTree from "@/assets/oak-tree.png";
+import oakTreePeople from "@/assets/oak-tree-people.jpg";
 
 const Hero = () => {
   return (
