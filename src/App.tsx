@@ -26,6 +26,7 @@ import Programs from "./pages/Programs";
 import Mentorship from "./pages/Mentorship";
 import Enterprise from "./pages/Enterprise";
 import Resources from "./pages/Resources";
+import Opportunities from "./pages/Opportunities";
 import Parents from "./pages/Parents";
 import MentorWaitlist from "./pages/MentorWaitlist";
 import Waitlist from "./pages/Waitlist";
@@ -77,6 +78,7 @@ const App = () => (
                       <Route path="/mentorship" element={<Mentorship />} />
                       <Route path="/enterprise" element={<Enterprise />} />
                       <Route path="/resources" element={<Resources />} />
+                      <Route path="/opportunities" element={<Opportunities />} />
                       <Route path="/mentor-waitlist" element={<MentorWaitlist />} />
                       <Route path="/mentor-onboarding" element={<ProtectedRoute><MentorOnboarding /></ProtectedRoute>} />
                       <Route path="/mentor-dashboard" element={<ProtectedRoute><MentorDashboard /></ProtectedRoute>} />

@@ -33,6 +33,7 @@ const MobileMenu = ({ isOpen, setIsOpen }: MobileMenuProps) => {
 
   const resourceItems = [
     { name: 'White Paper', path: '/white-paper' },
+    { name: 'Internships & Opportunities', path: '/opportunities' },
   ];
 
   if (!isOpen) return null;

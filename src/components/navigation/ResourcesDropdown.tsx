@@ -31,6 +31,14 @@ const ResourcesDropdown = () => {
             White Paper
           </Link>
         </DropdownMenuItem>
+        <DropdownMenuItem asChild>
+          <Link 
+            to="/opportunities" 
+            className="w-full cursor-pointer flex items-center px-3 py-2 text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-accent/50 rounded-md transition-all duration-200"
+          >
+            Internships & Opportunities
+          </Link>
+        </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
   );
