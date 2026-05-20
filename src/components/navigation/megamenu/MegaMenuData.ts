@@ -341,6 +341,7 @@ export const resourcesMenu: MegaMenuConfig = {
       title: 'Community',
       links: [
         { label: 'White Paper', path: '/white-paper', icon: 'FileText' },
+        { label: 'Internships & Opportunities', path: '/opportunities', icon: 'Briefcase' },
       ],
     },
     {
